@@ -4,7 +4,7 @@ Bài viết này cung cấp một cái nhìn tổng quát về khái niệm Cấ
 
 ***Nếu bạn không có thời gian đọc kỹ, đừng bỏ qua phần thứ tư***
 
-**1. Cấu trúc dữ liệu đa dạng nhưng đều xuất phát từ gốc rễ chung**
+### 1. Cấu trúc dữ liệu đa dạng nhưng đều xuất phát từ gốc rễ chung
 
 Ở mức độ trừu tượng cao nhất, Cấu trúc dữ liệu chỉ có hai loại: mảng (array) và danh sách liên kết (linked list).
 
@@ -117,7 +117,7 @@ class HashTable:
         return None
 ```
 
-**2. Các thao tác trên cấu trúc dữ liệu, xoay quanh việc duyệt và truy cập**
+### 2. Các thao tác trên cấu trúc dữ liệu, xoay quanh việc duyệt và truy cập
 
 Duyệt (traverse) và truy cập (access), cụ thể hơn là: thêm (insert), xóa (delete), tìm kiếm (search), sửa đổi (update).
 
@@ -208,7 +208,7 @@ Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, vi
   preorderTraversal(root); // Output: 1 2 4 5 3
   ```
 
-**3. Tại sao thuật toán luôn xuất hiện cùng cấu trúc dữ liệu**
+### 3. Tại sao thuật toán luôn xuất hiện cùng cấu trúc dữ liệu
 
 Cấu trúc dữ liệu là công cụ, thuật toán là cách giải quyết vấn đề bằng công cụ thích hợp.
 
@@ -253,7 +253,7 @@ bubble_sort(arr)
 print("Sorted array:", arr)
 ```
 
-**4. Tóm tắt (quan trọng)**
+### 4. Tóm tắt (quan trọng)
 
 Đối với người mới học thuật toán, điều quan trọng là phải học cách xem xét vấn đề từ góc độ khung, thay vì bận tâm đến các chi tiết.
 
