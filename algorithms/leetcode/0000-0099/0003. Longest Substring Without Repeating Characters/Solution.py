@@ -7,5 +7,5 @@ class Solution:
                 subString.remove(s[start])
                 start += 1
             subString.add(char)
-            answer  = max(answer , index - start + 1)
-        return answer 
+            answer = max(answer, index - start + 1)
+        return answer
