@@ -1,62 +1,114 @@
-## Thuật toán Lập trình động (Dynamic Programming)
+## Thuật toán Lập trình động (Dynamic Programming - DP)
 
-**Khái niệm:**
+### Giới thiệu
 
-Thuật toán lập trình động là một kỹ thuật giải quyết các bài toán bằng cách chia nhỏ chúng thành các bài toán con, lưu trữ các kết quả trung gian để tránh tính toán lại. Nói cách khác, lập trình động dựa trên nguyên tắc "ghi nhớ" các kết quả đã tính toán trước đó, sử dụng lại chúng để giải quyết các bài toán con tương tự, giúp tối ưu hóa hiệu suất.
+Lập trình động (Dynamic Programming - DP) là một kỹ thuật tối ưu hóa trong lập trình được sử dụng để giải quyết các bài toán có tính chất chồng lặp và con trỏ tối ưu. Ý tưởng chính là chia nhỏ bài toán phức tạp thành những bài toán con đơn giản hơn và lưu trữ kết quả của các bài toán con này để tránh việc tính toán lại nhiều lần.
 
-**Cách thức hoạt động:**
+### Cách hoạt động
 
-1. **Xác định các bài toán con:** Chia bài toán gốc thành các bài toán con nhỏ hơn, có cùng loại với bài toán gốc.
-2. **Lưu trữ kết quả trung gian:** Tạo một bảng hoặc cấu trúc dữ liệu để lưu trữ kết quả của các bài toán con đã được tính toán.
-3. **Sử dụng kết quả đã lưu:** Khi cần giải quyết một bài toán con, kiểm tra xem kết quả của bài toán con này đã được tính toán và lưu trữ chưa. Nếu đã có, sử dụng lại kết quả đó, không cần tính toán lại. Nếu chưa, tính toán kết quả và lưu trữ nó vào bảng.
-4. **Kết hợp kết quả:** Kết hợp các kết quả của các bài toán con để tạo ra giải pháp cho bài toán gốc.
+1. **Xác định tính chất:** Kiểm tra xem bài toán có hai tính chất quan trọng của lập trình động là con trỏ tối ưu (Optimal Substructure) và tính chất chồng lặp (Overlapping Subproblems) hay không.
+2. **Xây dựng bảng DP:** Tạo một bảng DP để lưu trữ kết quả của các bài toán con.
+3. **Tính toán từ dưới lên (Bottom-up):** Bắt đầu từ các bài toán con nhỏ nhất và giải dần lên bài toán lớn hơn. Lưu trữ kết quả của mỗi bài toán con vào bảng DP.
+4. **Sử dụng kết quả đã lưu:** Khi gặp lại một bài toán con đã được tính toán, thay vì tính toán lại, ta chỉ cần lấy kết quả từ bảng DP.
+5. **Trả về kết quả:** Kết quả cuối cùng của bài toán lớn được lưu trữ trong bảng DP.
 
-**Ưu điểm:**
+### Hai tính chất quan trọng:
 
-- **Hiệu quả:** Lập trình động giúp cải thiện hiệu suất của các thuật toán, đặc biệt khi giải quyết các bài toán có tính chất đệ quy hoặc có nhiều trường hợp trùng lặp.
-- **Dễ hiểu và triển khai:** Việc triển khai lập trình động thường đơn giản hơn so với các thuật toán đệ quy truyền thống, do việc lưu trữ kết quả trung gian giúp tránh tính toán lại.
-- **Tái sử dụng:** Các bảng kết quả có thể được sử dụng lại cho các bài toán tương tự khác, giúp giảm thời gian tính toán.
+**1. Con trỏ tối ưu (Optimal Substructure):**
 
-**Nhược điểm:**
+- Lời giải của bài toán lớn có thể được xây dựng từ lời giải của các bài toán con.
+- Ví dụ: Trong bài toán tìm đường đi ngắn nhất, đường đi ngắn nhất từ A đến C sẽ bao gồm đường đi ngắn nhất từ A đến B và từ B đến C.
 
-- **Bộ nhớ bổ sung:** Việc lưu trữ kết quả trung gian có thể yêu cầu bộ nhớ bổ sung.
-- **Không phù hợp với tất cả các vấn đề:** Lập trình động không phù hợp với các vấn đề có nhiều trường hợp rất khác biệt, hoặc khi chi phí lưu trữ kết quả trung gian quá cao.
+**2. Tính chất chồng lặp (Overlapping Subproblems):**
 
-**Ví dụ:**
+- Bài toán lớn sẽ có những bài toán con giống nhau và xuất hiện nhiều lần.
+- Ví dụ: Trong bài toán Fibonacci, để tính F(5), ta cần tính F(4) và F(3), nhưng để tính F(4), ta lại cần F(3) và F(2), nghĩa là F(3) bị tính lại nhiều lần.
 
-**Bài toán Fibonacci:**
+### Cách tiếp cận:
+
+**1. Top-down (Memoization - Ghi nhớ):**
+
+- Bắt đầu từ bài toán lớn nhất và chia nhỏ nó thành các bài toán con.
+- Khi gặp một bài toán con, nếu bài toán này đã được giải và kết quả đã được lưu trữ, ta không tính lại mà lấy kết quả từ bộ nhớ (cache).
+- Ví dụ: Nếu đã tính F(3) trong bài toán Fibonacci, lần sau gặp lại ta sẽ dùng ngay kết quả mà không tính lại.
+
+**2. Bottom-up (Tabulation - Lập bảng):**
+
+- Bắt đầu từ các bài toán con nhỏ nhất và giải dần lên bài toán lớn hơn.
+- Tất cả các kết quả đều được lưu trữ trong một bảng để sử dụng lại.
+- Ví dụ: Trong bài toán Fibonacci, thay vì tính ngược từ F(n), ta tính dần từ F(1), F(2), rồi mới đến F(n).
+
+### Ví dụ cụ thể với bài toán Fibonacci:
+
+**Bài toán Fibonacci:** Tính số Fibonacci thứ n, được định nghĩa như sau:
+
+```
+F(n) = F(n-1) + F(n-2)
+```
+
+Với điều kiện:
+
+```
+F(0) = 0, F(1) = 1
+```
+
+**3.1. Sử dụng phương pháp Top-down (Memoization):**
 
 ```python
-def fibonacci_dp(n):
-    """
-    Tính số Fibonacci thứ n bằng lập trình động.
-    """
-    dp = [0] * (n + 1)
-    dp[0] = 0
+def fibonacci_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fibonacci_memo(n-1, memo) + fibonacci_memo(n-2, memo)
+    return memo[n]
+
+# Ví dụ: Tính F(6)
+print(fibonacci_memo(6))  # Output: 8
+```
+
+**3.2. Sử dụng phương pháp Bottom-up (Tabulation):**
+
+```python
+def fibonacci_tabulation(n):
+    if n <= 1:
+        return n
+    dp = [0] * (n + 1)  # Tạo một bảng dp để lưu kết quả
     dp[1] = 1
     for i in range(2, n + 1):
         dp[i] = dp[i - 1] + dp[i - 2]
     return dp[n]
 
-# Ví dụ sử dụng
-n = 10
-fib_num = fibonacci_dp(n)
-print(fib_num)  # Output: 55
+# Ví dụ: Tính F(6)
+print(fibonacci_tabulation(6))  # Output: 8
 ```
 
-**Giải thích:**
+### Một số bài toán kinh điển áp dụng lập trình động:
 
-- **Xác định các bài toán con:** Bài toán con là tính số Fibonacci cho các giá trị nhỏ hơn n.
-- **Lưu trữ kết quả trung gian:** Tạo một mảng dp để lưu trữ các số Fibonacci đã được tính toán.
-- **Sử dụng kết quả đã lưu:** Trong vòng lặp, tính toán số Fibonacci thứ i bằng cách sử dụng kết quả đã lưu trữ của hai số Fibonacci trước đó.
-- **Kết hợp kết quả:** Kết quả cuối cùng được trả về là dp[n].
+- **Bài toán xếp ba lô (Knapsack Problem):** Tìm cách tối ưu để chọn đồ vật sao cho tổng giá trị tối đa nhưng không vượt quá trọng lượng của ba lô.
+- **Bài toán đường đi ngắn nhất:** Tìm đường đi ngắn nhất giữa các điểm trong một đồ thị (ví dụ: Floyd-Warshall, Dijkstra).
+- **Bài toán cắt thanh (Rod Cutting Problem):** Cắt một thanh dài thành các đoạn nhỏ sao cho tổng giá trị thu được là lớn nhất.
+- **Bài toán con chung dài nhất (Longest Common Subsequence - LCS):** Tìm chuỗi con chung dài nhất giữa hai chuỗi.
 
-**Ví dụ khác:**
+### Các bước giải một bài toán lập trình động:
 
-- **Bài toán ba lô:** Tìm cách chọn các đồ vật để đưa vào ba lô sao cho tổng giá trị của các đồ vật được chọn là lớn nhất, đồng thời tổng trọng lượng không vượt quá trọng lượng tối đa của ba lô.
-- **Bài toán tối ưu hóa đường đi:** Tìm đường đi ngắn nhất từ điểm A đến điểm B trong một đồ thị.
-- **Bài toán chỉnh sửa chuỗi:** Tìm số lượng thao tác cần thiết để biến đổi một chuỗi thành một chuỗi khác.
+1. **Xác định bài toán con:** Tìm các bài toán con lặp đi lặp lại.
+2. **Xác định công thức quy hoạch động (DP formula):** Thiết lập công thức để tính bài toán lớn dựa trên các bài toán con.
+3. **Lựa chọn phương pháp:** Xác định bạn muốn sử dụng phương pháp Top-down hay Bottom-up.
+4. **Tối ưu hóa bộ nhớ (nếu cần):** Trong một số bài toán, bạn có thể tối ưu hóa bộ nhớ bằng cách chỉ lưu trữ các giá trị cần thiết thay vì lưu toàn bộ bảng (như bài toán Fibonacci chỉ cần lưu hai giá trị trước đó).
 
-**Kết luận:**
+### Ưu điểm:
 
-Lập trình động là một kỹ thuật hữu ích để giải quyết các vấn đề đệ quy và các vấn đề có tính chất tối ưu hóa. Nó giúp cải thiện hiệu suất của thuật toán bằng cách tránh tính toán lại các kết quả trung gian.
+- **Giải quyết các bài toán phức tạp:** Lập trình động có thể giải quyết các bài toán phức tạp bằng cách chia nhỏ chúng thành các bài toán con đơn giản hơn.
+- **Tối ưu hóa thời gian:** Bằng cách lưu trữ kết quả của các bài toán con, lập trình động tránh việc tính toán lại nhiều lần, giúp tối ưu hóa thời gian chạy.
+
+### Nhược điểm:
+
+- **Sử dụng nhiều bộ nhớ:** Lập trình động thường yêu cầu nhiều bộ nhớ để lưu trữ bảng DP.
+- **Khó hiểu:** Khái niệm lập trình động có thể khó hiểu đối với những người mới bắt đầu.
+
+### Lưu ý:
+
+- Lập trình động là một kỹ thuật mạnh mẽ giúp tối ưu hóa các giải pháp cho nhiều bài toán.
+- Hiểu rõ các tính chất của bài toán và lựa chọn phương pháp phù hợp là điều quan trọng để áp dụng lập trình động hiệu quả.
+- Việc tối ưu hóa bộ nhớ là một yếu tố cần lưu ý trong một số bài toán để tránh lãng phí tài nguyên.
