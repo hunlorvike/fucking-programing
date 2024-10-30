@@ -1,0 +1,53 @@
+## So sánh Stateless và Stateful
+
+### 1. Khái Niệm Cơ Bản
+
+#### a. Stateless (Không trạng thái)
+
+- **Định nghĩa**: Là mô hình trong đó mỗi yêu cầu từ client (khách hàng) đến server (máy chủ) được xử lý độc lập. Server không lưu trữ thông tin về các yêu cầu trước đó. Mỗi yêu cầu chứa toàn bộ thông tin cần thiết để server hiểu và xử lý yêu cầu.
+
+#### b. Stateful (Có trạng thái)
+
+- **Định nghĩa**: Là mô hình trong đó server giữ lại thông tin về trạng thái của client giữa các yêu cầu. Điều này có nghĩa là server có thể lưu trữ và truy cập thông tin về các phiên giao dịch trước đó, giúp tạo ra các trải nghiệm liên tục cho người dùng.
+
+### 2. Chi Tiết
+
+#### a. Stateless (Không trạng thái)
+
+- **Đặc điểm**:
+
+  - **Độc lập**: Mỗi yêu cầu là một đơn vị độc lập và không phụ thuộc vào yêu cầu trước đó.
+  - **Tăng khả năng mở rộng**: Không cần đồng bộ hóa thông tin giữa các server, dễ dàng thêm nhiều server mới vào hệ thống.
+  - **Quản lý đơn giản**: Việc xử lý yêu cầu không cần theo dõi trạng thái.
+
+- **Ví dụ**:
+
+  - **Giao thức HTTP**: Là một giao thức stateless. Mỗi yêu cầu HTTP từ client đến server không giữ trạng thái của phiên trước đó. Khi tải một trang web, thông tin phiên của bạn không được lưu trữ trên server.
+
+- **Ứng dụng**: Thường thấy trong các dịch vụ RESTful API, nơi mỗi yêu cầu API chứa đủ thông tin cần thiết để xử lý mà không cần lưu trạng thái.
+
+#### b. Stateful (Có trạng thái)
+
+- **Đặc điểm**:
+
+  - **Lưu trữ thông tin**: Server giữ lại thông tin về các yêu cầu trước đó, có thể là thông tin phiên (session) hoặc trạng thái của người dùng.
+  - **Quản lý phức tạp hơn**: Cần có cơ chế để lưu trữ và quản lý trạng thái giữa các yêu cầu, có thể dẫn đến độ trễ và phức tạp trong phát triển.
+  - **Phụ thuộc vào phiên**: Các yêu cầu từ cùng một client có thể ảnh hưởng đến nhau, tạo ra trải nghiệm người dùng liên tục hơn.
+
+- **Ví dụ**:
+
+  - **Ứng dụng web**: Nhiều ứng dụng như giỏ hàng trực tuyến cần lưu thông tin về người dùng trong suốt quá trình mua sắm. Khi bạn thêm sản phẩm vào giỏ hàng, server cần nhớ bạn đã thêm sản phẩm nào.
+  - **Kết nối Socket**: Trong một kết nối socket, trạng thái của phiên kết nối được duy trì để gửi và nhận dữ liệu liên tục giữa client và server.
+
+- **Ứng dụng**: Các ứng dụng như chat online hoặc trò chơi trực tuyến thường sử dụng mô hình stateful để duy trì trạng thái của người dùng và tương tác giữa các người dùng.
+
+### 3. Kết Luận
+
+- **Stateless**:
+
+  - **Ưu điểm**: Thích hợp cho các ứng dụng cần mở rộng nhanh, xử lý yêu cầu độc lập, dễ triển khai và bảo trì.
+  - **Nhược điểm**: Khó khăn trong việc lưu thông tin liên tục về người dùng.
+
+- **Stateful**:
+  - **Ưu điểm**: Cung cấp trải nghiệm người dùng mượt mà và liên tục.
+  - **Nhược điểm**: Quản lý phức tạp hơn, yêu cầu lưu trữ thông tin trạng thái.
