@@ -71,7 +71,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.1 **Where**
 
-- **Mô tả**: Phép toán `Where` cho phép bạn lọc các phần tử trong một tập hợp dựa trên điều kiện cho trước. Điều kiện này được xác định thông qua một biểu thức lambda hoặc một hàm.
+- **Mô tả**: Phép toán `Where` cho phép bạn lọc các phần tử trong một tập hợp dựa trên điều kiện cho trước.
 - **Cú pháp**:
   ```csharp
   var result = collection.Where(item => condition);
@@ -84,7 +84,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.2 **Select**
 
-- **Mô tả**: Phép toán `Select` cho phép bạn chọn một tập con thuộc tính từ các đối tượng trong tập hợp. Bạn có thể sử dụng nó để ánh xạ dữ liệu từ các đối tượng thành một loại dữ liệu khác.
+- **Mô tả**: Phép toán `Select` cho phép bạn chọn một tập con thuộc tính từ các đối tượng trong tập hợp.
 - **Cú pháp**:
   ```csharp
   var result = collection.Select(item => selectedProperty);
@@ -97,7 +97,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.3 **OrderBy**
 
-- **Mô tả**: Phép toán `OrderBy` cho phép bạn sắp xếp các phần tử trong một tập hợp theo một hoặc nhiều thuộc tính. Sắp xếp có thể thực hiện theo thứ tự tăng dần hoặc giảm dần.
+- **Mô tả**: Phép toán `OrderBy` cho phép bạn sắp xếp các phần tử trong một tập hợp theo một hoặc nhiều thuộc tính.
 - **Cú pháp**:
   ```csharp
   var result = collection.OrderBy(item => property);
@@ -110,7 +110,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.4 **GroupBy**
 
-- **Mô tả**: Phép toán `GroupBy` cho phép bạn nhóm các phần tử trong một tập hợp dựa trên một thuộc tính. Kết quả là một tập hợp các nhóm, mỗi nhóm chứa các phần tử có giá trị chung cho thuộc tính đã chọn.
+- **Mô tả**: Phép toán `GroupBy` cho phép bạn nhóm các phần tử trong một tập hợp dựa trên một thuộc tính.
 - **Cú pháp**:
   ```csharp
   var result = collection.GroupBy(item => property);
@@ -123,7 +123,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.5 **Join**
 
-- **Mô tả**: Phép toán `Join` cho phép bạn kết hợp hai tập dữ liệu dựa trên một khóa chung. Điều này cho phép bạn tạo ra một tập hợp mới chứa các phần tử từ cả hai tập dữ liệu.
+- **Mô tả**: Phép toán `Join` cho phép bạn kết hợp hai tập dữ liệu dựa trên một khóa chung.
 - **Cú pháp**:
   ```csharp
   var result = collection1.Join(collection2,
@@ -155,7 +155,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.7 **Count**
 
-- **Mô tả**: Phép toán `Count` cho phép bạn đếm số phần tử trong một tập hợp. Bạn có thể đếm tất cả các phần tử hoặc chỉ những phần tử thỏa mãn một điều kiện nhất định.
+- **Mô tả**: Phép toán `Count` cho phép bạn đếm số phần tử trong một tập hợp.
 - **Cú pháp**:
   ```csharp
   var count = collection.Count();
@@ -170,7 +170,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.8 **Sum**
 
-- **Mô tả**: Phép toán `Sum` cho phép bạn tính tổng giá trị của một thuộc tính trong một tập hợp. Điều này rất hữu ích cho việc tính toán tổng số tiền, số lượng, hoặc bất kỳ giá trị số nào.
+- **Mô tả**: Phép toán `Sum` cho phép bạn tính tổng giá trị của một thuộc tính trong một tập hợp.
 - **Cú pháp**:
   ```csharp
   var totalSum = collection.Sum(item => item.Property);
@@ -181,194 +181,50 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
   // Kết quả: Tổng giá của tất cả sản phẩm
   ```
 
-### Kết luận
+### 5. **IQueryable vs IEnumerable**
 
-Các phép toán trên cung cấp cho lập trình viên các công cụ mạnh mẽ để thao tác và truy vấn dữ liệu một cách hiệu quả trong C#. Việc sử dụng linh hoạt các phép toán này giúp bạn dễ dàng xử lý các tập hợp dữ liệu phức tạp, tạo ra các truy vấn tùy chỉnh và đạt được kết quả mong muốn.
+#### 5.1 **IEnumerable**
 
-### 5. **Ví dụ chi tiết**
+- **Mô tả**: `IEnumerable` đại diện cho tập hợp có thể lặp qua trong bộ nhớ, thường sử dụng cho các tập hợp trong bộ nhớ như mảng hoặc danh sách.
+- **Tính năng**:
+  - Không hỗ trợ ánh xạ biểu thức; tất cả truy vấn thực hiện trong bộ nhớ.
+  - Phù hợp khi dữ liệu đã được tải vào bộ nhớ và cần thao tác.
+  - Thực hiện truy vấn ở mức client; tất cả dữ liệu phải được tải vào bộ nhớ.
+  - Chậm hơn với tập hợp lớn do phải tải toàn bộ dữ liệu trước.
 
-#### 5.1 **Ví dụ về LINQ to Objects**
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-}
-
-class Program
-{
-    static void Main()
-    {
-        List<Product> products = new List<Product>
-        {
-            new Product { Name = "Product 1", Price = 50 },
-            new Product { Name = "Product 2", Price = 150 },
-            new Product { Name = "Product 3", Price = 200 },
-        };
-
-        // Sử dụng cú pháp truy vấn
-        var expensiveProducts = from p in products
-                                where p.Price > 100
-                                select p;
-
-        // Sử dụng cú pháp phương thức
-        var expensiveProductsMethod = products.Where(p => p.Price > 100);
-
-        // Hiển thị kết quả
-        Console.WriteLine("Sản phẩm đắt tiền:");
-        foreach (var product in expensiveProducts)
-        {
-            Console.WriteLine($"{product.Name}: {product.Price}");
-        }
-    }
-}
-```
-
-#### 5.2 **Ví dụ về LINQ to SQL**
+**Ví dụ**:
 
 ```csharp
-using (var context = new DataContext())
-{
-    var products = from p in context.Products
-                   where p.Price > 100
-                   select p;
-
-    foreach (var product in products)
-    {
-        Console.WriteLine(product.Name);
-    }
-}
+IEnumerable<Product> enumerableProducts = context.Products.ToList();
+var expensiveProducts = enumerableProducts.Where(p => p.Price > 100);
 ```
 
-#### 5.3 **Ví dụ về LINQ to Entities (Entity Framework)**
+#### 5.2 **IQueryable**
+
+- **Mô tả**: `IQueryable` kế thừa từ `IEnumerable` và đại diện cho tập hợp có thể truy vấn. Nó cho phép thực hiện các truy vấn phức tạp trên dữ liệu ngoài bộ nhớ, như cơ sở dữ liệu.
+- **Tính năng**:
+  - Hỗ trợ ánh xạ biểu thức, chuyển đổi thành câu lệnh SQL.
+  - Tối ưu hóa hiệu suất truy vấn bằng cách chuyển điều kiện về phía nguồn dữ liệu.
+  - Thực hiện truy vấn trên server, chỉ tải dữ liệu cần thiết từ cơ sở dữ liệu.
+  - Nhanh hơn với cơ sở dữ liệu vì chỉ truy xuất dữ liệu cần thiết.
+
+**Ví dụ**:
 
 ```csharp
-using (var context = new MyDbContext())
-{
-    var orders = from o in context.Orders
-                 where o.OrderDate > DateTime.Now.AddMonths(-1)
-                 select o;
-
-    foreach (var order in orders)
-    {
-        Console.WriteLine($"Order ID: {order.OrderId}, Date: {order.OrderDate}");
-    }
-}
+IQueryable<Product> queryableProducts = context.Products.AsQueryable();
+var expensiveProducts = queryableProducts.Where(p => p.Price > 100);
 ```
 
-#### 5.4 **Ví dụ về LINQ to XML**
+#### 5.3 **So sánh giữa IQueryable và IEnumerable**
 
-```csharp
-using System;
-using System.Linq;
-using System.Xml.Linq;
+| Tính năng              | IQueryable                                                        | IEnumerable                                |
+| ---------------------- | ----------------------------------------------------------------- | ------------------------------------------ |
+| **Nguồn dữ liệu**      | Dữ liệu từ nhiều nguồn khác nhau (cơ sở dữ liệu, dịch vụ web,...) | Dữ liệu trong bộ nhớ (mảng, danh sách,...) |
+| **Xử lý truy vấn**     | Xử lý truy vấn tại nguồn dữ liệu                                  | Xử lý truy vấn trong bộ nhớ                |
+| **Biểu thức truy vấn** | Hỗ trợ ánh xạ biểu thức (expression tree)                         | Không hỗ trợ ánh xạ biểu thức              |
+| **Hiệu suất**          | Tối ưu hơn với truy vấn phức tạp                                  | Có thể kém hơn với tập dữ liệu lớn         |
+| **Cú pháp**            | Cú pháp linh hoạt với LINQ                                        | Cú pháp đơn giản với LINQ                  |
 
-class Program
-{
-    static void Main()
-    {
-        XElement xml = XElement.Parse(@"
-            <books>
-                <book>
-                    <title>Book 1</title>
-                    <author>Author 1</author>
-                </book>
-                <book>
-                    <title>Book 2</title>
-                    <author>Author 2</author>
-                </book>
-            </books>");
+### 6. **Kết luận**
 
-        var titles = from book in xml.Elements("book")
-                     select book.Element("title").Value;
-
-        Console.WriteLine("Danh sách tiêu đề sách:");
-        foreach (var title in titles)
-        {
-            Console.WriteLine(title);
-        }
-    }
-}
-```
-
-#### 5.5 **Ví dụ về LINQ to DataSet**
-
-```csharp
-using System;
-using System.Data;
-using System.Linq;
-
-class Program
-{
-    static void Main()
-    {
-        DataTable table = new DataTable();
-        table.Columns.Add("Id", typeof(int));
-        table.Columns.Add("Name", typeof(string));
-
-        table.Rows.Add(1, "Alice");
-        table.Rows.Add(2, "Bob");
-
-        var query = from row in table.AsEnumerable()
-                    where row.Field<int>("Id") > 1
-                    select row.Field<string>("Name");
-
-        Console.WriteLine("Tên người có ID lớn hơn 1:");
-        foreach (var name in query)
-        {
-            Console.WriteLine(name);
-        }
-    }
-}
-```
-
-### 6. **Deferred Execution trong LINQ**
-
-LINQ sử dụng **Deferred Execution**, có nghĩa là truy vấn không được thực hiện ngay lập tức mà chỉ được thực hiện khi bạn thực sự duyệt qua nó. Điều này cho phép bạn thay đổi dữ liệu mà không cần phải cập nhật truy vấn.
-
-**Ví dụ về Deferred Execution**:
-
-```csharp
-List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-var query = numbers.Where(n => n > 3); // Chưa thực hiện truy vấn
-
-numbers.Add(6); // Thay đổi dữ liệu
-
-foreach (var num in query) // Truy vấn thực hiện tại đây
-{
-    Console.WriteLine(num); // Kết quả: 4, 5, 6
-}
-```
-
-### 7. **Kết hợp LINQ với Entity Framework**
-
-Khi sử dụng Entity Framework, bạn có thể sử dụng LINQ để truy vấn cơ sở dữ liệu một cách dễ dàng. LINQ giúp bạn xây dựng các truy vấn phức tạp mà vẫn giữ mã nguồn rõ ràng và dễ đọc.
-
-#### Ví dụ:
-
-```csharp
-using (var context = new MyDbContext())
-{
-    var query = from p in context.Products
-                where p.Price > 100
-                select p;
-
-    foreach (var product in query)
-    {
-        Console.WriteLine(product.Name);
-    }
-}
-```
-
-### 8. **Tóm tắt**
-
-LINQ là một công cụ mạnh mẽ giúp
-
-bạn truy vấn và thao tác dữ liệu trong C#. Việc sử dụng LINQ giúp mã nguồn trở nên ngắn gọn và dễ đọc hơn. Bạn có thể kết hợp LINQ với nhiều loại nguồn dữ liệu khác nhau, từ các tập hợp trong bộ nhớ đến các cơ sở dữ liệu phức tạp.
-
-Nếu bạn cần thêm thông tin chi tiết về bất kỳ loại LINQ nào, hoặc có câu hỏi cụ thể nào về LINQ, đừng ngần ngại hỏi thêm!
+LINQ là một công cụ mạnh mẽ giúp lập trình viên C# thao tác với dữ liệu một cách hiệu quả và dễ dàng. Bằng cách sử dụng LINQ, bạn có thể thực hiện các truy vấn phức tạp trên nhiều nguồn dữ liệu khác nhau, đồng thời cải thiện độ rõ ràng và tính bảo trì của mã nguồn.
