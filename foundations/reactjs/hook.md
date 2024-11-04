@@ -1,323 +1,220 @@
-# Tìm hiểu về Hooks trong ReactJS
+Dưới đây là tài liệu chi tiết về quản lý trạng thái trong React với Redux và các thư viện bổ sung giúp giảm boilerplate như Redux Toolkit và Redux-Saga, cùng với ví dụ minh họa về chế độ **Dark Mode / Light Mode**.
 
-**Hooks** là một tính năng quan trọng trong React 16.8, cho phép bạn sử dụng trạng thái và các tính năng khác của React mà không cần viết class. Chúng đơn giản hóa cấu trúc component, dễ dàng tái sử dụng logic và cải thiện khả năng bảo trì mã nguồn.
+# Quản Lý State Trong React: Kết Hợp Hooks và Redux Với Dark Mode / Light Mode
 
-## Quy tắc và điều kiện khi sử dụng Hooks
+React cung cấp quản lý trạng thái cục bộ qua **Hooks** như `useState` và `useReducer`. Tuy nhiên, khi ứng dụng trở nên phức tạp, cần giải pháp mạnh mẽ hơn cho quản lý trạng thái toàn cục và đó là khi **Redux** phát huy vai trò. Redux là một thư viện quản lý trạng thái phổ biến giúp đảm bảo tính nhất quán và dễ kiểm soát trạng thái trong các ứng dụng lớn.
 
-### 1. Gọi Hooks ở Cấp Cao Nhất của Component
+## Các Khái Niệm Cơ Bản Trong Redux
 
-- **Mô tả**: Gọi Hooks ở cấp cao nhất của component, không trong vòng lặp, điều kiện hay hàm lồng.
-  
-- **Lý do**: Giúp React duy trì thứ tự gọi giữa các lần render, tránh lỗi không mong muốn.
+Trước khi triển khai ví dụ, cần hiểu rõ nhiệm vụ của các thành phần chính trong Redux:
 
-- **Ví dụ**:
+### 1. **Store**
 
-  ```javascript
-  function MyComponent() {
-      const [count, setCount] = useState(0); // Đúng
-      useEffect(() => {
-          console.log(count);
-      }, [count]);
+- **Store** là nơi lưu trữ toàn bộ trạng thái của ứng dụng dưới dạng một cây đối tượng.
+- Mỗi khi trạng thái thay đổi, `store` sẽ cập nhật trạng thái này và tất cả các component có kết nối với `store` sẽ được cập nhật lại.
+- Store được tạo ra bằng cách kết hợp các `reducer`, là nơi cập nhật trạng thái dựa trên các `action`.
 
-      return <div>{count}</div>;
-  }
-  ```
+### 2. **State**
 
-### 2. Không Gọi Hooks Trong Vòng Lặp hoặc Hàm Lồng
+- **State** là một đối tượng JavaScript lưu trữ trạng thái hiện tại của ứng dụng.
+- Trong ví dụ này, state chứa thông tin về **theme** của ứng dụng (`light` hoặc `dark`), giúp ứng dụng hiển thị đúng giao diện người dùng.
 
-- **Mô tả**: Hooks không được gọi trong vòng lặp `for`, `map`, hoặc hàm lồng.
+### 3. **Action**
 
-- **Lý do**: Ngăn thay đổi thứ tự gọi Hooks, tránh vấn đề quản lý trạng thái.
-
-- **Ví dụ**:
-
-  ```javascript
-  function MyComponent() {
-      const [count, setCount] = useState(0);
-      useEffect(() => {
-          console.log(count);
-      }, [count]); // Đúng
-
-      return <div>{count}</div>;
-  }
-  ```
-
-### 3. Sử Dụng Hooks Trong Component hoặc Custom Hook
-
-- **Mô tả**: Gọi Hooks chỉ trong function components hoặc custom hooks (tên bắt đầu bằng "use").
-
-- **Lý do**: Giúp React theo dõi và quản lý trạng thái một cách chính xác.
-
-- **Ví dụ**:
-
-  ```javascript
-  function MyComponent() {
-      const [count, setCount] = useState(0); // Đúng
-      return <div>{count}</div>;
-  }
-
-  function useMyCustomHook() {
-      const [value, setValue] = useState(0); // Đúng
-      return [value, setValue];
-  }
-  ```
-
-### 4. Sử Dụng Dependency Array Đúng Cách
-
-- **Mô tả**: Đối với `useEffect`, phải có mảng phụ thuộc để xác định khi nào effect cần chạy lại.
-
-- **Ví dụ**:
-
-  ```javascript
-  useEffect(() => {
-      // Logic thực hiện side effect
-  }, [count]); // Chạy lại khi count thay đổi
-  ```
-
-### 5. Cleanup Effects
-
-- **Mô tả**: Trong `useEffect`, có thể trả về hàm cleanup để thực hiện dọn dẹp khi component unmount hoặc trước khi effect chạy lại.
-
-- **Ví dụ**:
-
-  ```javascript
-  useEffect(() => {
-      const timer = setTimeout(() => {
-          console.log('Hello World');
-      }, 1000);
-
-      return () => clearTimeout(timer); // Dọn dẹp
-  }, []);
-  ```
-
-### 6. Sử Dụng Custom Hooks Để Tái Sử Dụng Logic
-
-- **Mô tả**: Tạo custom hooks để tái sử dụng logic giữa các component.
-
-- **Ví dụ**:
-
-  ```javascript
-  function useFetch(url) {
-      const [data, setData] = useState(null);
-      const [loading, setLoading] = useState(true);
-
-      useEffect(() => {
-          fetch(url)
-              .then(response => response.json())
-              .then(data => {
-                  setData(data);
-                  setLoading(false);
-              });
-      }, [url]);
-
-      return { data, loading };
-  }
-
-  function DataComponent() {
-      const { data, loading } = useFetch('https://api.example.com/data');
-
-      if (loading) return <div>Loading...</div>;
-      return <div>Data: {JSON.stringify(data)}</div>;
-  }
-  ```
-
-## Tóm tắt
-
-- **Gọi Hooks đúng nơi**: Gọi ở cấp cao nhất, không bên trong điều kiện hay vòng lặp.
-- **Sử dụng Dependency Array**: Đảm bảo xác định các giá trị mà effect phụ thuộc vào.
-- **Dọn dẹp Resource**: Sử dụng cleanup effects để tránh rò rỉ bộ nhớ.
-- **Tái sử dụng Logic**: Sử dụng custom hooks để cải thiện khả năng bảo trì mã nguồn.
-
-## Các Hooks cơ bản trong React
-
-### 1. `useState`
-
-- **Bản chất**: Thêm trạng thái vào function component.
-
-- **Cú pháp**:
-
-  ```javascript
-  const [state, setState] = useState(initialState);
-  ```
-
-- **Ví dụ**:
-
-  ```javascript
-  function Counter() {
-      const [count, setCount] = useState(0);
-
-      return (
-          <div>
-              <p>Count: {count}</p>
-              <button onClick={() => setCount(count + 1)}>Tăng</button>
-          </div>
-      );
-  }
-  ```
-
-### 2. `useEffect`
-
-- **Bản chất**: Thực hiện các side effects trong component.
-
-- **Cú pháp**:
-
-  ```javascript
-  useEffect(() => {
-      // Logic thực hiện side effect
-      return () => {
-          // Hàm cleanup (tuỳ chọn)
-      };
-  }, [dependencies]);
-  ```
-
-- **Ví dụ**:
-
-  ```javascript
-  function DataFetcher() {
-      const [data, setData] = useState(null);
-
-      useEffect(() => {
-          fetch('https://api.example.com/data')
-              .then(response => response.json())
-              .then(data => setData(data));
-      }, []); // Chạy 1 lần sau lần render đầu tiên
-
-      return (
-          <div>
-              {data ? <p>Dữ liệu: {JSON.stringify(data)}</p> : <p>Đang tải...</p>}
-          </div>
-      );
-  }
-  ```
-
-### 3. `useContext`
-
-- **Bản chất**: Sử dụng context API để chia sẻ dữ liệu giữa các component.
-
-- **Cú pháp**:
-
-  ```javascript
-  const value = useContext(MyContext);
-  ```
-
-- **Ví dụ**:
-
-  ```javascript
-  const ThemeContext = React.createContext('light');
-
-  function ThemedComponent() {
-      const theme = useContext(ThemeContext);
-      return <div className={theme}>This is a {theme} themed component.</div>;
-  }
-
-  function App() {
-      return (
-          <ThemeContext.Provider value="dark">
-              <ThemedComponent />
-          </ThemeContext.Provider>
-      );
-  }
-  ```
-
-### 4. `useReducer`
-
-- **Bản chất**: Thay thế cho `useState`, thích hợp cho state phức tạp.
-
-- **Cú pháp**:
-
-  ```javascript
-  const [state, dispatch] = useReducer(reducer, initialState);
-  ```
-
-- **Ví dụ**:
-
-  ```javascript
-  const initialState = { count: 0 };
-
-  function reducer(state, action) {
-      switch (action.type) {
-          case 'increment':
-              return { count: state.count + 1 };
-          case 'decrement':
-              return { count: state.count - 1 };
-          default:
-              throw new Error();
-      }
-  }
-
-  function Counter() {
-      const [state, dispatch] = useReducer(reducer, initialState);
-
-      return (
-          <div>
-              <p>Count: {state.count}</p>
-              <button onClick={() => dispatch({ type: 'increment' })}>Tăng</button>
-              <button onClick={() => dispatch({ type: 'decrement' })}>Giảm</button>
-          </div>
-      );
-  }
-  ```
-
-### 5. `useMemo` và `useCallback`
-
-- **`useMemo`**: Tối ưu hóa hiệu suất bằng cách lưu trữ giá trị đã tính toán.
-
-  **Ví dụ**:
-
-  ```javascript
-  function Component({ items }) {
-      const total = useMemo(() => items.reduce((acc, item) => acc + item, 0), [items]);
-
-      return <div>Tổng: {total}</div>;
-  }
-  ```
-
-- **`useCallback`**: Lưu trữ các hàm để tránh tạo lại hàm trong mỗi lần render.
-
-  **Ví dụ**:
-
-  ```javascript
-  function Component({ onClick }) {
-      const handleClick = useCallback(() => {
-          console.log('Clicked');
-          onClick();
-      }, [onClick]);
-
-      return <button onClick={handleClick}>Click me</button>;
-  }
-  ```
-
-### 6. `useRef`
-
-- **Bản chất**: Tạo đối tượng ref để lưu trữ giá trị không thay đổi qua các lần render.
-
-- **Cú pháp**:
-
-  ```javascript
-  const myRef = useRef(initialValue);
-  ```
-
-- **Ví dụ**:
+- **Action** là một đối tượng JavaScript có thuộc tính `type` mô tả loại hành động và có thể có thuộc tính `payload` chứa dữ liệu đi kèm.
+- `Action` là tín hiệu yêu cầu thay đổi trạng thái. Ví dụ, `TOGGLE_THEME` là action sẽ yêu cầu chuyển đổi chế độ theme.
 
 ```javascript
-function FocusInput() {
-    const inputRef = useRef(null);
+const toggleThemeAction = { type: 'TOGGLE_THEME' };
+```
 
-    const focusInput = () => {
-        inputRef.current.focus();
-    };
+### 4. **Reducer**
 
-    return (
-        <div>
-            <input
+- **Reducer** là một hàm nhận `state` hiện tại và `action`, sau đó trả về trạng thái mới.
+- Reducer đảm bảo việc cập nhật là **pure function** (hàm thuần túy) và không làm thay đổi `state` hiện tại trực tiếp.
 
-ref={inputRef} />
-            <button onClick={focusInput}>Lấy nét vào ô input</button>
-        </div>
-    );
+```javascript
+function themeReducer(state = { theme: 'light' }, action) {
+  switch (action.type) {
+    case 'TOGGLE_THEME':
+      return { theme: state.theme === 'light' ? 'dark' : 'light' };
+    default:
+      return state;
+  }
 }
 ```
 
-## Kết luận
+### 5. **Dispatch**
 
-Hooks trong ReactJS mang lại nhiều lợi ích cho việc phát triển ứng dụng. Việc hiểu và áp dụng đúng các quy tắc và hooks sẽ giúp bạn viết mã hiệu quả hơn, dễ bảo trì và mở rộng.
+- `Dispatch` là phương thức để gửi một `action` tới `store`, kích hoạt `reducer` xử lý và cập nhật trạng thái.
+
+```javascript
+store.dispatch(toggleThemeAction);
+```
+
+## Cài Đặt và Thiết Lập Redux Trong Ứng Dụng React
+
+### Bước 1: Cài Đặt Redux và React-Redux
+
+Cài đặt hai gói:
+
+```bash
+npm install redux react-redux
+```
+
+### Bước 2: Tạo `store`
+
+Tạo `store` bằng cách kết hợp các `reducer` và kết nối `store` với ứng dụng qua `Provider` của React-Redux.
+
+```javascript
+// src/store.js
+import { createStore } from 'redux';
+import themeReducer from './reducers/themeReducer';
+
+const store = createStore(themeReducer);
+
+export default store;
+```
+
+Trong `App.js`, kết nối `store` với ứng dụng qua `Provider`:
+
+```javascript
+// src/App.js
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+import ThemeToggle from './ThemeToggle';
+
+function App() {
+  return (
+    <Provider store={store}>
+      <ThemeToggle />
+    </Provider>
+  );
+}
+
+export default App;
+```
+
+### Bước 3: Tạo Reducer Cho Theme
+
+Tạo file `themeReducer.js` để xác định cách xử lý các `action` liên quan đến theme.
+
+```javascript
+// src/reducers/themeReducer.js
+const initialState = {
+  theme: 'light',
+};
+
+function themeReducer(state = initialState, action) {
+  switch (action.type) {
+    case 'TOGGLE_THEME':
+      return { theme: state.theme === 'light' ? 'dark' : 'light' };
+    default:
+      return state;
+  }
+}
+
+export default themeReducer;
+```
+
+### Bước 4: Tạo Component `ThemeToggle` và Kết Nối Với Redux
+
+Trong `ThemeToggle`, sử dụng `useSelector` để lấy `theme` từ `store` và `useDispatch` để gửi `action`.
+
+```javascript
+// src/ThemeToggle.js
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+function ThemeToggle() {
+  const theme = useSelector(state => state.theme);
+  const dispatch = useDispatch();
+
+  const toggleTheme = () => dispatch({ type: 'TOGGLE_THEME' });
+
+  return (
+    <div
+      style={{
+        backgroundColor: theme === 'light' ? '#fff' : '#333',
+        color: theme === 'light' ? '#000' : '#fff',
+        textAlign: 'center',
+        padding: '20px',
+      }}
+    >
+      <h1>{theme === 'light' ? 'Light Mode' : 'Dark Mode'}</h1>
+      <button onClick={toggleTheme}>Toggle Theme</button>
+    </div>
+  );
+}
+
+export default ThemeToggle;
+```
+
+## Sử Dụng Các Thư Viện Giảm Boilerplate Cho Redux
+
+### 1. **Redux Toolkit**
+
+**Redux Toolkit** là bộ công cụ được xây dựng để giảm thiểu cấu trúc và mã lặp lại khi sử dụng Redux, hỗ trợ các API như `createSlice` để tạo reducer và action trong một bước:
+
+```javascript
+// src/reducers/themeSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+const themeSlice = createSlice({
+  name: 'theme',
+  initialState: { theme: 'light' },
+  reducers: {
+    toggleTheme: state => {
+      state.theme = state.theme === 'light' ? 'dark' : 'light';
+    },
+  },
+});
+
+export const { toggleTheme } = themeSlice.actions;
+export default themeSlice.reducer;
+```
+
+```javascript
+// src/store.js
+import { configureStore } from '@reduxjs/toolkit';
+import themeReducer from './reducers/themeSlice';
+
+const store = configureStore({
+  reducer: themeReducer,
+});
+
+export default store;
+```
+
+### 2. **Redux-Saga**
+
+**Redux-Saga** hỗ trợ quản lý các side effects, chẳng hạn như gọi API, một cách có cấu trúc và dễ kiểm soát.
+
+- Cài đặt Redux-Saga:
+
+  ```bash
+  npm install redux-saga
+  ```
+
+- Định nghĩa một saga cơ bản (ví dụ như để lưu theme hiện tại vào localStorage):
+
+  ```javascript
+  // src/sagas/themeSaga.js
+  import { put, takeLatest } from 'redux-saga/effects';
+  import { toggleTheme } from '../reducers/themeSlice';
+
+  function* saveTheme(action) {
+    yield localStorage.setItem('theme', action.payload);
+  }
+
+  function* watchToggleTheme() {
+    yield takeLatest(toggleTheme.type, saveTheme);
+  }
+
+  export default watchToggleTheme;
+  ```
+
+## Kết Luận
+
+Sự kết hợp giữa Hooks và Redux giúp quản lý trạng thái trong React linh hoạt và mạnh mẽ. Redux Toolkit giảm bớt cấu trúc và mã lặp lại, trong khi Redux-Saga giúp quản lý các side effects. Tùy thuộc vào độ phức tạp của ứng dụng, bạn có thể chọn kết hợp Redux với các thư viện này để tối ưu hóa quy trình quản lý trạng thái.

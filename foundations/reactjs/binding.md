@@ -18,12 +18,12 @@ Trong React, binding dữ liệu chủ yếu được thực hiện thông qua *
 
 ```jsx
 function ParentComponent() {
-    const message = "Hello from Parent!";
-    return <ChildComponent text={message} />;
+  const message = 'Hello from Parent!';
+  return <ChildComponent text={message} />;
 }
 
 function ChildComponent(props) {
-    return <h1>{props.text}</h1>;
+  return <h1>{props.text}</h1>;
 }
 ```
 
@@ -39,18 +39,18 @@ function ChildComponent(props) {
 import React, { useState } from 'react';
 
 function Counter() {
-    const [count, setCount] = useState(0); // Khởi tạo state với giá trị ban đầu là 0
+  const [count, setCount] = useState(0); // Khởi tạo state với giá trị ban đầu là 0
 
-    const increment = () => {
-        setCount(count + 1); // Cập nhật state khi hàm được gọi
-    };
+  const increment = () => {
+    setCount(count + 1); // Cập nhật state khi hàm được gọi
+  };
 
-    return (
-        <div>
-            <p>You clicked {count} times</p>
-            <button onClick={increment}>Click me</button>
-        </div>
-    );
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={increment}>Click me</button>
+    </div>
+  );
 }
 ```
 
@@ -66,32 +66,28 @@ React cung cấp cách để thực hiện two-way binding với các input elem
 import React, { useState } from 'react';
 
 function NameInput() {
-    const [name, setName] = useState('');
+  const [name, setName] = useState('');
 
-    const handleChange = (event) => {
-        setName(event.target.value); // Cập nhật state khi người dùng nhập liệu
-    };
+  const handleChange = event => {
+    setName(event.target.value); // Cập nhật state khi người dùng nhập liệu
+  };
 
-    return (
-        <div>
-            <input type="text" value={name} onChange={handleChange} />
-            <p>Your name is: {name}</p>
-        </div>
-    );
+  return (
+    <div>
+      <input type="text" value={name} onChange={handleChange} />
+      <p>Your name is: {name}</p>
+    </div>
+  );
 }
 ```
 
 - **Giải thích**: Trong ví dụ này, `NameInput` là một function component sử dụng `useState` để quản lý giá trị của ô input. Khi người dùng nhập vào ô input, hàm `handleChange` được gọi và state `name` được cập nhật, làm cho UI tự động phản ánh giá trị mới.
 
----
-
 ## Tóm tắt về Binding trong React
 
-| Loại Binding     | Mô tả                                                                                         | Ví dụ                               |
-|------------------|------------------------------------------------------------------------------------------------|-------------------------------------|
-| One-way Binding   | Dữ liệu truyền từ model đến view, không có cập nhật ngược lại                               | Sử dụng props                      |
-| Two-way Binding   | Dữ liệu có thể được cập nhật cả từ UI và model                                              | Sử dụng state với input elements   |
-
----
+| Loại Binding | Mô tả | Ví dụ |
+| | - | -- |
+| One-way Binding | Dữ liệu truyền từ model đến view, không có cập nhật ngược lại | Sử dụng props |
+| Two-way Binding | Dữ liệu có thể được cập nhật cả từ UI và model | Sử dụng state với input elements |
 
 Với sự hiểu biết về binding trong React, lập trình viên có thể dễ dàng quản lý luồng dữ liệu giữa các component, giữ cho giao diện người dùng luôn đồng bộ với trạng thái của ứng dụng. Điều này giúp cải thiện trải nghiệm người dùng và giảm thiểu lỗi khi phát triển ứng dụng front-end.

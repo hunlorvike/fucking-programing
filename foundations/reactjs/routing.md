@@ -136,21 +136,21 @@ React Router cho phép bạn điều hướng tự động đến một route kh
 ```javascript
 import { Navigate } from 'react-router-dom';
 
-<Route path="/old-path" element={<Navigate to="/new-path" replace />} />
+<Route path="/old-path" element={<Navigate to="/new-path" replace />} />;
 ```
 
 ## Tóm tắt về Routing trong React
 
-| Tính năng                | Mô tả                                       |
-|-------------------------|--------------------------------------------|
-| **BrowserRouter**       | Cung cấp ngữ cảnh cho routing.            |
-| **Routes**              | Container chứa các route.                  |
-| **Route**               | Định nghĩa đường dẫn và component tương ứng. |
-| **Link**                | Component để tạo liên kết điều hướng.      |
-| **useNavigate**         | Hook cho phép điều hướng programmatically.  |
-| **Nested Routes**       | Hỗ trợ cấu trúc route phức tạp hơn.       |
-| **Dynamic Routes**      | Sử dụng tham số trong đường dẫn.            |
-| **Redirect**            | Điều hướng tự động đến một route khác.     |
+| Tính năng          | Mô tả                                        |
+| ------------------ | -------------------------------------------- |
+| **BrowserRouter**  | Cung cấp ngữ cảnh cho routing.               |
+| **Routes**         | Container chứa các route.                    |
+| **Route**          | Định nghĩa đường dẫn và component tương ứng. |
+| **Link**           | Component để tạo liên kết điều hướng.        |
+| **useNavigate**    | Hook cho phép điều hướng programmatically.   |
+| **Nested Routes**  | Hỗ trợ cấu trúc route phức tạp hơn.          |
+| **Dynamic Routes** | Sử dụng tham số trong đường dẫn.             |
+| **Redirect**       | Điều hướng tự động đến một route khác.       |
 
 ## Kết luận
 

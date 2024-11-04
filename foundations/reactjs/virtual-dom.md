@@ -22,10 +22,10 @@
 
 ## Virtual DOM vs. DOM thật
 
-| **Khái niệm**        | **Virtual DOM**                           | **DOM thật**                          |
-|----------------------|-------------------------------------------|---------------------------------------|
-| **Khối lượng**       | Nhẹ hơn, là một cấu trúc JavaScript      | Nặng nề hơn, là một cấu trúc thực tế trong trình duyệt |
-| **Tốc độ cập nhật**  | Nhanh hơn, chỉ cập nhật các phần cần thiết | Chậm hơn, cần thao tác trực tiếp với DOM |
+| **Khái niệm** | **Virtual DOM** | **DOM thật** |
+|-|-||
+| **Khối lượng** | Nhẹ hơn, là một cấu trúc JavaScript | Nặng nề hơn, là một cấu trúc thực tế trong trình duyệt |
+| **Tốc độ cập nhật** | Nhanh hơn, chỉ cập nhật các phần cần thiết | Chậm hơn, cần thao tác trực tiếp với DOM |
 | **Cách thức hoạt động** | So sánh và cập nhật theo kiểu "diffing" | Cập nhật ngay lập tức mà không có tối ưu hóa |
 
 ## Cách sử dụng Virtual DOM trong React
@@ -36,18 +36,18 @@ Virtual DOM là một phần không thể tách rời của React. Bạn không 
 import React, { useState } from 'react';
 
 function Counter() {
-    const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
 
-    const increment = () => {
-        setCount(count + 1); // Gọi hàm cập nhật state
-    };
+  const increment = () => {
+    setCount(count + 1); // Gọi hàm cập nhật state
+  };
 
-    return (
-        <div>
-            <p>Count: {count}</p>
-            <button onClick={increment}>Tăng</button>
-        </div>
-    );
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Tăng</button>
+    </div>
+  );
 }
 
 export default Counter;

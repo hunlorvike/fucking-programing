@@ -36,9 +36,7 @@ function App() {
     console.log('Button was clicked!');
   };
 
-  return (
-    <button onClick={handleClick}>Click me</button>
-  );
+  return <button onClick={handleClick}>Click me</button>;
 }
 ```
 
@@ -111,7 +109,7 @@ import React, { useState } from 'react';
 function TextInput() {
   const [text, setText] = useState('');
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setText(event.target.value);
   };
 
@@ -129,7 +127,7 @@ function TextInput() {
 Trong một số trường hợp, bạn có thể muốn ngăn chặn hành vi mặc định của sự kiện, chẳng hạn như khi gửi form. Để làm điều này, bạn có thể gọi `event.preventDefault()` trong hàm xử lý sự kiện.
 
 ```javascript
-const handleSubmit = (event) => {
+const handleSubmit = event => {
   event.preventDefault(); // Ngăn chặn hành vi mặc định
   // Thực hiện hành động gửi form
 };
@@ -145,14 +143,14 @@ Nếu bạn muốn truyền tham số cho hàm xử lý sự kiện, bạn có t
 
 ## Tóm tắt về Sự kiện trong React
 
-| Tính năng                | Mô tả                                        |
-|-------------------------|---------------------------------------------|
-| **Sự kiện chuột**      | `onClick`, `onDoubleClick`, `onMouseEnter`, `onMouseLeave` |
-| **Sự kiện bàn phím**   | `onKeyDown`, `onKeyUp`                     |
-| **Sự kiện form**       | `onChange`, `onSubmit`                     |
-| **Ngăn chặn sự kiện**   | `event.preventDefault()`                    |
-| **Quản lý trạng thái**  | Sử dụng hook `useState` để cập nhật state   |
-| **Truyền tham số**      | Sử dụng arrow function để truyền tham số    |
+| Tính năng | Mô tả |
+|-||
+| **Sự kiện chuột** | `onClick`, `onDoubleClick`, `onMouseEnter`, `onMouseLeave` |
+| **Sự kiện bàn phím** | `onKeyDown`, `onKeyUp` |
+| **Sự kiện form** | `onChange`, `onSubmit` |
+| **Ngăn chặn sự kiện** | `event.preventDefault()` |
+| **Quản lý trạng thái** | Sử dụng hook `useState` để cập nhật state |
+| **Truyền tham số** | Sử dụng arrow function để truyền tham số |
 
 ## Kết luận
 
