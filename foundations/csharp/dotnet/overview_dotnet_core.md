@@ -1,5 +1,25 @@
 # Tổng Quan về .NET Core
 
+## Mục Lục
+
+1. [Giới Thiệu về .NET Core](#giới-thiệu-về-net-core)
+2. [Sự Khác Biệt Giữa .NET Framework và .NET Core](#sự-khác-biệt-giữa-net-framework-và-net-core)
+   - 1. [Hệ Điều Hành và Khả Năng Đa Nền Tảng](#hệ-điều-hành-và-khả-năng-đa-nền-tảng)
+   - 2. [Kiến Trúc và Triển Khai](#kiến-trúc-và-triển-khai)
+   - 3. [Ứng Dụng Mục Tiêu](#ứng-dụng-mục-tiêu)
+   - 4. [Hiệu Suất và Tối Ưu Hóa](#hiệu-suất-và-tối-ưu-hóa)
+   - 5. [Mã Nguồn Mở và Cộng Đồng](#mã-nguồn-mở-và-cộng-đồng)
+   - 6. [Hỗ Trợ và Phát Triển](#hỗ-trợ-và-phát-triển)
+   - 7. [Thư Viện và API](#thư-viện-và-api)
+3. [Tóm Tắt So Sánh](#tóm-tắt-so-sánh)
+4. [Lời Khuyên](#lời-khuyên)
+5. [Mục Tiêu Phát Triển của Microsoft cho .NET Core](#mục-tiêu-phát-triển-của-microsoft-cho-net-core)
+6. [Ưu Điểm của .NET Core](#ưu-điểm-của-net-core)
+7. [Nhược Điểm của .NET Core](#nhược-điểm-của-net-core)
+8. [Tóm Tắt](#tóm-tắt)
+
+## Giới Thiệu về .NET Core
+
 **.NET Core** là một nền tảng mã nguồn mở và đa nền tảng do Microsoft phát triển, cho phép xây dựng và triển khai ứng dụng trên các hệ điều hành như **Windows**, **macOS**, và **Linux**. Với thiết kế nhằm tối ưu hiệu suất, tính linh hoạt và khả năng mở rộng, .NET Core là lựa chọn lý tưởng cho các ứng dụng **web**, **cloud**, **IoT**, và **microservices**. Năm 2020, Microsoft đã hợp nhất .NET Core vào **.NET 5**, đánh dấu sự chuyển mình mạnh mẽ để thay thế .NET Framework truyền thống.
 
 ## Sự Khác Biệt Giữa .NET Framework và .NET Core
@@ -41,7 +61,7 @@
 
 ---
 
-### Tóm Tắt So Sánh
+## Tóm Tắt So Sánh
 
 | Thuộc Tính               | .NET Framework                             | .NET Core                                |
 | ------------------------ | ------------------------------------------ | ---------------------------------------- |
@@ -53,7 +73,7 @@
 | **Hỗ Trợ và Phát Triển** | Bảo trì, không có tính năng mới            | Phát triển chủ đạo, nhiều tính năng mới  |
 | **Thư Viện và API**      | FCL (đầy đủ)                               | CoreFX, ASP.NET Core (tối ưu)            |
 
-### Lời Khuyên
+## Lời Khuyên
 
 - **Dự án Windows cũ**: Nên tiếp tục với .NET Framework nếu không yêu cầu đa nền tảng.
 - **Dự án mới**: Chọn **.NET Core** hoặc các phiên bản mới như .NET 5+ để tận dụng hiệu năng và khả năng mở rộng.
@@ -111,7 +131,9 @@ Microsoft phát triển **.NET Core** với nhiều mục tiêu quan trọng nh�
 
 ### 3. Hiệu Năng Tối Ưu
 
-- Tối ưu hóa cho hiệu suất, giúp ứng dụng chạy nhanh và hiệu quả hơn.
+- Tối ưu hóa cho hiệu suất, giúp ứng dụng chạy
+
+nhanh và hiệu quả hơn.
 
 ### 4. Khả Năng Mở Rộng
 
@@ -147,6 +169,6 @@ Mặc dù .NET Core mạnh mẽ và linh hoạt, nó vẫn có một số như�
 
 ---
 
-### Tóm Tắt
+## Tóm Tắt
 
 Mặc dù **.NET Core** là một nền tảng phát triển mạnh mẽ và linh hoạt, vẫn tồn tại một số nhược điểm và hạn chế so với **.NET Framework**. Tuy nhiên, với sự phát triển không ngừng của .NET Core và các phiên bản mới hơn như .NET 5/6, nhiều hạn chế này đang được khắc phục, tạo ra một nền tảng ngày càng hoàn thiện.

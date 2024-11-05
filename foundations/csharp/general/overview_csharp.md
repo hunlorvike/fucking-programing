@@ -1,6 +1,40 @@
-## C# - Tổng quan
+# C# - Tổng quan
 
 Dưới đây là tài liệu về **C#** được tổng hợp, trình bày lại một cách chi tiết nhằm giới thiệu về ngôn ngữ, các tính năng nổi bật, ưu nhược điểm, cũng như so sánh với các ngôn ngữ lập trình khác.
+
+---
+
+## Mục Lục
+
+1. [C# Là Gì?](#c-là-gì)
+2. [Vai Trò Của C# Trong .NET Framework Và .NET Core](#vai-trò-của-c-trong-net-framework-và-net-core)
+3. [Tính Năng Nổi Bật Của C#](#tính-năng-nổi-bật-của-c)
+   - [1. Type Safety](#type-safety)
+   - [2. Garbage Collection](#garbage-collection)
+   - [3. Generics](#generics)
+   - [4. LINQ (Language Integrated Query)](#linq-language-integrated-query)
+   - [5. Lambda Expressions](#lambda-expressions)
+   - [6. Async/Await](#async-await)
+   - [7. Properties](#properties)
+   - [8. Indexers](#indexers)
+   - [9. Events and Delegates](#events-and-delegates)
+   - [10. Attributes](#attributes)
+   - [11. Extension Methods](#extension-methods)
+   - [12. Pattern Matching](#pattern-matching)
+   - [13. Tuples](#tuples)
+   - [14. Async Streams](#async-streams)
+   - [15. Local Functions](#local-functions)
+   - [16. Nullable Types](#nullable-types)
+   - [17. Record Types (C# 9.0)](#record-types-c-9-0)
+   - [18. Top-level Statements (C# 9.0)](#top-level-statements-c-9-0)
+   - [19. With Expressions](#with-expressions)
+4. [Ưu Điểm Và Nhược Điểm Của C#](#ưu-điểm-và-nhược-điểm-của-c)
+   - [Ưu Điểm](#ưu-điểm)
+   - [Nhược Điểm](#nhược-điểm)
+5. [So Sánh C# Với Các Ngôn Ngữ Khác](#so-sánh-c-với-các-ngôn-ngữ-khác)
+   - [C# Vs. Java](#c-java)
+   - [C# Vs. Python](#c-python)
+6. [Kết Luận](#kết-luận)
 
 ---
 
@@ -171,7 +205,9 @@ C# có nhiều tính năng giúp lập trình viên phát triển ứng dụng m
   }
   ```
 
-#### 13. Tuples
+#### 13
+
+. Tuples
 
 - **Giải thích**: Tuples cho phép nhóm nhiều giá trị lại với nhau mà không cần tạo một lớp mới.
 - **Ví dụ**:

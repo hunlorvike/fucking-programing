@@ -1,15 +1,38 @@
-Session, Cookies, và JWT (JSON Web Token) là ba phương thức phổ biến để quản lý thông tin và trạng thái người dùng trong các ứng dụng web. Mỗi phương pháp có cách tiếp cận riêng để lưu trữ và xác thực, phù hợp với các yêu cầu và kịch bản sử dụng khác nhau.
+# So Sánh Giữa Session, Cookies và JWT (JSON Web Token) trong Quản Lý Thông Tin Người Dùng
 
-- **Session và Cookie** là **stateful** vì chúng yêu cầu lưu trữ trạng thái:
+## Mục Lục
 
-  - **Session**: Server lưu trữ thông tin phiên cho từng người dùng, mỗi lần người dùng thực hiện yêu cầu, server kiểm tra session ID và dựa vào đó để truy xuất dữ liệu trạng thái từ bộ nhớ hoặc cơ sở dữ liệu.
-  - **Cookie**: Là stateful khi nó lưu trữ trạng thái đăng nhập hoặc các thông tin người dùng cần giữ qua các yêu cầu khác nhau.
+1. [Giới Thiệu](#1-giới-thiệu)
+2. [Tổng Quan về Session, Cookies và JWT](#2-tổng-quan-về-session-cookies-và-jwt)
+   - [Session](#session)
+   - [Cookies](#cookies)
+   - [JWT (JSON Web Token)](#jwt-json-web-token)
+3. [So Sánh Chi Tiết](#3-so-sánh-chi-tiết)
+   - [Ưu và Nhược Điểm](#ưu-và-nhược-điểm)
+4. [Kết Luận](#4-kết-luận)
 
-- **JWT** là **stateless**:
+## 1. Giới Thiệu
 
-  - JWT chứa tất cả thông tin người dùng cần thiết trong chính token và server chỉ cần xác thực token đó mà không cần lưu trữ thông tin phiên (state) liên quan đến người dùng. Điều này giúp JWT thích hợp cho các hệ thống phân tán và không trạng thái.
+Session, Cookies và JWT là ba phương thức phổ biến để quản lý thông tin và trạng thái người dùng trong các ứng dụng web. Mỗi phương pháp có cách tiếp cận riêng để lưu trữ và xác thực, phù hợp với các yêu cầu và kịch bản sử dụng khác nhau.
 
-Dưới đây là so sánh chi tiết về cách thức hoạt động, ưu và nhược điểm của từng phương pháp:
+## 2. Tổng Quan về Session, Cookies và JWT
+
+### Session
+
+- **Stateful**: Server lưu trữ thông tin phiên cho từng người dùng. Mỗi lần người dùng thực hiện yêu cầu, server kiểm tra session ID và truy xuất dữ liệu trạng thái từ bộ nhớ hoặc cơ sở dữ liệu.
+- **Cách hoạt động**: Tạo một **Session ID** duy nhất cho mỗi phiên người dùng, lưu trên server và client gửi kèm ID trong cookie.
+
+### Cookies
+
+- **Stateful**: Cookies lưu trữ trạng thái đăng nhập hoặc các thông tin người dùng cần giữ qua các yêu cầu khác nhau.
+- **Cách hoạt động**: Dữ liệu được lưu trực tiếp dưới dạng key-value trong cookie và gửi kèm với mọi yêu cầu HTTP.
+
+### JWT (JSON Web Token)
+
+- **Stateless**: JWT chứa tất cả thông tin người dùng cần thiết trong chính token. Server chỉ cần xác thực token mà không cần lưu trữ thông tin phiên.
+- **Cách hoạt động**: Token bao gồm thông tin người dùng và xác thực, client gửi kèm token với mỗi yêu cầu HTTP.
+
+## 3. So Sánh Chi Tiết
 
 | **Tiêu chí**                    | **Session**                                                                                                          | **Cookies**                                                                                                | **JWT (JSON Web Token)**                                                                                    |
 | ------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -24,12 +47,12 @@ Dưới đây là so sánh chi tiết về cách thức hoạt động, ưu và 
 | **Lưu trữ và quản lý dữ liệu**  | Lưu trữ trên server, có thể lưu dữ liệu lớn và phức tạp.                                                             | Lưu trữ trên client, không phù hợp cho dữ liệu lớn hoặc nhạy cảm.                                          | Đóng gói dữ liệu trong JWT; dung lượng nhỏ để dễ truyền tải nhưng khó cập nhật sau khi phát hành.           |
 | **Trường hợp sử dụng phổ biến** | Ứng dụng cần lưu trạng thái phức tạp hoặc thông tin nhạy cảm trên server, chẳng hạn như giỏ hàng.                    | Lưu trữ trạng thái đăng nhập ngắn hạn, các tùy chọn người dùng, hoặc thông tin không nhạy cảm khác.        | Xác thực người dùng cho các API RESTful, ứng dụng web/mobile không trạng thái, hệ thống phân tán.           |
 
-### So sánh chi tiết
+### Ưu và Nhược Điểm
 
 1. **Session**:
 
    - **Ưu điểm**: Bảo mật cao hơn vì dữ liệu lưu trên server, dễ quản lý dữ liệu người dùng.
-   - **Nhược điểm**: Không phù hợp với các hệ thống phân tán hoặc hệ thống có lượng truy cập lớn, vì cần lưu session trên server.
+   - **Nhược điểm**: Không phù hợp với các hệ thống phân tán hoặc có lượng truy cập lớn, vì cần lưu session trên server.
 
 2. **Cookies**:
 
@@ -39,3 +62,7 @@ Dưới đây là so sánh chi tiết về cách thức hoạt động, ưu và 
 3. **JWT**:
    - **Ưu điểm**: Tính chất không trạng thái, cho phép xác thực nhanh và hiệu quả trong các ứng dụng phân tán. Bảo mật tốt khi sử dụng signature.
    - **Nhược điểm**: Khó thu hồi hoặc vô hiệu hóa token khi bị đánh cắp. Thường cần triển khai thêm cơ chế Refresh Token để gia hạn.
+
+## 4. Kết Luận
+
+Session, Cookies và JWT đều có vai trò quan trọng trong việc quản lý thông tin và trạng thái người dùng trong ứng dụng web. Việc lựa chọn phương pháp phù hợp phụ thuộc vào yêu cầu cụ thể của ứng dụng, khả năng mở rộng và yếu tố bảo mật.

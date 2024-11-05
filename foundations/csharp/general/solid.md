@@ -1,6 +1,20 @@
-## SOLID
+# SOLID Principles in Software Design
 
-SOLID là tập hợp 5 nguyên lý thiết kế phần mềm quan trọng giúp làm cho mã nguồn trở nên dễ hiểu, dễ bảo trì, và mở rộng hơn. Chúng bao gồm các nguyên lý: **Single Responsibility Principle (SRP)**, **Open-Closed Principle (OCP)**, **Liskov Substitution Principle (LSP)**, **Interface Segregation Principle (ISP)**, và **Dependency Inversion Principle (DIP)**. Dưới đây là giải thích chi tiết về từng nguyên lý cùng các ví dụ minh họa bằng C#.
+**Mục lục**
+
+1. [Giới thiệu về SOLID](#giới-thiệu-về-solid)
+2. [Single Responsibility Principle (SRP)](#1-single-responsibility-principle-srp---nguyên-lý-trách-nhiệm-duy-nhất)
+3. [Open-Closed Principle (OCP)](#2-open-closed-principle-ocp---nguyên-lý-mở-rộng-đóng)
+4. [Liskov Substitution Principle (LSP)](#3-liskov-substitution-principle-lsp---nguyên-lý-thay-thế-liskov)
+5. [Interface Segregation Principle (ISP)](#4-interface-segregation-principle-isp---nguyên-lý-phân-tách-interface)
+6. [Dependency Inversion Principle (DIP)](#5-dependency-inversion-principle-dip---nguyên-lý-đảo-ngược-phụ-thuộc)
+7. [Kết luận](#kết-luận)
+
+---
+
+### Giới thiệu về SOLID
+
+SOLID là tập hợp 5 nguyên lý thiết kế phần mềm quan trọng giúp làm cho mã nguồn trở nên dễ hiểu, dễ bảo trì và mở rộng hơn. Chúng bao gồm các nguyên lý: **Single Responsibility Principle (SRP)**, **Open-Closed Principle (OCP)**, **Liskov Substitution Principle (LSP)**, **Interface Segregation Principle (ISP)**, và **Dependency Inversion Principle (DIP)**. Dưới đây là giải thích chi tiết về từng nguyên lý cùng các ví dụ minh họa bằng C#.
 
 ---
 
@@ -238,6 +252,8 @@ public class LightSwitch
 {
     private ISwitchable _device;
 
+
+
     public LightSwitch(ISwitchable device)
     {
         _device = device;
@@ -252,4 +268,6 @@ Giờ đây, `LightSwitch` có thể làm việc với bất kỳ thiết bị n
 
 ---
 
-SOLID giúp xây dựng phần mềm rõ ràng, dễ bảo trì, và mở rộng linh hoạt, mang lại hiệu quả cao trong các dự án phức tạp.
+### Kết luận
+
+SOLID giúp xây dựng phần mềm rõ ràng, dễ bảo trì và mở rộng linh hoạt, mang lại hiệu quả cao trong các dự án phức tạp. Việc tuân thủ các nguyên lý này không chỉ cải thiện chất lượng mã nguồn mà còn nâng cao khả năng làm việc nhóm và giảm thiểu chi phí bảo trì trong tương lai.

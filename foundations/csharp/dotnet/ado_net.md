@@ -1,14 +1,43 @@
-## ADO.NET trong C# .NET
+# ADO.NET trong C# .NET
 
-### 1. Tổng quan về ADO.NET
+## Mục lục
 
-#### 1.1. ADO.NET là gì?
+1. [Tổng quan về ADO.NET](#1-tổng-quan-về-adonet)
+   - [1.1. ADO.NET là gì?](#11-adonet-là-gì)
+   - [1.2. Các thành phần chính của ADO.NET](#12-các-thành-phần-chính-của-adonet)
+     - [1. Connection](#connection)
+     - [2. Command](#command)
+     - [3. DataReader](#datareader)
+     - [4. DataAdapter](#dataadapter)
+     - [5. DataSet](#dataset)
+2. [Cài đặt ADO.NET](#2-cài-đặt-adonet)
+   - [2.1. Cài đặt môi trường phát triển](#21-cài-đặt-môi-trường-phát-triển)
+   - [2.2. Thêm thư viện cần thiết](#22-thêm-thư-viện-cần-thiết)
+3. [Các bước sử dụng ADO.NET](#3-các-bước-sử-dụng-adonet)
+   - [3.1. Kết nối tới cơ sở dữ liệu](#31-kết-nối-tới-cơ-sở-dữ-liệu)
+   - [3.2. Thực thi câu lệnh SQL với JOIN](#32-thực-thi-câu-lệnh-sql-với-join)
+   - [3.3. Sử dụng WHERE để lọc dữ liệu](#33-sử-dụng-where-để-lọc-dữ-liệu)
+   - [3.4. Sử dụng DataAdapter và DataSet](#34-sử-dụng-dataadapter-và-dataset)
+4. [Ánh xạ dữ liệu với class Model](#4-ánh-xạ-dữ-liệu-với-class-model)
+   - [4.1. Định nghĩa mô hình](#41-định-nghĩa-mô-hình)
+   - [4.2. Sử dụng mô hình trong truy vấn](#42-sử-dụng-mô-hình-trong-truy-vấn)
+5. [Ví dụ hoàn chỉnh](#5-ví-dụ-hoàn-chỉnh)
+6. [Kết luận](#6-kết-luận)
+7. [Giới thiệu một số ORM phổ biến](#7-giới-thiệu-một-số-orm-phổ-biến)
+   - [Bảng so sánh ORM](#bảng-so-sánh-orm)
+   - [Điểm cần lưu ý](#điểm-cần-lưu-y)
+
+---
+
+## 1. Tổng quan về ADO.NET
+
+### 1.1. ADO.NET là gì?
 
 ADO.NET là một tập hợp các lớp trong .NET Framework cho phép bạn làm việc với dữ liệu trong các ứng dụng .NET. Nó cung cấp các khả năng để kết nối, truy vấn và thao tác với cơ sở dữ liệu. ADO.NET hỗ trợ nhiều loại cơ sở dữ liệu, bao gồm SQL Server, Oracle, MySQL, và nhiều loại khác.
 
-#### 1.2. Các thành phần chính của ADO.NET
+### 1.2. Các thành phần chính của ADO.NET
 
-##### **1. Connection**
+#### **1. Connection**
 
 **Mô tả**: `Connection` là thành phần dùng để mở và quản lý kết nối tới cơ sở dữ liệu. Nó cung cấp thông tin cần thiết để ADO.NET có thể kết nối với cơ sở dữ liệu, như tên máy chủ, tên cơ sở dữ liệu, và thông tin xác thực.
 
@@ -25,7 +54,7 @@ ADO.NET là một tập hợp các lớp trong .NET Framework cho phép bạn l�
   ```
 - **Quản lý vòng đời**: Kết nối nên được mở khi cần và đóng lại ngay sau khi sử dụng để giải phóng tài nguyên.
 
-##### **2. Command**
+#### **2. Command**
 
 **Mô tả**: `Command` là thành phần cho phép bạn thực thi các câu lệnh SQL hoặc các stored procedures trên cơ sở dữ liệu.
 
@@ -51,7 +80,7 @@ ADO.NET là một tập hợp các lớp trong .NET Framework cho phép bạn l�
   command.Parameters.AddWithValue("@Name", "John Doe");
   ```
 
-##### **3. DataReader**
+#### **3. DataReader**
 
 **Mô tả**: `DataReader` là thành phần cho phép bạn đọc dữ liệu từ cơ sở dữ liệu một cách tuần tự. Nó cung cấp khả năng đọc dữ liệu một cách nhanh chóng, nhưng không hỗ trợ lưu trữ dữ liệu để truy xuất sau này.
 
@@ -72,7 +101,7 @@ ADO.NET là một tập hợp các lớp trong .NET Framework cho phép bạn l�
   - Chỉ có thể đọc dữ liệu theo dòng (từng dòng một).
   - Hiệu suất cao vì không lưu trữ dữ liệu trong bộ nhớ.
 
-##### **4. DataAdapter**
+#### **4. DataAdapter**
 
 **Mô tả**: `DataAdapter` là thành phần dùng để làm cầu nối giữa `DataSet` và cơ sở dữ liệu. Nó cho phép bạn lấy dữ liệu từ cơ sở dữ liệu vào `DataSet` và gửi dữ liệu đã thay đổi từ `DataSet` trở lại cơ sở dữ liệu.
 
@@ -91,7 +120,7 @@ ADO.NET là một tập hợp các lớp trong .NET Framework cho phép bạn l�
   adapter.Update(dataSet, "Employees"); // Cập nhật dữ liệu
   ```
 
-##### **5. DataSet**
+#### **5. DataSet**
 
 **Mô tả**: `DataSet` là một đối tượng chứa nhiều bảng dữ liệu (DataTable) và các mối quan hệ giữa chúng. Nó cho phép bạn làm việc với dữ liệu trong bộ nhớ mà không cần phải kết nối liên tục với cơ sở dữ liệu.
 
@@ -117,14 +146,14 @@ ADO.NET là một tập hợp các lớp trong .NET Framework cho phép bạn l�
   dataSet.Relations.Add(relation);
   ```
 
-### 2. Cài đặt ADO.NET
+## 2. Cài đặt ADO.NET
 
-#### 2.1. Cài đặt môi trường phát triển
+### 2.1. Cài đặt môi trường phát triển
 
 - Cài đặt Visual Studio hoặc một IDE hỗ trợ C#.
 - Cài đặt SQL Server hoặc một cơ sở dữ liệu tương thích.
 
-#### 2.2. Thêm thư viện cần thiết
+### 2.2. Thêm thư viện cần thiết
 
 Trong Visual Studio, bạn cần thêm các thư viện cần thiết:
 
@@ -133,9 +162,9 @@ using System.Data;
 using System.Data.SqlClient;
 ```
 
-### 3. Các bước sử dụng ADO.NET
+## 3. Các bước sử dụng ADO.NET
 
-#### 3.1. Kết nối tới cơ sở dữ liệu
+### 3.1. Kết nối tới cơ sở dữ liệu
 
 Để kết nối tới cơ sở dữ liệu, bạn cần tạo một đối tượng `SqlConnection`.
 
@@ -148,62 +177,53 @@ using (SqlConnection connection = new SqlConnection(connectionString))
 }
 ```
 
-#### 3.2. Thực thi câu lệnh SQL với `JOIN`
+### 3.2. Thực thi câu lệnh SQL với `JOIN`
 
-Bạn có thể sử dụng đối tượng `SqlCommand` để thực thi các câu lệnh SQL, bao gồm cả câu lệnh `JOIN` để kết hợp dữ liệu từ nhiều bảng.
+Bạn có thể sử dụng đối tượng `SqlCommand` để thực thi các câu lệnh SQL, bao gồm cả câu lệnh `JOIN` để kết
+
+nối dữ liệu từ nhiều bảng.
 
 ```csharp
-string query = @"
-    SELECT e.Name, e.Position, d.DepartmentName
-    FROM Employees e
-    JOIN Departments d ON e.DepartmentId = d.Id";
-
-using (SqlCommand command = new SqlCommand(query, connection))
+using (SqlCommand command = new SqlCommand("SELECT Employees.Name, Departments.Name FROM Employees JOIN Departments ON Employees.DepartmentId = Departments.Id", connection))
 {
     using (SqlDataReader reader = command.ExecuteReader())
     {
         while (reader.Read())
         {
-            Console.WriteLine($"{reader["Name"]}, {reader["Position"]}, {reader["DepartmentName"]}");
+            Console.WriteLine($"{reader["EmployeeName"]}, {reader["DepartmentName"]}");
         }
     }
 }
 ```
 
-#### 3.3. Sử dụng `WHERE` để lọc dữ liệu
+### 3.3. Sử dụng `WHERE` để lọc dữ liệu
 
-Để lọc dữ liệu theo điều kiện, bạn có thể sử dụng mệnh đề `WHERE`.
+Bạn có thể thêm điều kiện `WHERE` để lọc dữ liệu trả về.
 
 ```csharp
-string query = @"
-    SELECT e.Name, e.Position
-    FROM Employees e
-    WHERE e.Position = @position";
-
-using (SqlCommand command = new SqlCommand(query, connection))
+using (SqlCommand command = new SqlCommand("SELECT * FROM Employees WHERE Age > @Age", connection))
 {
-    command.Parameters.AddWithValue("@position", "Manager");
-
+    command.Parameters.AddWithValue("@Age", 30);
     using (SqlDataReader reader = command.ExecuteReader())
     {
         while (reader.Read())
         {
-            Console.WriteLine($"{reader["Name"]}, {reader["Position"]}");
+            Console.WriteLine($"{reader["Name"]}, {reader["Age"]}");
         }
     }
 }
 ```
 
-#### 3.4. Sử dụng `DataAdapter` và `DataSet`
+### 3.4. Sử dụng `DataAdapter` và `DataSet`
 
-`DataAdapter` giúp bạn thực hiện các hoạt động như thêm, cập nhật, xóa dữ liệu trong `DataSet`.
+Khi cần làm việc với nhiều bảng và thực hiện các thao tác phức tạp hơn, bạn có thể sử dụng `DataAdapter` và `DataSet`.
 
 ```csharp
 SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Employees", connection);
 DataSet dataSet = new DataSet();
 adapter.Fill(dataSet, "Employees");
 
-// Thao tác với DataTable
+// Lấy dữ liệu từ DataSet
 DataTable employeesTable = dataSet.Tables["Employees"];
 foreach (DataRow row in employeesTable.Rows)
 {
@@ -211,34 +231,30 @@ foreach (DataRow row in employeesTable.Rows)
 }
 ```
 
-### 4. Ánh xạ dữ liệu với class Model
+## 4. Ánh xạ dữ liệu với class Model
 
-Để ánh xạ dữ liệu từ cơ sở dữ liệu vào các đối tượng C#, bạn có thể tạo các lớp mô hình tương ứng.
+### 4.1. Định nghĩa mô hình
 
-#### 4.1. Định nghĩa mô hình
+Để ánh xạ dữ liệu từ cơ sở dữ liệu sang các đối tượng trong C#, bạn có thể định nghĩa các lớp mô hình.
 
 ```csharp
 public class Employee
 {
+    public int Id { get; set; }
     public string Name { get; set; }
+    public int Age { get; set; }
     public string Position { get; set; }
-    public string DepartmentName { get; set; }
 }
 ```
 
-#### 4.2. Sử dụng mô hình trong truy vấn
+### 4.2. Sử dụng mô hình trong truy vấn
 
-Dưới đây là ví dụ sử dụng mô hình để lưu trữ dữ liệu từ truy vấn `JOIN`.
+Bạn có thể sử dụng các lớp mô hình để lưu trữ dữ liệu từ cơ sở dữ liệu.
 
 ```csharp
 List<Employee> employees = new List<Employee>();
 
-string query = @"
-    SELECT e.Name, e.Position, d.DepartmentName
-    FROM Employees e
-    JOIN Departments d ON e.DepartmentId = d.Id";
-
-using (SqlCommand command = new SqlCommand(query, connection))
+using (SqlCommand command = new SqlCommand("SELECT * FROM Employees", connection))
 {
     using (SqlDataReader reader = command.ExecuteReader())
     {
@@ -246,25 +262,18 @@ using (SqlCommand command = new SqlCommand(query, connection))
         {
             Employee employee = new Employee
             {
+                Id = (int)reader["Id"],
                 Name = reader["Name"].ToString(),
-                Position = reader["Position"].ToString(),
-                DepartmentName = reader["DepartmentName"].ToString()
+                Age = (int)reader["Age"],
+                Position = reader["Position"].ToString()
             };
             employees.Add(employee);
         }
     }
 }
-
-// Hiển thị thông tin nhân viên
-foreach (var emp in employees)
-{
-    Console.WriteLine($"{emp.Name}, {emp.Position}, {emp.DepartmentName}");
-}
 ```
 
-### 5. Ví dụ hoàn chỉnh
-
-Dưới đây là một ví dụ hoàn chỉnh về việc sử dụng ADO.NET để kết nối tới cơ sở dữ liệu, thực thi các câu lệnh với `JOIN` và `WHERE`, và ánh xạ dữ liệu vào mô hình C#:
+## 5. Ví dụ hoàn chỉnh
 
 ```csharp
 using System;
@@ -272,83 +281,79 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-class Program
+namespace AdoNetExample
 {
     public class Employee
     {
+        public int Id { get; set; }
         public string Name { get; set; }
+        public int Age { get; set; }
         public string Position { get; set; }
-        public string DepartmentName { get; set; }
     }
 
-    static void Main()
+    class Program
     {
-        string connectionString = "Data Source=server_name;Initial Catalog=database_name;User ID=user_id;Password=password;";
-
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        static void Main(string[] args)
         {
-            connection.Open();
-
+            string connectionString = "Data Source=server_name;Initial Catalog=database_name;User ID=user_id;Password=password;";
             List<Employee> employees = new List<Employee>();
 
-            string query = @"
-                SELECT e.Name, e.Position, d.DepartmentName
-                FROM Employees e
-                JOIN Departments d ON e.DepartmentId = d.Id
-                WHERE e.Position = @position";
-
-            using (SqlCommand command = new SqlCommand(query, connection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                command.Parameters.AddWithValue("@position", "Manager");
-
-                using (SqlDataReader reader = command.ExecuteReader())
+                connection.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Employees", connection))
                 {
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        Employee employee = new Employee
+                        while (reader.Read())
                         {
-                            Name = reader["Name"].ToString(),
-                            Position = reader["Position"].ToString(),
-                            DepartmentName = reader["DepartmentName"].ToString()
-                        };
-                        employees.Add(employee);
+                            Employee employee = new Employee
+                            {
+                                Id = (int)reader["Id"],
+                                Name = reader["Name"].ToString(),
+                                Age = (int)reader["Age"],
+                                Position = reader["Position"].ToString()
+                            };
+                            employees.Add(employee);
+                        }
                     }
                 }
             }
 
             // Hiển thị thông tin nhân viên
-            foreach (var emp in employees)
+            foreach (var employee in employees)
             {
-                Console.WriteLine($"{emp.Name}, {emp.Position}, {emp.DepartmentName}");
+                Console.WriteLine($"{employee.Id}: {employee.Name}, {employee.Age}, {employee.Position}");
             }
         }
     }
 }
 ```
 
-### 6. Kết luận
+## 6. Kết luận
 
-ADO.NET là một công cụ mạnh mẽ cho phép lập trình viên .NET thao tác với dữ liệu trong cơ sở dữ liệu. Bằng cách hiểu và áp dụng các thành phần của ADO.NET, bạn có thể xây dựng các ứng dụng có khả năng tương tác với dữ liệu một cách hiệu quả. Hướng dẫn này đã cung cấp thông tin chi tiết về việc sử dụng `JOIN`, `WHERE` và ánh xạ dữ liệu tới mô hình C#, giúp bạn nâng cao kỹ năng làm việc với ADO.NET trong C#.
+ADO.NET là một công cụ mạnh mẽ cho việc quản lý và thao tác dữ liệu trong các ứng dụng .NET. Với các thành phần như `Connection`, `Command`, `DataReader`, `DataAdapter`, và `DataSet`, bạn có thể dễ dàng kết nối, truy vấn và thao tác với cơ sở dữ liệu.
 
-Hy vọng hướng dẫn này hữu ích cho bạn trong việc tìm hiểu về ADO.NET trong C# .NET!
+## 7. Giới thiệu một số ORM phổ biến
 
-Dưới đây là bảng giới thiệu một số ORM (Object-Relational Mapping) phổ biến được phát triển trên nền ADO.NET. Các ORM này giúp lập trình viên dễ dàng làm việc với cơ sở dữ liệu mà không cần viết nhiều câu lệnh SQL phức tạp.
+ORM (Object-Relational Mapping) là một công nghệ giúp ánh xạ các đối tượng trong ứng dụng với các bảng trong cơ sở dữ liệu. Một số ORM phổ biến hiện nay bao gồm:
 
-| Tên ORM                  | Mô Tả                                                                                 | Đặc Điểm Nổi Bật                                                               | Tài Liệu / Liên Kết                                                                     |
-| ------------------------ | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| **Entity Framework**     | ORM chính thức của Microsoft cho .NET, hỗ trợ làm việc với các cơ sở dữ liệu quan hệ. | - Hỗ trợ LINQ cho truy vấn. <br> - Code First, Database First.                 | [Entity Framework](https://learn.microsoft.com/en-us/ef/)                               |
-| **Dapper**               | Một micro ORM nhẹ và nhanh, phù hợp cho các ứng dụng có hiệu suất cao.                | - Hiệu suất cao, gần như nguyên thủy. <br> - Dễ sử dụng.                       | [Dapper](https://dapper-tutorial.net/)                                                  |
-| **NHibernate**           | Một ORM mạnh mẽ và linh hoạt, dựa trên Hibernate từ Java.                             | - Hỗ trợ nhiều tính năng như caching, lazy loading. <br> - Cấu hình linh hoạt. | [NHibernate](https://nhibernate.info/)                                                  |
-| **Linq to SQL**          | Một ORM đơn giản được tích hợp trong .NET để làm việc với SQL Server.                 | - Hỗ trợ LINQ cho truy vấn. <br> - Dễ dàng ánh xạ dữ liệu.                     | [Linq to SQL](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/) |
-| **ServiceStack OrmLite** | ORM nhanh chóng và nhẹ, giúp kết nối với nhiều loại cơ sở dữ liệu khác nhau.          | - Hiệu suất cao, đơn giản hóa mã. <br> - Hỗ trợ nhiều loại cơ sở dữ liệu.      | [ServiceStack OrmLite](https://ormlite.readthedocs.io/en/latest/)                       |
-| **PetaPoco**             | Một micro ORM rất nhẹ cho .NET, dễ dàng tích hợp và sử dụng.                          | - Đơn giản và dễ hiểu. <br> - Tích hợp tốt với các framework khác.             | [PetaPoco](https://petapoco.com/)                                                       |
+- **Entity Framework**: Là một ORM được Microsoft phát triển, hỗ trợ cả LINQ và truy vấn SQL.
+- **Dapper**: Một ORM nhẹ, hiệu suất cao, dễ sử dụng.
+- **NHibernate**: ORM mã nguồn mở cho .NET, nổi tiếng với khả năng ánh xạ phức tạp.
 
-### Một số điểm cần lưu ý:
+### Bảng so sánh ORM
 
-- **Entity Framework**: Là lựa chọn phổ biến nhất cho các ứng dụng .NET, cung cấp nhiều tính năng mạnh mẽ giúp phát triển nhanh chóng.
-- **Dapper**: Nếu hiệu suất là ưu tiên hàng đầu, Dapper là lựa chọn tuyệt vời do tốc độ và tính nhẹ của nó.
-- **NHibernate**: Phù hợp cho các ứng dụng phức tạp cần nhiều tính năng như caching và mối quan hệ phức tạp giữa các bảng.
-- **Linq to SQL**: Dễ sử dụng cho các ứng dụng đơn giản, nhưng chỉ hỗ trợ SQL Server.
-- **ServiceStack OrmLite và PetaPoco**: Thích hợp cho những ai muốn tìm kiếm một giải pháp đơn giản và dễ sử dụng mà vẫn mạnh mẽ.
+| Tính năng          | Entity Framework | Dapper  | NHibernate |
+| ------------------ | ---------------- | ------- | ---------- |
+| Độ phức tạp        | Cao              | Thấp    | Trung bình |
+| Hiệu suất          | Thấp hơn Dapper  | Rất cao | Trung bình |
+| Hỗ trợ LINQ        | Có               | Không   | Có         |
+| Hỗ trợ mã nguồn mở | Có               | Có      | Có         |
 
-Hy vọng bảng trên sẽ giúp bạn có cái nhìn tổng quan về các ORM phổ biến trên nền ADO.NET!
+### Điểm cần lưu ý
+
+- ADO.NET là một lựa chọn tuyệt vời cho những người cần kiểm soát chi tiết và hiệu suất tối ưu.
+- ORM có thể làm đơn giản hóa việc phát triển, nhưng cần lưu ý về hiệu suất khi làm việc với lượng dữ liệu lớn hoặc phức tạp.
+
+Hy vọng tài liệu này sẽ hữu ích cho bạn trong việc tìm hiểu và làm việc với ADO.NET trong các ứng dụng C# .NET!

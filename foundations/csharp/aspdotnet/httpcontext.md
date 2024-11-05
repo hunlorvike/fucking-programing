@@ -1,4 +1,21 @@
+# Tìm Hiểu về `HttpContext` trong ASP.NET Core
+
 `HttpContext` là một lớp trong ASP.NET Core cung cấp quyền truy cập vào thông tin về yêu cầu HTTP, phản hồi, người dùng, cookies, và các thông tin về kết nối. Dưới đây là một số phương thức và thuộc tính quan trọng trong `HttpContext`, cùng với mô tả và ví dụ sử dụng.
+
+## Mục Lục
+
+1. [HttpContext.Request](#1-httpcontextrequest)
+2. [HttpContext.Response](#2-httpcontextresponse)
+3. [HttpContext.User](#3-httpcontextuser)
+4. [HttpContext.Session](#4-httpcontextsession)
+5. [HttpContext.Connection](#5-httpcontextconnection)
+6. [HttpContext.Items](#6-httpcontextitems)
+7. [HttpContext.Features](#7-httpcontextfeatures)
+8. [HttpContext.TraceIdentifier](#8-httpcontexttraceidentifier)
+9. [HttpContext.Abort()](#9-httpcontextabort)
+10. [Tổng Kết](#tổng-kết)
+
+---
 
 ### 1. `HttpContext.Request`
 
@@ -25,6 +42,8 @@
       return Ok($"Path: {path}, Method: {method}, Query Param: {query}");
   }
   ```
+
+---
 
 ### 2. `HttpContext.Response`
 
@@ -53,6 +72,8 @@
   }
   ```
 
+---
+
 ### 3. `HttpContext.User`
 
 Đại diện cho người dùng hiện tại. `HttpContext.User` cung cấp thông tin về danh tính người dùng thông qua các claims.
@@ -64,6 +85,7 @@
   - `User.Claims`: Truy cập các claims liên quan đến người dùng.
 
 - **Ví dụ**:
+
   ```csharp
   public IActionResult GetUserInfo()
   {
@@ -75,6 +97,8 @@
       return Unauthorized("Người dùng chưa đăng nhập.");
   }
   ```
+
+---
 
 ### 4. `HttpContext.Session`
 
@@ -103,6 +127,8 @@
   }
   ```
 
+---
+
 ### 5. `HttpContext.Connection`
 
 Cung cấp thông tin về kết nối của yêu cầu hiện tại.
@@ -114,6 +140,7 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
   - `Connection.ClientCertificate`: Chứng chỉ của client (nếu có).
 
 - **Ví dụ**:
+
   ```csharp
   public IActionResult GetClientIp()
   {
@@ -121,6 +148,8 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
       return Ok($"Client IP: {clientIp}");
   }
   ```
+
+---
 
 ### 6. `HttpContext.Items`
 
@@ -142,11 +171,14 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
   }
   ```
 
+---
+
 ### 7. `HttpContext.Features`
 
 `HttpContext.Features` cho phép truy cập đến các tính năng (features) của HTTP được thêm vào quá trình xử lý yêu cầu. Các tính năng này có thể bao gồm `IHttpConnectionFeature`, `IHttpRequestFeature`, `IHttpResponseFeature`,… tùy thuộc vào các dịch vụ HTTP đã đăng ký.
 
 - **Ví dụ**:
+
   ```csharp
   public IActionResult GetHttpProtocol()
   {
@@ -155,11 +187,14 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
   }
   ```
 
+---
+
 ### 8. `HttpContext.TraceIdentifier`
 
 Một ID duy nhất được tạo ra cho mỗi yêu cầu, giúp theo dõi và ghi nhận các lỗi trong ứng dụng.
 
 - **Ví dụ**:
+
   ```csharp
   public IActionResult GetTraceIdentifier()
   {
@@ -168,11 +203,14 @@ Một ID duy nhất được tạo ra cho mỗi yêu cầu, giúp theo dõi và 
   }
   ```
 
+---
+
 ### 9. `HttpContext.Abort()`
 
 `Abort` dừng yêu cầu HTTP hiện tại và đóng kết nối. Phương thức này thường được sử dụng để ngắt kết nối khi có lỗi nghiêm trọng hoặc yêu cầu không hợp lệ.
 
 - **Ví dụ**:
+
   ```csharp
   public IActionResult TerminateRequest()
   {
@@ -181,6 +219,8 @@ Một ID duy nhất được tạo ra cho mỗi yêu cầu, giúp theo dõi và 
   }
   ```
 
-### Tổng kết
+---
+
+### 10. Tổng Kết
 
 `HttpContext` là một công cụ mạnh mẽ trong ASP.NET Core, cho phép quản lý thông tin và xử lý các yêu cầu và phản hồi HTTP. Thông qua `HttpContext`, ta có thể truy cập các dữ liệu quan trọng về phiên làm việc của người dùng, kết nối HTTP, lưu trữ session và cookies, cũng như các tính năng HTTP cụ thể của yêu cầu.

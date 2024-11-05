@@ -1,4 +1,19 @@
-## Các Nguyên Lý Cơ Bản Của OOP
+# Các Nguyên Lý Cơ Bản Của OOP
+
+## Mục Lục
+
+1. [Encapsulation (Đóng gói)](#1-encapsulation-đóng-gói)
+2. [Inheritance (Kế thừa)](#2-inheritance-kế-thừa)
+   - [Sự Khác Biệt giữa Single Inheritance và Multiple Inheritance](#sự-khác-biệt-giữa-single-inheritance-và-multiple-inheritance)
+3. [Polymorphism (Đa hình)](#3-polymorphism-đa-hình)
+   - [Overloading (Nạp chồng phương thức)](#overloading-nạp-chồng-phương-thức)
+   - [Overriding (Ghi đè phương thức)](#overriding-ghi-đè-phương-thức)
+4. [Abstraction (Trừu tượng hóa)](#4-abstraction-trừu-tượng-hóa)
+   - [Abstract Class (Lớp trừu tượng)](#abstract-class-lớp-trừu-tượng)
+   - [Interface (Giao diện)](#interface-giao-diện)
+5. [Tại Sao Nên Sử Dụng OOP? Lợi Ích Của OOP](#tại-sao-nên-sử-dụng-oop-lợi-ích-của-oop)
+
+---
 
 ### 1. **Encapsulation (Đóng gói)**
 
@@ -201,7 +216,7 @@ public class Car : IMovable
 }
 ```
 
-## Tại Sao Nên Sử Dụng OOP? Lợi Ích Của OOP
+### 5. **Tại Sao Nên Sử Dụng OOP? Lợi Ích Của OOP**
 
 Sử dụng OOP mang lại nhiều lợi ích lớn cho quá trình phát triển phần mềm:
 
@@ -216,5 +231,3 @@ Sử dụng OOP mang lại nhiều lợi ích lớn cho quá trình phát triể
 5. **Dễ phát triển và bảo trì nhóm**: OOP giúp tách các phần của chương trình thành các đối tượng và lớp độc lập, tạo điều kiện cho các thành viên trong nhóm làm việc trên các phần khác nhau mà ít ảnh hưởng đến nhau.
 
 6. **Hỗ trợ đa hình (Polymorphism)**: Cho phép các đối tượng hành xử khác nhau dựa trên ngữ cảnh, giúp mã linh hoạt hơn và tăng khả năng mở rộng.
-
-Những lợi ích này làm cho OOP trở thành một trong những mô hình lập trình phổ biến và hiệu quả nhất trong phát triển phần mềm ngày nay.

@@ -1,6 +1,72 @@
-## Các tính năng nổi bật trong C#
+# Tài liệu tổng hợp các tính năng nổi bật trong C#
 
 Dưới đây là tài liệu tổng hợp các tính năng mới của **C#** từ **phiên bản 1.0** đến **phiên bản 12.0**. Tài liệu cung cấp chi tiết về các tính năng chính được giới thiệu trong từng phiên bản, giúp bạn hiểu rõ hơn về sự phát triển và cải tiến của ngôn ngữ qua từng năm.
+
+## Mục lục
+
+1. [Phiên bản 1.0 (2002)](#phiên-bản-1-0-2002)
+   - Namespace
+   - Classes & Objects
+   - Interfaces
+   - Delegates
+   - Properties
+2. [Phiên bản 2.0 (2005)](#phiên-bản-2-0-2005)
+   - Generics
+   - Nullable Types
+   - Iterators
+   - Partial Classes
+   - Anonymous Methods
+3. [Phiên bản 3.0 (2007)](#phiên-bản-3-0-2007)
+   - LINQ
+   - Lambda Expressions
+   - Anonymous Types
+   - Extension Methods
+   - Auto-Implemented Properties
+4. [Phiên bản 4.0 (2010)](#phiên-bản-4-0-2010)
+   - Dynamic Binding
+   - Named and Optional Parameters
+   - Covariance và Contravariance
+5. [Phiên bản 5.0 (2012)](#phiên-bản-5-0-2012)
+   - Async & Await
+   - Caller Information
+6. [Phiên bản 6.0 (2015)](#phiên-bản-6-0-2015)
+   - Auto-Property Initializers
+   - Expression-bodied Members
+   - Null-conditional Operator
+   - String Interpolation
+7. [Phiên bản 7.0 (2017)](#phiên-bản-7-0-2017)
+   - Tuples
+   - Pattern Matching
+   - Out Variables
+   - Local Functions
+8. [Phiên bản 7.1, 7.2, 7.3](#phiên-bản-7-1-7-2-7-3)
+   - Enhanced Pattern Matching
+   - Async Main
+   - Default Literals
+9. [Phiên bản 8.0 (2019)](#phiên-bản-8-0-2019)
+   - Nullable Reference Types
+   - Async Streams
+   - Indices and Ranges
+   - Switch Expressions
+10. [Phiên bản 9.0 (2020)](#phiên-bản-9-0-2020)
+    - Record Types
+    - Init-only Properties
+    - Top-level Statements
+    - With Expressions
+11. [Phiên bản 10.0 (2021)](#phiên-bản-10-0-2021)
+    - Global Using
+    - File-scoped Namespaces
+    - Constant Interpolated Strings
+12. [Phiên bản 11.0 (2022)](#phiên-bản-11-0-2022)
+    - Raw String Literals
+    - Required Members
+    - Generic Attributes
+13. [Phiên bản 12.0 (2023)](#phiên-bản-12-0-2023)
+    - Primary Constructors
+    - Improved Interpolated Strings
+    - Collection Expressions
+    - Using Aliases
+14. [Tóm Tắt](#tóm-tắt)
 
 ---
 
@@ -18,7 +84,6 @@ namespace MyNamespace
         public void Print() => Console.WriteLine("Hello from MyNamespace!");
     }
 }
-
 ```
 
 - **Classes & Objects (Lớp và đối tượng)**: C# hỗ trợ lập trình hướng đối tượng (OOP), cho phép tạo các lớp và đối tượng.
@@ -32,7 +97,6 @@ public class Car
 
 var myCar = new Car { Color = "red" };
 myCar.Drive();
-
 ```
 
 - **Interfaces (Giao diện)**: Định nghĩa các giao diện (interface) để thiết kế lập trình hướng giao diện.
@@ -87,7 +151,6 @@ public class GenericList<T>
 }
 
 var intList = new GenericList<int>();
-
 ```
 
 - **Nullable Types**: Kiểu dữ liệu chấp nhận giá trị `null`, cho phép kiểm tra và xử lý giá trị rỗng.
@@ -106,7 +169,6 @@ public IEnumerable<int> GetNumbers()
     yield return 2;
     yield return 3;
 }
-
 ```
 
 - **Partial Classes**: Cho phép định nghĩa một lớp trong nhiều tệp khác nhau.
@@ -127,7 +189,6 @@ public partial class Car
 
 ```csharp
 Func<int, int> square = delegate(int x) { return x * x; };
-
 ```
 
 ---
@@ -163,7 +224,6 @@ public static class StringExtensions
         return string.IsNullOrEmpty(str);
     }
 }
-
 ```
 
 - **Auto-Implemented Properties**: Giúp viết các thuộc tính tự động mà không cần tạo biến riêng.
@@ -224,35 +284,34 @@ public void Log(string message, [CallerMemberName] string memberName = "")
 
 ---
 
-### Phiên bản 6.0 (2015)
+### Phiên bản 6.0
 
-- **Auto-Property Initializers**: Cho phép gán giá trị khởi tạo cho thuộc tính ngay trong lúc khai báo.
+(2015)
+
+- **Auto-Property Initializers**: Cho phép khởi tạo thuộc tính tự động trực tiếp tại chỗ.
 
 ```csharp
-public class Car
+public class Person
 {
-    public string Make { get; set; } = "Toyota";
+    public string Name { get; set; } = "Default Name";
 }
 ```
 
-- **Expression-bodied Members**: Rút gọn cú pháp của các phương thức chỉ có một biểu thức.
+- **Expression-bodied Members**: Cho phép định nghĩa các thành viên lớp chỉ bằng một biểu thức.
 
 ```csharp
-public string Name => "C#";
-
-public void Print() => Console.WriteLine("Hello from C#");
+public string GetName() => Name;
 ```
 
-- **Null-conditional Operator**: Toán tử `?.` kiểm tra null trước khi truy cập thành phần của đối tượng.
+- **Null-conditional Operator**: Giúp tránh lỗi NullReferenceException.
 
 ```csharp
 string name = person?.Name;
 ```
 
-- **String Interpolation**: Kết hợp chuỗi và biểu thức trực tiếp trong chuỗi với `$""`.
+- **String Interpolation**: Cung cấp cách định dạng chuỗi dễ đọc hơn.
 
 ```csharp
-string name = "C#";
 Console.WriteLine($"Hello, {name}!");
 ```
 
@@ -260,183 +319,162 @@ Console.WriteLine($"Hello, {name}!");
 
 ### Phiên bản 7.0 (2017)
 
-- **Tuples**: Hỗ trợ kiểu `tuple` giúp nhóm các giá trị lại với nhau mà không cần lớp riêng.
+- **Tuples**: Hỗ trợ kiểu dữ liệu tuple, cho phép nhóm nhiều giá trị.
 
 ```csharp
-var person = (Name: "John", Age: 30);
+var tuple = (1, "Hello");
+Console.WriteLine(tuple.Item2);
 ```
 
-- **Pattern Matching**: Hỗ trợ kiểm tra kiểu và giá trị trong các biểu thức điều kiện.
+- **Pattern Matching**: Hỗ trợ các cấu trúc điều kiện dựa trên kiểu và giá trị.
 
 ```csharp
-if (person is Person { Age: > 18 })
+if (obj is string s)
 {
-    Console.WriteLine("Adult");
+    Console.WriteLine(s);
 }
 ```
 
-- **Out Variables**: Biến `out` có thể được khai báo trực tiếp trong phương thức.
+- **Out Variables**: Cho phép khai báo biến trực tiếp trong tham số out.
 
 ```csharp
-if (int.TryParse("123", out int result)) { /*...*/ }
+if (int.TryParse(input, out var result))
+{
+    Console.WriteLine(result);
+}
 ```
 
-- **Local Functions**: Cho phép định nghĩa các hàm con bên trong hàm khác.
+- **Local Functions**: Cho phép định nghĩa các hàm địa phương trong phương thức khác.
 
 ```csharp
-void Local() { /*...*/ }
+void LocalFunction() { /*...*/ }
 ```
+
+---
 
 ### Phiên bản 7.1, 7.2, 7.3
 
-- **Enhanced Pattern Matching**: Cải thiện tính năng pattern matching với cú pháp mở rộng.
+- **Enhanced Pattern Matching**: Mở rộng khả năng so khớp mẫu.
+
+- **Async Main**: Cho phép phương thức Main là async.
 
 ```csharp
-public void PrintShape(object shape)
-{
-    if (shape is Circle { Radius: > 0 })
-    {
-        Console.WriteLine("This is a circle with a positive radius.");
-    }
-    else if (shape is Rectangle { Width: > 0, Height: > 0 })
-    {
-        Console.WriteLine("This is a rectangle with positive dimensions.");
-    }
-}
+public static async Task Main() { /*...*/ }
 ```
 
-- **Async Main**: Cho phép phương thức `Main` có thể sử dụng `async`.
+- **Default Literals**: Hỗ trợ sử dụng từ khóa `default` cho các kiểu dữ liệu.
 
 ```csharp
-using System;
-using System.Threading.Tasks;
-
-class Program
-{
-    static async Task Main(string[] args) // Phương thức Main bất đồng bộ
-    {
-        await Task.Delay(1000);
-        Console.WriteLine("Hello after 1 second delay!");
-    }
-}
-```
-
-- **Default Literals**: Sử dụng từ khóa `default` cho các giá trị mặc định kiểu tổng quát.
-
-```csharp
-public void PrintDefaultValue(int x = default)
-{
-    Console.WriteLine(x); // Hiển thị "0" vì int mặc định là 0
-}
+int num = default;
 ```
 
 ---
 
 ### Phiên bản 8.0 (2019)
 
-- **Nullable Reference Types**: Cải tiến xử lý kiểu nullable, giúp tránh lỗi null reference.
+- **Nullable Reference Types**: Giúp kiểm soát giá trị null trong các kiểu tham chiếu.
 
 ```csharp
-string? nullableName = null;
+#nullable enable
+public string? Name { get; set; }
 ```
 
-- **Async Streams**: Cho phép sử dụng `await foreach` để lặp qua các dữ liệu bất đồng bộ.
+- **Async Streams**: Hỗ trợ làm việc với luồng dữ liệu bất đồng bộ.
 
 ```csharp
-public async IAsyncEnumerable<int> GetNumbersAsync()
+await foreach (var item in asyncEnumerable) { /*...*/ }
+```
+
+- **Indices and Ranges**: Cho phép truy cập vào các phần tử của mảng theo chỉ số và khoảng cách.
+
+```csharp
+var range = array[1..5];
+```
+
+- **Switch Expressions**: Cải tiến cấu trúc switch, cho phép xử lý điều kiện gọn gàng hơn.
+
+```csharp
+var result = input switch
 {
-    yield return 1;
-}
-```
-
-- **Indices and Ranges**: Hỗ trợ cú pháp lấy phần tử từ cuối mảng và truy xuất đoạn mảng.
-
-```csharp
-int[] numbers = { 1, 2, 3, 4, 5 };
-var last = numbers[^1];
-```
-
-- **Switch Expressions**: Giới thiệu cú pháp `switch` ngắn gọn hơn.
-
-```csharp
-string result = x switch { 1 => "One", _ => "Other" };
+    1 => "One",
+    2 => "Two",
+    _ => "Unknown"
+};
 ```
 
 ---
 
 ### Phiên bản 9.0 (2020)
 
-- **Record Types**: Kiểu dữ liệu bất biến, thường dùng cho lưu trữ dữ liệu.
+- **Record Types**: Định nghĩa loại bản ghi, giúp tạo các đối tượng không thay đổi.
 
 ```csharp
 public record Person(string Name, int Age);
 ```
 
-- **Init-only Properties**: Cho phép thuộc tính chỉ có thể gán giá trị trong khối khởi tạo.
+- **Init-only Properties**: Thuộc tính chỉ có thể khởi tạo một lần.
 
 ```csharp
-public string Name { get; init; }
+public class Person
+{
+    public string Name { get; init; }
+}
 ```
 
-- **Top-level Statements**: Cho phép viết mã mà không cần hàm `Main`.
+- **Top-level Statements**: Giúp viết mã C# đơn giản hơn mà không cần định nghĩa lớp hay phương thức Main.
 
 ```csharp
 Console.WriteLine("Hello, World!");
 ```
 
-- **With Expressions**: Tạo bản sao của đối tượng với các thuộc tính được thay đổi.
+- **With Expressions**: Cho phép tạo bản sao với các thuộc tính thay đổi.
 
 ```csharp
-var person1 = new Person("John", 30);
-var person2 = person1 with { Age = 31 };
+var newPerson = person with { Age = 30 };
 ```
 
 ---
 
 ### Phiên bản 10.0 (2021)
 
-- **Global Using**: Khai báo `using` toàn cục cho toàn bộ mã nguồn.
+- **Global Using**: Hỗ trợ định nghĩa using toàn cục trong tệp để giảm thiểu lặp lại.
 
 ```csharp
 global using System;
 ```
 
-- **File-scoped Namespaces**: Định nghĩa không gian tên cho toàn bộ tệp mã nguồn mà không cần dấu ngoặc.
+- **File-scoped Namespaces**: Giúp định nghĩa không gian tên cho toàn bộ tệp.
 
 ```csharp
 namespace MyNamespace;
 ```
 
-- **Constant Interpolated Strings**: Hỗ trợ chuỗi nội suy được dùng làm hằng số.
+- **Constant Interpolated Strings**: Hỗ trợ chuỗi định dạng hằng.
 
 ```csharp
-const string name = "World";
-const string greeting = $"Hello, {name}!";
+const string greeting = $"Hello, {name}";
 ```
 
 ---
 
 ### Phiên bản 11.0 (2022)
 
-- **Raw String Literals**: Cho phép viết chuỗi nhiều dòng mà không cần ký tự thoát.
+- **Raw String Literals**: Hỗ trợ chuỗi thô, cho phép định nghĩa chuỗi mà không cần escape.
 
 ```csharp
-string text = """
-    This is a raw
-    string literal.
-    """;
+string rawString = """This is a raw string with "quotes" and new lines""";
 ```
 
-- **Required Members**: Yêu cầu các thuộc tính bắt buộc phải được gán giá trị khi khởi tạo.
+- **Required Members**: Cho phép định nghĩa các thuộc tính yêu cầu trong lớp.
 
 ```csharp
-public class Car
+public class Person
 {
-    public required string Model { get; init; }
+    public required string Name { get; init; }
 }
 ```
 
-- **Generic Attributes**: Thuộc tính có thể sử dụng với kiểu tổng quát.
+- **Generic Attributes**: Hỗ trợ sử dụng thuộc tính với kiểu tổng quát.
 
 ```csharp
 [AttributeUsage(AttributeTargets.Class)]
@@ -447,49 +485,34 @@ public class MyAttribute<T> : Attribute { }
 
 ### Phiên bản 12.0 (2023)
 
-- **Primary Constructors**: Cung cấp cú pháp gọn hơn cho việc khai báo constructor.
+- **Primary Constructors**: Hỗ trợ khởi tạo trực tiếp trong định nghĩa lớp.
 
 ```csharp
-public class Car(string model, int year) { }
+public class Person(string name, int age) { /*...*/ }
 ```
 
-- **Improved Interpolated Strings**: Hỗ trợ định dạng chuỗi nội suy mạnh mẽ hơn.
+- **Improved Interpolated Strings**: Cải tiến khả năng sử dụng chuỗi định dạng.
 
 ```csharp
-var text = $"Car Model: {car.Model,10} Year: {car.Year}";
+string message = $"Hello, {person.Name}";
 ```
 
-- **Collection Expressions**: Dễ dàng hơn trong việc khởi tạo các collection.
+- **Collection Expressions**: Hỗ trợ cú pháp mới cho việc khởi tạo danh sách.
 
 ```csharp
-var numbers = [1, 2, 3, 4];
+var list = [1, 2, 3, 4];
 ```
 
-- **Using Aliases**: Tăng cường khả năng đặt tên alias cho không gian tên và kiểu phức tạp.
+- **Using Aliases**: Hỗ trợ định nghĩa bí danh cho using.
 
 ```csharp
-using ModelAlias = MyNamespace.Models.Car;
+using Project = MyNamespace.MyProject;
 ```
 
 ---
 
 ### Tóm Tắt
 
-| Phiên bản | Các tính năng nổi bật                                 |
-| --------- | ----------------------------------------------------- |
-| 1.0       | Namespace, Classes, Interfaces, Delegates             |
-| 2.0       | Generics, Nullable Types, Iterators                   |
-| 3.0       | LINQ, Lambda, Anonymous Types                         |
-| 4.0       | Dynamic Binding, Named & Optional Parameters          |
-| 5.0       | Async & Await, Caller Information                     |
-| 6.0       | Auto-Property Initializers, Expression-bodied Members |
-| 7.0       | Tuples, Pattern Matching, Local Functions             |
-| 8.0       | Nullable Reference Types, Async Streams               |
-| 9.0       | Record Types, Init-only Properties, With Expressions  |
-| 10.0      | Global Using, File-scoped Namespaces                  |
-| 11.0      | Raw String Literals, Required Members                 |
-| 12.0      | Primary Constructors, Improved Interpolated Strings   |
+Ngôn ngữ **C#** đã trải qua nhiều thay đổi và cải tiến từ phiên bản 1.0 đến 12.0, mỗi phiên bản mang lại nhiều tính năng mạnh mẽ, giúp lập trình viên viết mã hiệu quả và dễ hiểu hơn. Các tính năng như **LINQ**, **Async/Await**, **Nullable Types**, và **Record Types** đã thay đổi cách mà các ứng dụng được phát triển trong C#.
 
----
-
-Trên đây là toàn bộ tài liệu về các tính năng của C# từ phiên bản 1.0 đến 12.0, hy vọng cung cấp được cái nhìn tổng quan và chi tiết về sự phát triển của ngôn ngữ này!
+Với mỗi phiên bản mới, Microsoft không ngừng nâng cao trải nghiệm lập trình và hỗ trợ lập trình viên trong việc xây dựng ứng dụng hiện đại.

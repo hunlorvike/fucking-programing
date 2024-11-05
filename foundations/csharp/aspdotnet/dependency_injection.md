@@ -1,8 +1,31 @@
-### 1. **Khái niệm về Dependency Injection**
+# Dependency Injection trong .NET: Tổng Quan và Hướng Dẫn
+
+## Mục Lục
+
+1. [Khái niệm về Dependency Injection](#khái-niệm-về-dependency-injection)
+2. [Tại sao cần Dependency Injection?](#tại-sao-cần-dependency-injection)
+3. [Các phương thức Dependency Injection](#các-phương-thức-dependency-injection)
+   - [3.1. Constructor Injection](#31-constructor-injection)
+   - [3.2. Property Injection](#32-property-injection)
+   - [3.3. Method Injection](#33-method-injection)
+4. [Cấu hình Dependency Injection trong ASP.NET Core](#cấu-hình-dependency-injection-trong-aspnet-core)
+   - [4.1. Đăng ký dịch vụ](#41-đăng-ký-dịch-vụ)
+   - [4.2. Sử dụng dịch vụ](#42-sử-dụng-dịch-vụ)
+5. [Quản lý vòng đời của dịch vụ](#quản-lý-vòng-đời-của-dịch-vụ)
+   - [5.1. Singleton](#51-singleton)
+   - [5.2. Scoped](#52-scoped)
+   - [5.3. Transient](#53-transient)
+6. [Kiểm thử với Dependency Injection](#kiểm-thử-với-dependency-injection)
+7. [Mẫu thực hành tốt nhất với Dependency Injection](#mẫu-thực-hành-tốt-nhất-với-dependency-injection)
+8. [Tóm tắt](#tóm-tắt)
+
+---
+
+## 1. Khái niệm về Dependency Injection
 
 **Dependency Injection (DI)** là một mẫu thiết kế quan trọng trong lập trình, cho phép tách biệt các lớp và đối tượng, từ đó quản lý các phụ thuộc một cách hiệu quả hơn. DI thực hiện nguyên tắc **Inversion of Control (IoC)**, trong đó việc khởi tạo và quản lý các đối tượng không nằm trong các lớp sử dụng chúng. Thay vào đó, các đối tượng này được "tiêm" vào lớp cần sử dụng, giúp tăng tính linh hoạt và khả năng bảo trì của ứng dụng.
 
-### 2. **Tại sao cần Dependency Injection?**
+## 2. Tại sao cần Dependency Injection?
 
 Sử dụng DI mang lại nhiều lợi ích cho phát triển ứng dụng:
 
@@ -10,7 +33,7 @@ Sử dụng DI mang lại nhiều lợi ích cho phát triển ứng dụng:
 - **Dễ dàng kiểm thử (Testability)**: Cho phép thay thế các dependencies bằng các mock hoặc stub, giúp kiểm thử đơn vị trở nên dễ dàng hơn.
 - **Quản lý vòng đời (Lifecycle Management)**: DI Container giúp kiểm soát và tái sử dụng các đối tượng một cách dễ dàng.
 
-### 3. **Các phương thức Dependency Injection**
+## 3. Các phương thức Dependency Injection
 
 Trong .NET, có ba phương pháp chính để thực hiện DI:
 
@@ -18,7 +41,7 @@ Trong .NET, có ba phương pháp chính để thực hiện DI:
 2. **Property Injection**: Dependency được gán qua các thuộc tính.
 3. **Method Injection**: Dependency được truyền vào một phương thức cụ thể.
 
-#### 3.1. Constructor Injection
+### 3.1. Constructor Injection
 
 Đây là phương pháp phổ biến nhất và được khuyến khích. Dependency được truyền qua constructor, đảm bảo rằng đối tượng không thể tồn tại nếu không có các phụ thuộc cần thiết.
 
@@ -45,7 +68,7 @@ public class MyService
 }
 ```
 
-#### 3.2. Property Injection
+### 3.2. Property Injection
 
 Phương pháp này cho phép gán dependencies qua các thuộc tính, thường được sử dụng khi dependency không cần thiết ngay lập tức.
 
@@ -60,7 +83,7 @@ public class MyService
 }
 ```
 
-#### 3.3. Method Injection
+### 3.3. Method Injection
 
 Phương pháp này cho phép truyền dependency vào một phương thức cụ thể.
 
@@ -73,11 +96,11 @@ public class MyService
 }
 ```
 
-### 4. **Cấu hình Dependency Injection trong ASP.NET Core**
+## 4. Cấu hình Dependency Injection trong ASP.NET Core
 
 ASP.NET Core cung cấp DI container tích hợp, cho phép đăng ký dịch vụ trong phương thức `ConfigureServices` trong file `Startup.cs`.
 
-#### 4.1. Đăng ký dịch vụ
+### 4.1. Đăng ký dịch vụ
 
 Bạn có thể đăng ký các dịch vụ với ba phương thức chính:
 
@@ -96,7 +119,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-#### 4.2. Sử dụng dịch vụ
+### 4.2. Sử dụng dịch vụ
 
 Để sử dụng các dịch vụ đã đăng ký, bạn tiêm chúng vào constructor của lớp (thường là controller hoặc service).
 
@@ -117,11 +140,11 @@ public class MyController : ControllerBase
 }
 ```
 
-### 5. **Quản lý vòng đời của dịch vụ**
+## 5. Quản lý vòng đời của dịch vụ
 
 Trong DI của .NET, có ba cách chính để quản lý vòng đời dịch vụ: **Singleton**, **Scoped**, và **Transient**.
 
-#### 5.1. Singleton
+### 5.1. Singleton
 
 - **Định nghĩa**: Khởi tạo một lần duy nhất trong toàn bộ ứng dụng.
 - **Tình huống sử dụng**: Chia sẻ trạng thái toàn cục, như cấu hình hoặc logging.
@@ -134,7 +157,7 @@ Trong DI của .NET, có ba cách chính để quản lý vòng đời dịch v�
 services.AddSingleton<IMyService, MyService>();
 ```
 
-#### 5.2. Scoped
+### 5.2. Scoped
 
 - **Định nghĩa**: Tạo mới cho mỗi yêu cầu HTTP.
 - **Tình huống sử dụng**: Lưu trữ trạng thái giữa các phương thức trong cùng một yêu cầu.
@@ -147,7 +170,7 @@ services.AddSingleton<IMyService, MyService>();
 services.AddScoped<IMyService, MyService>();
 ```
 
-#### 5.3. Transient
+### 5.3. Transient
 
 - **Định nghĩa**: Tạo mới mỗi khi dịch vụ được yêu cầu.
 - **Tình huống sử dụng**: Các dịch vụ nhẹ không cần trạng thái.
@@ -160,7 +183,7 @@ services.AddScoped<IMyService, MyService>();
 services.AddTransient<IMyService, MyService>();
 ```
 
-### 6. **Kiểm thử với Dependency Injection**
+## 6. Kiểm thử với Dependency Injection
 
 DI giúp đơn giản hóa việc kiểm thử bằng cách cho phép bạn thay thế các dependency bằng các mock hoặc stub.
 
@@ -182,12 +205,12 @@ public class MyServiceTests
 }
 ```
 
-### 7. **Mẫu thực hành tốt nhất với Dependency Injection**
+## 7. Mẫu thực hành tốt nhất với Dependency Injection
 
 - **Tránh sử dụng Service Locator**: Giảm việc gọi DI container trong các lớp để giữ tính tách biệt.
 - **Sử dụng Interface**: Đăng ký interfaces thay vì các lớp cụ thể để dễ dàng thay thế trong tương lai.
 - **Giữ cho DI container gọn gàng**: Chỉ đăng ký các dịch vụ cần thiết, tránh những dịch vụ không sử dụng.
 
-### 8. **Tóm tắt**
+## 8. Tóm tắt
 
 Dependency Injection trong .NET là công cụ mạnh mẽ giúp tách biệt các phần của ứng dụng, cải thiện khả năng kiểm thử, và giảm độ phức tạp trong việc quản lý các đối tượng. Sử dụng DI giúp xây dựng ứng dụng dễ bảo trì, mở rộng và kiểm thử, nâng cao chất lượng tổng thể của mã nguồn.

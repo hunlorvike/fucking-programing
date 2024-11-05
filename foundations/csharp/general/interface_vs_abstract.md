@@ -1,4 +1,19 @@
-Dưới đây là một mô tả chi tiết, cụ thể và rõ ràng về sự khác nhau giữa `interface` và `abstract class` trong C#, kèm theo hướng dẫn sử dụng từng loại và ví dụ minh họa.
+# So Sánh Giữa Interface và Abstract Class trong C#
+
+## Mục Lục
+
+1. [Khái niệm cơ bản](#1-khái-niệm-cơ-bản)
+   - [Interface](#interface)
+   - [Abstract Class](#abstract-class)
+2. [Điểm khác biệt chính](#2-điểm-khác-biệt-chính)
+3. [Khi nào sử dụng Interface?](#3-khi-nào-sử-dụng-interface)
+4. [Khi nào sử dụng Abstract Class?](#4-khi-nào-sử-dụng-abstract-class)
+5. [Ví dụ minh họa](#5-ví-dụ-minh-họa)
+   - [Interface](#interface-1)
+   - [Abstract Class](#abstract-class-1)
+6. [Kết luận](#6-kết-luận)
+
+---
 
 ## 1. Khái niệm cơ bản
 

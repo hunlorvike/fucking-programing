@@ -1,3 +1,41 @@
+# Entity Framework trong C# .NET
+
+## Mục Lục
+
+1. [Tổng Quan về Entity Framework](#1-tổng-quan-về-entity-framework)
+
+   - [Mục Đích](#mục-đích)
+   - [Các Phiên Bản](#các-phiên-bản)
+
+2. [Kiến Trúc](#2-kiến-trúc)
+
+3. [Cài Đặt Entity Framework](#3-cài-đặt-entity-framework)
+
+4. [Tạo Mô Hình Dữ Liệu](#4-tạo-mô-hình-dữ-liệu)
+
+5. [Tạo DbContext](#5-tạo-dbcontext)
+
+6. [Các Hoạt Động Cơ Bản với Entity Framework](#6-các-hoạt-động-cơ-bản-với-entity-framework)
+
+   - [a. Thêm Dữ Liệu](#a-thêm-dữ-liệu)
+   - [b. Truy Vấn Dữ Liệu](#b-truy-vấn-dữ-liệu)
+   - [c. Cập Nhật Dữ Liệu](#c-cập-nhật-dữ-liệu)
+   - [d. Xóa Dữ Liệu](#d-xóa-dữ-liệu)
+
+7. [Quản Lý Mối Quan Hệ](#7-quản-lý-mối-quan-hệ)
+
+   - [Mối Quan Hệ Một - Nhiều](#mối-quan-hệ-một---nhiều)
+   - [Cấu Hình Mối Quan Hệ](#cấu-hình-mối-quan-hệ)
+
+8. [Migration](#8-migration)
+
+   - [a. Tạo Migration](#a-tạo-migration)
+   - [b. Áp Dụng Migration](#b-áp-dụng-migration)
+
+9. [Tóm Tắt](#9-tóm-tắt)
+
+---
+
 ### 1. Tổng Quan về Entity Framework
 
 **Entity Framework (EF)** là một framework ORM (Object-Relational Mapping) được phát triển bởi Microsoft, giúp lập trình viên .NET làm việc với cơ sở dữ liệu mà không cần viết nhiều câu lệnh SQL phức tạp. Thay vào đó, lập trình viên có thể thao tác với dữ liệu bằng cách sử dụng các đối tượng trong ứng dụng.
@@ -31,6 +69,7 @@ Entity Framework hoạt động dựa trên mô hình 3 lớp:
   ```
 
 - **Đối với EF Core**:
+
   ```bash
   Install-Package Microsoft.EntityFrameworkCore
   Install-Package Microsoft.EntityFrameworkCore.SqlServer  // Nếu bạn sử dụng SQL Server
@@ -178,6 +217,6 @@ Entity Framework là một công cụ mạnh mẽ cho việc tương tác với 
 - **Sử dụng Đối Tượng**: Làm việc với dữ liệu dưới dạng các đối tượng.
 - **CRUD**: Hỗ trợ các thao tác CRUD dễ dàng.
 - **Quản Lý Mối Quan Hệ**: Hỗ trợ các loại mối quan hệ giữa các thực thể.
-- **Migration**: Giúp theo dõi và áp dụng thay đổi trong cơ sở dữ liệu.
+- **Migration**: Giúp theo dõi và áp dụng thay đổi trong
 
-Nếu bạn cần tìm hiểu sâu hơn về một khía cạnh nào đó hoặc có câu hỏi cụ thể, đừng ngần ngại hỏi nhé!
+cơ sở dữ liệu.

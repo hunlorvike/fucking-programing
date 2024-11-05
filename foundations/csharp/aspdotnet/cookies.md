@@ -1,14 +1,43 @@
-## Hướng dẫn sử dụng Cookies trong C# .NET: Tổng quan, Triển khai và Bảo mật
+# Cookies trong C# .NET
 
-**Cookies** là một phương thức phổ biến để lưu trữ dữ liệu trên trình duyệt người dùng, cho phép server lưu giữ thông tin tạm thời và liên tục qua các phiên làm việc của người dùng. Cookies thường được sử dụng để quản lý phiên, lưu thông tin đăng nhập, thiết lập các tùy chọn của người dùng, và theo dõi trạng thái ứng dụng. So với session, dữ liệu cookies nằm ở phía client nhưng có thể được bảo mật thông qua các cơ chế mã hóa và thiết lập quyền hạn của cookie.
+## Mục Lục
+
+1. [Tổng quan về Cookies](#1-tổng-quan-về-cookies)
+
+   - [Cookies là gì?](#cookies-là-gì)
+   - [Cấu trúc của một Cookie](#cấu-trúc-của-một-cookie)
+   - [Cookies hoạt động như thế nào?](#cookies-hoạt-động-như-thế-nào)
+
+2. [Triển khai Cookies trong C# .NET](#2-triển-khai-cookies-trong-c-net)
+
+   - [Cấu hình và tạo Cookies trong ASP.NET Core](#a-cấu-hình-và-tạo-cookies-trong-aspnet-core)
+   - [Thiết lập Cookie trong `appsettings.json` (Tùy chọn)](#b-thiết-lập-cookie-trong-appsettingsjson-tùy-chọn)
+
+3. [Bảo mật Cookies trong ASP.NET Core](#3-bảo-mật-cookies-trong-aspnet-core)
+
+   - [Secure và HttpOnly Cookies](#secure-và-httponly-cookies)
+   - [Cookie SameSite](#cookie-samesite)
+   - [Thời gian hết hạn hợp lý và Xóa Cookies](#thời-gian-hết-hạn-hợp-lý-và-xóa-cookies)
+   - [Mã hóa và ký Cookie](#mã-hóa-và-ký-cookie)
+
+4. [So sánh Cookies và Session](#4-so-sánh-cookies-và-session)
+
+5. [Ứng dụng Cookies trong Xác thực](#5-ứng-dụng-cookies-trong-xác-thực)
+
+   - [Cấu hình xác thực Cookie trong `Startup.cs`](#a-cấu-hình-xác-thực-cookie-trong-startupcs)
+   - [Thực hiện đăng nhập và tạo Cookie](#b-thực-hiện-đăng-nhập-và-tạo-cookie)
+
+6. [Kết luận](#kết-luận)
+
+---
 
 ### 1. Tổng quan về Cookies
 
-#### **Cookies là gì?**
+#### Cookies là gì?
 
 Cookies là các tệp nhỏ được server gửi đến trình duyệt và lưu trữ trên máy client. Mỗi khi người dùng truy cập vào một trang web, cookie có thể được gửi kèm theo yêu cầu HTTP để server nhận diện người dùng, theo dõi trạng thái và lưu trữ các tùy chọn của người dùng trên trang web.
 
-#### **Cấu trúc của một Cookie**
+#### Cấu trúc của một Cookie
 
 Một cookie cơ bản bao gồm các thuộc tính sau:
 
@@ -25,7 +54,7 @@ Ví dụ về **Cookie HTTP Header**:
 Set-Cookie: UserID=12345; Expires=Wed, 21 Oct 2024 07:28:00 GMT; Path=/; Domain=example.com; Secure; HttpOnly
 ```
 
-#### **Cookies hoạt động như thế nào?**
+#### Cookies hoạt động như thế nào?
 
 1. Khi người dùng truy cập ứng dụng, server có thể tạo cookie và gửi về client qua header `Set-Cookie`.
 2. Cookie được lưu trữ trong trình duyệt người dùng theo các thuộc tính được thiết lập.
@@ -116,7 +145,7 @@ Nếu cần, có thể cấu hình cookie trong `appsettings.json`, chủ yếu 
 
 Cookies có thể dễ dàng bị tấn công nếu không được bảo vệ đúng cách. Sau đây là các phương pháp bảo mật cookies quan trọng:
 
-#### **Secure và HttpOnly Cookies**
+#### Secure và HttpOnly Cookies
 
 - **HttpOnly**: Khi được bật, cookie chỉ có thể truy cập qua HTTP mà không thể truy cập bằng JavaScript, ngăn chặn các cuộc tấn công XSS.
 - **Secure**: Đảm bảo cookie chỉ được gửi qua HTTPS, bảo vệ khỏi các cuộc tấn công MITM (Man-in-the-Middle).
@@ -130,7 +159,7 @@ var options = new CookieOptions
 Response.Cookies.Append("SecureCookie", "value", options);
 ```
 
-#### **Cookie SameSite**
+#### Cookie SameSite
 
 SameSite là thuộc tính cookie giúp ngăn ngừa tấn công CSRF (Cross-Site Request Forgery) bằng cách giới hạn phạm vi gửi cookie:
 
@@ -148,25 +177,27 @@ var options = new CookieOptions
 Response.Cookies.Append("StrictCookie", "value", options);
 ```
 
-#### **Thời gian hết hạn hợp lý và Xóa Cookies**
+#### Thời gian hết hạn hợp lý và Xóa Cookies
 
 - Đặt thời gian sống của cookie ngắn (ví dụ: 15-30 phút) cho các cookie nhạy cảm.
 - Cần xóa cookie khi người dùng đăng xuất hoặc khi cookie không còn cần thiết.
 
-#### **Mã hóa và ký Cookie**
+#### Mã hóa và ký Cookie
 
 Nếu cần bảo mật thêm, có thể mã hóa và ký các cookie nhạy cảm trước khi gửi về client để ngăn chặn việc cookie bị giả mạo hoặc thay đổi.
 
 ### 4. So sánh Cookies và Session
 
-| Đặc điểm            | Cookies                                        | Session                                             |
-| ------------------- | ---------------------------------------------- | --------------------------------------------------- |
-| **Lưu trữ**         | Lưu trữ trên client                            | Lưu trữ trên server                                 |
-| **Tính bảo mật**    | Phụ thuộc vào mã hóa và thiết lập quyền hạn    | Dữ liệu session không tiếp xúc trực tiếp với client |
-| **Trạng thái**      | Không trạng thái (stateless)                   | Có trạng thái (stateful)                            |
-| **Dữ liệu lưu trữ** | Dữ liệu đơn giản, không nhạy cảm hoặc mã hóa   | Dữ liệu phức tạp, thông tin nhạy cảm                |
-| **Quy mô**          | Thích hợp cho các tùy chọn, ghi nhớ trạng thái | Phù hợp với quản lý phiên làm việc của người dùng   |
-| **Thời gian sống**  | Tùy chỉnh trong từng cookie                    | Tùy chỉnh trong server-side session timeout         |
+| Đặc điểm            | Cookies                                     | Session                                             |
+| ------------------- | ------------------------------------------- | --------------------------------------------------- |
+| **Lưu trữ**         | Lưu trữ trên client                         | Lưu trữ trên server                                 |
+| **Tính bảo mật**    | Phụ thuộc vào mã hóa và thiết lập quyền hạn | Dữ liệu session không tiếp xúc trực tiếp với client |
+| **Trạng thái**      | Không trạng thái (stateless)                | Có trạng thái (stateful)                            |
+| **Dữ liệu lưu trữ** | Dữ liệu đơn giản                            |
+
+, không nhạy cảm hoặc mã hóa | Dữ liệu phức tạp, thông tin nhạy cảm |
+| **Quy mô** | Thích hợp cho các tùy chọn, ghi nhớ trạng thái | Phù hợp với quản lý phiên làm việc của người dùng |
+| **Thời gian sống** | Tùy chỉnh trong từng cookie | Tùy chỉnh trong server-side session timeout |
 
 ### 5. Ứng dụng Cookies trong Xác thực
 
@@ -192,9 +223,7 @@ public void ConfigureServices(IServiceCollection services)
 Trong cấu hình trên:
 
 - `ExpireTimeSpan`: Thời gian sống của cookie.
-- `SlidingExpiration`: Nếu bật, thời gian sống của cookie sẽ được gia hạn mỗi khi người dùng thực hiện một
-
-yêu cầu mới.
+- `SlidingExpiration`: Nếu bật, thời gian sống của cookie sẽ được gia hạn mỗi khi người dùng thực hiện một yêu cầu mới.
 
 #### b. Thực hiện đăng nhập và tạo Cookie
 

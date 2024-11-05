@@ -1,4 +1,34 @@
-## LINQ - Tổng Quan và Hướng Dẫn Sử Dụng Chi Tiết
+# LINQ - Tổng Quan và Hướng Dẫn Sử Dụng Chi Tiết
+
+## Mục lục
+
+1. [Giới thiệu về LINQ](#1-giới-thiệu-về-linq)
+   - [Lợi ích của LINQ](#11-lợi-ích-của-linq)
+2. [Các loại LINQ](#2-các-loại-linq)
+   - [LINQ to Objects](#21-linq-to-objects)
+   - [LINQ to SQL](#22-linq-to-sql)
+   - [LINQ to Entities (Entity Framework)](#23-linq-to-entities-entity-framework)
+   - [LINQ to XML](#24-linq-to-xml)
+   - [LINQ to DataSet](#25-linq-to-dataset)
+3. [Cú pháp cơ bản của LINQ](#3-cú-pháp-cơ-bản-của-linq)
+   - [Cú pháp truy vấn (Query Syntax)](#31-cú-pháp-truy-vấn-query-syntax)
+   - [Cú pháp phương thức (Method Syntax)](#32-cú-pháp-phương-thức-method-syntax)
+4. [Các phép toán trong LINQ](#4-các-phép-toán-trong-linq)
+   - [Where](#41-where)
+   - [Select](#42-select)
+   - [OrderBy](#43-orderby)
+   - [GroupBy](#44-groupby)
+   - [Join](#45-join)
+   - [Distinct](#46-distinct)
+   - [Count](#47-count)
+   - [Sum](#48-sum)
+5. [IQueryable vs IEnumerable](#5-iqueryable-vs-ienumerable)
+   - [IEnumerable](#51-ienumerable)
+   - [IQueryable](#52-iqueryable)
+   - [So sánh giữa IQueryable và IEnumerable](#53-so-sánh-giữa-iqueryable-và-ienumerable)
+6. [Kết luận](#6-kết-luận)
+
+---
 
 ### 1. **Giới thiệu về LINQ**
 
@@ -155,7 +185,10 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.7 **Count**
 
-- **Mô tả**: Phép toán `Count` cho phép bạn đếm số phần tử trong một tập hợp.
+- **Mô tả**: Phép toán `Count` cho
+
+phép bạn đếm số phần tử trong một tập hợp.
+
 - **Cú pháp**:
   ```csharp
   var count = collection.Count();
@@ -181,49 +214,61 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
   // Kết quả: Tổng giá của tất cả sản phẩm
   ```
 
+Dưới đây là phiên bản đã chỉnh sửa và cải thiện cho phần so sánh giữa `IQueryable` và `IEnumerable`, với thông tin rõ ràng và có cấu trúc hợp lý hơn:
+
 ### 5. **IQueryable vs IEnumerable**
 
 #### 5.1 **IEnumerable**
 
-- **Mô tả**: `IEnumerable` đại diện cho tập hợp có thể lặp qua trong bộ nhớ, thường sử dụng cho các tập hợp trong bộ nhớ như mảng hoặc danh sách.
+- **Mô tả**:
+
+  - `IEnumerable` là một giao diện được sử dụng để đại diện cho một tập hợp các đối tượng trong bộ nhớ (RAM).
+  - Khi làm việc với `IEnumerable`, toàn bộ dữ liệu từ cơ sở dữ liệu phải được tải vào bộ nhớ trước khi thực hiện các phương thức LINQ. Điều này có thể gây tiêu tốn tài nguyên và giảm hiệu suất, đặc biệt khi làm việc với các tập dữ liệu lớn.
+
 - **Tính năng**:
-  - Không hỗ trợ ánh xạ biểu thức; tất cả truy vấn thực hiện trong bộ nhớ.
-  - Phù hợp khi dữ liệu đã được tải vào bộ nhớ và cần thao tác.
-  - Thực hiện truy vấn ở mức client; tất cả dữ liệu phải được tải vào bộ nhớ.
-  - Chậm hơn với tập hợp lớn do phải tải toàn bộ dữ liệu trước.
 
-**Ví dụ**:
+  - Không hỗ trợ ánh xạ biểu thức; tất cả các truy vấn được thực hiện trong bộ nhớ.
+  - Phù hợp khi dữ liệu đã được tải vào bộ nhớ và cần thực hiện các thao tác.
+  - Thực hiện truy vấn ở mức client; tất cả dữ liệu phải được tải vào bộ nhớ trước.
+  - Hiệu suất có thể kém hơn với các tập dữ liệu lớn do phải tải toàn bộ dữ liệu.
 
-```csharp
-IEnumerable<Product> enumerableProducts = context.Products.ToList();
-var expensiveProducts = enumerableProducts.Where(p => p.Price > 100);
-```
+- **Ví dụ**:
+  ```csharp
+  IEnumerable<Product> enumerableProducts = context.Products.ToList();
+  var expensiveProducts = enumerableProducts.Where(p => p.Price > 100);
+  ```
 
 #### 5.2 **IQueryable**
 
-- **Mô tả**: `IQueryable` kế thừa từ `IEnumerable` và đại diện cho tập hợp có thể truy vấn. Nó cho phép thực hiện các truy vấn phức tạp trên dữ liệu ngoài bộ nhớ, như cơ sở dữ liệu.
+- **Mô tả**:
+
+  - `IQueryable` là một giao diện cho phép bạn thực hiện truy vấn trên nguồn dữ liệu bên ngoài (như cơ sở dữ liệu).
+  - Nó không tải toàn bộ dữ liệu vào bộ nhớ; thay vào đó, nó đại diện cho một truy vấn chưa được thực thi. Khi bạn áp dụng các phương thức LINQ (như `Where`, `Select`, v.v.) trên `IQueryable`, các phương thức này sẽ được chuyển đổi thành câu lệnh SQL và được thực thi trên cơ sở dữ liệu.
+
 - **Tính năng**:
-  - Hỗ trợ ánh xạ biểu thức, chuyển đổi thành câu lệnh SQL.
+
+  - Hỗ trợ ánh xạ biểu thức (expression trees), cho phép chuyển đổi thành câu lệnh SQL.
   - Tối ưu hóa hiệu suất truy vấn bằng cách chuyển điều kiện về phía nguồn dữ liệu.
   - Thực hiện truy vấn trên server, chỉ tải dữ liệu cần thiết từ cơ sở dữ liệu.
-  - Nhanh hơn với cơ sở dữ liệu vì chỉ truy xuất dữ liệu cần thiết.
+  - Hiệu suất nhanh hơn với cơ sở dữ liệu vì chỉ truy xuất dữ liệu cần thiết.
 
-**Ví dụ**:
-
-```csharp
-IQueryable<Product> queryableProducts = context.Products.AsQueryable();
-var expensiveProducts = queryableProducts.Where(p => p.Price > 100);
-```
+- **Ví dụ**:
+  ```csharp
+  IQueryable<Product> queryableProducts = context.Products.AsQueryable();
+  var expensiveProducts = queryableProducts.Where(p => p.Price > 100);
+  ```
 
 #### 5.3 **So sánh giữa IQueryable và IEnumerable**
 
-| Tính năng              | IQueryable                                                        | IEnumerable                                |
-| ---------------------- | ----------------------------------------------------------------- | ------------------------------------------ |
-| **Nguồn dữ liệu**      | Dữ liệu từ nhiều nguồn khác nhau (cơ sở dữ liệu, dịch vụ web,...) | Dữ liệu trong bộ nhớ (mảng, danh sách,...) |
-| **Xử lý truy vấn**     | Xử lý truy vấn tại nguồn dữ liệu                                  | Xử lý truy vấn trong bộ nhớ                |
-| **Biểu thức truy vấn** | Hỗ trợ ánh xạ biểu thức (expression tree)                         | Không hỗ trợ ánh xạ biểu thức              |
-| **Hiệu suất**          | Tối ưu hơn với truy vấn phức tạp                                  | Có thể kém hơn với tập dữ liệu lớn         |
-| **Cú pháp**            | Cú pháp linh hoạt với LINQ                                        | Cú pháp đơn giản với LINQ                  |
+| Tính năng            | **IQueryable**                                                    | **IEnumerable**                            |
+| -------------------- | ----------------------------------------------------------------- | ------------------------------------------ |
+| **Nguồn dữ liệu**    | Dữ liệu từ nhiều nguồn khác nhau (cơ sở dữ liệu, dịch vụ web,...) | Dữ liệu trong bộ nhớ (mảng, danh sách,...) |
+| **Xử lý truy vấn**   | Xử lý truy vấn tại nguồn dữ liệu                                  | Xử lý truy vấn trong bộ nhớ                |
+| **Ánh xạ biểu thức** | Hỗ trợ ánh xạ biểu thức (expression trees)                        | Không hỗ trợ ánh xạ biểu thức              |
+| **Hiệu suất**        | Tối ưu hơn với truy vấn phức tạp                                  | Có thể kém hơn với tập dữ liệu lớn         |
+| **Cú pháp**          | Cú pháp linh hoạt với LINQ                                        | Cú pháp đơn giản với LINQ                  |
+
+- Khi lựa chọn giữa `IQueryable` và `IEnumerable`, hãy xem xét kích thước và nguồn dữ liệu của bạn. `IQueryable` phù hợp hơn cho các truy vấn lớn và phức tạp, trong khi `IEnumerable` có thể thích hợp cho các tập dữ liệu nhỏ đã được tải vào bộ nhớ.
 
 ### 6. **Kết luận**
 
