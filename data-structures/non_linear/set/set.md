@@ -1,64 +1,115 @@
-## Tập hợp (Set)
+# Tập Hợp (Set)
 
-**Đặc điểm:**
+## Mục lục
 
-- Là một cấu trúc dữ liệu phi tuyến tính, tức là các phần tử không được sắp xếp theo một thứ tự tuyến tính.
-- Không cho phép phần tử trùng lặp, nghĩa là mỗi phần tử chỉ xuất hiện một lần trong tập hợp.
-- Thường được sử dụng để thực hiện các thao tác trên tập hợp như:
+1. [Đặc điểm](#đặc-điểm)
+2. [Ưu điểm và nhược điểm](#ưu-điểm-và-nhược-điểm)
+3. [Ứng dụng](#ứng-dụng)
+4. [Ví dụ triển khai tập hợp trong TypeScript](#ví-dụ-triển-khai-tập-hợp-trong-typescript)
+5. [Bổ sung](#bổ-sung)
+
+---
+
+## Đặc điểm
+
+- Là một cấu trúc dữ liệu phi tuyến tính, các phần tử không được sắp xếp theo một thứ tự cố định.
+- **Không cho phép phần tử trùng lặp** - mỗi phần tử chỉ xuất hiện một lần trong tập hợp.
+- Hỗ trợ nhiều thao tác tập hợp, ví dụ:
   - **Hợp (Union):** Kết hợp các phần tử của hai tập hợp.
   - **Giao (Intersection):** Tìm các phần tử chung của hai tập hợp.
   - **Hiệu (Difference):** Tìm các phần tử chỉ có trong tập hợp đầu tiên mà không có trong tập hợp thứ hai.
   - **Kiểm tra thuộc tính (Membership):** Kiểm tra xem một phần tử có tồn tại trong tập hợp hay không.
 
-**Ưu điểm:**
+## Ưu điểm và nhược điểm
 
-- **Thao tác tập hợp nhanh:** Các thao tác như hợp, giao, hiệu, kiểm tra thuộc tính thường có độ phức tạp thời gian rất nhanh (thường là O(1)).
-- **Loại bỏ trùng lặp:** Tập hợp tự động loại bỏ các phần tử trùng lặp, giúp đảm bảo tính duy nhất của các phần tử trong tập hợp.
+- **Ưu điểm:**
 
-**Nhược điểm:**
+  - **Thao tác tập hợp nhanh:** Các thao tác như hợp, giao, hiệu, kiểm tra thuộc tính thường có độ phức tạp \(O(1)\).
+  - **Loại bỏ trùng lặp:** Tập hợp tự động loại bỏ các phần tử trùng lặp, giúp đảm bảo tính duy nhất.
 
-- **Không có thứ tự:** Các phần tử trong tập hợp không có thứ tự hoặc chỉ mục rõ ràng, vì vậy bạn không thể truy cập đến một phần tử cụ thể bằng chỉ mục.
-- **Khó duyệt:** Việc duyệt qua tất cả các phần tử trong tập hợp có thể tốn kém về hiệu suất.
+- **Nhược điểm:**
+  - **Không có thứ tự:** Các phần tử trong tập hợp không có thứ tự rõ ràng.
+  - **Khó duyệt:** Việc duyệt qua tất cả các phần tử có thể kém hiệu quả nếu tập hợp lớn.
 
-**Ứng dụng:**
+## Ứng dụng
 
-- **Lý thuyết tập hợp:** Tập hợp được sử dụng trong các bài toán liên quan đến lý thuyết tập hợp, chẳng hạn như:
-  - Tìm giao của hai tập hợp các số.
-  - Tìm hiệu của hai tập hợp các từ.
-- **Loại bỏ trùng lặp:** Tập hợp được sử dụng để loại bỏ các phần tử trùng lặp trong danh sách, chẳng hạn như:
-  - Loại bỏ các từ trùng lặp trong một văn bản.
-  - Loại bỏ các địa chỉ email trùng lặp trong danh sách khách hàng.
-- **Kiểm tra thuộc tính:** Tập hợp được sử dụng để kiểm tra xem một phần tử có tồn tại trong một tập hợp hay không, chẳng hạn như:
-  - Kiểm tra xem một từ có tồn tại trong từ điển hay không.
-  - Kiểm tra xem một người dùng có tồn tại trong cơ sở dữ liệu hay không.
+- **Lý thuyết tập hợp:** Tìm giao, hiệu của hai tập hợp các số, từ.
+- **Loại bỏ trùng lặp:** Dùng để loại bỏ phần tử trùng lặp, ví dụ như danh sách từ, email.
+- **Kiểm tra thuộc tính:** Xác minh sự tồn tại của một phần tử trong tập hợp, như kiểm tra từ điển, dữ liệu người dùng.
 
-**Ví dụ:**
+## Ví dụ triển khai tập hợp trong TypeScript
 
-```python
-# Tạo một tập hợp
-my_set = {1, 2, 3, 4, 5}
+```typescript
+class SetCollection<T> {
+  private items: Set<T>;
 
-# Thêm một phần tử vào tập hợp
-my_set.add(6)
+  constructor(initialItems?: T[]) {
+    this.items = new Set(initialItems);
+  }
 
-# Kiểm tra thuộc tính
-print(1 in my_set)  # Output: True
-print(7 in my_set)  # Output: False
+  // Thêm một phần tử vào tập hợp
+  add(element: T): void {
+    this.items.add(element);
+  }
 
-# Tạo một tập hợp khác
-other_set = {4, 5, 6, 7, 8}
+  // Kiểm tra thuộc tính
+  has(element: T): boolean {
+    return this.items.has(element);
+  }
 
-# Hợp của hai tập hợp
-print(my_set | other_set)  # Output: {1, 2, 3, 4, 5, 6, 7, 8}
+  // Hợp của hai tập hợp
+  union(otherSet: SetCollection<T>): SetCollection<T> {
+    const unionSet = new SetCollection<T>();
+    this.items.forEach(item => unionSet.add(item));
+    otherSet.items.forEach(item => unionSet.add(item));
+    return unionSet;
+  }
 
-# Giao của hai tập hợp
-print(my_set & other_set)  # Output: {4, 5, 6}
+  // Giao của hai tập hợp
+  intersection(otherSet: SetCollection<T>): SetCollection<T> {
+    const intersectionSet = new SetCollection<T>();
+    this.items.forEach(item => {
+      if (otherSet.has(item)) {
+        intersectionSet.add(item);
+      }
+    });
+    return intersectionSet;
+  }
 
-# Hiệu của hai tập hợp
-print(my_set - other_set)  # Output: {1, 2, 3}
+  // Hiệu của hai tập hợp
+  difference(otherSet: SetCollection<T>): SetCollection<T> {
+    const differenceSet = new SetCollection<T>();
+    this.items.forEach(item => {
+      if (!otherSet.has(item)) {
+        differenceSet.add(item);
+      }
+    });
+    return differenceSet;
+  }
+
+  // Hiển thị tập hợp
+  display(): void {
+    console.log(Array.from(this.items));
+  }
+}
+
+// Sử dụng ví dụ
+const setA = new SetCollection<number>([1, 2, 3, 4, 5]);
+const setB = new SetCollection<number>([4, 5, 6, 7, 8]);
+
+// Hợp của hai tập hợp
+const unionSet = setA.union(setB);
+unionSet.display(); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
+
+// Giao của hai tập hợp
+const intersectionSet = setA.intersection(setB);
+intersectionSet.display(); // Output: [4, 5]
+
+// Hiệu của hai tập hợp
+const differenceSet = setA.difference(setB);
+differenceSet.display(); // Output: [1, 2, 3]
 ```
 
-**Bổ sung:**
+## Bổ sung
 
-- Tập hợp là một cấu trúc dữ liệu rất hữu ích trong nhiều trường hợp, đặc biệt khi cần xử lý các thao tác trên tập hợp.
-- Trong Python, tập hợp được triển khai bằng cấu trúc dữ liệu `set`, hỗ trợ các thao tác như `add`, `remove`, `union`, `intersection`, `difference`, `issubset`, `issuperset`, `isdisjoint`, v.v.
+Tập hợp là một cấu trúc dữ liệu rất hữu ích cho các thao tác liên quan đến lý thuyết tập hợp. Trong TypeScript, chúng ta có thể sử dụng lớp `Set` để triển khai các thao tác như `add`, `has`, `union`, `intersection`, và `difference`.

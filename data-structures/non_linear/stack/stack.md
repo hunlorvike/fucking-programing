@@ -1,77 +1,94 @@
-## Ngăn xếp (Stack)
+# Ngăn Xếp (Stack)
 
-**Đặc điểm:**
+## Mục lục
 
-- Là một cấu trúc dữ liệu tuyến tính, tức là các phần tử được sắp xếp theo một thứ tự tuyến tính.
-- Tuân theo nguyên tắc LIFO (Last In, First Out): Phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.
-- Có hai thao tác chính:
+1. [Đặc điểm](#đặc-điểm)
+2. [Ưu điểm và nhược điểm](#ưu-điểm-và-nhược-điểm)
+3. [Ứng dụng](#ứng-dụng)
+4. [Ví dụ triển khai ngăn xếp trong TypeScript](#ví-dụ-triển-khai-ngăn-xếp-trong-typescript)
+5. [Bổ sung](#bổ-sung)
+
+---
+
+## Đặc điểm
+
+- Ngăn xếp là một cấu trúc dữ liệu tuyến tính, trong đó các phần tử được sắp xếp và truy cập theo nguyên tắc LIFO (Last In, First Out), tức là phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.
+- **Các thao tác chính:**
   - **Push:** Thêm một phần tử vào đỉnh ngăn xếp.
   - **Pop:** Lấy ra phần tử ở đỉnh ngăn xếp.
-- Ngoài ra, còn có các thao tác khác như:
   - **Peek:** Xem phần tử ở đỉnh ngăn xếp mà không lấy nó ra.
   - **IsEmpty:** Kiểm tra xem ngăn xếp có rỗng hay không.
 
-**Ưu điểm:**
+## Ưu điểm và nhược điểm
 
-- **Quản lý lịch sử hiệu quả:** Ngăn xếp thích hợp để quản lý lịch sử các thao tác, chẳng hạn như:
-  - Undo/Redo trong các phần mềm chỉnh sửa văn bản, hình ảnh.
-  - Điều hướng lịch sử trong trình duyệt web.
-- **Dễ triển khai:** Ngăn xếp có thể được triển khai một cách đơn giản bằng mảng hoặc danh sách liên kết.
-- **Kiểm soát luồng chương trình:** Ngăn xếp được sử dụng trong các ngôn ngữ lập trình để quản lý bộ nhớ và kiểm soát luồng thực thi của chương trình.
+- **Ưu điểm:**
 
-**Nhược điểm:**
+  - **Quản lý lịch sử hiệu quả:** Lưu trữ lịch sử thao tác trong các ứng dụng (Undo/Redo, điều hướng lịch sử).
+  - **Dễ triển khai:** Ngăn xếp dễ triển khai bằng mảng hoặc danh sách liên kết.
+  - **Kiểm soát luồng chương trình:** Được sử dụng để quản lý bộ nhớ và luồng thực thi trong lập trình.
 
-- **Truy cập hạn chế:** Chỉ có thể thao tác với phần tử ở đỉnh ngăn xếp. Việc truy cập các phần tử khác trong ngăn xếp yêu cầu pop các phần tử ở trên.
-- **Khó tìm kiếm:** Việc tìm kiếm một phần tử cụ thể trong ngăn xếp có độ phức tạp thời gian O(n) (n là số lượng phần tử).
+- **Nhược điểm:**
+  - **Truy cập hạn chế:** Chỉ có thể thao tác với phần tử ở đỉnh, không thể truy cập trực tiếp các phần tử khác.
+  - **Khó tìm kiếm:** Tìm kiếm một phần tử cụ thể yêu cầu duyệt qua ngăn xếp với độ phức tạp O(n).
 
-**Ứng dụng:**
+## Ứng dụng
 
-- **Quản lý bộ nhớ:** Ngăn xếp được sử dụng trong các ngôn ngữ lập trình để quản lý bộ nhớ.
-- **Kiểm tra biểu thức:** Kiểm tra tính hợp lệ của biểu thức chứa các dấu ngoặc, chẳng hạn như biểu thức toán học, biểu thức chính quy.
-- **Giải thuật quay lui (backtracking):** Ngăn xếp được sử dụng để lưu trữ các lựa chọn đã thực hiện trong quá trình tìm kiếm lùi.
-- **Lập trình hướng đối tượng:** Ngăn xếp được sử dụng để quản lý các đối tượng được tạo trong quá trình thực thi chương trình.
+- **Quản lý bộ nhớ:** Được sử dụng trong quản lý bộ nhớ trong các ngôn ngữ lập trình.
+- **Kiểm tra biểu thức:** Kiểm tra tính hợp lệ của các biểu thức chứa dấu ngoặc.
+- **Giải thuật quay lui (backtracking):** Lưu trữ trạng thái trong các thuật toán quay lui.
+- **Lập trình hướng đối tượng:** Quản lý các đối tượng được tạo trong quá trình thực thi chương trình.
 
-**Ví dụ:**
+## Ví dụ triển khai ngăn xếp trong TypeScript
 
-```python
-class Stack:
-    def __init__(self):
-        self.items = []
+```typescript
+class Stack<T> {
+  private items: T[];
 
-    def push(self, item):
-        self.items.append(item)
+  constructor() {
+    this.items = [];
+  }
 
-    def pop(self):
-        if not self.is_empty():
-            return self.items.pop()
-        else:
-            return None
+  // Thêm phần tử vào đỉnh ngăn xếp
+  push(item: T): void {
+    this.items.push(item);
+  }
 
-    def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-        else:
-            return None
+  // Lấy phần tử ở đỉnh ngăn xếp và xóa nó khỏi ngăn xếp
+  pop(): T | undefined {
+    return this.items.pop();
+  }
 
-    def is_empty(self):
-        return len(self.items) == 0
+  // Xem phần tử ở đỉnh ngăn xếp mà không xóa nó
+  peek(): T | undefined {
+    return this.items.length > 0
+      ? this.items[this.items.length - 1]
+      : undefined;
+  }
 
-# Tạo một ngăn xếp
-my_stack = Stack()
+  // Kiểm tra ngăn xếp có rỗng không
+  isEmpty(): boolean {
+    return this.items.length === 0;
+  }
+}
 
-# Thêm các phần tử vào ngăn xếp
-my_stack.push(1)
-my_stack.push(2)
-my_stack.push(3)
+// Sử dụng ngăn xếp
+const myStack = new Stack<number>();
 
-# Lấy ra phần tử ở đỉnh ngăn xếp
-print(my_stack.pop())  # Output: 3
+// Thêm các phần tử vào ngăn xếp
+myStack.push(1);
+myStack.push(2);
+myStack.push(3);
 
-# Xem phần tử ở đỉnh ngăn xếp
-print(my_stack.peek())  # Output: 2
+// Lấy ra phần tử ở đỉnh ngăn xếp
+console.log(myStack.pop()); // Output: 3
+
+// Xem phần tử ở đỉnh ngăn xếp
+console.log(myStack.peek()); // Output: 2
+
+// Kiểm tra ngăn xếp có rỗng không
+console.log(myStack.isEmpty()); // Output: false
 ```
 
-**Bổ sung:**
+## Bổ sung
 
-- Ngăn xếp là một cấu trúc dữ liệu rất quan trọng trong lập trình, được sử dụng trong nhiều thuật toán và cấu trúc dữ liệu khác.
-- Ngăn xếp có thể được triển khai bằng mảng hoặc danh sách liên kết, nhưng việc triển khai bằng danh sách liên kết thường hiệu quả hơn.
+Ngăn xếp là một cấu trúc dữ liệu cơ bản trong lập trình, xuất hiện trong nhiều thuật toán và cấu trúc dữ liệu khác. Trong TypeScript, ta có thể dễ dàng triển khai ngăn xếp bằng cách sử dụng mảng hoặc danh sách liên kết, với các thao tác `push`, `pop`, `peek`, và `isEmpty`.

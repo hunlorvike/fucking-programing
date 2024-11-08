@@ -1,8 +1,18 @@
-## Cấu trúc dữ liệu cây (Tree) trong Python
+# Cấu Trúc Dữ Liệu Cây (Tree) trong TypeScript
 
-Cây là một cấu trúc dữ liệu phi tuyến tính, được tổ chức theo dạng phân cấp. Nó gồm các nút (node) được liên kết với nhau theo một trật tự nhất định. Mỗi nút chứa dữ liệu và có thể có các nút con, ngoại trừ nút gốc (root) không có nút cha.
+## Mục lục
 
-**1. Khái niệm cơ bản:**
+1. [Khái niệm cơ bản](#khái-niệm-cơ-bản)
+2. [Triển khai cây trong TypeScript](#triển-khai-cây-trong-typescript)
+3. [Duyệt cây (Tree Traversal)](#duyệt-cây-tree-traversal)
+4. [Ví dụ](#ví-dụ)
+5. [Các loại cây](#các-loại-cây)
+6. [Ứng dụng của cây](#ứng-dụng-của-cây)
+7. [Kết luận](#kết-luận)
+
+---
+
+## Khái niệm cơ bản
 
 - **Nút (Node):** Mỗi phần tử trong cây, chứa dữ liệu và các liên kết đến các nút con.
 - **Nút gốc (Root):** Nút đầu tiên và duy nhất không có nút cha.
@@ -12,14 +22,22 @@ Cây là một cấu trúc dữ liệu phi tuyến tính, được tổ chức t
 - **Độ cao (Height):** Số cạnh từ nút gốc đến nút lá xa nhất.
 - **Độ sâu (Depth):** Số cạnh từ nút gốc đến một nút bất kỳ.
 
-**2. Triển khai cây trong Python:**
+## Triển khai cây trong TypeScript
 
-```python
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+Trong TypeScript, bạn có thể triển khai cây nhị phân đơn giản với một lớp `Node` đại diện cho các nút trong cây.
+
+```typescript
+class Node {
+  data: number;
+  left: Node | null;
+  right: Node | null;
+
+  constructor(data: number) {
+    this.data = data;
+    this.left = null;
+    this.right = null;
+  }
+}
 ```
 
 - **Node:** Là lớp đại diện cho một nút trong cây.
@@ -27,73 +45,83 @@ class Node:
 - **left:** Liên kết đến nút con bên trái.
 - **right:** Liên kết đến nút con bên phải.
 
-**3. Duyệt cây (Tree Traversal):**
+## Duyệt cây (Tree Traversal)
 
-- **Duyệt theo thứ tự trước (Preorder):** Duyệt nút gốc, sau đó duyệt con trái, sau đó duyệt con phải.
+### 1. Duyệt theo thứ tự trước (Preorder)
 
-  ```python
-  def preorder(node):
-      if node:
-          print(node.data, end=" ")
-          preorder(node.left)
-          preorder(node.right)
-  ```
+Duyệt nút gốc trước, sau đó duyệt con trái và cuối cùng duyệt con phải.
 
-- **Duyệt theo thứ tự giữa (Inorder):** Duyệt con trái, sau đó duyệt nút gốc, sau đó duyệt con phải.
-
-  ```python
-  def inorder(node):
-      if node:
-          inorder(node.left)
-          print(node.data, end=" ")
-          inorder(node.right)
-  ```
-
-- **Duyệt theo thứ tự sau (Postorder):** Duyệt con trái, sau đó duyệt con phải, sau đó duyệt nút gốc.
-  ```python
-  def postorder(node):
-      if node:
-          postorder(node.left)
-          postorder(node.right)
-          print(node.data, end=" ")
-  ```
-
-**4. Ví dụ:**
-
-Tạo một cây nhị phân đơn giản:
-
-```python
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
-root.left.right = Node(5)
+```typescript
+function preorder(node: Node | null): void {
+  if (node) {
+    console.log(node.data, ' ');
+    preorder(node.left);
+    preorder(node.right);
+  }
+}
 ```
 
-Duyệt cây theo thứ tự trước:
+### 2. Duyệt theo thứ tự giữa (Inorder)
 
-```python
-preorder(root)  # Output: 1 2 4 5 3
+Duyệt con trái, sau đó duyệt nút gốc và cuối cùng duyệt con phải.
+
+```typescript
+function inorder(node: Node | null): void {
+  if (node) {
+    inorder(node.left);
+    console.log(node.data, ' ');
+    inorder(node.right);
+  }
+}
 ```
 
-**5. Các loại cây:**
+### 3. Duyệt theo thứ tự sau (Postorder)
 
-- **Cây nhị phân (Binary Tree):** Mỗi nút có tối đa hai nút con.
-- **Cây tìm kiếm nhị phân (Binary Search Tree):** Cây nhị phân thỏa mãn điều kiện:
-  - Giá trị của nút con trái nhỏ hơn giá trị của nút cha.
-  - Giá trị của nút con phải lớn hơn giá trị của nút cha.
-- **Cây AVL:** Cây tìm kiếm nhị phân cân bằng tự động, đảm bảo độ cao của hai nhánh con của mỗi nút chênh lệch tối đa là 1.
-- **Cây Red-Black:** Cây tìm kiếm nhị phân cân bằng tự động khác, sử dụng màu sắc (đỏ hoặc đen) để quản lý độ cao của các nút.
+Duyệt con trái, sau đó duyệt con phải và cuối cùng duyệt nút gốc.
 
-**6. Ứng dụng của cây:**
+```typescript
+function postorder(node: Node | null): void {
+  if (node) {
+    postorder(node.left);
+    postorder(node.right);
+    console.log(node.data, ' ');
+  }
+}
+```
+
+## Ví dụ
+
+Tạo một cây nhị phân đơn giản và duyệt theo thứ tự trước:
+
+```typescript
+const root = new Node(1);
+root.left = new Node(2);
+root.right = new Node(3);
+root.left.left = new Node(4);
+root.left.right = new Node(5);
+
+// Duyệt cây theo thứ tự trước
+preorder(root); // Output: 1 2 4 5 3
+```
+
+## Các loại cây
+
+1. **Cây nhị phân (Binary Tree):** Mỗi nút có tối đa hai nút con.
+2. **Cây tìm kiếm nhị phân (Binary Search Tree):** Cây nhị phân thỏa mãn điều kiện:
+   - Giá trị của nút con trái nhỏ hơn giá trị của nút cha.
+   - Giá trị của nút con phải lớn hơn giá trị của nút cha.
+3. **Cây AVL:** Cây tìm kiếm nhị phân tự cân bằng, đảm bảo độ cao của hai nhánh con của mỗi nút chênh lệch tối đa là 1.
+4. **Cây Red-Black:** Cây tìm kiếm nhị phân tự cân bằng, sử dụng màu sắc (đỏ hoặc đen) để quản lý độ cao của các nút.
+
+## Ứng dụng của cây
 
 - **Lưu trữ dữ liệu:** Cây tìm kiếm nhị phân được sử dụng để lưu trữ dữ liệu hiệu quả, cho phép tìm kiếm, chèn, xóa nhanh chóng.
-- **Tìm kiếm:** Cây tìm kiếm nhị phân, cây AVL, cây Red-Black được sử dụng cho các thuật toán tìm kiếm hiệu quả.
+- **Tìm kiếm:** Cây tìm kiếm nhị phân, cây AVL, cây Red-Black được sử dụng trong các thuật toán tìm kiếm hiệu quả.
 - **Tổ chức dữ liệu:** Cây được sử dụng để tổ chức dữ liệu theo dạng phân cấp, ví dụ: hệ thống tệp, biểu diễn ngữ pháp.
 - **Thuật toán:** Cây được sử dụng trong các thuật toán như:
   - Dijkstra, Bellman-Ford (tìm đường đi ngắn nhất).
   - Kruskal, Prim (tìm cây khung).
 
-**Kết luận:**
+## Kết luận
 
-Cây là một cấu trúc dữ liệu mạnh mẽ và linh hoạt, được sử dụng rộng rãi trong nhiều lĩnh vực của khoa học máy tính. Hiểu rõ các khái niệm và cách triển khai cây giúp bạn giải quyết hiệu quả các bài toán liên quan đến dữ liệu có cấu trúc phân cấp.
+Cây là một cấu trúc dữ liệu mạnh mẽ và linh hoạt, được sử dụng rộng rãi trong nhiều lĩnh vực của khoa học máy tính. Việc hiểu rõ các khái niệm và cách triển khai cây giúp bạn giải quyết hiệu quả các bài toán liên quan đến dữ liệu có cấu trúc phân cấp.

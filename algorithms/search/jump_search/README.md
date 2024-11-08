@@ -1,10 +1,22 @@
-## Thuật toán Tìm kiếm Nhảy (Jump Search)
+# Thuật Toán Tìm kiếm Nhảy (Jump Search)
 
-### Giới thiệu
+## Mục lục
+
+1. [Giới thiệu](#giới-thiệu)
+2. [Cách hoạt động](#cách-hoạt-động)
+3. [Mã giả của thuật toán Jump Search](#mã-giả-của-thuật-toán-jump-search)
+4. [Giải thích](#giải-thích)
+5. [Ví dụ](#ví-dụ)
+6. [Độ phức tạp](#độ-phức-tạp)
+7. [Lưu ý](#lưu-ý)
+
+---
+
+## Giới thiệu
 
 Thuật toán tìm kiếm nhảy (Jump Search) là một thuật toán tìm kiếm hiệu quả được sử dụng để tìm một phần tử cụ thể trong một danh sách đã được sắp xếp. Nó hoạt động bằng cách nhảy qua danh sách với bước nhảy cố định, sau đó tìm kiếm tuyến tính trong khoảng nhảy cuối cùng. Thuật toán này kết hợp lợi ích của tìm kiếm tuyến tính (đơn giản) và tìm kiếm nhị phân (hiệu quả).
 
-### Cách hoạt động
+## Cách hoạt động
 
 1. **Khởi tạo:** Thuật toán bắt đầu bằng việc tính toán bước nhảy `step = √n` (căn bậc hai của số lượng phần tử trong danh sách).
 2. **Nhảy:** Thuật toán sẽ nhảy qua danh sách với bước nhảy `step`, so sánh phần tử ở vị trí nhảy hiện tại với giá trị cần tìm.
@@ -12,7 +24,7 @@ Thuật toán tìm kiếm nhảy (Jump Search) là một thuật toán tìm ki�
    - Nếu giá trị cần tìm lớn hơn phần tử ở vị trí nhảy hiện tại, thuật toán sẽ tiếp tục nhảy qua danh sách với bước nhảy `step`.
 3. **Tìm kiếm tuyến tính:** Sau khi tìm thấy khoảng nhảy phù hợp, thuật toán sẽ tìm kiếm tuyến tính trong khoảng đó (từ vị trí nhảy trước đến vị trí nhảy hiện tại) để tìm phần tử cần tìm.
 
-### Mã giả của thuật toán Jump Search
+## Mã giả của thuật toán Jump Search
 
 ```
 jump_search(arr, target):
@@ -40,7 +52,7 @@ jump_search(arr, target):
     return -1
 ```
 
-### Giải thích
+## Giải thích
 
 - **n = length(arr), step = int(sqrt(n)):** Khởi tạo biến `n` (số lượng phần tử) và `step` (bước nhảy) với giá trị căn bậc hai của số lượng phần tử.
 
@@ -68,7 +80,7 @@ jump_search(arr, target):
 
 - **else:** Nếu phần tử ở vị trí hiện tại không bằng giá trị cần tìm, trả về -1 (phần tử không tồn tại trong danh sách).
 
-### Ví dụ
+## Ví dụ
 
 Giả sử chúng ta có danh sách đã được sắp xếp: `1, 3, 5, 7, 9, 11, 13, 15, 17, 19` và cần tìm phần tử `13`.
 
@@ -100,16 +112,53 @@ arr = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 - **Bước 3:** Tìm kiếm tuyến tính:
   - arr[6] = 13: Kiểm tra phần tử ở vị trí thứ 6 (vì prev = 6).
 
-### Độ phức tạp
+## Độ phức tạp
 
 - **Độ phức tạp thời gian:** O(√n), vì thuật toán nhảy qua danh sách với bước nhảy √n và sau đó tìm kiếm tuyến tính trong khoảng nhảy.
 
 - **Độ phức tạp không gian:** O(1)
 
-### Lưu ý
+## Lưu ý
 
 - Thuật toán Jump Search chỉ hoạt động trên danh sách đã được sắp xếp.
-
 - Nó có độ phức tạp thời gian cận tuyến tính, hiệu quả hơn Linear Search nhưng kém hiệu quả hơn Binary Search.
-
 - Thuật toán Jump Search phù hợp cho các danh sách lớn khi không thể sử dụng Binary Search (ví dụ: danh sách quá lớn để lưu trữ trong bộ nhớ).
+
+---
+
+## Code ví dụ (TypeScript)
+
+Dưới đây là phiên bản TypeScript của mã giả thuật toán Jump Search:
+
+```typescript
+function jumpSearch(arr: number[], target: number): number {
+  const n = arr.length;
+  const step = Math.floor(Math.sqrt(n)); // Bước nhảy
+
+  let prev = 0;
+
+  // Nhảy qua danh sách
+  while (arr[Math.min(step, n) - 1] < target) {
+    prev = step;
+    step += Math.floor(Math.sqrt(n));
+    if (prev >= n) {
+      return -1; // Nếu vị trí nhảy vượt quá số lượng phần tử
+    }
+  }
+
+  // Tìm kiếm tuyến tính trong khoảng nhảy
+  while (arr[prev] < target) {
+    prev += 1;
+    if (prev === Math.min(step, n)) {
+      return -1; // Nếu không tìm thấy phần tử
+    }
+  }
+
+  // Kiểm tra nếu phần tử được tìm thấy
+  if (arr[prev] === target) {
+    return prev; // Phần tử tìm thấy
+  }
+
+  return -1; // Phần tử không tìm thấy
+}
+```

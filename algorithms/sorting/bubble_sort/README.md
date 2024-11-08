@@ -13,41 +13,44 @@ Thuật toán Bubble Sort (hay còn gọi là sắp xếp nổi bọt) là một
 
 ### Mã giả của thuật toán Bubble Sort
 
-```
-bubble_sort(arr):
-  n = length(arr)
+```typescript
+function bubbleSort(arr: number[]): number[] {
+  let n = arr.length;
 
-  FOR i FROM 0 to n-1:
-      swapped = false
-      FOR j FROM 0 to n-i-1:
-          IF arr[j] > arr[j+1]: # Hoán đổi nếu phần tử trước lớn hơn phần tử sau
-              swap arr[j] AND arr[j+1]
-              swapped = true
-      IF not swapped:
-        break;
+  for (let i = 0; i < n; i++) {
+    let swapped = false;
+    for (let j = 0; j < n - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        // Hoán đổi nếu phần tử trước lớn hơn phần tử sau
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // Hoán đổi phần tử
+        swapped = true;
+      }
+    }
+
+    if (!swapped) break; // Nếu không có sự hoán đổi, dừng sớm
+  }
+
+  return arr;
+}
 ```
 
 ### Giải thích
 
-- **n = length(arr):** Lấy độ dài của mảng arr.
+- **n = arr.length:** Lấy độ dài của mảng `arr`.
+- **for (let i = 0; i < n; i++):** Vòng lặp ngoài duyệt qua từng phần tử trong mảng (n lần).
+- **swapped = false:** Đặt biến `swapped` để theo dõi việc hoán đổi. Nếu không có phần tử nào được hoán đổi trong vòng lặp, điều đó có nghĩa là mảng đã được sắp xếp và ta có thể dừng sớm.
+- **for (let j = 0; j < n - i - 1; j++):** Vòng lặp trong để so sánh và hoán đổi các phần tử liền kề. Duyệt từ phần tử đầu đến phần tử thứ `n-i-1` vì sau mỗi lần duyệt, phần tử lớn nhất (hoặc nhỏ nhất) sẽ "nổi" lên vị trí cuối cùng, không cần kiểm tra lại.
+- **if (arr[j] > arr[j + 1]):** So sánh hai phần tử liền kề. Nếu phần tử trước lớn hơn phần tử sau, chúng sẽ bị hoán đổi.
 
-- **FOR i FROM 0 to n-1:** Vòng lặp ngoài duyệt qua từng phần tử trong mảng (n lần).
+- **[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];** Hoán đổi hai phần tử trong mảng.
 
-- **swapped = false:** Đặt biến swapped để theo dõi việc hoán đổi. Nếu không có phần tử nào được hoán đổi trong vòng lặp, điều đó có nghĩa là mảng đã được sắp xếp và ta có thể dừng sớm.
+- **swapped = true:** Đặt cờ `swapped` thành true để báo hiệu đã có hoán đổi.
 
-- **FOR j FROM 0 to n-i-1:** Vòng lặp trong để so sánh và hoán đổi các phần tử liền kề. Duyệt từ phần tử đầu đến phần tử thứ n-i-1 vì sau mỗi lần duyệt, phần tử lớn nhất (hoặc nhỏ nhất) sẽ "nổi" lên vị trí cuối cùng, không cần kiểm tra lại.
-
-- **IF arr[j] > arr[j+1]:** So sánh hai phần tử liền kề. Nếu phần tử trước lớn hơn phần tử sau, chúng sẽ bị hoán đổi.
-
-- **swap arr[j] AND arr[j+1]:** Hoán đổi hai phần tử.
-
-- **swapped = true:** Đặt cờ swapped thành true để báo hiệu đã có hoán đổi.
-
-- **IF not swapped:** Nếu không có hoán đổi nào diễn ra trong vòng lặp hiện tại, điều đó có nghĩa là mảng đã được sắp xếp hoàn toàn, và vòng lặp ngoài sẽ dừng sớm.
+- **if (!swapped):** Nếu không có hoán đổi nào diễn ra trong vòng lặp hiện tại, điều đó có nghĩa là mảng đã được sắp xếp hoàn toàn, và vòng lặp ngoài sẽ dừng sớm.
 
 ### Ví dụ
 
-Giả sử chúng ta có danh sách cần sắp xếp tăng dần: `5, 1, 4, 2, 8`
+Giả sử chúng ta có danh sách cần sắp xếp tăng dần: `5, 1, 4, 2, 8`.
 
 **Lần lặp 1:**
 
