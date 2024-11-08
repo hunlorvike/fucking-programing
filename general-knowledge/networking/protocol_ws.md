@@ -1,118 +1,74 @@
-## Tổng Quan về WebSocket
+### 1. Cách WebSocket Sử Dụng TCP
 
-WebSocket là một giao thức truyền thông hai chiều qua kết nối TCP, cho phép dữ liệu được truyền tải trong thời gian thực giữa máy khách (client) và máy chủ (server). Không giống như giao thức HTTP, WebSocket hỗ trợ truyền thông tin liên tục mà không cần thiết lập kết nối mới mỗi lần trao đổi dữ liệu.
+WebSocket sử dụng kết nối **TCP** để truyền tải dữ liệu giữa client và server. Cụ thể, quá trình truyền tải WebSocket được xây dựng trên nền tảng TCP/IP, vì vậy nó đảm bảo tính ổn định và đáng tin cậy khi truyền dữ liệu, đặc biệt là khi cần duy trì kết nối lâu dài trong các ứng dụng yêu cầu trao đổi dữ liệu liên tục.
 
-### 1. Định Nghĩa
+#### Quá Trình Sử Dụng TCP trong WebSocket:
 
-WebSocket là giao thức được thiết kế để tối ưu hóa cho việc truyền dữ liệu thời gian thực. Nó hoạt động trên cổng TCP 80 hoặc 443 và có thể duy trì kết nối mở liên tục giữa client và server, rất phù hợp cho các ứng dụng như trò chuyện trực tuyến, trò chơi thời gian thực, và các dịch vụ cập nhật dữ liệu liên tục.
+1. **Kết nối TCP**: Khi client muốn kết nối đến WebSocket server, đầu tiên một kết nối TCP sẽ được thiết lập. WebSocket sử dụng cổng mặc định là **80 (ws)** cho các kết nối không bảo mật và **443 (wss)** cho các kết nối bảo mật.
 
-### 2. Cấu Trúc URL
+2. **Handshake HTTP**: Trước khi chuyển sang WebSocket, client gửi yêu cầu "Upgrade" HTTP (HandShake) đến server. Trong yêu cầu này, client thông báo server rằng nó muốn nâng cấp kết nối HTTP hiện tại sang WebSocket. Đây là bước đầu tiên để WebSocket sử dụng TCP làm phương tiện truyền tải.
 
-WebSocket sử dụng định dạng URL đặc biệt để thiết lập kết nối:
+3. **Chuyển đổi giao thức**: Sau khi server nhận yêu cầu và đồng ý, kết nối HTTP ban đầu sẽ chuyển thành kết nối WebSocket. Lúc này, một kênh truyền thông hai chiều thông qua TCP được duy trì mở, giúp client và server có thể giao tiếp mà không cần phải thiết lập lại kết nối mỗi lần.
 
-- **ws://**: Sử dụng khi không yêu cầu bảo mật.
-- **wss://**: Sử dụng cho kết nối bảo mật, mã hóa dữ liệu bằng SSL/TLS.
+4. **Truyền tải dữ liệu qua TCP**: Sau khi quá trình Handshake thành công, WebSocket sử dụng các khung dữ liệu (frames) để truyền tải thông tin hai chiều giữa client và server, thông qua kết nối TCP hiện tại. WebSocket cho phép gửi dữ liệu ở cả định dạng văn bản (text) và nhị phân (binary), cũng như thực hiện các kiểm tra trạng thái với các khung Ping/Pong.
 
-Ví dụ:
+5. **Kết thúc kết nối**: Khi không còn nhu cầu truyền tải dữ liệu nữa, kết nối WebSocket có thể được đóng lại bằng cách gửi một khung Close, sau đó kết nối TCP sẽ được đóng.
 
-- `ws://example.com/socket`
-- `wss://example.com/socket`
+### 2. Cấu Trúc Dữ Liệu WebSocket
 
-### 3. Chức Năng Chính
+Khi một kết nối WebSocket đã được thiết lập, dữ liệu được truyền tải thông qua các **frames** (khung dữ liệu). Mỗi frame này có thể chứa dữ liệu văn bản hoặc nhị phân và được phân thành các phần nhỏ để có thể truyền tải hiệu quả qua mạng.
 
-WebSocket cho phép trao đổi dữ liệu hai chiều trong thời gian thực. Một khi kết nối được thiết lập, cả client và server đều có thể gửi dữ liệu bất kỳ lúc nào mà không cần yêu cầu hoặc phản hồi liên tục như HTTP.
+#### Các Loại WebSocket Frames:
 
-#### Các Tính Năng Nổi Bật:
+1. **Text Frame**: Dữ liệu trong khung này là văn bản (thường là JSON, nhưng có thể là bất kỳ dữ liệu văn bản nào). WebSocket sử dụng mã hóa UTF-8 để truyền tải văn bản.
+2. **Binary Frame**: Dữ liệu trong khung này là dạng nhị phân, có thể là hình ảnh, video, hoặc các tệp dữ liệu khác. WebSocket hỗ trợ hai định dạng nhị phân chính:
 
-- **Hai Chiều (Full Duplex)**: Dữ liệu có thể được truyền tải đồng thời từ cả hai phía.
-- **Kết Nối Duy Trì Liên Tục**: Không cần thiết lập lại kết nối sau mỗi lần trao đổi dữ liệu.
-- **Tốc Độ Cao**: Truyền dữ liệu nhanh hơn so với HTTP do không cần tải lại trang hoặc thực hiện nhiều yêu cầu.
+   - **Blob**: Dữ liệu lớn, không cần phải chuyển đổi thành mã ký tự.
+   - **ArrayBuffer**: Một bộ nhớ được phân bổ trực tiếp trong trình duyệt, hỗ trợ thao tác trực tiếp với dữ liệu nhị phân.
 
-### 4. Cách WebSocket Hoạt Động
+3. **Ping/Pong Frame**: Đây là khung dữ liệu được dùng để kiểm tra trạng thái kết nối. Khung Ping được gửi từ client hoặc server, và khung Pong là phản hồi từ đối phương, đảm bảo kết nối không bị gián đoạn.
 
-#### Quá Trình Thiết Lập Kết Nối
+4. **Close Frame**: Khi một bên (client hoặc server) muốn kết thúc kết nối, họ sẽ gửi một khung Close. Khung này có thể chứa mã trạng thái, cho biết lý do đóng kết nối.
 
-WebSocket bắt đầu bằng việc thiết lập kết nối từ client đến server qua giao thức HTTP, sau đó chuyển đổi sang WebSocket:
+#### Cấu trúc khung WebSocket:
 
-1. **Yêu Cầu Ban Đầu (Handshake)**: Client gửi một yêu cầu kết nối WebSocket dưới dạng HTTP request.
-2. **Xác Nhận của Server**: Server đáp lại yêu cầu bằng một mã phản hồi (status code 101 Switching Protocols), cho phép chuyển đổi sang WebSocket.
-3. **Chuyển Đổi Giao Thức**: Sau khi xác nhận, kết nối chuyển sang WebSocket và không cần thực hiện yêu cầu HTTP nữa. Kết nối WebSocket liên tục và có thể duy trì cho đến khi client hoặc server chủ động đóng.
+- **Fin (1 bit)**: Cho biết liệu đây có phải là frame cuối cùng không.
+- **RSV1, RSV2, RSV3 (1 bit mỗi)**: Dùng cho các mở rộng (extensions).
+- **Opcode (4 bit)**: Xác định loại frame (ví dụ: văn bản, nhị phân, Ping/Pong, Close).
+- **Payload length (7 bits hoặc 7-64 bit)**: Kích thước của dữ liệu trong frame.
+- **Mask (1 bit)**: Xác định liệu dữ liệu có bị mã hóa (mask) không.
+- **Payload Data**: Dữ liệu thực tế được truyền tải.
 
-#### Truyền Tải Dữ Liệu
+### 3. Các Ưu Điểm và Hạn Chế Khác
 
-Sau khi kết nối thiết lập, cả client và server có thể gửi dữ liệu bất kỳ lúc nào thông qua **khung dữ liệu (data frames)**:
+#### Ưu Điểm:
 
-- **Text Frames**: Chứa dữ liệu văn bản, thường là JSON.
-- **Binary Frames**: Chứa dữ liệu nhị phân như hình ảnh, file, hoặc dữ liệu mã hóa khác.
-- **Ping/Pong Frames**: Kiểm tra trạng thái kết nối và giúp duy trì kết nối lâu dài.
+- **Hiệu quả trong truyền thông thời gian thực**: Nhờ tính năng duy trì kết nối và truyền tải dữ liệu không đồng bộ, WebSocket rất phù hợp cho các ứng dụng như trò chuyện trực tuyến, chơi game, các dịch vụ tài chính cần cập nhật nhanh chóng.
+- **Giảm độ trễ**: Do không phải liên tục thiết lập kết nối mới như HTTP, WebSocket giúp giảm độ trễ trong giao tiếp giữa client và server.
+- **Tiết kiệm tài nguyên mạng**: WebSocket chỉ cần một kết nối duy nhất để truyền tải tất cả các dữ liệu mà không phải thực hiện các yêu cầu và phản hồi HTTP liên tục.
 
-#### Đóng Kết Nối
+#### Hạn Chế:
 
-Kết nối WebSocket có thể được đóng lại khi client hoặc server gửi một **Close Frame**, thường chứa mã trạng thái và thông báo lý do đóng kết nối.
+- **Quản lý kết nối phức tạp hơn**: Vì WebSocket giữ kết nối mở, việc quản lý nhiều kết nối đồng thời có thể trở nên phức tạp đối với các server với khối lượng người dùng lớn.
+- **Tính tương thích của proxy và firewall**: Một số proxy và firewall không hỗ trợ WebSocket hoặc có thể chặn các kết nối WebSocket không bảo mật. Điều này đòi hỏi việc cấu hình lại để hỗ trợ.
+- **Khó khăn trong bảo mật**: WebSocket cần mã hóa bằng SSL/TLS (wss://) để đảm bảo bảo mật. Tuy nhiên, việc sử dụng WebSocket qua các mạng không bảo mật vẫn là một mối lo ngại lớn.
 
-### 5. Ưu và Nhược Điểm của WebSocket
+### 4. WebSocket và Các Giao Thức Liên Quan
 
-#### Ưu Điểm
+#### WebSocket và HTTP:
 
-- **Phản Hồi Nhanh Chóng**: Truyền tải dữ liệu gần như ngay lập tức, rất hữu ích cho ứng dụng cần phản hồi thời gian thực.
-- **Tăng Hiệu Suất**: Không phải thiết lập lại kết nối liên tục như HTTP.
-- **Tiết Kiệm Băng Thông**: Giảm độ trễ và chi phí băng thông do không phải truyền tải lại thông tin kết nối.
+WebSocket được thiết kế để khắc phục các hạn chế của HTTP khi cần giao tiếp hai chiều và duy trì kết nối mở lâu dài. HTTP, mặc dù rất mạnh mẽ trong việc truy xuất tài nguyên tĩnh (như trang web, hình ảnh, CSS), lại không thích hợp cho các ứng dụng yêu cầu trao đổi dữ liệu liên tục, như trò chuyện trực tuyến hoặc cập nhật thông tin thời gian thực.
 
-#### Nhược Điểm
+#### WebSocket và MQTT:
 
-- **Tương Thích Kém với Proxy**: Một số proxy HTTP có thể không hỗ trợ WebSocket.
-- **Bảo Mật**: Cần các biện pháp bảo mật bổ sung như mã hóa SSL/TLS (dùng wss://) và kiểm tra xác thực.
-- **Khó Khăn trong Kiểm Soát Truy Cập**: Khó thực thi chính sách bảo mật và hạn chế truy cập so với HTTP, có thể dẫn đến các vấn đề về bảo mật.
+WebSocket và MQTT đều là các giao thức truyền thông thời gian thực, nhưng MQTT được tối ưu hóa cho các ứng dụng IoT và các hệ thống nhúng có băng thông thấp hoặc yêu cầu truyền tải dữ liệu trong điều kiện mạng không ổn định. WebSocket, ngược lại, được sử dụng chủ yếu trong môi trường web và các ứng dụng yêu cầu độ trễ thấp và truyền tải dữ liệu lớn.
 
-### 6. So Sánh giữa WebSocket và HTTP
+#### WebSocket và WebRTC:
 
-| Tiêu chí      | HTTP                                 | WebSocket                               |
-| ------------- | ------------------------------------ | --------------------------------------- |
-| **Kết nối**   | Tạo mới mỗi yêu cầu                  | Duy trì liên tục                        |
-| **Tốc độ**    | Chậm hơn (cần thiết lập kết nối mới) | Nhanh hơn nhờ kết nối liên tục          |
-| **Tương tác** | Đơn chiều                            | Hai chiều                               |
-| **Ứng dụng**  | Thích hợp cho tải tài nguyên         | Phù hợp cho dữ liệu thời gian thực      |
-| **Bảo mật**   | Hỗ trợ SSL/TLS                       | Cần mã hóa bằng SSL/TLS khi dùng wss:// |
+WebSocket và WebRTC đều hỗ trợ giao tiếp thời gian thực, nhưng WebRTC chủ yếu được sử dụng cho truyền thông video và âm thanh trực tiếp giữa các client mà không cần phải qua server, trong khi WebSocket chủ yếu xử lý việc truyền tải dữ liệu giữa client và server.
 
-### 7. Ứng Dụng Phổ Biến của WebSocket
+### 5. Kết Luận
 
-WebSocket đặc biệt phù hợp cho các ứng dụng yêu cầu dữ liệu thời gian thực, bao gồm:
+WebSocket là một giao thức cực kỳ mạnh mẽ và linh hoạt, được tối ưu hóa cho các ứng dụng cần dữ liệu thời gian thực và kết nối lâu dài giữa client và server. Với khả năng truyền tải dữ liệu hai chiều liên tục qua kết nối TCP, WebSocket đang ngày càng trở thành lựa chọn hàng đầu trong các ứng dụng web hiện đại, như trò chuyện trực tuyến, các trò chơi trực tuyến, và các ứng dụng giám sát.
 
-- **Trò chuyện Trực Tuyến**: Duy trì trò chuyện đồng bộ giữa người dùng.
-- **Trò chơi Trực Tuyến**: Cập nhật thời gian thực các hành động của người chơi.
-- **Ứng Dụng Giao Dịch Tài Chính**: Truy cập và cập nhật liên tục giá cổ phiếu, tỷ giá tiền tệ.
-- **Cập Nhật Trạng Thái**: Thông báo, trạng thái hệ thống hoặc cập nhật trong các hệ thống giám sát.
-
-### 8. Ví Dụ về Yêu Cầu WebSocket
-
-#### Yêu Cầu Handshake (HTTP Request)
-
-Dưới đây là một ví dụ về yêu cầu WebSocket ban đầu từ client:
-
-```http
-GET /chat HTTP/1.1
-Host: server.example.com
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
-Sec-WebSocket-Protocol: chat, superchat
-Sec-WebSocket-Version: 13
-```
-
-#### Phản Hồi Handshake từ Server
-
-Server xác nhận yêu cầu và chuyển sang giao thức WebSocket:
-
-```http
-HTTP/1.1 101 Switching Protocols
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
-Sec-WebSocket-Protocol: chat
-```
-
-Sau bước này, kết nối giữa client và server trở thành WebSocket và sẵn sàng cho việc truyền tải dữ liệu hai chiều.
-
-### 9. Kết Luận
-
-WebSocket là một giao thức mạnh mẽ và tối ưu cho các ứng dụng yêu cầu kết nối liên tục và dữ liệu thời gian thực. Với khả năng duy trì kết nối hai chiều mà không cần thiết lập lại mỗi lần trao đổi, WebSocket tăng hiệu suất truyền tải, giảm độ trễ và tiết kiệm băng thông, rất hữu ích trong các ứng dụng hiện đại như trò chuyện trực tuyến, trò chơi thời gian thực, và các hệ thống giám sát.
+Tuy nhiên, cũng cần lưu ý rằng việc triển khai WebSocket đòi hỏi phải quản lý các kết nối tốt hơn và bảo mật thông qua SSL/TLS để bảo vệ dữ liệu truyền tải. Do đó, các nhà phát triển cần phải xem xét đầy đủ các yếu tố về bảo mật, tài nguyên mạng, và hiệu suất khi sử dụng WebSocket trong ứng dụng của mình.

@@ -1,67 +1,78 @@
-## Tìm hiểu về các loại mạng máy tính
+### 1. **Mạng cục bộ (LAN - Local Area Network)**
 
-Mạng máy tính là một phần quan trọng của hạ tầng công nghệ thông tin, cho phép các thiết bị giao tiếp và chia sẻ tài nguyên. Dưới đây là các loại mạng chính, được phân loại dựa trên phạm vi, tốc độ, chi phí và ứng dụng.
+**Khái niệm**: Mạng LAN là mạng kết nối các thiết bị trong một khu vực địa lý hạn chế, chẳng hạn như một tòa nhà, một khu văn phòng, hoặc thậm chí một ngôi nhà. Nó cho phép các thiết bị như máy tính, máy in, máy chủ, và các thiết bị thông minh khác giao tiếp và chia sẻ tài nguyên.
 
-### 1. Mạng cục bộ (LAN - Local Area Network)
-
-- **Khái niệm**: Mạng cục bộ (LAN) là một mạng kết nối các thiết bị trong một khu vực hạn chế, chẳng hạn như văn phòng, trường học hoặc nhà ở.
 - **Đặc điểm**:
-  - **Phạm vi**: Thường không vượt quá vài km.
-  - **Tốc độ**: Tốc độ cao, thường dao động từ 100 Mbps đến 10 Gbps, tùy thuộc vào công nghệ sử dụng (Ethernet, Wi-Fi).
-  - **Chi phí**: Chi phí thiết lập và duy trì thấp hơn, dễ dàng mua sắm thiết bị.
-  - **Thiết bị**: Sử dụng các thiết bị như switch, router và access point để kết nối và quản lý mạng.
-- **Ví dụ**: Mạng Wi-Fi trong một ngôi nhà hoặc mạng Ethernet trong một văn phòng.
+  - **Phạm vi**: Mạng LAN thường có phạm vi nhỏ, từ vài mét đến vài kilomet. Thường thấy trong các môi trường văn phòng, trường học, hoặc nhà ở.
+  - **Tốc độ**: Mạng LAN hỗ trợ tốc độ truyền tải dữ liệu rất nhanh. Trong môi trường hiện đại, với công nghệ Ethernet hoặc Wi-Fi mới nhất, tốc độ có thể đạt tới 10 Gbps (Ethernet) hoặc hơn (Wi-Fi 6).
+  - **Chi phí**: Chi phí xây dựng và duy trì mạng LAN khá thấp. Các thiết bị như switch, router, và dây cáp Ethernet khá dễ tìm và giá cả phải chăng.
+  - **Thiết bị**: Mạng LAN sử dụng các thiết bị như:
+    - **Switch**: Thiết bị này dùng để kết nối các máy tính với nhau trong mạng LAN.
+    - **Router**: Thiết bị kết nối mạng LAN với mạng ngoài (ví dụ: Internet).
+    - **Access Point (AP)**: Cung cấp kết nối Wi-Fi cho các thiết bị di động hoặc không dây.
+- **Ví dụ**:
+  - Một văn phòng với hàng chục máy tính được kết nối với nhau thông qua một switch Ethernet.
+  - Một gia đình sử dụng mạng Wi-Fi để kết nối tất cả các thiết bị như điện thoại, laptop, và các thiết bị thông minh khác.
 
-### 2. Mạng diện rộng (WAN - Wide Area Network)
+### 2. **Mạng diện rộng (WAN - Wide Area Network)**
 
-- **Khái niệm**: Mạng diện rộng (WAN) là một mạng kết nối các mạng LAN với nhau, thường trải rộng qua nhiều thành phố, quốc gia hoặc thậm chí toàn cầu.
+**Khái niệm**: Mạng WAN kết nối nhiều mạng LAN lại với nhau, và thường có phạm vi trải rộng trên toàn quốc hoặc thậm chí toàn cầu. WAN là cơ sở hạ tầng cho kết nối Internet và nhiều dịch vụ mạng lớn khác.
+
 - **Đặc điểm**:
-  - **Phạm vi**: Có thể lên đến hàng nghìn km, bao phủ các khu vực rộng lớn.
-  - **Tốc độ**: Thường thấp hơn so với LAN, dao động từ vài Mbps đến vài Gbps, phụ thuộc vào công nghệ và nhà cung cấp dịch vụ.
-  - **Chi phí**: Chi phí thường cao hơn do yêu cầu về hạ tầng phức tạp và thuê băng thông.
-  - **Thiết bị**: Sử dụng router, modem và kết nối thông qua các dịch vụ Internet hoặc VPN.
-- **Ví dụ**: Internet là một ví dụ điển hình của WAN, cùng với các mạng kết nối giữa các chi nhánh của một công ty lớn.
 
-### 3. Mạng đô thị (MAN - Metropolitan Area Network)
+  - **Phạm vi**: Mạng WAN có thể kéo dài hàng nghìn km, kết nối các thành phố, quốc gia hoặc thậm chí các châu lục khác nhau.
+  - **Tốc độ**: Tốc độ của WAN phụ thuộc vào nhà cung cấp dịch vụ và công nghệ sử dụng. Mặc dù WAN có thể đạt tốc độ vài Gbps, nhưng nó vẫn thường chậm hơn LAN do các yếu tố như đường truyền, khoảng cách, và băng thông của các nhà cung cấp dịch vụ.
+  - **Chi phí**: Chi phí xây dựng và duy trì một mạng WAN khá cao, đặc biệt khi cần sử dụng các kết nối chuyên dụng hoặc công nghệ VPN, MPLS, hoặc các dịch vụ từ nhà cung cấp mạng viễn thông.
+  - **Thiết bị**:
+    - **Router**: Kết nối các mạng LAN với WAN và giúp định tuyến lưu lượng giữa các mạng.
+    - **Modem**: Thiết bị kết nối mạng LAN với dịch vụ Internet qua đường dây điện thoại, cáp quang hoặc dịch vụ băng thông rộng.
+    - **VPN**: Một mạng riêng ảo cho phép các văn phòng chi nhánh kết nối an toàn qua Internet công cộng.
 
-- **Khái niệm**: Mạng đô thị (MAN) là loại mạng nằm giữa LAN và WAN, kết nối các mạng trong một khu vực đô thị.
+- **Ví dụ**:
+  - Mạng Internet toàn cầu.
+  - Mạng kết nối các văn phòng của một công ty đa quốc gia nằm ở các quốc gia khác nhau.
+
+### 3. **Mạng đô thị (MAN - Metropolitan Area Network)**
+
+**Khái niệm**: Mạng MAN là một loại mạng có phạm vi rộng hơn LAN nhưng nhỏ hơn WAN, thường được triển khai trong các thành phố hoặc các khu vực đô thị. Mạng MAN kết nối nhiều mạng LAN trong một khu vực địa lý lớn hơn, ví dụ như một thành phố.
+
 - **Đặc điểm**:
-  - **Phạm vi**: Thường từ 5 đến 50 km, bao phủ các khu vực thành phố hoặc thị xã.
-  - **Tốc độ**: Tương đối cao, từ 10 Mbps đến 1 Gbps.
-  - **Chi phí**: Thường thấp hơn WAN nhưng cao hơn LAN, phù hợp cho việc kết nối trong khu vực đô thị.
-  - **Thiết bị**: Sử dụng các thiết bị mạng như switch và router.
-- **Ví dụ**: Mạng kết nối giữa các trường đại học trong một thành phố hoặc hệ thống giao thông công cộng thông minh.
+  - **Phạm vi**: Mạng MAN có thể trải dài từ 5 đến 50 km, kết nối các tòa nhà, các trường học hoặc các doanh nghiệp trong cùng một thành phố hoặc khu vực đô thị.
+  - **Tốc độ**: Tốc độ của mạng MAN thường dao động từ 10 Mbps đến 1 Gbps. Đó là một sự cân bằng giữa tốc độ cao của LAN và phạm vi rộng của WAN.
+  - **Chi phí**: Chi phí xây dựng và duy trì thấp hơn WAN nhưng vẫn cao hơn LAN, chủ yếu do yêu cầu về cơ sở hạ tầng và thiết bị kết nối.
+  - **Thiết bị**: Cũng giống như LAN, MAN sử dụng các thiết bị như router và switch, nhưng có thể cần các thiết bị mạng chuyên dụng để hỗ trợ kết nối qua các khu vực rộng lớn.
+- **Ví dụ**:
+  - Một mạng kết nối giữa các trường đại học trong một thành phố.
+  - Hệ thống các cảm biến và thiết bị của giao thông thông minh trong một khu vực đô thị.
 
-### 4. Mạng cá nhân (PAN - Personal Area Network)
+### 4. **Mạng cá nhân (PAN - Personal Area Network)**
 
-- **Khái niệm**: Mạng cá nhân (PAN) là mạng kết nối các thiết bị cá nhân trong một phạm vi rất nhỏ.
+**Khái niệm**: Mạng PAN là mạng kết nối các thiết bị cá nhân lại với nhau trong một phạm vi rất nhỏ, thường chỉ trong khoảng cách vài mét.
+
 - **Đặc điểm**:
-  - **Phạm vi**: Thường chỉ vài mét (10-30 mét).
-  - **Tốc độ**: Tốc độ thường không cao, nhưng đủ cho các thiết bị cá nhân.
-  - **Chi phí**: Rất thấp, dễ dàng thiết lập và duy trì.
-  - **Thiết bị**: Sử dụng Bluetooth, Zigbee hoặc các công nghệ tương tự để kết nối.
-- **Ví dụ**: Kết nối giữa điện thoại di động và tai nghe Bluetooth, hoặc giữa laptop và máy in không dây.
+  - **Phạm vi**: Mạng PAN có phạm vi cực kỳ hạn chế, thường chỉ kéo dài từ 10 đến 30 mét. Thích hợp cho các thiết bị di động, như điện thoại, máy tính bảng, laptop.
+  - **Tốc độ**: Tốc độ truyền tải dữ liệu trong mạng PAN không cần phải quá nhanh, vì nó chỉ phục vụ cho các ứng dụng cá nhân.
+  - **Chi phí**: Chi phí rất thấp, vì các thiết bị sử dụng công nghệ không dây hoặc Bluetooth là phổ biến và giá thành rẻ.
+  - **Thiết bị**: Mạng PAN thường sử dụng các công nghệ như:
+    - **Bluetooth**: Dùng để kết nối giữa các thiết bị di động, tai nghe, máy tính bảng, điện thoại, hoặc máy tính.
+    - **Zigbee**: Công nghệ dùng cho các thiết bị Internet of Things (IoT), chẳng hạn như cảm biến trong nhà thông minh.
+- **Ví dụ**:
+  - Kết nối tai nghe Bluetooth với điện thoại.
+  - Kết nối laptop với máy in không dây trong một phòng.
 
-### So sánh giữa Mạng LAN và Mạng WAN
+### **So sánh chi tiết giữa Mạng LAN và WAN**
 
-Để phân biệt giữa mạng LAN và WAN, chúng ta có thể xem xét các yếu tố sau:
+| **Tiêu chí** | **Mạng LAN**                                                                 | **Mạng WAN**                                                                               |
+| ------------ | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| **Phạm vi**  | Kết nối các thiết bị trong một khu vực nhỏ, không vượt quá vài km.           | Kết nối các mạng LAN trải dài qua nhiều thành phố, quốc gia hoặc toàn cầu.                 |
+| **Tốc độ**   | Tốc độ cao, từ 100 Mbps đến 10 Gbps.                                         | Tốc độ thấp hơn, thường dao động từ vài Mbps đến vài Gbps.                                 |
+| **Chi phí**  | Chi phí thấp, thiết bị dễ mua và cài đặt.                                    | Chi phí cao hơn do yêu cầu cơ sở hạ tầng phức tạp và thuê băng thông.                      |
+| **Thiết bị** | Switch, router, access point.                                                | Router, modem, dịch vụ Internet hoặc VPN.                                                  |
+| **Quản lý**  | Dễ dàng quản lý và bảo trì.                                                  | Quản lý phức tạp hơn, đòi hỏi kỹ thuật viên có chuyên môn để duy trì và xử lý sự cố.       |
+| **Ứng dụng** | Sử dụng trong các văn phòng, trường học hoặc gia đình để chia sẻ tài nguyên. | Kết nối các văn phòng chi nhánh, tổ chức lớn hoặc kết nối Internet cho người dùng cá nhân. |
+| **Bảo mật**  | Mức độ bảo mật cao hơn nhờ vào phạm vi nhỏ, hạn chế các rủi ro từ bên ngoài. | Mức độ bảo mật thấp hơn, cần các biện pháp bảo mật phức tạp hơn như mã hóa, VPN.           |
 
-| **Tiêu chí**         | **Mạng LAN (Local Area Network)**                                                                                          | **Mạng WAN (Wide Area Network)**                                                                                              |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Phạm vi**          | Kết nối các thiết bị trong một khu vực nhỏ như văn phòng, nhà ở hoặc trường học. Thường không vượt quá vài km.             | Kết nối các mạng LAN lại với nhau, có thể trải dài qua nhiều thành phố, quốc gia hoặc toàn cầu, với phạm vi hàng nghìn km.    |
-| **Tốc độ**           | Tốc độ cao, thường từ 100 Mbps đến 10 Gbps, tùy thuộc vào công nghệ sử dụng (Ethernet, Wi-Fi, v.v.).                       | Tốc độ thường thấp hơn so với LAN, dao động từ vài Mbps đến vài Gbps, phụ thuộc vào công nghệ và nhà cung cấp dịch vụ.        |
-| **Chi phí**          | Chi phí thiết lập và duy trì thấp hơn. Thiết bị thường dễ dàng mua và lắp đặt.                                             | Chi phí cao hơn do hạ tầng phức tạp, thuê băng thông và dịch vụ kết nối.                                                      |
-| **Thiết bị**         | Sử dụng các thiết bị như switch, router, access point để kết nối các máy tính và thiết bị trong mạng.                      | Sử dụng router, modem, và có thể bao gồm các thiết bị chuyên dụng để kết nối giữa các mạng khác nhau.                         |
-| **Quản lý**          | Dễ dàng quản lý, thường không yêu cầu kỹ thuật cao. Người dùng có thể tự quản lý mạng.                                     | Quản lý phức tạp hơn, thường cần đội ngũ kỹ thuật chuyên nghiệp để duy trì và xử lý sự cố.                                    |
-| **Mục đích sử dụng** | Thường được sử dụng trong các văn phòng, trường học hoặc nhà riêng để chia sẻ tài nguyên như máy in, tệp tin, và Internet. | Được sử dụng để kết nối các văn phòng chi nhánh của một công ty, tổ chức lớn hoặc để kết nối Internet cho người dùng cá nhân. |
-| **Tính bảo mật**     | Thường có mức độ bảo mật cao hơn do hạn chế về phạm vi địa lý.                                                             | Mức độ bảo mật thấp hơn do dữ liệu di chuyển qua các mạng công cộng và thường dễ bị tấn công hơn.                             |
+### **Tóm tắt**
 
-### Tóm tắt
-
-- **Mạng LAN**: Thích hợp cho các khu vực nhỏ, có tốc độ cao, chi phí thấp và dễ dàng quản lý. Đây là lựa chọn lý tưởng cho các văn phòng, trường học hoặc gia đình để chia sẻ tài nguyên.
-- **Mạng WAN**: Phù hợp cho việc kết nối các mạng LAN ở khoảng cách xa, với tốc độ thấp hơn và chi phí cao hơn. Mạng WAN thường được sử dụng cho các tổ chức lớn, nơi cần kết nối nhiều văn phòng ở các địa điểm khác nhau.
-
-### Ví dụ cụ thể
-
-- **Mạng LAN**: Một văn phòng với nhiều máy tính được kết nối với nhau qua một switch và chia sẻ một máy in chung.
-- **Mạng WAN**: Một công ty có các văn phòng ở nhiều thành phố khác nhau, sử dụng Internet hoặc các kết nối riêng để kết nối các mạng LAN tại mỗi văn phòng.
+- **Mạng LAN** phù hợp với các môi trường có phạm vi nhỏ, tốc độ cao và chi phí thấp. Mạng này lý tưởng cho văn phòng nhỏ, trường học hoặc gia đình.
+- **Mạng WAN** phục vụ các tổ chức lớn có văn phòng và chi nhánh ở nhiều khu vực khác nhau. Mạng này có phạm vi lớn nhưng tốc độ thấp hơn và chi phí cao hơn.

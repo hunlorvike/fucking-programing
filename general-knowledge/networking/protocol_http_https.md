@@ -1,196 +1,94 @@
-## Tổng Quan về HTTP và HTTPS: Nắm Vững Kiến Thức Về Giao Thức Web
+### 1. **Giao thức HTTP/HTTPS và TCP/IP**
 
-**Giới thiệu**
+HTTP (Hypertext Transfer Protocol) và HTTPS (Hypertext Transfer Protocol Secure) đều là các giao thức ứng dụng hoạt động ở tầng 7 của mô hình OSI (Open Systems Interconnection), tức là chúng là giao thức dùng để trao đổi dữ liệu giữa các ứng dụng (máy khách và máy chủ) trong hệ thống mạng. Tuy nhiên, HTTP và HTTPS cần một giao thức tầng thấp hơn để thực hiện kết nối và truyền tải dữ liệu giữa các máy tính. Đó chính là **TCP** (Transmission Control Protocol).
 
-HTTP (HyperText Transfer Protocol) và HTTPS (HTTP Secure) là hai giao thức nền tảng của Internet, đóng vai trò trọng yếu trong việc truyền tải dữ liệu giữa máy khách (client) và máy chủ (server). Cùng khám phá chi tiết về hai giao thức này để hiểu rõ vai trò và sự khác biệt của chúng.
+#### **TCP/IP** – Giao thức nền tảng
 
-**1. HTTP (HyperText Transfer Protocol)**
+TCP/IP (Transmission Control Protocol/Internet Protocol) là bộ giao thức được sử dụng rộng rãi để trao đổi dữ liệu trên Internet. TCP cung cấp một kết nối đáng tin cậy, điều này có nghĩa là dữ liệu được truyền tải sẽ được xác minh, tái truyền nếu bị mất và đảm bảo đúng thứ tự.
 
-**1.1 Định Nghĩa:**
+- **IP** (Internet Protocol): Là giao thức tầng mạng, có chức năng xác định và truyền tải các gói dữ liệu từ nguồn đến đích qua địa chỉ IP.
+- **TCP**: Là giao thức vận chuyển, cung cấp các chức năng như xác nhận (acknowledgement) dữ liệu đã được nhận và đảm bảo không có dữ liệu nào bị mất trong quá trình truyền.
 
-HTTP là một giao thức ứng dụng tầng cao, hoạt động theo mô hình client-server, được sử dụng để truyền tải dữ liệu trên World Wide Web. HTTP được thiết kế để giao tiếp giữa máy khách và máy chủ bằng cách sử dụng các yêu cầu và phản hồi theo dạng văn bản.
+#### **Cách HTTP và HTTPS sử dụng TCP/IP để truyền tải dữ liệu**
 
-**1.2 Cấu Trúc URL:**
+Khi một máy khách (browser) muốn truy cập một trang web, quá trình sử dụng HTTP hoặc HTTPS diễn ra qua nhiều bước, bắt đầu từ giao thức **TCP/IP**.
 
-URL (Uniform Resource Locator) là địa chỉ duy nhất của mỗi tài nguyên trên web, theo định dạng:
-`http://www.example.com/path/to/resource`
+### 2. **Quy Trình Truyền Tải Dữ Liệu HTTP/HTTPS qua TCP/IP**
 
-- **http://**: là phần biểu thị giao thức HTTP
-- **www.example.com**: là tên miền của website
-- **path/to/resource**: là đường dẫn đến tài nguyên cụ thể trên máy chủ.
+Dưới đây là quy trình chi tiết khi một máy khách yêu cầu một trang web qua HTTP hoặc HTTPS, từ khi gửi yêu cầu cho đến khi nhận được phản hồi:
 
-**1.3 Chức Năng:**
+#### **2.1 HTTP (Không Bảo Mật)**
 
-HTTP cho phép máy khách gửi yêu cầu đến máy chủ và nhận phản hồi. Các phương thức phổ biến gồm:
+1. **Máy khách gửi yêu cầu TCP:**
 
-- **GET**: Lấy dữ liệu từ máy chủ.
-  - Ví dụ: Truy cập vào một trang web, tải xuống hình ảnh.
-- **POST**: Gửi dữ liệu lên máy chủ.
-  - Ví dụ: Gửi thông tin đăng nhập, đăng ký tài khoản, gửi biểu mẫu.
-- **PUT**: Cập nhật dữ liệu hiện có trên máy chủ.
-- **DELETE**: Xóa dữ liệu trên máy chủ.
+   - Máy khách mở một kết nối TCP đến máy chủ web thông qua cổng TCP 80 (cổng mặc định cho HTTP).
+   - Quy trình bắt đầu với **Bước bắt tay TCP** (TCP Handshake), nơi máy khách và máy chủ xác nhận và thiết lập một kết nối đáng tin cậy.
 
-**1.4 Ưu Điểm:**
+   Bước bắt tay TCP diễn ra qua ba giai đoạn:
 
-- Đơn giản, dễ dàng triển khai và sử dụng.
-- Tốc độ nhanh do không có quá trình mã hóa dữ liệu.
-- Hỗ trợ nhiều loại tài liệu, bao gồm văn bản, hình ảnh, video, âm thanh, v.v.
+   - **SYN**: Máy khách gửi yêu cầu SYN (synchronize) tới máy chủ, yêu cầu thiết lập kết nối.
+   - **SYN-ACK**: Máy chủ nhận yêu cầu và trả lời bằng gói SYN-ACK, xác nhận kết nối.
+   - **ACK**: Máy khách trả lời với gói ACK, xác nhận rằng kết nối đã sẵn sàng.
 
-**1.5 Nhược Điểm:**
+2. **Máy khách gửi yêu cầu HTTP:**
+   - Sau khi kết nối TCP được thiết lập, máy khách gửi yêu cầu HTTP (thường là phương thức GET hoặc POST) đến máy chủ. Ví dụ:
+     ```http
+     GET /index.html HTTP/1.1
+     Host: www.example.com
+     ```
+3. **Máy chủ xử lý và phản hồi:**
 
-- Không bảo mật, thông tin truyền tải có thể bị đánh cắp hoặc giả mạo trong quá trình truyền tải.
-- Không phù hợp với các giao dịch trực tuyến, truyền tải thông tin nhạy cảm.
+   - Máy chủ nhận yêu cầu HTTP, xử lý và trả về một phản hồi HTTP. Phản hồi này sẽ có mã trạng thái HTTP (200 OK, 404 Not Found, v.v.) và nội dung (HTML, hình ảnh, v.v.). Ví dụ:
 
-**2. HTTPS (HTTP Secure)**
+     ```http
+     HTTP/1.1 200 OK
+     Content-Type: text/html
 
-**2.1 Định Nghĩa:**
+     <html>
+     <head><title>Example</title></head>
+     <body><h1>Welcome</h1></body>
+     </html>
+     ```
 
-HTTPS là phiên bản bảo mật của HTTP, sử dụng giao thức mã hóa SSL (Secure Sockets Layer) hoặc TLS (Transport Layer Security) để bảo vệ thông tin trao đổi giữa máy khách và máy chủ.
+4. **Đóng kết nối TCP:**
+   - Sau khi dữ liệu được truyền tải xong, máy khách và máy chủ sẽ đóng kết nối TCP bằng một quy trình gọi là **TCP teardown**. Máy khách sẽ gửi gói FIN để yêu cầu đóng kết nối, và máy chủ sẽ đáp lại với gói ACK.
 
-**2.2 Cấu Trúc URL:**
+#### **2.2 HTTPS (Bảo Mật)**
 
-URL của HTTPS có định dạng:
-`https://www.example.com/path/to/resource`
+Quy trình với HTTPS rất tương tự với HTTP, nhưng có thêm một bước quan trọng là mã hóa và xác thực SSL/TLS, giúp bảo mật dữ liệu trong suốt quá trình trao đổi.
 
-- **https://**: biểu thị giao thức HTTPS sử dụng mã hóa SSL/TLS.
+1. **Bắt tay TCP:**
 
-**2.3 Chức Năng:**
+   - Quy trình bắt tay TCP giống như trong HTTP, nơi máy khách và máy chủ thiết lập một kết nối TCP qua cổng 443 (cổng mặc định của HTTPS).
 
-HTTPS mã hóa và bảo mật dữ liệu, giúp bảo vệ thông tin khỏi bị chặn hoặc giả mạo trong quá trình truyền tải, đặc biệt quan trọng cho:
+2. **Bắt tay SSL/TLS (SSL/TLS Handshake):**
 
-- Các giao dịch trực tuyến như thanh toán, mua hàng, đăng nhập tài khoản.
-- Trao đổi thông tin nhạy cảm như mật khẩu, số thẻ tín dụng, thông tin cá nhân.
+   - Sau khi kết nối TCP được thiết lập, máy khách và máy chủ bắt đầu quy trình **SSL/TLS handshake** để thiết lập một kết nối an toàn.
+     Quá trình này bao gồm các bước:
+   - **ClientHello**: Máy khách gửi yêu cầu với thông tin về các thuật toán mã hóa, phiên bản SSL/TLS mà nó hỗ trợ, và một giá trị ngẫu nhiên.
+   - **ServerHello**: Máy chủ trả lời với bộ mã hóa mà nó chọn và gửi chứng chỉ SSL/TLS của mình để chứng minh danh tính.
+   - **Kiểm tra chứng chỉ**: Máy khách xác minh tính hợp lệ của chứng chỉ máy chủ. Nếu hợp lệ, máy khách tạo khóa phiên (session key) để mã hóa dữ liệu và gửi cho máy chủ.
+   - **Kết thúc Handshake**: Sau khi tạo khóa mã hóa, máy khách và máy chủ gửi thông báo hoàn tất Handshake. Từ đây, tất cả dữ liệu truyền tải sẽ được mã hóa bằng khóa phiên.
 
-**2.4 Ưu Điểm:**
+3. **Gửi yêu cầu HTTP qua kết nối an toàn (SSL/TLS):**
+   - Máy khách gửi yêu cầu HTTP (GET, POST, v.v.) qua kết nối bảo mật SSL/TLS.
+4. **Máy chủ phản hồi HTTP qua SSL/TLS:**
 
-- **Bảo mật**: Thông tin được mã hóa, bảo vệ khỏi truy cập trái phép.
-- **Tăng độ tin cậy**: Người dùng tin tưởng vào các trang web HTTPS.
-- **Bảo vệ dữ liệu khỏi bị giả mạo**: Ngăn chặn việc đánh cắp thông tin, tạo cảm giác an toàn cho người dùng.
+   - Máy chủ xử lý yêu cầu và trả về phản hồi được mã hóa bằng SSL/TLS.
 
-**2.5 Nhược Điểm:**
+5. **Đóng kết nối bảo mật và TCP:**
+   - Sau khi hoàn thành trao đổi dữ liệu, kết nối SSL/TLS được đóng trước khi kết nối TCP bị đóng.
 
-- **Tốc độ**: Có thể chậm hơn một chút do quá trình mã hóa.
-- **Chi phí**: Yêu cầu chứng chỉ SSL/TLS, có thể tốn chi phí cho doanh nghiệp nhỏ.
+### 3. **Sự Khác Biệt Chính Giữa HTTP và HTTPS trong Quá Trình Truyền Tải Dữ Liệu**
 
-**3. So Sánh giữa HTTP và HTTPS:**
+| **Tiêu Chí**                         | **HTTP**                               | **HTTPS**                                    |
+| ------------------------------------ | -------------------------------------- | -------------------------------------------- |
+| **Cổng Mặc Định**                    | 80                                     | 443                                          |
+| **Mã Hóa Dữ Liệu**                   | Không mã hóa                           | Dữ liệu được mã hóa bằng SSL/TLS             |
+| **Đảm Bảo Bảo Mật**                  | Không đảm bảo bảo mật                  | Mã hóa và xác thực chứng chỉ đảm bảo bảo mật |
+| **Hiệu Suất**                        | Tốc độ nhanh hơn vì không có mã hóa    | Có thể chậm hơn vì mã hóa SSL/TLS            |
+| **Sử Dụng trong Giao Dịch Nhạy Cảm** | Không thích hợp cho giao dịch nhạy cảm | Phù hợp cho giao dịch và thông tin nhạy cảm  |
 
-| Tiêu chí          | HTTP                                   | HTTPS                                       |
-| ----------------- | -------------------------------------- | ------------------------------------------- |
-| **Bảo mật**       | Không mã hóa dữ liệu                   | Dữ liệu được mã hóa                         |
-| **Cổng mặc định** | 80                                     | 443                                         |
-| **Chứng thực**    | Không có                               | Sử dụng chứng chỉ SSL/TLS                   |
-| **Hiệu suất**     | Nhanh hơn do không mã hóa              | Có thể chậm hơn một chút vì mã hóa          |
-| **Ứng dụng**      | Thích hợp cho thông tin không nhạy cảm | Phù hợp với giao dịch và thông tin nhạy cảm |
+### 4. **Kết Luận**
 
-**4. Cách thức hoạt động của HTTP và HTTPS:**
-
-**4.1 HTTP:**
-
-- **Kết nối**: Máy khách gửi yêu cầu kết nối đến máy chủ.
-- **Gửi yêu cầu**: Máy khách gửi yêu cầu HTTP với các phương thức (GET, POST, PUT, DELETE).
-- **Nhận phản hồi**: Máy chủ xử lý yêu cầu và trả về dữ liệu, thường là mã HTML.
-
-**Ví dụ về yêu cầu HTTP:**
-
-```http
-GET /index.html HTTP/1.1
-Host: www.example.com
-```
-
-**4.2 HTTPS:**
-
-- **Kết nối an toàn**: Máy khách và máy chủ thiết lập kết nối an toàn thông qua trao đổi chứng chỉ SSL/TLS.
-- **Mã hóa dữ liệu**: Dữ liệu được mã hóa trước khi gửi.
-- **Gửi và nhận dữ liệu**: Dữ liệu trao đổi được bảo vệ bằng kết nối mã hóa.
-
-**Ví dụ về yêu cầu HTTPS:**
-
-```http
-GET /index.html HTTP/1.1
-Host: www.example.com
-```
-
-**5. Chi Tiết về Cách HTTP và HTTPS Gửi Dữ Liệu và Bảo Mật:**
-
-**5.1 HTTP:**
-
-- **Gửi yêu cầu**: Máy khách gửi yêu cầu HTTP với các thành phần:
-  - Phương thức (GET, POST, PUT, DELETE)
-  - Đường dẫn đến tài nguyên.
-  - Headers bổ sung thông tin yêu cầu.
-  - Thân yêu cầu (Body) (chỉ với một số phương thức như POST hoặc PUT).
-
-**Ví dụ về yêu cầu POST:**
-
-```http
-POST /api/user HTTP/1.1
-Host: www.example.com
-Content-Type: application/json
-
-{
-    "name": "John",
-    "age": 30
-}
-```
-
-- **Xử lý yêu cầu**: Máy chủ nhận, xử lý yêu cầu và trả về kết quả.
-- **Gửi phản hồi**: Máy chủ gửi lại phản hồi với:
-  - Mã trạng thái (200 OK, 404 Not Found).
-  - Headers bổ sung thông tin.
-  - Thân phản hồi (Body) chứa dữ liệu.
-
-**Ví dụ về phản hồi:**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-    "message": "User created successfully"
-}
-```
-
-**5.2 HTTPS:**
-
-- **SSL/TLS Handshake**:
-
-  - **Xác thực máy chủ**: Máy chủ gửi chứng chỉ SSL/TLS để máy khách xác thực.
-  - **Trao đổi khóa**: Máy khách và máy chủ tạo khóa bí mật (session key) để mã hóa dữ liệu.
-
-- **Mã hóa dữ liệu**: Sau khi kết nối an toàn, dữ liệu truyền tải được mã hóa, giúp bảo mật thông tin khỏi truy cập trái phép.
-
-**6. Handshake trong HTTPS:**
-
-- **Handshake**: là quá trình thiết lập kết nối an toàn giữa máy khách và máy chủ trong HTTPS. Quá trình này đảm bảo cả hai đồng ý về các thông số mã hóa, và máy khách có thể xác thực danh tính của máy chủ.
-
-**Các Bước trong TLS/SSL Handshake:**
-
-1. **Máy khách gửi yêu cầu kết nối**:
-
-   - Gửi yêu cầu ClientHello, gồm thông tin:
-     - Phiên bản SSL/TLS hỗ trợ.
-     - Các bộ mã hóa (cipher suites) khả dụng.
-     - Một số ngẫu nhiên hỗ trợ mã hóa.
-
-2. **Máy chủ phản hồi**:
-
-   - Gửi lại phản hồi ServerHello:
-     - Chọn phiên bản SSL/TLS và bộ mã hóa.
-     - Gửi chứng chỉ số để xác thực danh tính.
-     - Gửi một số ngẫu nhiên khác hỗ trợ mã hóa.
-
-3. **Xác thực chứng chỉ máy chủ**:
-
-   - Máy khách kiểm tra chứng chỉ máy chủ.
-   - Nếu chứng chỉ hợp lệ, quá trình Handshake tiếp tục; nếu không, kết nối bị hủy.
-
-4. **Tạo khóa phiên (Session Key)**:
-
-   - Máy khách tạo khóa phiên dùng cho mã hóa dữ liệu trao đổi trong phiên.
-
-5. **Hoàn tất Handshake**:
-   - Máy khách và máy chủ gửi thông báo hoàn tất Handshake. Từ đây, dữ liệu trao đổi đều được mã hóa.
-
-**7. Kết Luận:**
-
-HTTP và HTTPS là hai giao thức quan trọng trong hoạt động của World Wide Web. Mặc dù HTTP đơn giản và nhanh, nhưng nó không bảo mật, trong khi HTTPS mang đến bảo mật cao cho dữ liệu nhạy cảm. Việc lựa chọn giữa HTTP và HTTPS phụ thuộc vào nhu cầu bảo mật và tính nhạy cảm của dữ liệu được truyền tải.
+HTTP và HTTPS đều sử dụng giao thức **TCP/IP** để truyền tải dữ liệu, nhưng HTTPS bổ sung thêm các biện pháp bảo mật quan trọng như mã hóa SSL/TLS để bảo vệ thông tin khỏi sự truy cập trái phép trong quá trình trao đổi giữa máy khách và máy chủ. Khi sử dụng HTTP, thông tin có thể bị dễ dàng xâm phạm trong quá trình truyền tải, trong khi với HTTPS, dữ liệu luôn được mã hóa và bảo vệ, làm tăng độ tin cậy và bảo mật, đặc biệt là đối với các giao dịch trực tuyến.

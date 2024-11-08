@@ -1,133 +1,97 @@
-## Tổng Quan về Giao Thức FTP (File Transfer Protocol)
+### FTP và Cách Nó Sử Dụng TCP/IP Để Truyền Tải Dữ Liệu
 
-FTP (File Transfer Protocol) là một giao thức tiêu chuẩn được sử dụng để truyền tải tệp tin giữa client và server trên mạng TCP/IP, đặc biệt là Internet. FTP cho phép người dùng đăng nhập vào một máy chủ từ xa để tải lên, tải xuống, và quản lý tệp tin.
+FTP (File Transfer Protocol) là một giao thức truyền tải tệp tin được thiết kế để truyền dữ liệu giữa client và server trong môi trường mạng TCP/IP, đặc biệt là trên Internet. Giao thức này hoạt động trên nguyên lý của mô hình client-server, trong đó client gửi yêu cầu đến server và server đáp ứng các yêu cầu đó, chủ yếu là việc truyền tải các tệp tin.
 
-### 1. Định Nghĩa
+Để hiểu rõ hơn về cách FTP sử dụng TCP/IP để truyền tải dữ liệu, chúng ta cần phân tích chi tiết các yếu tố sau: **cấu trúc giao thức**, **các kết nối TCP/IP** và **các bước truyền tải dữ liệu**.
 
-FTP là một giao thức ứng dụng, được định nghĩa bởi giao thức TCP, cho phép client kết nối đến server và truyền tải các tệp tin với độ tin cậy cao. FTP được sử dụng rộng rãi để chia sẻ tệp tin trong môi trường mạng công cộng và nội bộ, hỗ trợ cả truyền tải dữ liệu dạng văn bản và nhị phân.
+### 1. **Cấu Trúc FTP trên TCP/IP**
 
-### 2. Cấu Trúc URL
+FTP hoạt động trên tầng ứng dụng của mô hình OSI và sử dụng giao thức TCP (Transmission Control Protocol) để thiết lập kết nối đáng tin cậy giữa client và server. TCP là một giao thức kết nối có bảo đảm, đảm bảo rằng các gói dữ liệu được gửi đi sẽ đến đích một cách chính xác và theo đúng thứ tự.
 
-FTP sử dụng URL có dạng:
+Khi FTP được sử dụng để truyền tải dữ liệu, nó tận dụng hai kết nối TCP riêng biệt:
 
-- `ftp://` hoặc `ftps://` khi sử dụng FTP với kết nối bảo mật (FTP Secure).
+- **Kết nối điều khiển (Control Connection)**: Đây là kết nối được sử dụng để gửi các lệnh FTP giữa client và server, chẳng hạn như yêu cầu đăng nhập, liệt kê tệp tin, hoặc tải lên/tải xuống tệp. Kết nối này sử dụng cổng TCP 21 (cổng mặc định).
+- **Kết nối dữ liệu (Data Connection)**: Khi cần truyền tải tệp tin hoặc thông tin cụ thể (như danh sách tệp), FTP mở một kết nối dữ liệu riêng biệt. Cổng được sử dụng cho kết nối này có thể thay đổi tùy thuộc vào chế độ kết nối (Active Mode hoặc Passive Mode).
 
-Ví dụ:
+### 2. **Các Chế Độ Kết Nối trong FTP**
 
-- `ftp://example.com/folder/file.txt`
-- `ftps://example.com/folder/file.txt` (sử dụng SSL/TLS)
+FTP có hai chế độ kết nối chính, cả hai đều sử dụng TCP/IP nhưng có sự khác biệt trong cách thức mở kết nối dữ liệu:
 
-### 3. Chức Năng Chính
+#### **Chế Độ Active (Active Mode)**
 
-FTP cho phép thực hiện các thao tác cơ bản với tệp tin trên máy chủ từ xa như:
+- **Kết nối điều khiển**: Client kết nối tới server qua cổng TCP 21.
+- **Kết nối dữ liệu**: Sau khi nhận được yêu cầu từ client, server sẽ mở một kết nối ngược lại tới client để truyền tải dữ liệu, thường qua một cổng ngẫu nhiên được chọn từ khoảng 1024 đến 65535.
 
-- **Tải xuống (Download)**: Lấy dữ liệu từ server về máy tính client.
-- **Tải lên (Upload)**: Gửi dữ liệu từ máy tính client lên server.
-- **Quản lý thư mục và tệp tin**: Tạo, xóa thư mục và tệp tin, thay đổi quyền truy cập tệp tin, di chuyển tệp tin.
+**Lưu ý về Active Mode**: Khi FTP hoạt động ở chế độ Active, client phải cho phép server mở kết nối ngược lại, điều này có thể gặp khó khăn khi có tường lửa hoặc NAT (Network Address Translation) trên client, bởi vì các kết nối ngược lại có thể bị chặn.
 
-### 4. Cách FTP Hoạt Động
+#### **Chế Độ Passive (Passive Mode)**
 
-FTP hoạt động theo mô hình client-server, nghĩa là client khởi tạo yêu cầu và server sẽ đáp ứng lại yêu cầu đó. Có hai chế độ kết nối chính trong FTP:
+- **Kết nối điều khiển**: Vẫn sử dụng cổng TCP 21 để thiết lập kết nối điều khiển.
+- **Kết nối dữ liệu**: Thay vì server chủ động mở kết nối ngược lại, trong chế độ Passive, client sẽ yêu cầu server mở một cổng dữ liệu, và client sẽ chủ động kết nối tới cổng đó để truyền tải dữ liệu.
 
-#### Chế Độ Kết Nối
+**Lưu ý về Passive Mode**: Passive Mode rất hữu ích khi client nằm sau tường lửa hoặc NAT, vì nó giúp client kiểm soát kết nối dữ liệu thay vì phải chấp nhận kết nối từ server.
 
-1. **Active Mode**: Server khởi tạo kết nối ngược lại đến client để truyền dữ liệu. Trong chế độ này, server sử dụng cổng mặc định là 21 cho điều khiển và một cổng động để truyền dữ liệu.
+### 3. **Cấu Trúc Kết Nối trong FTP**
 
-2. **Passive Mode**: Client chịu trách nhiệm mở kết nối dữ liệu đến server. Server chỉ mở cổng để đợi kết nối từ client thay vì chủ động kết nối lại, giúp vượt qua các hạn chế của tường lửa hoặc NAT trên client.
+FTP sử dụng hai kết nối TCP độc lập:
 
-#### Cấu Trúc Kết Nối FTP
+1. **Kết nối điều khiển (Control Connection)**:
 
-FTP sử dụng hai kết nối TCP riêng biệt:
+   - Kết nối này được mở khi client kết nối tới server qua cổng TCP 21.
+   - Kết nối điều khiển duy trì trong suốt phiên làm việc và chỉ được đóng khi client kết thúc phiên làm việc (ví dụ, khi thực hiện lệnh `QUIT`).
+   - Các lệnh FTP (như `USER`, `PASS`, `LIST`, `RETR`, `STOR`, `DELE`, v.v.) đều được gửi qua kết nối này.
 
-- **Kết nối điều khiển**: Kết nối quản lý các lệnh và phản hồi của server qua cổng TCP 21 (mặc định).
-- **Kết nối dữ liệu**: Dùng để truyền dữ liệu, được mở khi cần truyền tệp và đóng lại sau khi hoàn tất.
+2. **Kết nối dữ liệu (Data Connection)**:
+   - Kết nối này được mở khi cần truyền tải tệp tin hoặc dữ liệu (như danh sách tệp).
+   - Trong chế độ Active, server sẽ chủ động mở kết nối này tới client.
+   - Trong chế độ Passive, client sẽ kết nối tới server để truyền tải dữ liệu.
+   - Sau khi truyền tải dữ liệu hoàn tất, kết nối dữ liệu sẽ được đóng.
 
-#### Các Lệnh FTP Thường Dùng
+### 4. **Quy Trình Truyền Tải Dữ Liệu qua FTP**
 
-FTP sử dụng các lệnh để thực hiện thao tác với tệp tin và thư mục, như:
+Khi một client kết nối đến một FTP server để tải lên hoặc tải xuống tệp tin, các bước giao tiếp giữa client và server diễn ra theo quy trình sau:
 
-- **USER** và **PASS**: Đăng nhập với tên người dùng và mật khẩu.
-- **LIST**: Liệt kê các tệp và thư mục.
-- **RETR**: Tải xuống tệp từ server.
-- **STOR**: Tải lên tệp từ client đến server.
-- **DELE**: Xóa tệp trên server.
-- **MKD** và **RMD**: Tạo hoặc xóa thư mục trên server.
+#### **Bước 1: Khởi Tạo Kết Nối**
 
-#### Các Bước Truyền Tải Tệp Tin
+- Client mở kết nối TCP tới cổng 21 của server.
+- Server phản hồi với thông báo chào mừng (ví dụ: `220 Welcome to FTP Server`).
 
-1. **Khởi Tạo Kết Nối**: Client kết nối đến server qua cổng TCP 21 để bắt đầu phiên FTP.
-2. **Xác Thực Người Dùng**: Server yêu cầu client cung cấp tên người dùng và mật khẩu (hoặc sử dụng chế độ ẩn danh).
-3. **Chuyển Dữ Liệu**: Client gửi lệnh để tải lên hoặc tải xuống tệp tin. Server phản hồi và thực hiện quá trình truyền tải thông qua kết nối dữ liệu.
-4. **Đóng Kết Nối**: Sau khi truyền tải hoàn tất, kết nối dữ liệu sẽ được đóng. Phiên điều khiển cũng đóng khi client thoát khỏi server.
+#### **Bước 2: Đăng Nhập**
 
-### 5. Bảo Mật trong FTP
+- Client gửi lệnh `USER` và `PASS` để đăng nhập vào server, cung cấp tên người dùng và mật khẩu (hoặc sử dụng chế độ ẩn danh).
+- Server kiểm tra thông tin đăng nhập và phản hồi (ví dụ: `230 User logged in, proceed`).
 
-#### FTP Ẩn Danh (Anonymous FTP)
+#### **Bước 3: Chuyển Dữ Liệu**
 
-FTP hỗ trợ chế độ ẩn danh, cho phép người dùng kết nối và truy cập một số tệp tin công khai mà không cần đăng nhập bằng tên người dùng và mật khẩu.
+- Sau khi đăng nhập thành công, client có thể yêu cầu các thao tác như liệt kê thư mục (`LIST`), tải xuống tệp (`RETR`) hoặc tải lên tệp (`STOR`).
+- Mỗi yêu cầu này sẽ được gửi qua kết nối điều khiển.
+- Khi cần truyền tải tệp tin, kết nối dữ liệu sẽ được mở. Client hoặc server (tùy chế độ) sẽ tạo kết nối này để truyền tải tệp.
+- Sau khi truyền tải hoàn tất, kết nối dữ liệu sẽ được đóng.
 
-#### FTPS và SFTP
+#### **Bước 4: Đóng Kết Nối**
 
-Vì FTP ban đầu không có mã hóa, nó dễ bị tấn công trong mạng công cộng. Có hai giải pháp tăng cường bảo mật:
+- Khi quá trình truyền tải tệp tin hoặc các thao tác FTP khác hoàn tất, client sẽ gửi lệnh `QUIT` để kết thúc phiên làm việc.
+- Kết nối điều khiển và dữ liệu sẽ được đóng, kết thúc phiên FTP.
 
-- **FTPS (FTP Secure)**: Sử dụng SSL/TLS để mã hóa kết nối FTP, bảo vệ dữ liệu khỏi bị đánh cắp.
-- **SFTP (SSH File Transfer Protocol)**: Chạy qua giao thức SSH, cung cấp mã hóa và các tính năng bảo mật mạnh mẽ, được sử dụng rộng rãi hơn trong truyền tải dữ liệu an toàn.
+### 5. **Lệnh FTP và Sử Dụng TCP/IP**
 
-### 6. Ưu và Nhược Điểm của FTP
+Các lệnh FTP cơ bản mà client và server sử dụng đều được gửi qua kết nối điều khiển TCP (cổng 21). Dưới đây là một số lệnh và các tương tác cơ bản:
 
-#### Ưu Điểm
+- **USER <username>**: Gửi tên người dùng cho server.
+- **PASS <password>**: Gửi mật khẩu cho server.
+- **LIST**: Liệt kê các thư mục và tệp tin trong thư mục hiện tại.
+- **RETR <filename>**: Tải xuống tệp từ server.
+- **STOR <filename>**: Tải lên tệp từ client tới server.
+- **DELE <filename>**: Xóa tệp trên server.
+- **QUIT**: Kết thúc phiên làm việc FTP.
 
-- **Đơn Giản và Hiệu Quả**: Dễ triển khai và truyền tải tệp tin nhanh chóng qua kết nối TCP.
-- **Hỗ Trợ Tệp Tin Lớn**: Có khả năng truyền tải các tệp có kích thước lớn, không giới hạn dung lượng.
-- **Tương Thích Nhiều Hệ Thống**: FTP có thể hoạt động trên hầu hết các hệ điều hành, từ Windows đến UNIX/Linux.
+### 6. **Bảo Mật trong FTP**
 
-#### Nhược Điểm
+FTP không mã hóa dữ liệu, vì vậy thông tin như mật khẩu và dữ liệu truyền tải đều có thể bị nghe lén nếu không sử dụng các cơ chế bảo mật bổ sung. Một số giao thức mở rộng bảo mật cho FTP bao gồm:
 
-- **Bảo Mật Kém**: FTP nguyên bản không mã hóa dữ liệu, bao gồm cả tên người dùng và mật khẩu.
-- **Thiếu Linh Hoạt với Tường Lửa**: Chế độ Active FTP gặp khó khăn khi hoạt động qua các thiết bị NAT hoặc tường lửa.
-- **Bị Thay Thế Bởi Các Giao Thức An Toàn Hơn**: Với sự phát triển của các giao thức bảo mật hơn như SFTP và FTPS, FTP ngày càng ít được sử dụng cho các ứng dụng yêu cầu bảo mật cao.
+- **FTPS (FTP Secure)**: Sử dụng SSL/TLS để mã hóa kết nối FTP, bảo vệ dữ liệu trong quá trình truyền tải.
+- **SFTP (SSH File Transfer Protocol)**: Không phải là FTP thực sự, nhưng sử dụng giao thức SSH để bảo mật kết nối và mã hóa dữ liệu.
 
-### 7. So Sánh giữa FTP, FTPS và SFTP
+### Kết luận
 
-| Tiêu chí                 | FTP                             | FTPS                            | SFTP                                  |
-| ------------------------ | ------------------------------- | ------------------------------- | ------------------------------------- |
-| **Bảo mật**              | Không mã hóa                    | Mã hóa bằng SSL/TLS             | Mã hóa thông qua SSH                  |
-| **Cổng mặc định**        | 21 (điều khiển), 20 (dữ liệu)   | 21 hoặc 990                     | 22                                    |
-| **Khả năng tương thích** | Nhiều hệ điều hành              | Nhiều hệ điều hành              | Nhiều hệ điều hành                    |
-| **Truyền tải dữ liệu**   | Truyền theo hai kênh riêng biệt | Truyền theo hai kênh riêng biệt | Truyền trên một kênh duy nhất qua SSH |
-| **Ứng dụng**             | Thích hợp chia sẻ tệp công khai | Sử dụng cho dữ liệu cần mã hóa  | Thích hợp cho dữ liệu cần bảo mật cao |
-
-### 8. Ứng Dụng Phổ Biến của FTP
-
-FTP thường được dùng cho các mục đích sau:
-
-- **Lưu Trữ và Chia Sẻ Tệp Công Khai**: Tải lên và tải xuống các tệp tin từ máy chủ công cộng.
-- **Quản Lý Nội Dung Website**: Dùng để cập nhật, tải lên tệp HTML, hình ảnh hoặc các nội dung khác cho trang web.
-- **Sao Lưu Dữ Liệu**: Được dùng trong việc lưu trữ và truyền tải bản sao lưu giữa các hệ thống.
-
-### 9. Ví Dụ về Kết Nối và Giao Thức FTP
-
-#### Yêu Cầu Kết Nối và Đăng Nhập
-
-```plaintext
-USER username
-PASS password
-```
-
-#### Liệt Kê Tệp và Tải Xuống Tệp
-
-```plaintext
-LIST
-RETR example.txt
-```
-
-#### Tải Lên Tệp và Đóng Kết Nối
-
-```plaintext
-STOR uploadfile.txt
-QUIT
-```
-
-### 10. Kết Luận
-
-FTP là giao thức truyền tải tệp tin phổ biến và tiện dụng, đặc biệt khi cần di chuyển các tệp lớn và không yêu cầu bảo mật cao. Tuy nhiên, với sự phát triển của các giao thức an toàn như FTPS và SFTP, FTP dần ít được sử dụng cho các ứng dụng yêu cầu bảo mật. Đối với các ứng dụng cần mã hóa dữ liệu, việc sử dụng FTPS hoặc SFTP sẽ phù hợp hơn, trong khi FTP vẫn hữu ích cho các trường hợp truyền tải tệp công khai hoặc nội bộ không đòi hỏi độ bảo mật cao.
+FTP là một giao thức mạnh mẽ và hiệu quả cho việc truyền tải tệp tin, hoạt động trên nền tảng TCP/IP với kết nối điều khiển và dữ liệu riêng biệt. Mặc dù có những hạn chế về bảo mật, FTP vẫn là một công cụ quan trọng cho việc chia sẻ và quản lý tệp tin, đặc biệt khi không yêu cầu mã hóa cao. Tuy nhiên, khi bảo mật là ưu tiên, các giao thức thay thế như FTPS hoặc SFTP sẽ được ưu tiên sử dụng.
