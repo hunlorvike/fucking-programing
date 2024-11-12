@@ -1,6 +1,4 @@
-Dưới đây là tài liệu so sánh chi tiết giữa **biên dịch (Compilation)** và **phiên dịch (Interpretation)** trong lập trình máy tính, bao gồm cách thức hoạt động, ưu và nhược điểm của từng phương pháp, và một số ví dụ minh họa cụ thể.
-
----
+# Biên dịch và phiên dịch trong lập trình
 
 ## Mục lục
 
