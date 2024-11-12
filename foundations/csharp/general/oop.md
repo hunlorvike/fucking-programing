@@ -231,3 +231,5 @@ Sử dụng OOP mang lại nhiều lợi ích lớn cho quá trình phát triể
 5. **Dễ phát triển và bảo trì nhóm**: OOP giúp tách các phần của chương trình thành các đối tượng và lớp độc lập, tạo điều kiện cho các thành viên trong nhóm làm việc trên các phần khác nhau mà ít ảnh hưởng đến nhau.
 
 6. **Hỗ trợ đa hình (Polymorphism)**: Cho phép các đối tượng hành xử khác nhau dựa trên ngữ cảnh, giúp mã linh hoạt hơn và tăng khả năng mở rộng.
+
+

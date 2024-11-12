@@ -188,16 +188,14 @@ Nếu cần bảo mật thêm, có thể mã hóa và ký các cookie nhạy c�
 
 ### 4. So sánh Cookies và Session
 
-| Đặc điểm            | Cookies                                     | Session                                             |
-| ------------------- | ------------------------------------------- | --------------------------------------------------- |
-| **Lưu trữ**         | Lưu trữ trên client                         | Lưu trữ trên server                                 |
-| **Tính bảo mật**    | Phụ thuộc vào mã hóa và thiết lập quyền hạn | Dữ liệu session không tiếp xúc trực tiếp với client |
-| **Trạng thái**      | Không trạng thái (stateless)                | Có trạng thái (stateful)                            |
-| **Dữ liệu lưu trữ** | Dữ liệu đơn giản                            |
-
-, không nhạy cảm hoặc mã hóa | Dữ liệu phức tạp, thông tin nhạy cảm |
-| **Quy mô** | Thích hợp cho các tùy chọn, ghi nhớ trạng thái | Phù hợp với quản lý phiên làm việc của người dùng |
-| **Thời gian sống** | Tùy chỉnh trong từng cookie | Tùy chỉnh trong server-side session timeout |
+| Đặc điểm            | Cookies                                        | Session                                             |
+| ------------------- | ---------------------------------------------- | --------------------------------------------------- |
+| **Lưu trữ**         | Lưu trữ trên client                            | Lưu trữ trên server                                 |
+| **Tính bảo mật**    | Phụ thuộc vào mã hóa và thiết lập quyền hạn    | Dữ liệu session không tiếp xúc trực tiếp với client |
+| **Trạng thái**      | Không trạng thái (stateless)                   | Có trạng thái (stateful)                            |
+| **Dữ liệu lưu trữ** | Dữ liệu đơn giản , không nhạy cảm hoặc mã hóa  | Dữ liệu phức tạp, thông tin nhạy cảm                |
+| **Quy mô**          | Thích hợp cho các tùy chọn, ghi nhớ trạng thái | Phù hợp với quản lý phiên làm việc của người dùng   |
+| **Thời gian sống**  | Tùy chỉnh trong từng cookie                    | Tùy chỉnh trong server-side session timeout         |
 
 ### 5. Ứng dụng Cookies trong Xác thực
 

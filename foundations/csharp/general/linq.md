@@ -185,9 +185,7 @@ LINQ cung cấp nhiều phép toán để truy vấn và thao tác với dữ li
 
 #### 4.7 **Count**
 
-- **Mô tả**: Phép toán `Count` cho
-
-phép bạn đếm số phần tử trong một tập hợp.
+- **Mô tả**: Phép toán `Count` cho phép bạn đếm số phần tử trong một tập hợp.
 
 - **Cú pháp**:
   ```csharp
@@ -214,7 +212,195 @@ phép bạn đếm số phần tử trong một tập hợp.
   // Kết quả: Tổng giá của tất cả sản phẩm
   ```
 
-Dưới đây là phiên bản đã chỉnh sửa và cải thiện cho phần so sánh giữa `IQueryable` và `IEnumerable`, với thông tin rõ ràng và có cấu trúc hợp lý hơn:
+#### 4.9 **Take và Skip**
+
+- **Mô tả**:
+  - `Take`: Lấy một số lượng phần tử đầu tiên từ một tập hợp.
+  - `Skip`: Bỏ qua một số lượng phần tử đầu tiên từ một tập hợp.
+- **Cú pháp**:
+  ```csharp
+  var resultTake = collection.Take(number);
+  var resultSkip = collection.Skip(number);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var topFiveProducts = products.Take(5);      // Lấy 5 sản phẩm đầu tiên
+  var skipFiveProducts = products.Skip(5);     // Bỏ qua 5 sản phẩm đầu tiên
+  ```
+
+#### 4.10 **TakeWhile và SkipWhile**
+
+- **Mô tả**:
+  - `TakeWhile`: Lấy các phần tử từ đầu tập hợp cho đến khi gặp điều kiện sai.
+  - `SkipWhile`: Bỏ qua các phần tử từ đầu tập hợp cho đến khi gặp điều kiện sai.
+- **Cú pháp**:
+  ```csharp
+  var resultTakeWhile = collection.TakeWhile(item => condition);
+  var resultSkipWhile = collection.SkipWhile(item => condition);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var cheapProducts = products.TakeWhile(p => p.Price < 50);
+  var expensiveProductsSkipped = products.SkipWhile(p => p.Price < 50);
+  ```
+
+#### 4.11 **All và Any**
+
+- **Mô tả**:
+  - `All`: Kiểm tra nếu tất cả các phần tử trong tập hợp thỏa mãn một điều kiện.
+  - `Any`: Kiểm tra nếu có ít nhất một phần tử trong tập hợp thỏa mãn một điều kiện.
+- **Cú pháp**:
+  ```csharp
+  bool allCondition = collection.All(item => condition);
+  bool anyCondition = collection.Any(item => condition);
+  ```
+- **Ví dụ**:
+  ```csharp
+  bool allExpensive = products.All(p => p.Price > 100);
+  bool anyExpensive = products.Any(p => p.Price > 100);
+  ```
+
+#### 4.12 **First, FirstOrDefault, Last, LastOrDefault**
+
+- **Mô tả**:
+  - `First`: Trả về phần tử đầu tiên của tập hợp, nếu không tìm thấy sẽ ném ngoại lệ.
+  - `FirstOrDefault`: Trả về phần tử đầu tiên của tập hợp hoặc giá trị mặc định nếu không tìm thấy.
+  - `Last`: Trả về phần tử cuối cùng của tập hợp, nếu không tìm thấy sẽ ném ngoại lệ.
+  - `LastOrDefault`: Trả về phần tử cuối cùng của tập hợp hoặc giá trị mặc định nếu không tìm thấy.
+- **Cú pháp**:
+  ```csharp
+  var firstElement = collection.First();
+  var firstOrDefaultElement = collection.FirstOrDefault();
+  var lastElement = collection.Last();
+  var lastOrDefaultElement = collection.LastOrDefault();
+  ```
+- **Ví dụ**:
+  ```csharp
+  var firstProduct = products.First();
+  var lastProduct = products.Last();
+  var firstExpensiveProduct = products.FirstOrDefault(p => p.Price > 100);
+  ```
+
+#### 4.13 **Single và SingleOrDefault**
+
+- **Mô tả**:
+  - `Single`: Trả về duy nhất một phần tử thỏa mãn điều kiện, nếu có nhiều hơn một hoặc không có phần tử nào thì sẽ ném ngoại lệ.
+  - `SingleOrDefault`: Trả về duy nhất một phần tử thỏa mãn điều kiện hoặc giá trị mặc định nếu không tìm thấy.
+- **Cú pháp**:
+  ```csharp
+  var singleElement = collection.Single(item => condition);
+  var singleOrDefaultElement = collection.SingleOrDefault(item => condition);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var singleProduct = products.Single(p => p.ProductId == 1);
+  var optionalProduct = products.SingleOrDefault(p => p.ProductId == 99);
+  ```
+
+#### 4.14 **Aggregate**
+
+- **Mô tả**: Phép toán `Aggregate` thực hiện tính toán tùy chỉnh trên một tập hợp, ví dụ như tính tổng, tích, hoặc nối chuỗi.
+- **Cú pháp**:
+  ```csharp
+  var result = collection.Aggregate(seed, (accumulator, item) => operation);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var concatenatedNames = products.Aggregate((current, next) => current + ", " + next.Name);
+  ```
+
+#### 4.15 **Min, Max, Average**
+
+- **Mô tả**:
+  - `Min`: Tìm giá trị nhỏ nhất từ một thuộc tính của các phần tử trong tập hợp.
+  - `Max`: Tìm giá trị lớn nhất từ một thuộc tính của các phần tử trong tập hợp.
+  - `Average`: Tính giá trị trung bình từ một thuộc tính của các phần tử trong tập hợp.
+- **Cú pháp**:
+  ```csharp
+  var min = collection.Min(item => item.Property);
+  var max = collection.Max(item => item.Property);
+  var avg = collection.Average(item => item.Property);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var minPrice = products.Min(p => p.Price);
+  var maxPrice = products.Max(p => p.Price);
+  var averagePrice = products.Average(p => p.Price);
+  ```
+
+#### 4.16 **Concat**
+
+- **Mô tả**: Phép toán `Concat` cho phép bạn nối hai tập hợp lại với nhau.
+- **Cú pháp**:
+  ```csharp
+  var result = collection1.Concat(collection2);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var combinedList = list1.Concat(list2);
+  ```
+
+#### 4.17 **Zip**
+
+- **Mô tả**: `Zip` ghép nối các phần tử từ hai tập hợp lại với nhau, theo từng cặp tương ứng.
+- **Cú pháp**:
+  ```csharp
+  var result = collection1.Zip(collection2, (first, second) => resultSelector);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var pairedList = numbers.Zip(words, (n, w) => $"{n}: {w}");
+  ```
+
+#### 4.18 **DefaultIfEmpty**
+
+- **Mô tả**: `DefaultIfEmpty` trả về tập hợp ban đầu hoặc một giá trị mặc định nếu tập hợp rỗng.
+- **Cú pháp**:
+  ```csharp
+  var result = collection.DefaultIfEmpty(defaultValue);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var productsOrDefault = products.DefaultIfEmpty(new Product { Name = "No products available" });
+  ```
+
+#### 4.19 **ToList, ToArray, ToDictionary**
+
+- **Mô tả**:
+  - `ToList`: Chuyển tập hợp thành danh sách `List`.
+  - `ToArray`: Chuyển tập hợp thành mảng `Array`.
+  - `ToDictionary`: Chuyển tập hợp thành từ điển `Dictionary` với khóa và giá trị chỉ định.
+- **Cú pháp**:
+  ```csharp
+  var listResult = collection.ToList();
+  var arrayResult = collection.ToArray();
+  var dictionaryResult = collection.ToDictionary(item => item.Key, item => item.Value);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var productList = products.ToList();
+  var productArray = products.ToArray();
+  var productDictionary = products.ToDictionary(p => p.ProductId, p => p.Name);
+  ```
+
+#### 4.20 **Union, Intersect, Except**
+
+- **Mô tả**:
+  - `Union`: Trả về tập hợp kết hợp của hai tập hợp, loại bỏ các phần tử trùng lặp.
+  - `Intersect`: Trả về các phần tử có trong cả hai tập hợp.
+  - `Except`: Trả về các phần tử chỉ có trong tập hợp đầu tiên mà không có trong tập hợp thứ hai.
+- **Cú pháp**:
+  ```csharp
+  var unionResult = collection1.Union(collection2);
+  var intersectResult = collection1.Intersect(collection2);
+  var exceptResult = collection1.Except(collection2);
+  ```
+- **Ví dụ**:
+  ```csharp
+  var allUniqueProducts = products1.Union(products2);
+  var commonProducts = products1.Intersect(products2);
+  var differenceProducts = products1.Except(products2);
+  ```
 
 ### 5. **IQueryable vs IEnumerable**
 
