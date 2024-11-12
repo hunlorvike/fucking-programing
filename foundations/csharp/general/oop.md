@@ -9,7 +9,7 @@
    - [Overloading (Nạp chồng phương thức)](#overloading-nạp-chồng-phương-thức)
    - [Overriding (Ghi đè phương thức)](#overriding-ghi-đè-phương-thức)
 4. [Abstraction (Trừu tượng hóa)](#4-abstraction-trừu-tượng-hóa)
-   - [Abstract Class (Lớp trừu tượng)](#abstract-class-lớp-trừu-tượng)
+   - [Abstract Class (class trừu tượng)](#abstract-class-class-trừu-tượng)
    - [Interface (Giao diện)](#interface-giao-diện)
 5. [Tại Sao Nên Sử Dụng OOP? Lợi Ích Của OOP](#tại-sao-nên-sử-dụng-oop-lợi-ích-của-oop)
 
@@ -17,14 +17,16 @@
 
 ### 1. **Encapsulation (Đóng gói)**
 
-Encapsulation là nguyên lý đóng gói dữ liệu và các phương thức thao tác dữ liệu vào trong một lớp, để ẩn chi tiết triển khai và chỉ cung cấp các phương thức truy cập công khai (public) khi cần. Điều này giúp bảo vệ dữ liệu khỏi sự can thiệp hoặc sửa đổi không mong muốn từ bên ngoài lớp.
+- Là việc nhóm các thuộc tính (data) và phương thức (methods) lại thành một đối tượng. Bằng cách đóng gói, dữ liệu chỉ có thể được truy cập hoặc thay đổi thông qua các phương thức của đối tượng, không thể trực tiếp truy cập từ bên ngoài.
+- Điều này giúp bảo vệ dữ liệu khỏi việc thay đổi không mong muốn và dễ dàng quản lý.
+- Ví dụ: Việc thiết lập và truy xuất giá trị của các thuộc tính được thực hiện thông qua getter và setter.
 
-#### Ví dụ về Encapsulation trong C#
+#### Ví dụ về Encapsulation trong Csharp
 
 ```csharp
 public class Person
 {
-    // Biến private chỉ có thể truy cập trong lớp Person
+    // Biến private chỉ có thể truy cập trong class Person
     private string name;
     private int age;
 
@@ -56,9 +58,11 @@ public class Person
 
 ### 2. **Inheritance (Kế thừa)**
 
-Inheritance là cơ chế cho phép một lớp (gọi là lớp con) thừa hưởng các thuộc tính và phương thức của một lớp khác (lớp cha). Điều này giúp tránh lặp lại mã nguồn và tạo ra các hệ thống phân cấp lớp.
+- Là cơ chế cho phép một class (class) kế thừa các thuộc tính và phương thức của một class khác, giúp tái sử dụng mã nguồn.
 
-Trong C#, một lớp chỉ có thể kế thừa từ một lớp cha duy nhất, gọi là **single inheritance**. **Multiple inheritance** (kế thừa nhiều lớp cha) không được hỗ trợ trực tiếp trong C#; tuy nhiên, có thể sử dụng interface để đạt được tính đa kế thừa.
+- class con (subclass) có thể kế thừa các thành phần của class cha (superclass) và có thể mở rộng hoặc thay thế chúng.
+
+- Trong C#, một class chỉ có thể kế thừa từ một class cha duy nhất, gọi là **single inheritance**. **Multiple inheritance** (kế thừa nhiều class cha) không được hỗ trợ trực tiếp trong C#; tuy nhiên, có thể sử dụng interface để đạt được tính đa kế thừa.
 
 #### Ví dụ về Single Inheritance
 
@@ -87,8 +91,8 @@ dog.Bark();  // Phương thức của Dog
 
 #### Sự Khác Biệt giữa Single Inheritance và Multiple Inheritance
 
-- **Single Inheritance**: Lớp con chỉ có thể kế thừa từ một lớp cha duy nhất.
-- **Multiple Inheritance**: Lớp con có thể kế thừa từ nhiều lớp cha. C# không hỗ trợ multiple inheritance trực tiếp, nhưng có thể đạt được tính đa kế thừa qua các interface.
+- **Single Inheritance**: class con chỉ có thể kế thừa từ một class cha duy nhất.
+- **Multiple Inheritance**: class con có thể kế thừa từ nhiều class cha. C# không hỗ trợ multiple inheritance trực tiếp, nhưng có thể đạt được tính đa kế thừa qua các interface.
 
 ```csharp
 public interface IFlyable
@@ -110,11 +114,15 @@ public class Duck : IFlyable, ISwimmable
 
 ### 3. **Polymorphism (Đa hình)**
 
-Polymorphism cho phép đối tượng có thể hành xử khác nhau tùy vào ngữ cảnh. Có hai loại polymorphism trong C#: **Overloading (nạp chồng)** và **Overriding (ghi đè)**.
+- Là khả năng sử dụng một phương thức với nhiều hình thức khác nhau. Điều này có thể được thực hiện thông qua method overriding (ghi đè) và method overloading (nạp chồng).
+
+- Polymorphism cho phép một đối tượng thuộc lớp con có thể sử dụng các phương thức của lớp cha nhưng có hành vi khác nhau.
+
+- Ví dụ: Cùng phương thức sound() nhưng đối với lớp Dog, nó có thể là Bark, còn với lớp Cat, nó có thể là Meow.
 
 #### Overloading (Nạp chồng phương thức)
 
-Overloading là khả năng định nghĩa nhiều phương thức cùng tên nhưng khác tham số (số lượng hoặc kiểu tham số) trong cùng một lớp.
+Overloading là khả năng định nghĩa nhiều phương thức cùng tên nhưng khác tham số (số lượng hoặc kiểu tham số) trong cùng một class.
 
 ```csharp
 public class MathOperations
@@ -138,7 +146,7 @@ Console.WriteLine(operations.Add(2.5, 3.5));     // Sử dụng Add(double, doub
 
 #### Overriding (Ghi đè phương thức)
 
-Overriding là khả năng lớp con ghi đè phương thức của lớp cha với cú pháp `override`, cho phép lớp con cung cấp cách triển khai riêng.
+Overriding là khả năng class con ghi đè phương thức của class cha với cú pháp `override`, cho phép class con cung cấp cách triển khai riêng.
 
 ```csharp
 public class Animal
@@ -164,11 +172,15 @@ myDog.Speak(); // Sẽ gọi phương thức Speak của Dog
 
 ### 4. **Abstraction (Trừu tượng hóa)**
 
-Abstraction là khái niệm che giấu các chi tiết cài đặt và chỉ hiển thị các tính năng chính. Trong C#, trừu tượng hóa được thực hiện qua các lớp abstract và interface.
+- Là quá trình che giấu các chi tiết cài đặt và chỉ hiển thị các tính năng quan trọng, giúp người dùng dễ dàng sử dụng mà không cần quan tâm đến cách thức hoạt động bên trong.
 
-#### Abstract Class (Lớp trừu tượng)
+- Trừu tượng hóa có thể được thực hiện thông qua các lớp trừu tượng hoặc giao diện (interface).
 
-Abstract class là lớp chứa các phương thức trừu tượng (chưa được triển khai) và các phương thức đã được triển khai. Các lớp con kế thừa từ abstract class cần phải triển khai các phương thức trừu tượng.
+- Ví dụ: Một lớp xe có thể có phương thức start() mà không cần phải biết cách thức động cơ hoạt động.
+
+#### Abstract Class (class trừu tượng)
+
+Abstract class là class chứa các phương thức trừu tượng (chưa được triển khai) và các phương thức đã được triển khai. Các class con kế thừa từ abstract class cần phải triển khai các phương thức trừu tượng.
 
 ```csharp
 public abstract class Shape
@@ -199,7 +211,7 @@ public class Circle : Shape
 
 #### Interface (Giao diện)
 
-Interface chỉ chứa khai báo các phương thức mà không có triển khai. Các lớp thực thi interface phải cung cấp triển khai cho tất cả các phương thức trong interface.
+Interface chỉ chứa khai báo các phương thức mà không có triển khai. Các class thực thi interface phải cung cấp triển khai cho tất cả các phương thức trong interface.
 
 ```csharp
 public interface IMovable
@@ -220,16 +232,14 @@ public class Car : IMovable
 
 Sử dụng OOP mang lại nhiều lợi ích lớn cho quá trình phát triển phần mềm:
 
-1. **Tái sử dụng mã**: Các lớp và đối tượng có thể được tái sử dụng trong các dự án khác hoặc ở các phần khác nhau của chương trình.
+1. **Tái sử dụng mã**: Các class và đối tượng có thể được tái sử dụng trong các dự án khác hoặc ở các phần khác nhau của chương trình.
 
-2. **Dễ bảo trì và mở rộng**: OOP hỗ trợ dễ dàng mở rộng mã nguồn bằng cách thêm các lớp mới hoặc phương thức mới mà không ảnh hưởng đến mã hiện có.
+2. **Dễ bảo trì và mở rộng**: OOP hỗ trợ dễ dàng mở rộng mã nguồn bằng cách thêm các class mới hoặc phương thức mới mà không ảnh hưởng đến mã hiện có.
 
 3. **Giảm thiểu lỗi và bảo mật dữ liệu**: Encapsulation giúp bảo vệ dữ liệu nhạy cảm khỏi truy cập ngoài ý muốn và giảm thiểu lỗi bằng cách giới hạn quyền truy cập.
 
-4. **Phân cấp tổ chức tốt**: Các đối tượng và lớp trong OOP giúp phân chia chương trình thành các phần nhỏ dễ hiểu, dễ duy trì hơn.
+4. **Phân cấp tổ chức tốt**: Các đối tượng và class trong OOP giúp phân chia chương trình thành các phần nhỏ dễ hiểu, dễ duy trì hơn.
 
-5. **Dễ phát triển và bảo trì nhóm**: OOP giúp tách các phần của chương trình thành các đối tượng và lớp độc lập, tạo điều kiện cho các thành viên trong nhóm làm việc trên các phần khác nhau mà ít ảnh hưởng đến nhau.
+5. **Dễ phát triển và bảo trì nhóm**: OOP giúp tách các phần của chương trình thành các đối tượng và class độc lập, tạo điều kiện cho các thành viên trong nhóm làm việc trên các phần khác nhau mà ít ảnh hưởng đến nhau.
 
 6. **Hỗ trợ đa hình (Polymorphism)**: Cho phép các đối tượng hành xử khác nhau dựa trên ngữ cảnh, giúp mã linh hoạt hơn và tăng khả năng mở rộng.
-
-
