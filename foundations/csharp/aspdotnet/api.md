@@ -23,27 +23,41 @@
 
 #### 1.2. RESTful API trong ASP.NET Core
 
-REST (REpresentational State Transfer) là một kiến trúc phần mềm cho việc thiết kế các API web, hướng tới việc tách biệt giao diện người dùng và logic xử lý dữ liệu, đồng thời tối ưu hiệu suất và khả năng mở rộng. Các nguyên tắc chính của REST bao gồm:
+ASP.NET Core là một framework mạnh mẽ cho việc phát triển RESTful API, dựa trên các nguyên tắc của REST để xây dựng các API hiệu quả và dễ mở rộng. Dưới đây là các khía cạnh chính khi xây dựng một RESTful API trong ASP.NET Core, dựa trên các nguyên tắc của REST:
 
 - **Client-Server:**
-  - Tách biệt giao diện người dùng (client) và lưu trữ dữ liệu (server).
-  - Client và server có thể phát triển độc lập.
-  - Client không cần biết cách dữ liệu được lưu trữ trên server.
+
+  - Trong ASP.NET Core, kiến trúc RESTful giúp phân tách rõ ràng giữa client và server. Server xử lý yêu cầu từ client và trả về dữ liệu thông qua các JSON, XML, hoặc các định dạng phổ biến khác, đảm bảo rằng cả hai có thể phát triển và nâng cấp độc lập.
+  - Ví dụ: Khi triển khai API `GET /api/products`, client sẽ gửi yêu cầu lên server để nhận thông tin về các sản phẩm, nhưng không cần biết chi tiết cách thức dữ liệu được xử lý hoặc lưu trữ trong server.
+
 - **Stateless:**
-  - Không lưu trữ trạng thái giữa các request.
-  - Mỗi request phải chứa đủ thông tin để được xử lý.
-  - Ví dụ: Token xác thực phải được gửi trong mỗi request.
-- **Cacheable:**
-  - Response có thể được cache để tăng hiệu suất và giảm tải server.
-  - Server phải chỉ định rõ có thể cache hay không (thông qua các header HTTP).
-- **Uniform Interface:**
-  - Interface thống nhất giữa các thành phần của API.
-  - Sử dụng các phương thức HTTP (GET, POST, PUT, DELETE) theo chuẩn RESTful.
-  - URI (Uniform Resource Identifier) được sử dụng để định danh resources (ví dụ: `/api/products`, `/api/users`).
-- **Layered System:**
-  - Hệ thống có thể có nhiều lớp (middleware, load balancers, etc.).
-  - Client không biết có bao nhiêu lớp và chúng hoạt động như thế nào.
-  - Điều này cho phép thêm các lớp trung gian để bảo mật, tối ưu hiệu suất, etc. mà không ảnh hưởng đến client.
+
+  - ASP.NET Core hỗ trợ thiết kế API không lưu trữ trạng thái, tức là mỗi yêu cầu từ client phải chứa tất cả thông tin cần thiết để server xử lý.
+  - Việc xác thực thường được thực hiện qua JWT (JSON Web Token) hoặc các token khác được gửi trong mỗi request để đảm bảo an ninh.
+  - Ví dụ: Mỗi khi client gọi API `POST /api/orders` để tạo đơn hàng, token xác thực được gửi kèm trong phần header của HTTP (chẳng hạn qua header `Authorization: Bearer <token>`).
+
+- **Cacheable**
+
+  - API trong ASP.NET Core có thể được tối ưu bằng cách cấu hình cache response. Điều này cho phép server chỉ định liệu một response có thể được lưu trong cache hay không để giảm tải.
+  - Thông qua các HTTP headers như `Cache-Control`, API có thể điều khiển được việc lưu trữ của client-side hoặc proxy cache.
+  - Ví dụ: Với API `GET /api/products`, nếu dữ liệu sản phẩm ít thay đổi, server có thể cấu hình `Cache-Control: public, max-age=3600` để client cache response trong một giờ.
+
+- **Uniform Interface**
+
+  - ASP.NET Core cho phép triển khai các phương thức HTTP chuẩn: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, phù hợp với RESTful API. Điều này tạo ra một interface đồng nhất và dễ sử dụng cho client.
+  - Các URL được thiết kế theo mô hình tài nguyên (resource-oriented) sử dụng URI để định danh từng resource cụ thể:
+  - `GET /api/products`: Lấy danh sách sản phẩm.
+  - `GET /api/products/{id}`: Lấy thông tin chi tiết của sản phẩm có `id` cụ thể.
+  - `POST /api/products`: Thêm sản phẩm mới.
+  - `PUT /api/products/{id}`: Cập nhật sản phẩm.
+  - `DELETE /api/products/{id}`: Xóa sản phẩm.
+  - ASP.NET Core cung cấp các routing pattern giúp định nghĩa rõ ràng các URL endpoint cho từng tài nguyên.
+
+- **Layered System**
+
+  - ASP.NET Core hỗ trợ các tầng khác nhau trong hệ thống, như middleware, dịch vụ bảo mật, hay caching layer, giúp xây dựng hệ thống linh hoạt và dễ mở rộng.
+  - Các lớp trung gian này được sử dụng để tối ưu hóa API mà không ảnh hưởng đến client, đồng thời có thể thêm các lớp load balancer hoặc CDN để tăng tốc độ và độ tin cậy.
+  - Middleware trong ASP.NET Core rất hữu ích trong việc xử lý các tác vụ như logging, xác thực, và xử lý lỗi, giúp API tuân thủ nguyên tắc "layered system" của REST.
 
 **Ví dụ Endpoint RESTful:**
 

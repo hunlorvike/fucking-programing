@@ -3,30 +3,21 @@
 ## Mục Lục
 
 1. [Tổng quan về Cookies](#1-tổng-quan-về-cookies)
-
    - [Cookies là gì?](#cookies-là-gì)
    - [Cấu trúc của một Cookie](#cấu-trúc-của-một-cookie)
    - [Cookies hoạt động như thế nào?](#cookies-hoạt-động-như-thế-nào)
-
 2. [Triển khai Cookies trong C# .NET](#2-triển-khai-cookies-trong-c-net)
-
    - [Cấu hình và tạo Cookies trong ASP.NET Core](#a-cấu-hình-và-tạo-cookies-trong-aspnet-core)
    - [Thiết lập Cookie trong `appsettings.json` (Tùy chọn)](#b-thiết-lập-cookie-trong-appsettingsjson-tùy-chọn)
-
 3. [Bảo mật Cookies trong ASP.NET Core](#3-bảo-mật-cookies-trong-aspnet-core)
-
    - [Secure và HttpOnly Cookies](#secure-và-httponly-cookies)
    - [Cookie SameSite](#cookie-samesite)
    - [Thời gian hết hạn hợp lý và Xóa Cookies](#thời-gian-hết-hạn-hợp-lý-và-xóa-cookies)
    - [Mã hóa và ký Cookie](#mã-hóa-và-ký-cookie)
-
 4. [So sánh Cookies và Session](#4-so-sánh-cookies-và-session)
-
 5. [Ứng dụng Cookies trong Xác thực](#5-ứng-dụng-cookies-trong-xác-thực)
-
    - [Cấu hình xác thực Cookie trong `Startup.cs`](#a-cấu-hình-xác-thực-cookie-trong-startupcs)
    - [Thực hiện đăng nhập và tạo Cookie](#b-thực-hiện-đăng-nhập-và-tạo-cookie)
-
 6. [Kết luận](#kết-luận)
 
 ---
