@@ -1,340 +1,169 @@
-# Asynchronous Programming với Task và async/await trong C# .NET
+# Lập Trình Bất Đồng Bộ với Task và async/await trong C# .NET
 
 ## Mục Lục
 
-1. [Tổng quan về Asynchronous Programming](#1-tổng-quan-về-asynchronous-programming)
-   - [Asynchronous Programming là gì?](#asynchronous-programming-là-gì)
-   - [Lợi ích của lập trình bất đồng bộ](#lợi-ích-của-lập-trình-bất-đồng-bộ)
-2. [Cơ bản về Task và async/await](#2-cơ-bản-về-task-và-asyncawait)
+1. [Tổng quan về Lập trình Bất đồng bộ](#1-tổng-quan-về-lập-trình-bất-đồng-bộ)
+   - [Lập trình Đồng bộ và Bất đồng bộ](#lập-trình-đồng-bộ-và-bất-đồng-bộ)
+   - [Lợi ích của Lập trình Bất đồng bộ](#lợi-ích-của-lập-trình-bất-đồng-bộ)
+2. [Task trong Lập trình Bất đồng bộ](#2-task-trong-lập-trình-bất-đồng-bộ)
    - [Task là gì?](#task-là-gì)
-   - [Từ khóa async và await](#từ-khóa-async-và-await)
-3. [Sử dụng async/await trong ASP.NET Core](#3-sử-dụng-asyncawait-trong-aspnet-core)
-   - [Viết controller bất đồng bộ](#viết-controller-bất-đồng-bộ)
-   - [Xử lý các tác vụ I/O-bound](#xử-lý-các-tác-vụ-io-bound)
-4. [Quản lý tác vụ bất đồng bộ hiệu quả](#4-quản-lý-tác-vụ-bất-đồng-bộ-hiệu-quả)
+   - [Sử dụng Task trong C#](#sử-dụng-task-trong-c)
+3. [Async/Await trong Lập trình Bất đồng bộ](#3-asyncawait-trong-lập-trình-bất-đồng-bộ)
+   - [Cách khai báo async và await](#cách-khai-báo-async-và-await)
+   - [Xử lý Ngoại lệ trong async/await](#xử-lý-ngoại-lệ-trong-asyncawait)
+4. [Sử dụng Task.WhenAll để Xử lý Nhiều Tác vụ Đồng thời](#4-sử-dụng-taskwhenall-để-xử-lý-nhiều-tác-vụ-đồng-thời)
+   - [Task.WhenAll là gì?](#taskwhenall-là-gì)
+   - [Ví dụ sử dụng Task.WhenAll](#ví-dụ-sử-dụng-taskwhenall)
+5. [Quản lý Tác vụ Bất đồng bộ hiệu quả](#5-quản-lý-tác-vụ-bất-đồng-bộ-hiệu-quả)
    - [Tránh sử dụng async/await không cần thiết](#tránh-sử-dụng-asyncawait-không-cần-thiết)
-   - [Quản lý ngoại lệ trong tác vụ bất đồng bộ](#quản-lý-ngoại-lệ-trong-tác-vụ-bất-đồng-bộ)
-5. [Tối ưu hóa hiệu suất và tránh Deadlock](#5-tối-ưu-hóa-hiệu-suất-và-tránh-deadlock)
-6. [Kết luận](#kết-luận)
+   - [Tối ưu hóa hiệu suất và tránh Deadlock](#tối-ưu-hóa-hiệu-suất-và-tránh-deadlock)
+6. [So sánh Lập trình Đồng bộ và Bất đồng bộ](#6-so-sánh-lập-trình-đồng-bộ-và-bất-đồng-bộ)
+   - [Ưu và Nhược điểm của Lập trình Đồng bộ](#ưu-và-nhược-điểm-của-lập-trình-đồng-bộ)
+   - [Ưu và Nhược điểm của Lập trình Bất đồng bộ](#ưu-và-nhược-điểm-của-lập-trình-bất-đồng-bộ)
+7. [Kết luận](#kết-luận)
 
 ---
 
-### 1. Tổng quan về Asynchronous Programming
+### 1. Tổng quan về Lập trình Bất đồng bộ
 
-#### Asynchronous Programming là gì?
+#### Lập trình Đồng bộ và Bất đồng bộ
 
-Asynchronous Programming (Lập trình Bất đồng bộ) là cách lập trình cho phép các tác vụ thực hiện không đồng thời với luồng chính, giúp tận dụng tài nguyên và cải thiện hiệu suất của ứng dụng. Khi một tác vụ bất đồng bộ bắt đầu, ứng dụng có thể tiếp tục xử lý các tác vụ khác thay vì chờ đợi tác vụ hoàn thành.
+Lập trình đồng bộ và bất đồng bộ đều liên quan đến cách thức thực hiện các tác vụ trong chương trình, đặc biệt là các tác vụ I/O như truy xuất dữ liệu, đọc/ghi tệp, gọi API. Dưới đây là sự so sánh giữa hai cách tiếp cận này:
 
-#### Lợi ích của lập trình bất đồng bộ
+| **Đặc điểm**                   | **Lập trình Đồng bộ**                                                                       | **Lập trình Bất đồng bộ**                                                                                                     |
+| ------------------------------ | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **Khái niệm**                  | Thực hiện các tác vụ tuần tự, mỗi tác vụ hoàn thành trước khi chuyển sang tác vụ tiếp theo. | Cho phép thực hiện các tác vụ song song mà không cần đợi tác vụ trước khi hoàn thành, trừ khi có sự phụ thuộc.                |
+| **Cách triển khai**            | Các phương thức được gọi và thực hiện tuần tự.                                              | Sử dụng `async`, `await`, `Task`, và `Task.WhenAll` để thực hiện nhiều tác vụ đồng thời.                                      |
+| **Ứng dụng phù hợp**           | Các tác vụ nhẹ và không yêu cầu I/O lớn, hoặc không yêu cầu phản hồi nhanh.                 | Các tác vụ I/O nặng như truy xuất cơ sở dữ liệu, gọi API, tải tệp; ứng dụng yêu cầu khả năng phản hồi nhanh và hiệu suất cao. |
+| **Hiệu suất**                  | Thường chậm do phải đợi mỗi tác vụ hoàn thành tuần tự, dẫn đến thời gian chờ lâu.           | Tối ưu vì các tác vụ có thể diễn ra song song, giảm thời gian chờ đợi tổng thể.                                               |
+| **Độ phức tạp khi phát triển** | Dễ hiểu và dễ triển khai, phù hợp với các ứng dụng đơn giản.                                | Đòi hỏi hiểu biết về `async/await` và cách xử lý bất đồng bộ, dễ gặp lỗi deadlock nếu không cẩn thận.                         |
+| **Tính phản hồi của ứng dụng** | Thấp hơn, dễ gây "đóng băng" giao diện khi có tác vụ dài.                                   | Cao hơn, giúp giao diện người dùng và ứng dụng phản hồi nhanh ngay cả khi có các tác vụ dài.                                  |
+| **Rủi ro Deadlock**            | Thấp, do không có sự chờ đợi bất đồng bộ.                                                   | Cao hơn nếu sử dụng không đúng cách với các thao tác chờ như `.Result` hoặc `.Wait()`, dẫn đến deadlock.                      |
+| **Sử dụng tài nguyên**         | Không tối ưu khi phải chờ đợi các tác vụ hoàn thành.                                        | Sử dụng tài nguyên hiệu quả hơn, có thể xử lý nhiều tác vụ đồng thời.                                                         |
 
-- **Tối ưu hóa hiệu suất**: Giảm thời gian chờ của ứng dụng, nhất là khi xử lý các tác vụ I/O như truy xuất cơ sở dữ liệu hoặc đọc ghi file.
-- **Tăng khả năng phản hồi**: Ứng dụng không bị "đóng băng" khi thực hiện tác vụ dài.
-- **Sử dụng tài nguyên hiệu quả**: Cho phép tận dụng tài nguyên hệ thống tốt hơn, đặc biệt là với các ứng dụng web cần xử lý nhiều yêu cầu đồng thời.
+#### Lợi ích của Lập trình Bất đồng bộ
 
-### 2. Cơ bản về Task và async/await
+- **Tăng khả năng phản hồi**: Ứng dụng không bị "đóng băng" khi thực hiện các tác vụ dài.
+- **Tối ưu hóa hiệu suất**: Giảm thời gian chờ đợi cho các tác vụ I/O, như truy xuất cơ sở dữ liệu, gọi API, tải tệp.
+- **Sử dụng tài nguyên hiệu quả**: Cho phép hệ thống xử lý nhiều tác vụ cùng lúc, cải thiện hiệu suất, đặc biệt trong các ứng dụng web.
+
+---
+
+### 2. Task trong Lập trình Bất đồng bộ
 
 #### Task là gì?
 
-`Task` là đối tượng đại diện cho một tác vụ trong lập trình bất đồng bộ, thường dùng để biểu diễn tác vụ đang được xử lý trong nền và có thể trả về một kết quả khi hoàn thành.
+Trong lập trình bất đồng bộ, `Task` đại diện cho một tác vụ đang thực hiện, giúp mô tả các tác vụ nền. Một `Task` có thể:
 
-Ví dụ về việc sử dụng `Task`:
+- Trả về kết quả khi hoàn thành (sử dụng `Task<T>`).
+- Đại diện cho tác vụ không trả về kết quả (sử dụng `Task`).
+
+#### Sử dụng Task trong C#
 
 ```csharp
-public async Task<int> GetDataAsync()
+public async Task<int> FetchDataAsync()
 {
-    await Task.Delay(2000); // Mô phỏng tác vụ bất đồng bộ
-    return 42; // Kết quả trả về sau khi hoàn thành
+    await Task.Delay(2000); // Giả lập một tác vụ bất đồng bộ
+    return 42; // Trả về kết quả sau khi hoàn thành
 }
 ```
 
-#### Từ khóa async và await
+Trong ví dụ trên:
 
-- **`async`**: Được khai báo trước các phương thức sẽ chạy bất đồng bộ, giúp phân biệt với các phương thức đồng bộ.
-- **`await`**: Được sử dụng trong các phương thức `async` để chờ đợi một `Task` hoàn thành trước khi tiếp tục thực thi phần mã tiếp theo.
+- `Task<int>` đại diện cho tác vụ trả về một giá trị kiểu `int`.
+- `await Task.Delay(2000)` làm gián đoạn luồng chính trong 2 giây mà không làm "đóng băng" ứng dụng.
 
-Ví dụ sử dụng `async` và `await`:
+---
+
+### 3. Async/Await trong Lập trình Bất đồng bộ
+
+#### Cách khai báo `async` và `await`
+
+- **`async`**: Được dùng để khai báo phương thức bất đồng bộ. Phương thức này có thể chứa từ khóa `await`.
+- **`await`**: Được dùng để đợi một `Task` hoàn thành, tạm dừng thực thi phương thức cho đến khi tác vụ hoàn tất.
 
 ```csharp
 public async Task ProcessDataAsync()
 {
-    int result = await GetDataAsync(); // Chờ đợi GetDataAsync hoàn thành
+    int result = await FetchDataAsync(); // Đợi FetchDataAsync hoàn thành
     Console.WriteLine($"Result: {result}");
 }
 ```
 
-### 3. Sử dụng async/await trong ASP.NET Core
+#### Xử lý Ngoại lệ trong `async/await`
 
-ASP.NET Core hỗ trợ `async`/`await` trong các controller và service để quản lý các tác vụ bất đồng bộ hiệu quả, giúp tối ưu hóa các yêu cầu web.
-
-#### Viết controller bất đồng bộ
-
-Controller bất đồng bộ giúp cải thiện hiệu suất khi xử lý các tác vụ I/O-bound, như truy xuất cơ sở dữ liệu hoặc gọi API bên ngoài.
-
-Ví dụ về API controller bất đồng bộ:
+Sử dụng `try-catch` để xử lý các ngoại lệ trong tác vụ bất đồng bộ.
 
 ```csharp
-[ApiController]
-[Route("api/[controller]")]
-public class SampleController : ControllerBase
-{
-    private readonly IDataService _dataService;
-
-    public SampleController(IDataService dataService)
-    {
-        _dataService = dataService;
-    }
-
-    [HttpGet("data")]
-    public async Task<IActionResult> GetData()
-    {
-        var data = await _dataService.GetDataAsync();
-        return Ok(data);
-    }
-}
-```
-
-#### Xử lý các tác vụ I/O-bound
-
-Trong các ứng dụng web, các tác vụ I/O-bound thường chiếm phần lớn thời gian, ví dụ như khi truy cập cơ sở dữ liệu hoặc dịch vụ bên ngoài. Bằng cách xử lý bất đồng bộ các tác vụ này, ASP.NET Core có thể tận dụng tài nguyên hệ thống tốt hơn.
-
-Ví dụ về một dịch vụ bất đồng bộ:
-
-```csharp
-public class DataService : IDataService
-{
-    private readonly DbContext _context;
-
-    public DataService(DbContext context)
-    {
-        _context = context;
-    }
-
-    public async Task<List<DataModel>> GetDataAsync()
-    {
-        return await _context.DataModels.ToListAsync(); // Truy xuất dữ liệu bất đồng bộ
-    }
-}
-```
-
-### 4. Quản lý tác vụ bất đồng bộ hiệu quả
-
-#### Tránh sử dụng async/await không cần thiết
-
-Tránh khai báo `async` và `await` trên các phương thức nếu chúng không chứa bất kỳ tác vụ bất đồng bộ nào. Điều này sẽ giúp giảm thiểu độ phức tạp và tối ưu hóa hiệu suất.
-
-Ví dụ không tối ưu:
-
-```csharp
-public async Task<int> GetResult()
-{
-    return 5; // Không có tác vụ bất đồng bộ
-}
-```
-
-Ví dụ tối ưu:
-
-```csharp
-public Task<int> GetResult()
-{
-    return Task.FromResult(5); // Trả về kết quả đồng bộ mà không cần async/await
-}
-```
-
-#### Quản lý ngoại lệ trong tác vụ bất đồng bộ
-
-Khi xử lý tác vụ bất đồng bộ, cần xử lý ngoại lệ để đảm bảo ứng dụng không bị gián đoạn nếu xảy ra lỗi.
-
-Ví dụ xử lý ngoại lệ:
-
-```csharp
-public async Task<IActionResult> ProcessData()
+public async Task ProcessDataSafelyAsync()
 {
     try
     {
-        var result = await _dataService.ProcessAsync();
-        return Ok(result);
+        int result = await FetchDataAsync();
+        Console.WriteLine($"Result: {result}");
     }
     catch (Exception ex)
     {
-        // Ghi log lỗi hoặc trả về mã lỗi thích hợp
-        return StatusCode(500, "An error occurred");
+        Console.WriteLine($"An error occurred: {ex.Message}");
     }
 }
 ```
 
-### 5. Tối ưu hóa hiệu suất và tránh Deadlock
+---
 
-Deadlock là tình trạng khi một hoặc nhiều tác vụ đang chờ nhau hoàn thành, dẫn đến việc không tác vụ nào có thể tiến hành. Trong lập trình bất đồng bộ, deadlock dễ xảy ra nếu không cẩn thận khi xử lý các tác vụ, đặc biệt là khi sử dụng `.Result` hoặc `.Wait()` để chờ đợi một `Task` hoàn thành trong luồng chính.
+### 4. Sử dụng Task.WhenAll để Xử lý Nhiều Tác vụ Đồng thời
 
-#### Các nguyên nhân phổ biến gây ra Deadlock trong lập trình bất đồng bộ
+#### Task.WhenAll là gì?
 
-1. **Chờ đợi đồng bộ**: Khi sử dụng `.Result` hoặc `.Wait()` trong các phương thức bất đồng bộ, luồng chính sẽ bị khóa để chờ `Task` hoàn thành. Nếu `Task` đang cố gắng truy cập vào một tài nguyên khác mà luồng chính giữ, deadlock sẽ xảy ra.
-2. **Khóa tài nguyên không cần thiết**: Nếu một tác vụ bất đồng bộ khóa tài nguyên mà luồng chính hoặc tác vụ khác cũng cần, các tác vụ này sẽ bị chờ đợi vô thời hạn.
+`Task.WhenAll` giúp thực hiện nhiều tác vụ đồng thời và chờ tất cả chúng hoàn thành. Phương thức này giúp giảm thời gian tổng thể thay vì phải đợi từng tác vụ tuần tự.
 
-3. **Chạy trên cùng một ngữ cảnh đồng bộ**: Trong một số ứng dụng, đặc biệt là ứng dụng giao diện đồ họa (UI), `await` chờ đợi trên cùng một ngữ cảnh đồng bộ khiến các tác vụ bị trì hoãn. Điều này có thể dẫn đến deadlock nếu `await` không được giải phóng khỏi ngữ cảnh gốc.
-
-#### Cách tránh Deadlock
-
-- **Sử dụng `ConfigureAwait(false)`**: Trong các phương thức không cần duy trì ngữ cảnh ban đầu (như ASP.NET Core), `ConfigureAwait(false)` giúp tránh việc giữ lại ngữ cảnh ban đầu, giảm nguy cơ deadlock và cải thiện hiệu suất.
-
-  ```csharp
-  public async Task<int> FetchDataAsync()
-  {
-      await Task.Delay(1000).ConfigureAwait(false); // Giải phóng ngữ cảnh ban đầu
-      return 42;
-  }
-  ```
-
-- **Tránh chờ đợi đồng bộ trên `Task`**: Tránh sử dụng `.Result` hoặc `.Wait()` với các `Task` bất đồng bộ. Thay vào đó, sử dụng `await` để đợi hoàn thành.
-
-- **Sử dụng các khóa bất đồng bộ**: Sử dụng các phương pháp khóa bất đồng bộ, chẳng hạn như `SemaphoreSlim.WaitAsync()` thay vì các khóa đồng bộ (`lock`, `Mutex`), để đảm bảo các tác vụ khác không bị chặn.
-
-Deadlock có thể xảy ra khi làm việc với Entity Framework (EF) trong lập trình bất đồng bộ nếu không xử lý đúng cách các tác vụ hoặc các truy cập dữ liệu song song. Dưới đây là một số ví dụ về cách deadlock có thể xảy ra và các giải pháp để tránh chúng.
-
-##### Ví dụ 1: Gọi `.Result` hoặc `.Wait()` trên các phương thức bất đồng bộ
-
-Một lỗi phổ biến khi làm việc với EF là sử dụng `.Result` hoặc `.Wait()` để đợi kết quả của một tác vụ bất đồng bộ, điều này có thể dẫn đến deadlock nếu đang chạy trong một môi trường ASP.NET. Deadlock xảy ra do luồng chính bị khóa để chờ `Task` hoàn thành, trong khi `Task` lại đang đợi luồng chính.
-
-###### Code ví dụ gây Deadlock:
+#### Ví dụ sử dụng Task.WhenAll
 
 ```csharp
-public IActionResult GetUserData()
+public async Task RunMultipleTasksAsync()
 {
-    // Lỗi: Sử dụng .Result thay vì await, có thể gây deadlock
-    var userData = _dbContext.Users.FirstOrDefaultAsync(u => u.Id == 1).Result;
-    return Ok(userData);
+    Task<int> task1 = FetchDataAsync(); // Tác vụ 1
+    Task<int> task2 = FetchDataAsync(); // Tác vụ 2
+    Task<int> task3 = FetchDataAsync(); // Tác vụ 3
+
+    int[] results = await Task.WhenAll(task1, task2, task3);
+    Console.WriteLine($"Results: {string.Join(", ", results)}");
 }
 ```
 
-Trong ví dụ trên, phương thức `GetUserData` cố gắng chờ đợi kết quả từ `FirstOrDefaultAsync` một cách đồng bộ bằng cách gọi `.Result`. Khi `.Result` được sử dụng, luồng hiện tại sẽ bị khóa để chờ `Task` hoàn thành. Nếu phương thức này đang chạy trên luồng chính của ASP.NET, điều này có thể dẫn đến deadlock vì `FirstOrDefaultAsync` đang chờ `await` được hoàn tất trên luồng chính.
+- Các tác vụ `task1`, `task2`, và `task3` chạy đồng thời, và `Task.WhenAll` sẽ chờ
 
-###### Giải pháp:
+tất cả hoàn thành.
 
-Thay vì sử dụng `.Result`, hãy sử dụng từ khóa `await` để thực thi bất đồng bộ và tránh chờ đợi đồng bộ.
+---
 
-```csharp
-public async Task<IActionResult> GetUserData()
-{
-    var userData = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == 1);
-    return Ok(userData);
-}
-```
+### 5. Quản lý Tác vụ Bất đồng bộ hiệu quả
 
-##### Ví dụ 2: Sử dụng `lock` trong các truy cập dữ liệu bất đồng bộ
+#### Tránh sử dụng `async/await` không cần thiết
 
-Khi sử dụng khóa `lock` trong các phương thức bất đồng bộ, như khi xử lý nhiều truy cập tới dữ liệu trong EF, có thể dẫn đến deadlock nếu các `await` được gọi trong khối `lock`.
+Chỉ sử dụng bất đồng bộ khi tác vụ thực sự yêu cầu tính chất bất đồng bộ (như I/O nặng). Việc sử dụng bất đồng bộ một cách không cần thiết sẽ làm giảm hiệu suất và gây khó khăn trong việc duy trì mã nguồn.
 
-###### Code ví dụ gây Deadlock:
+#### Tối ưu hóa hiệu suất và tránh Deadlock
 
-```csharp
-private static readonly object _lock = new object();
+- Tránh sử dụng `Task.Wait()` hoặc `.Result` trong phương thức bất đồng bộ, vì chúng có thể gây deadlock.
+- Đảm bảo phương thức bất đồng bộ không bị chặn trong các luồng giao diện người dùng (UI thread).
 
-public async Task<IActionResult> UpdateUserData(int userId)
-{
-    lock (_lock)
-    {
-        // Lỗi: Gọi phương thức bất đồng bộ trong khối lock có thể gây deadlock
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-        if (user != null)
-        {
-            user.Name = "Updated Name";
-            await _dbContext.SaveChangesAsync();
-        }
-    }
-    return Ok();
-}
-```
+---
 
-Trong ví dụ trên, `lock` chặn các luồng khác truy cập khối mã này cho đến khi khối mã hoàn thành. Tuy nhiên, vì `await` sẽ tạm dừng thực thi và chờ `Task` hoàn thành, `lock` này có thể gây ra deadlock khi chờ các tác vụ bất đồng bộ.
+### 6. So sánh Lập trình Đồng bộ và Bất đồng bộ
 
-###### Giải pháp:
+#### Ưu và Nhược điểm của Lập trình Đồng bộ
 
-Sử dụng `SemaphoreSlim` để thay thế `lock` trong các phương thức bất đồng bộ:
+- **Ưu điểm**: Đơn giản và dễ hiểu, dễ duy trì với các ứng dụng nhỏ và đơn giản.
+- **Nhược điểm**: Hiệu suất thấp, nhất là khi xử lý tác vụ I/O lâu.
 
-```csharp
-private static readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+#### Ưu và Nhược điểm của Lập trình Bất đồng bộ
 
-public async Task<IActionResult> UpdateUserData(int userId)
-{
-    await _semaphore.WaitAsync();
-    try
-    {
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId);
-        if (user != null)
-        {
-            user.Name = "Updated Name";
-            await _dbContext.SaveChangesAsync();
-        }
-    }
-    finally
-    {
-        _semaphore.Release();
-    }
-    return Ok();
-}
-```
+- **Ưu điểm**: Hiệu suất cao hơn, khả năng phản hồi nhanh, tiết kiệm tài nguyên khi xử lý tác vụ nặng.
+- **Nhược điểm**: Phức tạp hơn, dễ mắc lỗi nếu không hiểu rõ cách sử dụng async/await.
 
-##### Ví dụ 3: Gọi bất đồng bộ từ trong một truy vấn Entity Framework
+---
 
-Nếu bạn gọi một phương thức bất đồng bộ từ bên trong một biểu thức LINQ được chuyển trực tiếp vào một truy vấn EF, điều này có thể dẫn đến deadlock hoặc lỗi. EF không hỗ trợ thực thi các biểu thức bất đồng bộ bên trong truy vấn.
+### 7. Kết luận
 
-###### Code ví dụ gây Deadlock:
-
-```csharp
-public async Task<IActionResult> GetActiveUserNames()
-{
-    // Lỗi: Gọi hàm bất đồng bộ bên trong biểu thức LINQ
-    var userNames = await _dbContext.Users
-        .Where(u => await IsUserActiveAsync(u.Id)) // Gây lỗi hoặc deadlock
-        .Select(u => u.Name)
-        .ToListAsync();
-
-    return Ok(userNames);
-}
-
-private async Task<bool> IsUserActiveAsync(int userId)
-{
-    var user = await _dbContext.Users.FindAsync(userId);
-    return user.IsActive;
-}
-```
-
-EF không hỗ trợ gọi các hàm bất đồng bộ bên trong truy vấn vì các biểu thức trong LINQ của EF phải có thể chuyển thành các lệnh SQL. Gọi `await` từ trong `Where` sẽ gây lỗi hoặc deadlock.
-
-###### Giải pháp:
-
-Tách các truy vấn bất đồng bộ thành nhiều bước để tránh gọi `await` trực tiếp từ trong truy vấn EF.
-
-```csharp
-public async Task<IActionResult> GetActiveUserNames()
-{
-    var users = await _dbContext.Users.ToListAsync(); // Lấy danh sách người dùng trước
-
-    var activeUserNames = new List<string>();
-    foreach (var user in users)
-    {
-        if (await IsUserActiveAsync(user.Id))
-        {
-            activeUserNames.Add(user.Name);
-        }
-    }
-
-    return Ok(activeUserNames);
-}
-```
-
-### 6. So sánh giữa Lập trình Bất đồng bộ và Lập trình Đồng bộ
-
-| **Đặc điểm**            | **Lập trình Đồng bộ**                                      | **Lập trình Bất đồng bộ**                                     |
-| ----------------------- | ---------------------------------------------------------- | ------------------------------------------------------------- |
-| **Quản lý tài nguyên**  | Thực hiện một tác vụ tại một thời điểm                     | Cho phép nhiều tác vụ chạy đồng thời, tối ưu hóa tài nguyên   |
-| **Hiệu suất và tốc độ** | Thường thấp hơn, do phải chờ từng tác vụ hoàn thành        | Cao hơn, các tác vụ I/O không chặn luồng chính                |
-| **Khả năng phản hồi**   | Ứng dụng có thể bị "đóng băng" khi thực hiện tác vụ dài    | Ứng dụng phản hồi tốt hơn khi xử lý các tác vụ dài            |
-| **Nguy cơ Deadlock**    | Ít khi xảy ra vì thường không có nhiều tác vụ đợi nhau     | Có thể xảy ra nếu không quản lý `await` và ngữ cảnh đúng cách |
-| **Ví dụ điển hình**     | Ứng dụng console, nơi mỗi tác vụ có thể hoàn thành tuần tự | Ứng dụng web hoặc ứng dụng cần xử lý nhiều yêu cầu cùng lúc   |
-
-Lập trình bất đồng bộ trong ASP.NET Core là lựa chọn tối ưu cho các ứng dụng web khi cần xử lý nhiều yêu cầu đồng thời và tối ưu hóa tài nguyên hệ thống. Tuy nhiên, cần quản lý bất đồng bộ đúng cách để tránh deadlock và các lỗi phức tạp khác.
-
-### Kết luận
-
-Lập trình bất đồng bộ với `Task` và `async/await` trong ASP.NET Core là một kỹ thuật mạnh mẽ giúp tối ưu hóa hiệu suất ứng dụng, đặc biệt là khi xử lý các tác vụ I/O. Sử dụng async/await đúng cách và tối ưu hóa sẽ giúp hệ thống chạy ổn định, phản hồi nhanh, và tiết kiệm tài nguyên hơn.
+Lập trình bất đồng bộ là một kỹ thuật mạnh mẽ giúp tối ưu hóa hiệu suất của các ứng dụng, đặc biệt là khi làm việc với các tác vụ I/O nặng. Tuy nhiên, nó yêu cầu lập trình viên phải hiểu rõ cách thức hoạt động của `async`, `await`, và các cấu trúc liên quan như `Task`. Khi được sử dụng đúng cách, lập trình bất đồng bộ có thể giúp ứng dụng trở nên nhanh chóng và hiệu quả hơn.

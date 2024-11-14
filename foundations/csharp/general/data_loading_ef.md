@@ -1,170 +1,227 @@
-Dưới đây là tài liệu mô tả chi tiết về các loại data loading trong Entity Framework, bao gồm `Eager Loading`, `Lazy Loading`, và `Explicit Loading`. Mỗi loại loading sẽ được giải thích với định nghĩa, ưu điểm, nhược điểm, ví dụ cụ thể và các câu SQL tương ứng nếu cần.
-
----
-
-# Các Loại Data Loading trong Entity Framework
+# Các loại Data Loading trong Entity Framework
 
 ## Mục Lục
 
-1. [Giới Thiệu](#giới-thiệu)
-2. [Eager Loading](#1-eager-loading)
-   - [Định nghĩa](#định-nghĩa)
-   - [Ví dụ](#ví-dụ)
-   - [Câu SQL tương ứng](#câu-sql-tương-ứng)
-   - [Ưu điểm](#ưu-điểm)
-   - [Nhược điểm](#nhược-điểm)
-3. [Lazy Loading](#2-lazy-loading)
-   - [Định nghĩa](#định-nghĩa-1)
-   - [Ví dụ](#ví-dụ-1)
-   - [Câu SQL tương ứng](#câu-sql-tương-ứng-1)
-   - [Ưu điểm](#ưu-điểm-1)
-   - [Nhược điểm](#nhược-điểm-1)
-4. [Explicit Loading](#3-explicit-loading)
-   - [Định nghĩa](#định-nghĩa-2)
-   - [Ví dụ](#ví-dụ-2)
-   - [Câu SQL tương ứng](#câu-sql-tương-ứng-2)
-   - [Ưu điểm](#ưu-điểm-2)
-   - [Nhược điểm](#nhược-điểm-2)
-5. [Kết Luận](#kết-luận)
+1. [Tổng quan về Data Loading trong Entity Framework](#1-tổng-quan-về-data-loading-trong-entity-framework)
+   - [Các phương pháp Data Loading](#các-phương-pháp-data-loading)
+2. [Eager Loading](#2-eager-loading)
+   - [Eager Loading là gì?](#eager-loading-là-gì)
+   - [Cách sử dụng Eager Loading](#cách-sử-dụng-eager-loading)
+3. [Lazy Loading](#3-lazy-loading)
+   - [Lazy Loading là gì?](#lazy-loading-là-gì)
+   - [Cách sử dụng Lazy Loading](#cách-sử-dụng-lazy-loading)
+4. [Explicit Loading](#4-explicit-loading)
+   - [Explicit Loading là gì?](#explicit-loading-là-gì)
+   - [Cách sử dụng Explicit Loading](#cách-sử-dụng-explicit-loading)
+5. [So sánh giữa Eager, Lazy và Explicit Loading](#5-so-sánh-giữa-eager-lazy-và-explicit-loading)
+6. [Các lớp Entity trong Entity Framework](#6-các-lớp-entity-trong-entity-framework)
+7. [Kết luận](#7-kết-luận)
 
 ---
 
-## Giới Thiệu
+### 1. Tổng quan về Data Loading trong Entity Framework
 
-Tài liệu này mô tả chi tiết các loại data loading trong Entity Framework, bao gồm `Eager Loading`, `Lazy Loading`, và `Explicit Loading`. Mỗi loại loading sẽ được giải thích với định nghĩa, ưu điểm, nhược điểm và ví dụ cụ thể.
+Trong **Entity Framework (EF)**, **Data Loading** đề cập đến cách thức tải dữ liệu liên quan đến các thực thể (entities) có quan hệ với nhau. Việc tải dữ liệu đúng cách ảnh hưởng trực tiếp đến hiệu suất của ứng dụng, đặc biệt khi làm việc với các bảng có quan hệ phức tạp. EF cung cấp ba phương pháp chính để tải dữ liệu:
+
+- **Eager Loading** (Tải dữ liệu ngay lập tức)
+- **Lazy Loading** (Tải dữ liệu khi cần)
+- **Explicit Loading** (Tải dữ liệu một cách rõ ràng)
+
+### Các phương pháp Data Loading
+
+| **Phương pháp**      | **Khái niệm**                                                                           | **Ưu điểm**                                                    | **Nhược điểm**                                                               |
+| -------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Eager Loading**    | Tải tất cả các dữ liệu liên quan ngay khi truy vấn thực thể chính.                      | Tối ưu hiệu suất khi cần nhiều dữ liệu liên quan ngay lập tức. | Tải quá nhiều dữ liệu không cần thiết, có thể gây giảm hiệu suất.            |
+| **Lazy Loading**     | Tải dữ liệu liên quan chỉ khi cần (khi truy cập).                                       | Tải dữ liệu linh hoạt, giảm tải ban đầu.                       | Có thể gây ra nhiều truy vấn, dẫn đến hiệu suất kém nếu không kiểm soát tốt. |
+| **Explicit Loading** | Tải dữ liệu liên quan sau khi truy vấn thực thể chính, nhưng phải được yêu cầu rõ ràng. | Tải dữ liệu một cách có kiểm soát, tránh tải thừa.             | Cần viết mã rõ ràng hơn, ít tự động như Eager hoặc Lazy Loading.             |
 
 ---
 
-## 1. Eager Loading
+### 2. Eager Loading
 
-### Định nghĩa
+#### Eager Loading là gì?
 
-Eager loading là phương pháp tải dữ liệu mà trong đó tất cả các entity và các liên kết liên quan đến nó được tải ngay lập tức khi truy vấn đầu tiên được thực hiện. Điều này thường được thực hiện bằng cách sử dụng phương thức `Include` trong Entity Framework.
+**Eager Loading** là phương pháp tải dữ liệu ngay lập tức khi thực hiện truy vấn. Điều này có nghĩa là khi bạn truy vấn một thực thể, các thực thể liên quan (như các bảng con trong quan hệ 1-n hoặc n-n) sẽ được tải đồng thời với thực thể chính trong cùng một truy vấn.
 
-### Ví dụ
+EF sử dụng `Include` để thực hiện Eager Loading.
 
-Giả sử bạn có hai entity là `Blog` và `Post`, trong đó mỗi `Blog` có nhiều `Post`.
+#### Cách sử dụng Eager Loading
 
 ```csharp
-using (var context = new BloggingContext())
+using (var context = new MyDbContext())
 {
-    var blogs = context.Blogs.Include(b => b.Posts).ToList();
+    var orders = context.Orders
+                        .Include(o => o.Customer) // Eager load Customer
+                        .Include(o => o.OrderItems) // Eager load OrderItems
+                        .ToList();
 }
 ```
 
-### Câu SQL tương ứng
+Trong ví dụ trên:
 
-```sql
-SELECT *
-FROM Blogs
-LEFT JOIN Posts ON Blogs.Id = Posts.BlogId;
-```
+- `Include(o => o.Customer)` tải dữ liệu của bảng `Customer` liên quan đến mỗi đơn hàng.
+- `Include(o => o.OrderItems)` tải dữ liệu của bảng `OrderItems` liên quan đến đơn hàng.
 
-### Ưu điểm
-
-- Tất cả dữ liệu cần thiết được tải trong một lần truy vấn, giúp giảm số lần gọi đến cơ sở dữ liệu.
-- Giảm thiểu hiện tượng N+1 queries (vấn đề tải nhiều truy vấn).
-
-### Nhược điểm
-
-- Nếu số lượng dữ liệu lớn, có thể gây ra vấn đề hiệu suất do tải quá nhiều dữ liệu không cần thiết.
-- Tăng kích thước dữ liệu truyền qua mạng.
+EF sẽ thực hiện một truy vấn SQL với `JOIN` để lấy tất cả dữ liệu của đơn hàng, khách hàng và các mục đơn hàng trong một lần.
 
 ---
 
-## 2. Lazy Loading
+### 3. Lazy Loading
 
-### Định nghĩa
+#### Lazy Loading là gì?
 
-Lazy loading là phương pháp tải dữ liệu mà trong đó các entity và các liên kết của chúng sẽ chỉ được tải khi cần thiết. Điều này có nghĩa là dữ liệu sẽ không được tải cho đến khi bạn thực sự truy cập vào thuộc tính đó.
+**Lazy Loading** là phương pháp tải dữ liệu khi cần, tức là khi bạn truy cập một thuộc tính của thực thể mà thuộc tính đó chưa được tải. Điều này giúp giảm bớt khối lượng dữ liệu tải về ban đầu. Tuy nhiên, điều này có thể dẫn đến nhiều truy vấn không cần thiết.
 
-### Ví dụ
+Trong EF, Lazy Loading thường được kích hoạt khi các thuộc tính điều hướng của các thực thể có kiểu `virtual`.
 
-Tiếp tục với ví dụ trên, bạn có thể định nghĩa các liên kết trong entity `Blog` để sử dụng lazy loading.
+#### Cách sử dụng Lazy Loading
+
+Để sử dụng Lazy Loading trong Entity Framework, bạn cần đảm bảo rằng:
+
+1. Các thuộc tính điều hướng phải có kiểu `virtual`.
+2. Phải sử dụng proxy (Entity Framework tự động tạo proxy cho các lớp có thuộc tính `virtual`).
 
 ```csharp
-public class Blog
+using (var context = new MyDbContext())
+{
+    var order = context.Orders.FirstOrDefault(o => o.Id == 1);
+
+    // Dữ liệu Customer và OrderItems chưa được tải
+    var customer = order.Customer; // Lazy load Customer
+    var items = order.OrderItems.ToList(); // Lazy load OrderItems
+}
+```
+
+Trong ví dụ trên, dữ liệu của `Customer` và `OrderItems` chỉ được tải khi chúng được truy cập lần đầu tiên.
+
+#### Nhược điểm của Lazy Loading
+
+- **N+1 Query Problem**: Nếu bạn truy vấn nhiều thực thể, có thể tạo ra nhiều truy vấn con, gây giảm hiệu suất. Ví dụ: Truy vấn tất cả các đơn hàng, sau đó tải khách hàng cho từng đơn hàng, dẫn đến N+1 truy vấn.
+
+---
+
+### 4. Explicit Loading
+
+#### Explicit Loading là gì?
+
+**Explicit Loading** là phương pháp tải dữ liệu liên quan khi bạn yêu cầu rõ ràng. Đây là sự kết hợp giữa Eager Loading và Lazy Loading, cho phép bạn tải dữ liệu theo yêu cầu mà không phải đợi nó tự động được tải khi truy cập vào thuộc tính.
+
+#### Cách sử dụng Explicit Loading
+
+```csharp
+using (var context = new MyDbContext())
+{
+    var order = context.Orders.FirstOrDefault(o => o.Id == 1);
+
+    // Explicit load Customer
+    context.Entry(order).Reference(o => o.Customer).Load();
+
+    // Explicit load OrderItems
+    context.Entry(order).Collection(o => o.OrderItems).Load();
+}
+```
+
+Trong ví dụ trên:
+
+- `context.Entry(order).Reference(o => o.Customer).Load();` tải dữ liệu của khách hàng cho đơn hàng.
+- `context.Entry(order).Collection(o => o.OrderItems).Load();` tải dữ liệu các mục đơn hàng cho đơn hàng.
+
+Phương pháp này giúp bạn kiểm soát chính xác khi nào và cái gì sẽ được tải, tránh tải dữ liệu không cần thiết.
+
+---
+
+### 5. So sánh giữa Eager, Lazy và Explicit Loading
+
+| **Phương pháp**      | **Ưu điểm**                                                          | **Nhược điểm**                                  | **Khi nào sử dụng**                                     |
+| -------------------- | -------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| **Eager Loading**    | - Tải tất cả dữ liệu cần thiết trong một truy vấn.                   | - Có thể tải quá nhiều dữ liệu không cần thiết. | - Khi bạn cần nhiều dữ liệu liên quan ngay lập tức.     |
+| **Lazy Loading**     | - Giảm tải ban đầu, tải dữ liệu khi cần thiết.                       | - Có thể gây ra vấn đề N+1 query.               | - Khi dữ liệu liên quan không cần thiết ngay lập tức.   |
+| **Explicit Loading** | - Tải dữ liệu khi cần, có thể kiểm soát tốt hơn so với Lazy Loading. | - Cần phải viết mã rõ ràng để tải dữ liệu.      | - Khi bạn muốn kiểm soát chính xác khi nào tải dữ liệu. |
+
+---
+
+### 6. Các lớp Entity trong Entity Framework
+
+Trong Entity Framework, các thực thể (**entities**) là các lớp đại diện cho các bảng trong cơ sở dữ liệu. Mỗi lớp Entity thường có các thuộc tính tương ứng với các cột trong bảng. Để minh họa các phương pháp **Eager Loading**, **Lazy Loading** và **Explicit Loading**, ta sẽ tạo ra một số lớp Entity cơ bản như sau:
+
+#### Class `Order`
+
+```csharp
+public class Order
+{
+    public int Id { get; set; }
+    public string OrderNumber { get; set; }
+    public int CustomerId { get; set; }
+
+    // Điều hướng tới thực thể Customer (Eager, Lazy, Explicit Load)
+    public virtual Customer Customer { get; set; }
+
+    // Điều hướng tới một danh sách OrderItems
+    public virtual ICollection<OrderItem> OrderItems { get; set; }
+}
+```
+
+#### Class `Customer`
+
+```csharp
+public class Customer
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    virtual public ICollection<Post> Posts { get; set; }
-}
 
-// Sử dụng lazy loading
-using (var context = new BloggingContext())
-{
-    var blog = context.Blogs.First();
-    var posts = blog.Posts; // Tại thời điểm này, dữ liệu của Posts được tải
+    // Điều hướng tới danh sách các đơn hàng của khách hàng
+    public virtual ICollection<Order> Orders { get; set; }
 }
 ```
 
-### Câu SQL tương ứng
-
-```sql
-SELECT *
-FROM Blogs
-WHERE Id = @blogId; -- Truy vấn đầu tiên
-
--- Sau khi truy cập vào blog.Posts
-SELECT *
-FROM Posts
-WHERE BlogId = @blogId; -- Truy vấn thứ hai
-```
-
-### Ưu điểm
-
-- Giảm tải ban đầu và chỉ tải dữ liệu khi thực sự cần thiết.
-- Hữu ích khi làm việc với các liên kết lớn mà không cần thiết phải tải ngay lập tức.
-
-### Nhược điểm
-
-- Có thể dẫn đến N+1 queries, làm giảm hiệu suất do phải thực hiện nhiều truy vấn đến cơ sở dữ liệu.
-- Khó khăn trong việc dự đoán số lượng truy vấn sẽ thực hiện.
-
----
-
-## 3. Explicit Loading
-
-### Định nghĩa
-
-Explicit loading là phương pháp tải dữ liệu mà trong đó bạn yêu cầu tải dữ liệu cụ thể một cách rõ ràng, thường sử dụng phương thức `Load` trong Entity Framework.
-
-### Ví dụ
-
-Bạn có thể sử dụng explicit loading khi bạn đã có một entity và muốn tải các liên kết của nó một cách rõ ràng.
+#### Class `OrderItem`
 
 ```csharp
-using (var context = new BloggingContext())
+public class OrderItem
 {
-    var blog = context.Blogs.First();
-    context.Entry(blog).Collection(b => b.Posts).Load(); // Tải rõ ràng Posts
+    public int Id { get; set; }
+    public int OrderId { get; set; }
+    public string ProductName { get; set; }
+    public int Quantity { get; set; }
+
+    // Điều hướng tới thực thể Order
+    public virtual Order Order { get; set; }
 }
 ```
 
-### Câu SQL tương ứng
+#### Class `MyDbContext`
 
-```sql
-SELECT *
-FROM Blogs
-WHERE Id = @blogId; -- Truy vấn đầu tiên
+```csharp
+public class MyDbContext : DbContext
+{
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
 
-SELECT *
-FROM Posts
-WHERE BlogId = @blogId; -- Truy vấn thứ hai
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Thiết lập các quan hệ giữa các thực thể (nếu cần thiết)
+        modelBuilder.Entity<Order>()
+            .HasOne(o => o.Customer)
+            .WithMany(c => c.Orders)
+            .HasForeignKey(o => o.CustomerId);
+
+        modelBuilder.Entity<OrderItem>()
+            .HasOne(oi => oi.Order)
+            .WithMany(o => o.OrderItems)
+            .HasForeignKey(oi => oi.OrderId);
+    }
+}
 ```
-
-### Ưu điểm
-
-- Cung cấp sự kiểm soát rõ ràng hơn về việc khi nào và cái gì được tải.
-- Giảm nguy cơ N+1 queries vì bạn có thể tải nhiều collection hoặc reference một cách có kế hoạch.
-
-### Nhược điểm
-
-- Cần phải viết mã rõ ràng hơn, có thể gây ra sự phức tạp trong mã nguồn.
-- Có thể vẫn phải thực hiện nhiều truy vấn đến cơ sở dữ liệu nếu không được xử lý đúng cách.
 
 ---
 
-## Kết Luận
+### 7. Kết luận
 
-Việc lựa chọn phương pháp data loading trong Entity Framework phụ thuộc vào yêu cầu của ứng dụng và cách bạn muốn quản lý dữ liệu. Mỗi phương pháp đều có những ưu điểm và nhược điểm riêng, do đó, cần cân nhắc kỹ lưỡng trước khi quyết định áp dụng cho dự án của mình. Việc sử dụng đúng phương pháp loading sẽ giúp tối ưu hóa hiệu suất và cấu trúc truy vấn trong ứng dụng.
+Các phương pháp Data Loading trong Entity Framework – **Eager Loading**, **Lazy Loading**, và **Explicit Loading** – đều có những ưu điểm và nhược điểm riêng. Việc lựa chọn phương pháp nào phụ thuộc vào yêu cầu ứng dụng và cách bạn muốn kiểm soát việc tải dữ liệu.
+
+- **Eager Loading** phù hợp khi bạn cần tải tất cả dữ liệu liên quan ngay từ đầu và tránh truy vấn nhiều lần.
+- **Lazy Loading** hữu ích khi bạn không chắc chắn khi nào sẽ cần dữ liệu liên quan và muốn trì hoãn việc tải dữ liệu.
+- **Explicit Loading** là sự kết hợp giữa Eager và Lazy, cho phép bạn tải dữ liệu khi cần thiết mà không làm ảnh hưởng đến hiệu suất quá nhiều.
