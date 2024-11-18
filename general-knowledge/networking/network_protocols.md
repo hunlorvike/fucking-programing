@@ -1,128 +1,144 @@
-### 1. **TCP (Transmission Control Protocol)**
+# **Giao thức Mạng Máy tính: Tổng quan và Ứng dụng**
 
-- **Định nghĩa:** TCP là giao thức **hướng kết nối**, đảm bảo việc truyền tải dữ liệu đáng tin cậy qua mạng. Nó chia nhỏ dữ liệu thành các gói (packets) và sử dụng cơ chế xác nhận (ACKs) để đảm bảo rằng tất cả các gói dữ liệu đều được nhận và không bị mất mát trong quá trình truyền.
-- **Cơ chế hoạt động:**
-  - **Kết nối**: Trước khi truyền tải dữ liệu, TCP sẽ thiết lập một kết nối ổn định giữa client và server thông qua ba bước bắt tay (three-way handshake).
-  - **Xác nhận**: Sau khi dữ liệu được gửi, mỗi gói sẽ được xác nhận. Nếu không nhận được phản hồi, gói dữ liệu sẽ được gửi lại.
-  - **Điều chỉnh lưu lượng**: TCP điều chỉnh tốc độ truyền tải để tránh tình trạng tắc nghẽn mạng.
-- **Ứng dụng:** Dùng trong các ứng dụng cần đảm bảo độ tin cậy cao, ví dụ: web (HTTP/HTTPS), email (SMTP), truyền tải tệp (FTP).
+## **Mục lục**
 
----
-
-### 2. **UDP (User Datagram Protocol)**
-
-- **Định nghĩa:** UDP là giao thức **không kết nối** và **không đảm bảo**. Dữ liệu được gửi mà không cần xác nhận từ phía người nhận, điều này giúp giảm độ trễ trong quá trình truyền tải.
-
-- **Cơ chế hoạt động:**
-  - **Không kết nối**: UDP gửi gói dữ liệu trực tiếp mà không cần thiết lập kết nối trước.
-  - **Không đảm bảo**: Không có cơ chế xác nhận hoặc gửi lại gói bị mất.
-- **Ứng dụng:** UDP được sử dụng trong các ứng dụng yêu cầu tốc độ truyền tải nhanh và có thể chấp nhận sự mất mát dữ liệu, ví dụ: video streaming, trò chơi trực tuyến, DNS, VoIP.
-
----
-
-### 3. **HTTP/HTTPS (HyperText Transfer Protocol / Secure)**
-
-- **Định nghĩa:**
-
-  - **HTTP** là giao thức chính để truyền tải dữ liệu web, đặc biệt là cho các trình duyệt web. HTTP hoạt động theo mô hình yêu cầu - phản hồi (request-response).
-  - **HTTPS** là phiên bản bảo mật của HTTP, sử dụng **SSL/TLS** để mã hóa dữ liệu truyền tải giữa client và server.
-
-- **Cơ chế hoạt động:**
-
-  - **HTTP**: Client gửi yêu cầu đến server (ví dụ: yêu cầu tải trang web), và server trả về dữ liệu HTML cho trình duyệt.
-  - **HTTPS**: Tương tự HTTP nhưng tất cả dữ liệu được mã hóa qua SSL/TLS để bảo vệ khỏi các cuộc tấn công man-in-the-middle.
-
-- **Ứng dụng:** Dùng trong duyệt web, mua sắm trực tuyến, dịch vụ ngân hàng, v.v.
+1. [Tổng quan Giao thức Mạng](#1-tổng-quan-giao-thức-mạng)
+2. [Mô hình OSI và TCP/IP](#2-mô-hình-osi-và-tcpip)
+3. [Giao thức quan trọng và ứng dụng](#3-giao-thức-quan-trọng-và-ứng-dụng)
+    - [3.1. Lớp ứng dụng](#31-lớp-ứng-dụng)
+    - [3.2. Lớp vận chuyển](#32-lớp-vận-chuyển)
+    - [3.3. Lớp mạng](#33-lớp-mạng)
+    - [3.4. Lớp liên kết dữ liệu và vật lý](#34-lớp-liên-kết-dữ-liệu-và-vật-lý)
+4. [Bảo mật trong mạng](#4-bảo-mật-trong-mạng)
+    - [4.1. SSL/TLS](#41-ssltls)
+    - [4.2. IPSec](#42-ipsec)
+    - [4.3. Firewall và NAT](#43-firewall-và-nat)
+5. [Các giao thức mới: HTTP/3 và QUIC](#5-các-giao-thức-mới-http3-và-quic)
+6. [Ứng dụng thực tiễn](#6-ứng-dụng-thực-tiễn)
+    - [Quản lý DNS và DHCP](#quản-lý-dns-và-dhcp)
+    - [Bảo mật trong doanh nghiệp](#bảo-mật-trong-doanh-nghiệp)
+    - [Tối ưu mạng gia đình](#tối-ưu-mạng-gia-đình)
 
 ---
 
-### 4. **FTP (File Transfer Protocol)**
+## **1. Tổng quan Giao thức Mạng**
 
-- **Định nghĩa:** FTP là giao thức dùng để **truyền tải tệp** giữa client và server. FTP cho phép người dùng tải lên và tải xuống các tệp từ các máy chủ từ xa.
+### **Định nghĩa và vai trò của giao thức mạng**
+Giao thức mạng là tập hợp các quy tắc, tiêu chuẩn và thủ tục được định nghĩa để quản lý cách các thiết bị truyền tải, nhận và xử lý dữ liệu trong mạng máy tính. Đây là cơ sở để đảm bảo các thiết bị có thể giao tiếp hiệu quả và chính xác.
 
-- **Cơ chế hoạt động:**
+Các chức năng chính của giao thức mạng bao gồm:
 
-  - **Kết nối hai kênh**: FTP sử dụng hai kênh: một kênh điều khiển để gửi lệnh và nhận phản hồi, và một kênh dữ liệu để truyền tệp.
-  - **Phiên làm việc**: FTP cho phép người dùng tạo phiên làm việc để truyền tải tệp mà không cần kết nối lại mỗi lần.
-
-- **Ứng dụng:** Sử dụng trong việc quản lý tệp từ xa, tải lên hoặc tải xuống tệp từ các server, thường được sử dụng trong các hệ thống lưu trữ dữ liệu hoặc web hosting.
-
----
-
-### 5. **SMTP/POP3/IMAP (Email Protocols)**
-
-- **SMTP (Simple Mail Transfer Protocol)**:
-
-  - Giao thức chính để **gửi email** từ client đến server. SMTP yêu cầu server nhận và chuyển tiếp email đến các server đích.
-  - **Cơ chế hoạt động**: SMTP sử dụng các lệnh như HELO, MAIL FROM, RCPT TO, DATA để gửi và chuyển tiếp email.
-
-- **POP3 (Post Office Protocol)**:
-
-  - Dùng để **lấy email** từ server về client. POP3 chỉ tải xuống email và không giữ lại trên server sau khi tải xong.
-  - **Cơ chế hoạt động**: Người dùng kết nối tới server, tải về các email và sau đó xóa khỏi server.
-
-- **IMAP (Internet Message Access Protocol)**:
-  - Tương tự POP3 nhưng có khả năng quản lý email trực tiếp trên server mà không cần tải xuống toàn bộ email.
-  - **Cơ chế hoạt động**: IMAP cho phép người dùng quản lý thư mục, đánh dấu đã đọc/chưa đọc, và truy cập vào email từ nhiều thiết bị.
+- **Đồng bộ hóa (Synchronization):** Đảm bảo các thiết bị bắt đầu và dừng giao tiếp một cách chính xác.
+- **Phát hiện lỗi (Error Detection):** Xác định và sửa lỗi dữ liệu trong quá trình truyền.
+- **Tối ưu hóa truyền tải:** Kiểm soát tốc độ truyền để giảm thiểu tắc nghẽn và tối ưu hiệu suất.
 
 ---
 
-### 6. **DNS (Domain Name System)**
+## **2. Mô hình OSI và TCP/IP**
 
-- **Định nghĩa:** DNS là giao thức cho phép **chuyển đổi tên miền** (ví dụ: `www.google.com`) thành **địa chỉ IP** (ví dụ: `172.217.11.46`), giúp các máy tính và thiết bị trên mạng có thể giao tiếp với nhau.
+### **2.1 Mô hình OSI**
+Mô hình OSI gồm 7 lớp, được thiết kế như một tham chiếu lý thuyết. Mỗi lớp đảm nhận một nhiệm vụ riêng biệt:
 
-- **Cơ chế hoạt động:**
-  - Người dùng nhập tên miền vào trình duyệt.
-  - Trình duyệt gửi yêu cầu DNS đến máy chủ DNS, máy chủ sẽ tìm kiếm địa chỉ IP tương ứng và trả về kết quả cho client.
-- **Ứng dụng:** Dùng trong việc phân giải tên miền web, giúp người dùng dễ dàng truy cập vào các website mà không cần nhớ địa chỉ IP.
+#### **Phân tích chi tiết 7 lớp:**
+1. **Lớp vật lý (Physical Layer):** 
+   - Truyền tín hiệu qua môi trường vật lý (cáp đồng, cáp quang, sóng không dây).
+   - Ví dụ: Chuẩn Ethernet 10Base-T, 100Base-TX.
+   
+2. **Lớp liên kết dữ liệu (Data Link Layer):** 
+   - Đảm bảo truyền dữ liệu tin cậy giữa các thiết bị liền kề.
+   - Gồm hai lớp con: LLC (Logical Link Control) và MAC (Media Access Control).
 
----
+3. **Lớp mạng (Network Layer):** 
+   - Định tuyến dữ liệu giữa các mạng khác nhau.
+   - Ví dụ: IPv4, IPv6, OSPF.
 
-### 7. **SSH (Secure Shell)**
+4. **Lớp vận chuyển (Transport Layer):** 
+   - Quản lý kết nối và truyền tải dữ liệu giữa các ứng dụng.
+   - Ví dụ: TCP (đảm bảo tin cậy), UDP (không đảm bảo tin cậy).
 
-- **Định nghĩa:** SSH là giao thức bảo mật cho phép người dùng **truy cập từ xa** vào máy chủ và thực thi các lệnh. SSH mã hóa kết nối để bảo vệ dữ liệu trong quá trình truyền tải.
+5. **Lớp phiên (Session Layer):** 
+   - Quản lý các phiên giao tiếp, thiết lập và hủy kết nối giữa các ứng dụng.
 
-- **Cơ chế hoạt động:**
+6. **Lớp trình bày (Presentation Layer):** 
+   - Mã hóa, giải mã và nén dữ liệu (ví dụ: chuyển đổi ASCII sang Unicode).
 
-  - SSH sử dụng các thuật toán mã hóa mạnh mẽ (như AES) để bảo vệ thông tin đăng nhập và dữ liệu trao đổi giữa client và server.
-  - Các kết nối SSH thường được bảo vệ bằng mật khẩu hoặc khóa công khai/riêng tư.
-
-- **Ứng dụng:** SSH chủ yếu được sử dụng trong quản trị hệ thống, cho phép quản trị viên truy cập và điều khiển các máy chủ từ xa.
-
----
-
-### 8. **WebSocket**
-
-- **Định nghĩa:** WebSocket là một giao thức **hai chiều**, cho phép **kết nối liên tục** giữa client và server để truyền tải dữ liệu theo thời gian thực.
-
-- **Cơ chế hoạt động:**
-
-  - WebSocket bắt đầu với một yêu cầu HTTP để thiết lập kết nối. Sau đó, giao thức chuyển sang WebSocket và duy trì một kết nối mở để truyền tải dữ liệu.
-  - Điều này cho phép server gửi thông tin mới đến client ngay lập tức mà không cần phải chờ yêu cầu từ client.
-
-- **Ứng dụng:** Thường được sử dụng trong các ứng dụng chat, trò chơi trực tuyến, và các ứng dụng cần dữ liệu theo thời gian thực.
+7. **Lớp ứng dụng (Application Layer):** 
+   - Giao diện giữa người dùng và hệ thống mạng.
+   - Ví dụ: HTTP, FTP, DNS.
 
 ---
 
-### 9. **gRPC (Google Remote Procedure Call)**
+### **2.2 Mô hình TCP/IP**
+Mô hình TCP/IP, đơn giản hơn OSI, gồm 4 lớp. Đây là mô hình thực tế sử dụng rộng rãi trong Internet.
 
-- **Định nghĩa:** gRPC là một giao thức truyền tải dữ liệu dựa trên **HTTP/2**, cho phép các ứng dụng giao tiếp hiệu quả hơn qua các **lời gọi hàm từ xa** (RPC).
+- **Lớp ứng dụng:** Tương ứng với ba lớp trên cùng của OSI. Ví dụ: HTTP, FTP, DNS.
+- **Lớp vận chuyển:** Đảm bảo giao tiếp giữa các ứng dụng. Ví dụ: TCP, UDP.
+- **Lớp Internet:** Định tuyến dữ liệu. Ví dụ: IPv4, IPv6.
+- **Lớp liên kết:** Kết nối thiết bị trong cùng mạng cục bộ.
 
-- **Cơ chế hoạt động:**
-
-  - gRPC sử dụng HTTP/2 để hỗ trợ truyền tải song song, mã hóa dữ liệu qua SSL/TLS, và cho phép các hệ thống tương tác qua các lời gọi hàm từ xa.
-  - Dữ liệu được gửi dưới dạng **Protocol Buffers (protobuf)**, một định dạng nhị phân hiệu quả và dễ sử dụng.
-
-- **Ứng dụng:** Được sử dụng trong các microservices, nơi có sự giao tiếp giữa các dịch vụ qua mạng.
+| **Lớp OSI** | **Lớp TCP/IP** | **Ví dụ giao thức** |
+|-------------|----------------|---------------------|
+| Ứng dụng    | Ứng dụng       | HTTP, DNS, FTP      |
+| Vận chuyển  | Vận chuyển     | TCP, UDP            |
+| Mạng        | Internet       | IP, ICMP            |
+| Liên kết    | Liên kết       | Ethernet, Wi-Fi     |
 
 ---
 
-### 10. **RDP (Remote Desktop Protocol)**
+## **3. Giao thức quan trọng và ứng dụng**
 
-- **Định nghĩa:** RDP là giao thức của Microsoft cho phép người dùng **truy cập desktop từ xa** qua một giao diện đồ họa.
+### **3.1. Lớp ứng dụng**
+- **HTTP/HTTPS:** Dùng để truy cập trang web. HTTPS sử dụng SSL/TLS để mã hóa.
+- **FTP/SFTP:** Truyền tải tệp tin. SFTP (Secure FTP) bảo mật hơn nhờ SSH.
+- **DNS:** Chuyển đổi tên miền thành địa chỉ IP.
+- **DHCP:** Tự động cấp phát IP.
+- **SNMP:** Quản lý và giám sát mạng.
 
-- **Cơ chế hoạt động:**
+### **3.2. Lớp vận chuyển**
+- **TCP:** Đảm bảo dữ liệu được truyền đúng thứ tự và không mất mát.
+- **UDP:** Nhanh hơn TCP nhưng không đảm bảo tin cậy, phù hợp cho streaming video.
 
-  - Người dùng sẽ kết nối đến máy tính hoặc máy chủ từ xa qua RDP, sử dụng giao diện đồ họa và các lệnh bàn phím chuột để điều khiển hệ thống từ xa.
+### **3.3. Lớp mạng**
+- **IPv4/IPv6:** Địa chỉ hóa thiết bị.
+- **OSPF, RIP, BGP:** Định tuyến gói tin qua các mạng khác nhau.
 
-- **Ứng dụng:** Dùng trong quản trị hệ thống, hỗ trợ người dùng truy cập máy tính của mình từ bất kỳ đâu.
+### **3.4. Lớp liên kết dữ liệu và vật lý**
+- **Ethernet:** Sử dụng CSMA/CD để tránh va chạm.
+- **Wi-Fi:** Chuẩn 802.11, hỗ trợ kết nối không dây.
+
+---
+
+## **4. Bảo mật trong mạng**
+
+### **4.1 SSL/TLS**
+- Mã hóa dữ liệu trên các giao thức như HTTPS, bảo vệ thông tin người dùng.
+
+### **4.2 IPSec**
+- Bảo mật ở lớp mạng, hỗ trợ VPN và các kết nối mã hóa.
+
+### **4.3 Firewall và NAT**
+- Firewall bảo vệ khỏi các truy cập trái phép.
+- NAT tiết kiệm địa chỉ IP công cộng và tăng cường bảo mật.
+
+---
+
+## **5. Các giao thức mới: HTTP/3 và QUIC**
+
+- **HTTP/3:** Phiên bản cải tiến của HTTP/2, sử dụng QUIC thay TCP.
+- **QUIC:** Nhanh hơn, mã hóa toàn diện, phù hợp cho streaming và ứng dụng đòi hỏi độ trễ thấp.
+
+---
+
+## **6. Ứng dụng thực tiễn**
+
+### **Quản lý DNS và DHCP**
+- Cấu hình DNS công cộng (Google DNS, Cloudflare) để tăng tốc Internet.
+- Dùng DHCP để quản lý IP trong mạng nội bộ.
+
+### **Bảo mật trong doanh nghiệp**
+- Sử dụng VPN để bảo mật truy cập từ xa.
+- Kết hợp Firewall và IPSec để bảo vệ dữ liệu nhạy cảm.
+
+### **Tối ưu mạng gia đình**
+- Sử dụng router Wi-Fi 6, đặt mật khẩu mạnh và sử dụng WPA3 để bảo mật.
+
