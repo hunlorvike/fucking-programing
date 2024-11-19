@@ -2,71 +2,123 @@
 
 ### 1. Giới thiệu về Web API
 
-#### 1.1. Web App vs Web API
+#### **1.1 API và RESTful API**
 
-- **Web Application (Web App):**
+##### **1.1.1 API (Application Programming Interface)**
 
-  - Trả về HTML, CSS, JavaScript cho client.
-  - Tương tác trực tiếp với người dùng thông qua giao diện.
-  - Thường sử dụng Views để render dữ liệu.
-  - Phù hợp cho ứng dụng web truyền thống.
-  - **Ví dụ:** Trang web bán hàng trực tuyến, blog, diễn đàn.
-  - **Hoạt động:** Người dùng truy cập website, server xử lý yêu cầu và trả về mã HTML, CSS, JavaScript cho trình duyệt. Trình duyệt render nội dung và hiển thị cho người dùng.
+- **Mục đích chính:** Là cầu nối giao tiếp giữa client và server, cho phép các ứng dụng khác nhau tương tác với nhau.
+- **Đặc điểm nổi bật:**
+  - **Giao thức:** Hỗ trợ nhiều giao thức khác nhau như HTTP, TCP/UDP, SOAP.
+  - **Định dạng phản hồi:** Không bị ràng buộc, có thể trả về JSON, XML, text, hoặc binary.
+  - **Phương thức:** Không bị ràng buộc bởi HTTP methods (có thể tự định nghĩa cách giao tiếp).
+  - **Tài nguyên:** Không tập trung vào việc quản lý tài nguyên thông qua URL.
 
-- **Web API:**
-  - Trả về dữ liệu dạng JSON/XML.
-  - Giao tiếp giữa các hệ thống/ứng dụng.
-  - Không có giao diện người dùng.
-  - Phù hợp cho ứng dụng di động, single-page applications (SPA), và tích hợp dữ liệu giữa các hệ thống.
-  - **Ví dụ:** API cho ứng dụng mobile, API cho website React/Angular, API để tích hợp dữ liệu từ hệ thống ERP.
-  - **Hoạt động:** Một ứng dụng (ví dụ: ứng dụng mobile) gửi yêu cầu HTTP tới API, server xử lý yêu cầu và trả về dữ liệu dạng JSON/XML. Ứng dụng sử dụng dữ liệu này để hiển thị thông tin hoặc thực hiện các tác vụ khác.
+##### **1.1.2 RESTful API**
 
-#### 1.2. RESTful API trong ASP.NET Core
+- **Mục đích chính:** Là một loại API tuân theo các nguyên tắc của REST (Representational State Transfer).
+- **Đặc điểm nổi bật:**
+  - **Giao thức:** Sử dụng HTTP làm giao thức chính.
+  - **Định dạng phản hồi:** Chủ yếu là JSON hoặc XML.
+  - **Phương thức:** Tuân thủ các phương thức chuẩn của HTTP như GET, POST, PUT, DELETE.
+  - **Tài nguyên:** Mỗi tài nguyên được định danh bằng một URI, quản lý và thao tác thông qua URL.
 
-ASP.NET Core là một framework mạnh mẽ cho việc phát triển RESTful API, dựa trên các nguyên tắc của REST để xây dựng các API hiệu quả và dễ mở rộng. Dưới đây là các khía cạnh chính khi xây dựng một RESTful API trong ASP.NET Core, dựa trên các nguyên tắc của REST:
+##### **1.1.3 So sánh API và RESTful API**
+
+| **Tiêu chí**              | **API**                                  | **RESTful API**                         |
+|---------------------------|------------------------------------------|-----------------------------------------|
+| **Giao thức**             | HTTP, TCP, UDP, SOAP, v.v.               | HTTP                                   |
+| **Định dạng phản hồi**     | Không ràng buộc định dạng                | Thường là JSON hoặc XML                |
+| **Phương thức**           | Không bị ràng buộc                       | GET, POST, PUT, DELETE                 |
+| **Tài nguyên**            | Không tập trung vào tài nguyên cụ thể    | Dựa trên URL để quản lý tài nguyên     |
+| **Tuân theo nguyên tắc REST** | Không bắt buộc                          | Phải tuân thủ                          |
+
+---
+
+#### **1.2 Web Application vs Web API**
+
+##### **1.2.1 Web Application (Web App)**
+
+- **Đặc điểm chính:**
+  - Trả về giao diện người dùng (HTML, CSS, JavaScript) cho client.
+  - Thường dành cho người dùng cuối, tương tác qua giao diện web.
+  - Phù hợp cho các ứng dụng truyền thống với giao diện người dùng đầy đủ.
+- **Ví dụ:** Website thương mại điện tử, blog, diễn đàn.
+
+- **Quy trình hoạt động:**
+  1. Người dùng truy cập website qua trình duyệt.
+  2. Server xử lý yêu cầu và trả về HTML, CSS, và JavaScript.
+  3. Trình duyệt render nội dung và hiển thị.
+
+##### **1.2.2 Web API**
+
+- **Đặc điểm chính:**
+  - Trả về dữ liệu (JSON, XML) thay vì giao diện người dùng.
+  - Dùng để giao tiếp giữa các hệ thống hoặc ứng dụng.
+  - Phù hợp cho ứng dụng di động, single-page applications (SPA), hoặc tích hợp dữ liệu giữa các hệ thống.
+- **Ví dụ:** API cho ứng dụng mobile, API cho ứng dụng React/Angular, API tích hợp ERP.
+
+- **Quy trình hoạt động:**
+  1. Một ứng dụng (ví dụ: ứng dụng di động) gửi yêu cầu HTTP tới API.
+  2. Server xử lý yêu cầu và trả về dữ liệu dạng JSON/XML.
+  3. Ứng dụng sử dụng dữ liệu để hiển thị hoặc thực hiện các tác vụ khác.
+
+| **Tiêu chí**              | **Web App**                             | **Web API**                            |
+|---------------------------|------------------------------------------|----------------------------------------|
+| **Phản hồi**              | HTML, CSS, JavaScript                   | JSON, XML                              |
+| **Mục tiêu**              | Tương tác trực tiếp với người dùng       | Giao tiếp giữa các hệ thống            |
+| **Giao diện người dùng**  | Có giao diện                            | Không có giao diện                     |
+| **Ứng dụng phù hợp**      | Web truyền thống                        | SPA, ứng dụng di động, tích hợp hệ thống |
+
+---
+
+#### **1.3 RESTful API trong ASP.NET Core**
+
+ASP.NET Core là framework mạnh mẽ để phát triển RESTful API, giúp xây dựng các API hiệu quả, dễ mở rộng, và tuân theo các nguyên tắc REST.
+
+##### **1.3.1 Nguyên tắc REST trong ASP.NET Core**
 
 - **Client-Server:**
+  - Kiến trúc RESTful trong ASP.NET Core phân tách rõ ràng giữa client và server.
+  - Ví dụ: API `GET /api/products` cho phép client nhận danh sách sản phẩm mà không cần biết cách xử lý dữ liệu bên trong server.
 
-  - Trong ASP.NET Core, kiến trúc RESTful giúp phân tách rõ ràng giữa client và server. Server xử lý yêu cầu từ client và trả về dữ liệu thông qua các JSON, XML, hoặc các định dạng phổ biến khác, đảm bảo rằng cả hai có thể phát triển và nâng cấp độc lập.
-  - Ví dụ: Khi triển khai API `GET /api/products`, client sẽ gửi yêu cầu lên server để nhận thông tin về các sản phẩm, nhưng không cần biết chi tiết cách thức dữ liệu được xử lý hoặc lưu trữ trong server.
+- **Stateless (Không trạng thái):**
+  - Mỗi yêu cầu từ client phải chứa toàn bộ thông tin cần thiết (bao gồm token xác thực).
+  - Thực hiện qua JWT hoặc các token tương tự.
+  - Ví dụ: Gọi API `POST /api/orders` để tạo đơn hàng, token xác thực sẽ được gửi qua header `Authorization: Bearer <token>`.
 
-- **Stateless:**
+- **Cacheable (Có khả năng cache):**
+  - ASP.NET Core hỗ trợ cấu hình cache response để giảm tải cho server.
+  - Ví dụ: Với API `GET /api/products`, server có thể sử dụng `Cache-Control: public, max-age=3600` để client cache trong 1 giờ.
 
-  - ASP.NET Core hỗ trợ thiết kế API không lưu trữ trạng thái, tức là mỗi yêu cầu từ client phải chứa tất cả thông tin cần thiết để server xử lý.
-  - Việc xác thực thường được thực hiện qua JWT (JSON Web Token) hoặc các token khác được gửi trong mỗi request để đảm bảo an ninh.
-  - Ví dụ: Mỗi khi client gọi API `POST /api/orders` để tạo đơn hàng, token xác thực được gửi kèm trong phần header của HTTP (chẳng hạn qua header `Authorization: Bearer <token>`).
+- **Uniform Interface:**
+  - Sử dụng các phương thức HTTP chuẩn: `GET`, `POST`, `PUT`, `DELETE`.
+  - Tài nguyên được quản lý thông qua URI.
+  - Ví dụ các endpoint:
+    - `GET /api/products`: Lấy danh sách sản phẩm.
+    - `GET /api/products/{id}`: Lấy thông tin chi tiết sản phẩm.
+    - `POST /api/products`: Thêm sản phẩm mới.
+    - `PUT /api/products/{id}`: Cập nhật sản phẩm.
+    - `DELETE /api/products/{id}`: Xóa sản phẩm.
 
-- **Cacheable**
+- **Layered System (Hệ thống phân lớp):**
+  - Middleware trong ASP.NET Core giúp quản lý logging, xác thực, xử lý lỗi.
+  - Các lớp như CDN, load balancer có thể được thêm vào để tối ưu hóa.
 
-  - API trong ASP.NET Core có thể được tối ưu bằng cách cấu hình cache response. Điều này cho phép server chỉ định liệu một response có thể được lưu trong cache hay không để giảm tải.
-  - Thông qua các HTTP headers như `Cache-Control`, API có thể điều khiển được việc lưu trữ của client-side hoặc proxy cache.
-  - Ví dụ: Với API `GET /api/products`, nếu dữ liệu sản phẩm ít thay đổi, server có thể cấu hình `Cache-Control: public, max-age=3600` để client cache response trong một giờ.
+##### **1.3.2 Ví dụ RESTful API trong ASP.NET Core**
 
-- **Uniform Interface**
+**Ví dụ chi tiết về một API lấy sản phẩm:**
 
-  - ASP.NET Core cho phép triển khai các phương thức HTTP chuẩn: `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, phù hợp với RESTful API. Điều này tạo ra một interface đồng nhất và dễ sử dụng cho client.
-  - Các URL được thiết kế theo mô hình tài nguyên (resource-oriented) sử dụng URI để định danh từng resource cụ thể:
-  - `GET /api/products`: Lấy danh sách sản phẩm.
-  - `GET /api/products/{id}`: Lấy thông tin chi tiết của sản phẩm có `id` cụ thể.
-  - `POST /api/products`: Thêm sản phẩm mới.
-  - `PUT /api/products/{id}`: Cập nhật sản phẩm.
-  - `DELETE /api/products/{id}`: Xóa sản phẩm.
-  - ASP.NET Core cung cấp các routing pattern giúp định nghĩa rõ ràng các URL endpoint cho từng tài nguyên.
+**Request:**
 
-- **Layered System**
-
-  - ASP.NET Core hỗ trợ các tầng khác nhau trong hệ thống, như middleware, dịch vụ bảo mật, hay caching layer, giúp xây dựng hệ thống linh hoạt và dễ mở rộng.
-  - Các lớp trung gian này được sử dụng để tối ưu hóa API mà không ảnh hưởng đến client, đồng thời có thể thêm các lớp load balancer hoặc CDN để tăng tốc độ và độ tin cậy.
-  - Middleware trong ASP.NET Core rất hữu ích trong việc xử lý các tác vụ như logging, xác thực, và xử lý lỗi, giúp API tuân thủ nguyên tắc "layered system" của REST.
-
-**Ví dụ Endpoint RESTful:**
-
-```csharp
-// Lấy chi tiết sản phẩm
+```http
 GET /api/products/1 HTTP/1.1
 Host: api.example.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+```
 
+**Response:**
+
+```json
 {
     "id": 1,
     "name": "Laptop Gaming",
@@ -85,19 +137,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
         "related": { "href": "/api/products/1/related" }
     }
 }
-
 ```
 
-- **HTTP Status Codes:**
-  - **200 OK:** Yêu cầu thành công.
-  - **201 Created:** Resource mới được tạo thành công.
-  - **204 No Content:** Yêu cầu thành công, nhưng không có dữ liệu trả về.
-  - **400 Bad Request:** Yêu cầu không hợp lệ.
-  - **401 Unauthorized:** Không được phép truy cập.
-  - **404 Not Found:** Resource không tồn tại.
-  - **409 Conflict:** Xung đột khi thao tác trên resource.
-  - **422 Unprocessable Entity:** Yêu cầu hợp lệ nhưng không thể xử lý.
-  - **500 Internal Server Error:** Lỗi server.
+##### **1.3.3 HTTP Status Codes trong RESTful API**
+
+| **Mã HTTP**    | **Ý nghĩa**                                     |
+|-----------------|-------------------------------------------------|
+| **200 OK**      | Yêu cầu thành công                              |
+| **201 Created** | Tạo resource mới thành công                     |
+| **204 No Content** | Yêu cầu thành công nhưng không có dữ liệu trả về |
+| **400 Bad Request** | Yêu cầu không hợp lệ                         |
+| **401 Unauthorized** | Không được phép truy cập                    |
+| **404 Not Found** | Resource không tồn tại                        |
+| **409 Conflict** | Xung đột khi thao tác trên resource            |
+| **422 Unprocessable Entity** | Yêu cầu hợp lệ nhưng không thể xử lý |
+| **500 Internal Server Error** | Lỗi server                        |
+
 
 ### 2. Controllers cho Web API
 
