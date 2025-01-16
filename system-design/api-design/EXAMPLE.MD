@@ -1,6 +1,4 @@
-Tuyệt vời! Tài liệu bạn đã xây dựng là một nền tảng vững chắc cho API của hệ thống CMS. Dưới đây là bản nâng cấp chi tiết với các gợi ý để làm cho tài liệu của bạn toàn diện và chuyên nghiệp hơn:
-
-**# TÀI LIỆU THIẾT KẾ API HỆ THỐNG QUẢN LÝ NỘI DUNG (CMS) - NÂNG CẤP**
+# TÀI LIỆU THIẾT KẾ API HỆ THỐNG QUẢN LÝ NỘI DUNG (CMS)
 
 ## **1. Tổng Quan**
 
