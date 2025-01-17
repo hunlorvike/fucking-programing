@@ -3,21 +3,21 @@
 ## Mục Lục
 
 1. [Tổng quan về Filtering với WHERE](#1-tổng-quan-về-filtering-với-where)
-   - [WHERE là gì?](#where-là-gì)
-   - [Lợi ích của Filtering](#lợi-ích-của-filtering)
-   - [WHERE hoạt động như thế nào?](#where-hoạt-động-như-thế-nào)
+    - [WHERE là gì?](#where-là-gì)
+    - [Lợi ích của Filtering](#lợi-ích-của-filtering)
+    - [WHERE hoạt động như thế nào?](#where-hoạt-động-như-thế-nào)
 2. [Cú pháp của WHERE](#2-cú-pháp-của-where)
-   - [Sử dụng điều kiện đơn giản](#sử-dụng-điều-kiện-đơn-giản)
-   - [Kết hợp nhiều điều kiện](#kết-hợp-nhiều-điều-kiện)
+    - [Sử dụng điều kiện đơn giản](#sử-dụng-điều-kiện-đơn-giản)
+    - [Kết hợp nhiều điều kiện](#kết-hợp-nhiều-điều-kiện)
 3. [Các toán tử trong WHERE](#3-các-toán-tử-trong-where)
-   - [Toán tử so sánh](#toán-tử-so-sánh)
-   - [Toán tử logic](#toán-tử-logic)
-   - [Toán tử LIKE](#toán-tử-like)
-   - [Toán tử BETWEEN](#toán-tử-between)
-   - [Toán tử IN](#toán-tử-in)
+    - [Toán tử so sánh](#toán-tử-so-sánh)
+    - [Toán tử logic](#toán-tử-logic)
+    - [Toán tử LIKE](#toán-tử-like)
+    - [Toán tử BETWEEN](#toán-tử-between)
+    - [Toán tử IN](#toán-tử-in)
 4. [Kết hợp WHERE với các mệnh đề khác](#4-kết-hợp-where-với-các-mệnh-đề-khác)
-   - [WHERE và SELECT](#where-và-select)
-   - [WHERE và JOIN](#where-và-join)
+    - [WHERE và SELECT](#where-và-select)
+    - [WHERE và JOIN](#where-và-join)
 5. [Các ví dụ thực tế với WHERE](#5-các-ví-dụ-thực-tế-với-where)
 6. [Lưu ý và thực hành tốt](#6-lưu-ý-và-thực-hành-tốt)
 
@@ -27,13 +27,17 @@
 
 #### WHERE là gì?
 
-Mệnh đề `WHERE` trong SQL Server được sử dụng để lọc các bản ghi dựa trên các điều kiện xác định. Nó giúp bạn chỉ lấy các bản ghi phù hợp với các tiêu chí mà bạn đã đặt ra. `WHERE` là một phần quan trọng trong SQL vì nó giúp xác định chính xác dữ liệu mà bạn muốn truy vấn.
+Mệnh đề `WHERE` trong SQL Server được sử dụng để lọc các bản ghi dựa trên các điều kiện xác định. Nó giúp bạn chỉ lấy
+các bản ghi phù hợp với các tiêu chí mà bạn đã đặt ra. `WHERE` là một phần quan trọng trong SQL vì nó giúp xác định
+chính xác dữ liệu mà bạn muốn truy vấn.
 
 #### Lợi ích của Filtering
 
 - **Lọc dữ liệu**: Giúp giảm khối lượng dữ liệu được truy xuất từ cơ sở dữ liệu, chỉ lấy những bản ghi cần thiết.
-- **Tăng hiệu suất**: Việc sử dụng `WHERE` để lọc dữ liệu ngay từ đầu giúp tiết kiệm tài nguyên hệ thống và thời gian xử lý.
-- **Tùy chỉnh kết quả truy vấn**: Bạn có thể dễ dàng điều chỉnh kết quả truy vấn theo các tiêu chí cụ thể (ví dụ: theo ngày, theo giá trị cụ thể, v.v.).
+- **Tăng hiệu suất**: Việc sử dụng `WHERE` để lọc dữ liệu ngay từ đầu giúp tiết kiệm tài nguyên hệ thống và thời gian xử
+  lý.
+- **Tùy chỉnh kết quả truy vấn**: Bạn có thể dễ dàng điều chỉnh kết quả truy vấn theo các tiêu chí cụ thể (ví dụ: theo
+  ngày, theo giá trị cụ thể, v.v.).
 
 #### WHERE hoạt động như thế nào?
 
@@ -134,7 +138,8 @@ WHERE NOT department = 'HR';
 
 #### Toán tử LIKE
 
-`LIKE` được sử dụng để tìm kiếm một mẫu chuỗi trong cột. Bạn có thể sử dụng ký tự đại diện `%` để đại diện cho bất kỳ chuỗi ký tự nào và `_` để đại diện cho một ký tự.
+`LIKE` được sử dụng để tìm kiếm một mẫu chuỗi trong cột. Bạn có thể sử dụng ký tự đại diện `%` để đại diện cho bất kỳ
+chuỗi ký tự nào và `_` để đại diện cho một ký tự.
 
 **Cú pháp**:
 
@@ -242,7 +247,7 @@ WHERE salary > 5000;
 **Kết quả giả định**:
 
 | first_name | last_name | salary |
-| ---------- | --------- | ------ |
+|------------|-----------|--------|
 | John       | Doe       | 6000   |
 | Sarah      | Smith     | 7000   |
 | Michael    | Johnson   | 8000   |
@@ -260,7 +265,7 @@ WHERE department IN ('HR', 'IT');
 **Kết quả giả định**:
 
 | first_name | last_name | department |
-| ---------- | --------- | ---------- |
+|------------|-----------|------------|
 | Alice      | Brown     | HR         |
 | Bob        | White     | IT         |
 | Charlie    | Green     | HR         |
@@ -278,7 +283,7 @@ WHERE salary BETWEEN 3000 AND 5000;
 **Kết quả giả định**:
 
 | first_name | last_name | salary |
-| ---------- | --------- | ------ |
+|------------|-----------|--------|
 | David      | Williams  | 4500   |
 | Emma       | Davis     | 3500   |
 
@@ -295,7 +300,7 @@ WHERE first_name LIKE 'J%';
 **Kết quả giả định**:
 
 | first_name | last_name |
-| ---------- | --------- |
+|------------|-----------|
 | John       | Doe       |
 | Jennifer   | Black     |
 | Jake       | White     |
@@ -313,7 +318,7 @@ WHERE age > 30 AND salary > 4000;
 **Kết quả giả định**:
 
 | first_name | last_name | age | salary |
-| ---------- | --------- | --- | ------ |
+|------------|-----------|-----|--------|
 | Michael    | Johnson   | 35  | 6000   |
 | Sarah      | Smith     | 32  | 7000   |
 
@@ -330,7 +335,7 @@ WHERE NOT department = 'HR';
 **Kết quả giả định**:
 
 | first_name | last_name | department |
-| ---------- | --------- | ---------- |
+|------------|-----------|------------|
 | Bob        | White     | IT         |
 | Charlie    | Green     | Sales      |
 
@@ -347,12 +352,13 @@ WHERE first_name LIKE 'J%' OR first_name LIKE 'M%';
 **Kết quả giả định**:
 
 | first_name | last_name |
-| ---------- | --------- |
+|------------|-----------|
 | John       | Doe       |
 | Michael    | Johnson   |
 | Mary       | Lee       |
 
-**Giải thích**: Câu lệnh này sẽ trả về các nhân viên có tên bắt đầu bằng chữ 'J' hoặc 'M', bao gồm John, Michael và Mary.
+**Giải thích**: Câu lệnh này sẽ trả về các nhân viên có tên bắt đầu bằng chữ 'J' hoặc 'M', bao gồm John, Michael và
+Mary.
 
 ---
 
@@ -360,11 +366,20 @@ WHERE first_name LIKE 'J%' OR first_name LIKE 'M%';
 
 Dưới đây là một số lưu ý và mẹo giúp bạn sử dụng mệnh đề `WHERE` hiệu quả hơn:
 
-- **Tránh sử dụng WHERE quá rộng**: Khi sử dụng `WHERE`, tránh các điều kiện quá chung chung. Nếu câu lệnh `WHERE` của bạn quá rộng, nó có thể trả về quá nhiều bản ghi và làm giảm hiệu suất của truy vấn. Hãy sử dụng các điều kiện chính xác và có mục đích rõ ràng để tránh việc xử lý dữ liệu không cần thiết.
-- **Lọc sớm**: Việc lọc dữ liệu càng sớm trong quá trình truy vấn sẽ giúp bạn tiết kiệm tài nguyên và thời gian. Ví dụ, nếu bạn chỉ cần một số bản ghi cụ thể, hãy sử dụng `WHERE` càng sớm càng tốt để giảm bớt khối lượng dữ liệu.
-- **Cẩn thận khi sử dụng LIKE**: Mặc dù `LIKE` là một toán tử hữu ích để tìm kiếm mẫu chuỗi, nhưng nếu bạn sử dụng ký tự đại diện `%` ở đầu chuỗi tìm kiếm (ví dụ: `LIKE '%abc'`), điều này có thể làm giảm hiệu suất của truy vấn vì SQL Server sẽ phải tìm kiếm toàn bộ bảng thay vì sử dụng chỉ số. Tốt hơn là bạn chỉ nên sử dụng `%` ở cuối chuỗi tìm kiếm.
-- **Tối ưu hóa kết quả với IN và BETWEEN**: Các toán tử `IN` và `BETWEEN` có thể giúp bạn viết câu lệnh rõ ràng và dễ hiểu hơn. Những toán tử này không chỉ tối ưu hóa quá trình lọc dữ liệu mà còn giúp viết câu lệnh dễ dàng và ngắn gọn hơn, thay vì phải sử dụng nhiều điều kiện `OR` hoặc toán tử so sánh.
-- **Sử dụng parantheses khi kết hợp nhiều điều kiện**: Khi bạn kết hợp nhiều điều kiện với `AND`, `OR`, hoặc các toán tử khác, đừng quên sử dụng dấu ngoặc để đảm bảo các điều kiện được đánh giá theo thứ tự mà bạn mong muốn. Việc này giúp tránh được các lỗi logic không mong muốn trong câu lệnh.
+- **Tránh sử dụng WHERE quá rộng**: Khi sử dụng `WHERE`, tránh các điều kiện quá chung chung. Nếu câu lệnh `WHERE` của
+  bạn quá rộng, nó có thể trả về quá nhiều bản ghi và làm giảm hiệu suất của truy vấn. Hãy sử dụng các điều kiện chính
+  xác và có mục đích rõ ràng để tránh việc xử lý dữ liệu không cần thiết.
+- **Lọc sớm**: Việc lọc dữ liệu càng sớm trong quá trình truy vấn sẽ giúp bạn tiết kiệm tài nguyên và thời gian. Ví dụ,
+  nếu bạn chỉ cần một số bản ghi cụ thể, hãy sử dụng `WHERE` càng sớm càng tốt để giảm bớt khối lượng dữ liệu.
+- **Cẩn thận khi sử dụng LIKE**: Mặc dù `LIKE` là một toán tử hữu ích để tìm kiếm mẫu chuỗi, nhưng nếu bạn sử dụng ký tự
+  đại diện `%` ở đầu chuỗi tìm kiếm (ví dụ: `LIKE '%abc'`), điều này có thể làm giảm hiệu suất của truy vấn vì SQL
+  Server sẽ phải tìm kiếm toàn bộ bảng thay vì sử dụng chỉ số. Tốt hơn là bạn chỉ nên sử dụng `%` ở cuối chuỗi tìm kiếm.
+- **Tối ưu hóa kết quả với IN và BETWEEN**: Các toán tử `IN` và `BETWEEN` có thể giúp bạn viết câu lệnh rõ ràng và dễ
+  hiểu hơn. Những toán tử này không chỉ tối ưu hóa quá trình lọc dữ liệu mà còn giúp viết câu lệnh dễ dàng và ngắn gọn
+  hơn, thay vì phải sử dụng nhiều điều kiện `OR` hoặc toán tử so sánh.
+- **Sử dụng parantheses khi kết hợp nhiều điều kiện**: Khi bạn kết hợp nhiều điều kiện với `AND`, `OR`, hoặc các toán tử
+  khác, đừng quên sử dụng dấu ngoặc để đảm bảo các điều kiện được đánh giá theo thứ tự mà bạn mong muốn. Việc này giúp
+  tránh được các lỗi logic không mong muốn trong câu lệnh.
 
 Ví dụ:
 
@@ -377,7 +392,7 @@ WHERE (department = 'HR' OR department = 'IT') AND salary > 5000;
 **Kết quả giả định**:
 
 | first_name | last_name | department | salary |
-| ---------- | --------- | ---------- | ------ |
+|------------|-----------|------------|--------|
 | John       | Doe       | HR         | 6000   |
 | Sarah      | Smith     | IT         | 7000   |
 

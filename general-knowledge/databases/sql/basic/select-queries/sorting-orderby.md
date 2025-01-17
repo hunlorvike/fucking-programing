@@ -3,17 +3,17 @@
 ## Mục Lục
 
 1. [Tổng quan về Sorting với ORDER BY](#1-tổng-quan-về-sorting-với-order-by)
-   - [ORDER BY là gì?](#order-by-là-gì)
-   - [Lợi ích của ORDER BY](#lợi-ích-của-order-by)
-   - [ORDER BY hoạt động như thế nào?](#order-by-hoạt-động-như-thế-nào)
+    - [ORDER BY là gì?](#order-by-là-gì)
+    - [Lợi ích của ORDER BY](#lợi-ích-của-order-by)
+    - [ORDER BY hoạt động như thế nào?](#order-by-hoạt-động-như-thế-nào)
 2. [Cú pháp của ORDER BY](#2-cú-pháp-của-order-by)
-   - [Sắp xếp theo một cột](#sắp-xếp-theo-một-cột)
-   - [Sắp xếp theo nhiều cột](#sắp-xếp-theo-nhiều-cột)
-   - [Sắp xếp theo thứ tự tăng dần và giảm dần](#sắp-xếp-theo-thứ-tự-tăng-dần-và-giảm-dần)
+    - [Sắp xếp theo một cột](#sắp-xếp-theo-một-cột)
+    - [Sắp xếp theo nhiều cột](#sắp-xếp-theo-nhiều-cột)
+    - [Sắp xếp theo thứ tự tăng dần và giảm dần](#sắp-xếp-theo-thứ-tự-tăng-dần-và-giảm-dần)
 3. [Sử dụng ORDER BY với các kiểu dữ liệu](#3-sử-dụng-order-by-với-các-kiểu-dữ-liệu)
-   - [Sắp xếp với kiểu số](#sắp-xếp-với-kiểu-số)
-   - [Sắp xếp với kiểu chuỗi](#sắp-xếp-với-kiểu-chuỗi)
-   - [Sắp xếp với kiểu ngày giờ](#sắp-xếp-với-kiểu-ngày-giờ)
+    - [Sắp xếp với kiểu số](#sắp-xếp-với-kiểu-số)
+    - [Sắp xếp với kiểu chuỗi](#sắp-xếp-với-kiểu-chuỗi)
+    - [Sắp xếp với kiểu ngày giờ](#sắp-xếp-với-kiểu-ngày-giờ)
 4. [Ví dụ thực tế với ORDER BY](#4-ví-dụ-thực-tế-với-order-by)
 5. [Lưu ý và thực hành tốt](#5-lưu-ý-và-thực-hành-tốt)
 
@@ -23,19 +23,25 @@
 
 #### ORDER BY là gì?
 
-Mệnh đề `ORDER BY` trong SQL Server được sử dụng để sắp xếp các bản ghi trong kết quả truy vấn theo một hoặc nhiều cột. Mệnh đề này có thể được sử dụng để sắp xếp dữ liệu theo thứ tự tăng dần (ASC) hoặc giảm dần (DESC). Đây là công cụ quan trọng để tổ chức và trình bày dữ liệu dễ dàng hơn trong kết quả truy vấn.
+Mệnh đề `ORDER BY` trong SQL Server được sử dụng để sắp xếp các bản ghi trong kết quả truy vấn theo một hoặc nhiều cột.
+Mệnh đề này có thể được sử dụng để sắp xếp dữ liệu theo thứ tự tăng dần (ASC) hoặc giảm dần (DESC). Đây là công cụ quan
+trọng để tổ chức và trình bày dữ liệu dễ dàng hơn trong kết quả truy vấn.
 
 #### Lợi ích của ORDER BY
 
-- **Sắp xếp kết quả**: `ORDER BY` giúp sắp xếp dữ liệu theo một hoặc nhiều cột, giúp bạn có cái nhìn rõ ràng hơn về dữ liệu.
-- **Dễ dàng phân tích**: Sắp xếp dữ liệu giúp việc phân tích và ra quyết định trở nên dễ dàng hơn, ví dụ như tìm ra giá trị lớn nhất, nhỏ nhất, hoặc các nhóm dữ liệu theo thứ tự.
-- **Hiển thị báo cáo**: Khi tạo báo cáo hoặc xuất dữ liệu, việc sắp xếp là rất quan trọng để kết quả có thể đọc và hiểu được một cách hợp lý.
+- **Sắp xếp kết quả**: `ORDER BY` giúp sắp xếp dữ liệu theo một hoặc nhiều cột, giúp bạn có cái nhìn rõ ràng hơn về dữ
+  liệu.
+- **Dễ dàng phân tích**: Sắp xếp dữ liệu giúp việc phân tích và ra quyết định trở nên dễ dàng hơn, ví dụ như tìm ra giá
+  trị lớn nhất, nhỏ nhất, hoặc các nhóm dữ liệu theo thứ tự.
+- **Hiển thị báo cáo**: Khi tạo báo cáo hoặc xuất dữ liệu, việc sắp xếp là rất quan trọng để kết quả có thể đọc và hiểu
+  được một cách hợp lý.
 
 #### ORDER BY hoạt động như thế nào?
 
 1. **Xác định cột sắp xếp**: Trước tiên, bạn phải chỉ định một hoặc nhiều cột mà bạn muốn sắp xếp.
 2. **Chọn thứ tự sắp xếp**: Sau khi xác định các cột sắp xếp, bạn có thể chọn thứ tự sắp xếp (tăng dần hoặc giảm dần).
-3. **Trả về kết quả**: SQL Server sẽ trả về kết quả của truy vấn theo thứ tự mà bạn đã chỉ định trong mệnh đề `ORDER BY`.
+3. **Trả về kết quả**: SQL Server sẽ trả về kết quả của truy vấn theo thứ tự mà bạn đã chỉ định trong mệnh đề
+   `ORDER BY`.
 
 ---
 
@@ -63,7 +69,8 @@ Câu lệnh trên sẽ trả về danh sách nhân viên được sắp xếp th
 
 #### Sắp xếp theo nhiều cột
 
-Bạn cũng có thể sắp xếp dữ liệu theo nhiều cột bằng cách chỉ định nhiều cột trong mệnh đề `ORDER BY`. Kết quả sẽ được sắp xếp theo thứ tự ưu tiên từ trái qua phải.
+Bạn cũng có thể sắp xếp dữ liệu theo nhiều cột bằng cách chỉ định nhiều cột trong mệnh đề `ORDER BY`. Kết quả sẽ được
+sắp xếp theo thứ tự ưu tiên từ trái qua phải.
 
 Cú pháp:
 
@@ -81,11 +88,13 @@ FROM employees
 ORDER BY department ASC, salary DESC;
 ```
 
-Câu lệnh trên sẽ trả về danh sách nhân viên, trước tiên sắp xếp theo phòng ban (tăng dần), sau đó sắp xếp theo lương (giảm dần) trong mỗi phòng ban.
+Câu lệnh trên sẽ trả về danh sách nhân viên, trước tiên sắp xếp theo phòng ban (tăng dần), sau đó sắp xếp theo lương (
+giảm dần) trong mỗi phòng ban.
 
 #### Sắp xếp theo thứ tự tăng dần và giảm dần
 
-- **Tăng dần (ASC)**: Đây là thứ tự mặc định của `ORDER BY`, tức là các giá trị sẽ được sắp xếp từ nhỏ nhất đến lớn nhất.
+- **Tăng dần (ASC)**: Đây là thứ tự mặc định của `ORDER BY`, tức là các giá trị sẽ được sắp xếp từ nhỏ nhất đến lớn
+  nhất.
 - **Giảm dần (DESC)**: Sắp xếp theo thứ tự giảm dần, tức là các giá trị sẽ được sắp xếp từ lớn nhất đến nhỏ nhất.
 
 **Ví dụ**:
@@ -96,7 +105,8 @@ FROM employees
 ORDER BY hire_date DESC;
 ```
 
-Câu lệnh trên sẽ trả về danh sách nhân viên được sắp xếp theo ngày nhận việc, từ ngày gần nhất đến ngày xa nhất (giảm dần).
+Câu lệnh trên sẽ trả về danh sách nhân viên được sắp xếp theo ngày nhận việc, từ ngày gần nhất đến ngày xa nhất (giảm
+dần).
 
 ---
 
@@ -159,7 +169,7 @@ ORDER BY salary DESC;
 **Kết quả:**
 
 | employee_id | first_name | salary |
-| ----------- | ---------- | ------ |
+|-------------|------------|--------|
 | 1           | John       | 9000   |
 | 3           | Sarah      | 8500   |
 | 5           | Mike       | 8000   |
@@ -179,7 +189,7 @@ ORDER BY department ASC, salary DESC;
 **Kết quả:**
 
 | employee_id | first_name | department | salary |
-| ----------- | ---------- | ---------- | ------ |
+|-------------|------------|------------|--------|
 | 2           | Alice      | HR         | 7500   |
 | 1           | John       | HR         | 9000   |
 | 4           | Bob        | IT         | 7000   |
@@ -199,7 +209,7 @@ ORDER BY price ASC;
 **Kết quả:**
 
 | product_name | price |
-| ------------ | ----- |
+|--------------|-------|
 | Product A    | 100   |
 | Product B    | 200   |
 | Product C    | 300   |
@@ -219,7 +229,7 @@ ORDER BY order_date DESC;
 **Kết quả:**
 
 | order_id | order_date |
-| -------- | ---------- |
+|----------|------------|
 | 1005     | 2024-11-10 |
 | 1004     | 2024-11-05 |
 | 1003     | 2024-10-25 |
@@ -232,7 +242,8 @@ Dữ liệu sẽ được sắp xếp theo ngày đặt hàng từ gần nhất 
 
 ### 5. Lưu ý và thực hành tốt
 
-- **Thứ tự ưu tiên**: Khi sử dụng nhiều cột trong `ORDER BY`, các cột sẽ được sắp xếp theo thứ tự từ trái qua phải. Đảm bảo rằng bạn chỉ định đúng thứ tự ưu tiên của các cột.
+- **Thứ tự ưu tiên**: Khi sử dụng nhiều cột trong `ORDER BY`, các cột sẽ được sắp xếp theo thứ tự từ trái qua phải. Đảm
+  bảo rằng bạn chỉ định đúng thứ tự ưu tiên của các cột.
 
   **Ví dụ**:
 
@@ -242,9 +253,11 @@ Dữ liệu sẽ được sắp xếp theo ngày đặt hàng từ gần nhất 
   ORDER BY last_name ASC, first_name ASC, hire_date DESC;
   ```
 
-  Kết quả sẽ sắp xếp theo **last_name** (tăng dần), sau đó theo **first_name** (tăng dần), và nếu có nhân viên trùng tên, họ sẽ được sắp xếp theo **hire_date** (giảm dần).
+  Kết quả sẽ sắp xếp theo **last_name** (tăng dần), sau đó theo **first_name** (tăng dần), và nếu có nhân viên trùng
+  tên, họ sẽ được sắp xếp theo **hire_date** (giảm dần).
 
-- **Sắp xếp theo mặc định**: Nếu bạn không chỉ định `ASC` hoặc `DESC`, SQL Server sẽ sắp xếp theo mặc định là **tăng dần (ASC)**.
+- **Sắp xếp theo mặc định**: Nếu bạn không chỉ định `ASC` hoặc `DESC`, SQL Server sẽ sắp xếp theo mặc định là **tăng
+  dần (ASC)**.
 
   ```sql
   SELECT first_name, salary
@@ -254,9 +267,12 @@ Dữ liệu sẽ được sắp xếp theo ngày đặt hàng từ gần nhất 
 
   Câu lệnh trên sẽ sắp xếp theo lương từ thấp đến cao.
 
-- **Hiệu suất**: Việc sắp xếp dữ liệu có thể ảnh hưởng đến hiệu suất của truy vấn, đặc biệt là khi làm việc với các bảng có nhiều dữ liệu. Hãy đảm bảo rằng các cột bạn sắp xếp đã được chỉ mục (index) nếu cần thiết. Điều này giúp tối ưu hóa tốc độ truy vấn.
+- **Hiệu suất**: Việc sắp xếp dữ liệu có thể ảnh hưởng đến hiệu suất của truy vấn, đặc biệt là khi làm việc với các bảng
+  có nhiều dữ liệu. Hãy đảm bảo rằng các cột bạn sắp xếp đã được chỉ mục (index) nếu cần thiết. Điều này giúp tối ưu hóa
+  tốc độ truy vấn.
 
-- **NULLs và sắp xếp**: Trong SQL Server, `NULL` được coi là giá trị nhỏ nhất khi sắp xếp theo thứ tự tăng dần và là giá trị lớn nhất khi sắp xếp theo thứ tự giảm dần. Điều này có thể ảnh hưởng đến kết quả của truy vấn.
+- **NULLs và sắp xếp**: Trong SQL Server, `NULL` được coi là giá trị nhỏ nhất khi sắp xếp theo thứ tự tăng dần và là giá
+  trị lớn nhất khi sắp xếp theo thứ tự giảm dần. Điều này có thể ảnh hưởng đến kết quả của truy vấn.
 
   **Ví dụ**:
 
@@ -266,7 +282,8 @@ Dữ liệu sẽ được sắp xếp theo ngày đặt hàng từ gần nhất 
   ORDER BY salary ASC;
   ```
 
-  Trong trường hợp này, các bản ghi có giá trị `NULL` sẽ xuất hiện đầu tiên. Nếu bạn muốn thay đổi hành vi này, bạn có thể sử dụng `IS NULL` để xử lý các giá trị `NULL`.
+  Trong trường hợp này, các bản ghi có giá trị `NULL` sẽ xuất hiện đầu tiên. Nếu bạn muốn thay đổi hành vi này, bạn có
+  thể sử dụng `IS NULL` để xử lý các giá trị `NULL`.
 
   **Ví dụ xử lý NULL**:
 

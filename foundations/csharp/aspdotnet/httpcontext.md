@@ -1,6 +1,8 @@
 # Tìm Hiểu về `HttpContext` trong ASP.NET Core
 
-`HttpContext` là một lớp trong ASP.NET Core cung cấp quyền truy cập vào thông tin về yêu cầu HTTP, phản hồi, người dùng, cookies, và các thông tin về kết nối. Dưới đây là một số phương thức và thuộc tính quan trọng trong `HttpContext`, cùng với mô tả và ví dụ sử dụng.
+`HttpContext` là một lớp trong ASP.NET Core cung cấp quyền truy cập vào thông tin về yêu cầu HTTP, phản hồi, người dùng,
+cookies, và các thông tin về kết nối. Dưới đây là một số phương thức và thuộc tính quan trọng trong `HttpContext`, cùng
+với mô tả và ví dụ sử dụng.
 
 ## Mục Lục
 
@@ -23,12 +25,12 @@
 
 - **Phương thức và Thuộc tính quan trọng**:
 
-  - `Request.Path`: Đường dẫn của yêu cầu.
-  - `Request.Query`: Tham số query trong URL.
-  - `Request.Method`: Phương thức HTTP (GET, POST, PUT, DELETE).
-  - `Request.Cookies`: Đọc cookie từ yêu cầu.
-  - `Request.Headers`: Truy cập header của yêu cầu.
-  - `Request.Body`: Nội dung của body yêu cầu, thường dùng để đọc dữ liệu trong POST, PUT.
+    - `Request.Path`: Đường dẫn của yêu cầu.
+    - `Request.Query`: Tham số query trong URL.
+    - `Request.Method`: Phương thức HTTP (GET, POST, PUT, DELETE).
+    - `Request.Cookies`: Đọc cookie từ yêu cầu.
+    - `Request.Headers`: Truy cập header của yêu cầu.
+    - `Request.Body`: Nội dung của body yêu cầu, thường dùng để đọc dữ liệu trong POST, PUT.
 
 - **Ví dụ**:
 
@@ -51,10 +53,10 @@
 
 - **Phương thức và Thuộc tính quan trọng**:
 
-  - `Response.StatusCode`: Thiết lập mã trạng thái HTTP của phản hồi.
-  - `Response.Headers`: Thiết lập các header cho phản hồi.
-  - `Response.Cookies`: Thiết lập cookie cho phản hồi.
-  - `Response.Body`: Ghi nội dung phản hồi trực tiếp vào body.
+    - `Response.StatusCode`: Thiết lập mã trạng thái HTTP của phản hồi.
+    - `Response.Headers`: Thiết lập các header cho phản hồi.
+    - `Response.Cookies`: Thiết lập cookie cho phản hồi.
+    - `Response.Body`: Ghi nội dung phản hồi trực tiếp vào body.
 
 - **Ví dụ**:
 
@@ -80,9 +82,9 @@
 
 - **Phương thức và Thuộc tính quan trọng**:
 
-  - `User.Identity.IsAuthenticated`: Kiểm tra xem người dùng đã xác thực hay chưa.
-  - `User.Identity.Name`: Lấy tên người dùng đã xác thực.
-  - `User.Claims`: Truy cập các claims liên quan đến người dùng.
+    - `User.Identity.IsAuthenticated`: Kiểm tra xem người dùng đã xác thực hay chưa.
+    - `User.Identity.Name`: Lấy tên người dùng đã xác thực.
+    - `User.Claims`: Truy cập các claims liên quan đến người dùng.
 
 - **Ví dụ**:
 
@@ -106,10 +108,10 @@
 
 - **Phương thức và Thuộc tính quan trọng**:
 
-  - `Session.SetString(string key, string value)`: Lưu trữ một chuỗi vào session.
-  - `Session.GetString(string key)`: Lấy một chuỗi từ session.
-  - `Session.SetInt32(string key, int value)`: Lưu trữ một số nguyên vào session.
-  - `Session.GetInt32(string key)`: Lấy một số nguyên từ session.
+    - `Session.SetString(string key, string value)`: Lưu trữ một chuỗi vào session.
+    - `Session.GetString(string key)`: Lấy một chuỗi từ session.
+    - `Session.SetInt32(string key, int value)`: Lưu trữ một số nguyên vào session.
+    - `Session.GetInt32(string key)`: Lấy một số nguyên từ session.
 
 - **Ví dụ**:
 
@@ -135,9 +137,9 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
 
 - **Phương thức và Thuộc tính quan trọng**:
 
-  - `Connection.RemoteIpAddress`: Địa chỉ IP của client gửi yêu cầu.
-  - `Connection.LocalIpAddress`: Địa chỉ IP của server nhận yêu cầu.
-  - `Connection.ClientCertificate`: Chứng chỉ của client (nếu có).
+    - `Connection.RemoteIpAddress`: Địa chỉ IP của client gửi yêu cầu.
+    - `Connection.LocalIpAddress`: Địa chỉ IP của server nhận yêu cầu.
+    - `Connection.ClientCertificate`: Chứng chỉ của client (nếu có).
 
 - **Ví dụ**:
 
@@ -153,7 +155,8 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
 
 ### 6. `HttpContext.Items`
 
-`HttpContext.Items` là một từ điển có thể được sử dụng để lưu trữ dữ liệu tạm thời trong suốt vòng đời của yêu cầu hiện tại. Dữ liệu trong `Items` chỉ có hiệu lực trong yêu cầu hiện tại và sẽ bị xóa sau khi phản hồi được gửi đi.
+`HttpContext.Items` là một từ điển có thể được sử dụng để lưu trữ dữ liệu tạm thời trong suốt vòng đời của yêu cầu hiện
+tại. Dữ liệu trong `Items` chỉ có hiệu lực trong yêu cầu hiện tại và sẽ bị xóa sau khi phản hồi được gửi đi.
 
 - **Ví dụ**:
 
@@ -175,7 +178,9 @@ Cung cấp thông tin về kết nối của yêu cầu hiện tại.
 
 ### 7. `HttpContext.Features`
 
-`HttpContext.Features` cho phép truy cập đến các tính năng (features) của HTTP được thêm vào quá trình xử lý yêu cầu. Các tính năng này có thể bao gồm `IHttpConnectionFeature`, `IHttpRequestFeature`, `IHttpResponseFeature`,… tùy thuộc vào các dịch vụ HTTP đã đăng ký.
+`HttpContext.Features` cho phép truy cập đến các tính năng (features) của HTTP được thêm vào quá trình xử lý yêu cầu.
+Các tính năng này có thể bao gồm `IHttpConnectionFeature`, `IHttpRequestFeature`, `IHttpResponseFeature`,… tùy thuộc vào
+các dịch vụ HTTP đã đăng ký.
 
 - **Ví dụ**:
 
@@ -207,7 +212,8 @@ Một ID duy nhất được tạo ra cho mỗi yêu cầu, giúp theo dõi và 
 
 ### 9. `HttpContext.Abort()`
 
-`Abort` dừng yêu cầu HTTP hiện tại và đóng kết nối. Phương thức này thường được sử dụng để ngắt kết nối khi có lỗi nghiêm trọng hoặc yêu cầu không hợp lệ.
+`Abort` dừng yêu cầu HTTP hiện tại và đóng kết nối. Phương thức này thường được sử dụng để ngắt kết nối khi có lỗi
+nghiêm trọng hoặc yêu cầu không hợp lệ.
 
 - **Ví dụ**:
 
@@ -223,4 +229,6 @@ Một ID duy nhất được tạo ra cho mỗi yêu cầu, giúp theo dõi và 
 
 ### 10. Tổng Kết
 
-`HttpContext` là một công cụ mạnh mẽ trong ASP.NET Core, cho phép quản lý thông tin và xử lý các yêu cầu và phản hồi HTTP. Thông qua `HttpContext`, ta có thể truy cập các dữ liệu quan trọng về phiên làm việc của người dùng, kết nối HTTP, lưu trữ session và cookies, cũng như các tính năng HTTP cụ thể của yêu cầu.
+`HttpContext` là một công cụ mạnh mẽ trong ASP.NET Core, cho phép quản lý thông tin và xử lý các yêu cầu và phản hồi
+HTTP. Thông qua `HttpContext`, ta có thể truy cập các dữ liệu quan trọng về phiên làm việc của người dùng, kết nối HTTP,
+lưu trữ session và cookies, cũng như các tính năng HTTP cụ thể của yêu cầu.

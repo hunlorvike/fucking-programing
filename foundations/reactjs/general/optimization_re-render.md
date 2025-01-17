@@ -1,10 +1,13 @@
 # Tối Ưu Hóa Hiệu Suất Trong React: Kỹ Thuật Memoization và Quá Trình Render
 
-React cung cấp nhiều công cụ để tối ưu hóa hiệu suất ứng dụng, đặc biệt là giảm thiểu các lần render không cần thiết và quản lý bộ nhớ. Những kỹ thuật như **memoization**, **React.memo**, **useMemo**, và **useCallback** giúp tối ưu hóa quá trình render và đảm bảo rằng các component chỉ render lại khi thực sự cần thiết.
+React cung cấp nhiều công cụ để tối ưu hóa hiệu suất ứng dụng, đặc biệt là giảm thiểu các lần render không cần thiết và
+quản lý bộ nhớ. Những kỹ thuật như **memoization**, **React.memo**, **useMemo**, và **useCallback** giúp tối ưu hóa quá
+trình render và đảm bảo rằng các component chỉ render lại khi thực sự cần thiết.
 
 ## 1. **React.memo**
 
-`React.memo` là một HOC (higher-order component) giúp ngăn chặn các component con không render lại nếu props không thay đổi. Điều này đặc biệt hữu ích với các component ít thay đổi dữ liệu, giúp giảm thiểu lượng render không cần thiết.
+`React.memo` là một HOC (higher-order component) giúp ngăn chặn các component con không render lại nếu props không thay
+đổi. Điều này đặc biệt hữu ích với các component ít thay đổi dữ liệu, giúp giảm thiểu lượng render không cần thiết.
 
 ### Cách sử dụng:
 
@@ -28,7 +31,8 @@ Trong ví dụ này, `ChildComponent` sẽ không render lại nếu props `data
 
 ## 2. **useMemo**
 
-`useMemo` là một Hook giúp ghi nhớ (memoize) giá trị của một biến. React chỉ tính toán lại giá trị khi các dependencies thay đổi, giúp tối ưu hóa các phép tính phức tạp hoặc các dữ liệu có chi phí tính toán cao.
+`useMemo` là một Hook giúp ghi nhớ (memoize) giá trị của một biến. React chỉ tính toán lại giá trị khi các dependencies
+thay đổi, giúp tối ưu hóa các phép tính phức tạp hoặc các dữ liệu có chi phí tính toán cao.
 
 ### Cách sử dụng:
 
@@ -54,7 +58,9 @@ export default ExpensiveComponent;
 
 ## 3. **useCallback**
 
-`useCallback` là một Hook giúp ghi nhớ hàm (memoize functions), đảm bảo rằng React chỉ tạo một hàm mới khi các dependencies thay đổi. Điều này đặc biệt hữu ích khi các hàm được truyền xuống component con và có thể gây ra render lại không cần thiết.
+`useCallback` là một Hook giúp ghi nhớ hàm (memoize functions), đảm bảo rằng React chỉ tạo một hàm mới khi các
+dependencies thay đổi. Điều này đặc biệt hữu ích khi các hàm được truyền xuống component con và có thể gây ra render lại
+không cần thiết.
 
 ### Cách sử dụng:
 
@@ -84,7 +90,8 @@ const ChildComponent = React.memo(({ increment }) => {
 export default ParentComponent;
 ```
 
-Trong ví dụ này, `ChildComponent` sẽ không render lại khi `ParentComponent` render, vì `increment` đã được ghi nhớ (memoize) với `useCallback`.
+Trong ví dụ này, `ChildComponent` sẽ không render lại khi `ParentComponent` render, vì `increment` đã được ghi nhớ (
+memoize) với `useCallback`.
 
 ### Khi nào nên sử dụng:
 
@@ -97,12 +104,15 @@ Trong ví dụ này, `ChildComponent` sẽ không render lại khi `ParentCompon
 
 Để hạn chế render không cần thiết, hãy áp dụng các kỹ thuật sau:
 
-1. **Kiểm soát component con**: Sử dụng `React.memo` và `useCallback` để ngăn các component con không render lại khi không cần thiết.
-2. **Chia nhỏ component**: Các component nhỏ và ít phức tạp sẽ dễ quản lý và tối ưu hóa hơn. Chia nhỏ các phần của component giúp giới hạn phạm vi render lại.
+1. **Kiểm soát component con**: Sử dụng `React.memo` và `useCallback` để ngăn các component con không render lại khi
+   không cần thiết.
+2. **Chia nhỏ component**: Các component nhỏ và ít phức tạp sẽ dễ quản lý và tối ưu hóa hơn. Chia nhỏ các phần của
+   component giúp giới hạn phạm vi render lại.
 
 ### Lazy Loading và Code Splitting
 
-Lazy loading cho phép tải các component chỉ khi cần thiết, đặc biệt hữu ích khi ứng dụng có nhiều trang hoặc các thành phần không cần tải ngay từ đầu.
+Lazy loading cho phép tải các component chỉ khi cần thiết, đặc biệt hữu ích khi ứng dụng có nhiều trang hoặc các thành
+phần không cần tải ngay từ đầu.
 
 ```javascript
 import React, { Suspense, lazy } from 'react';
@@ -140,4 +150,6 @@ return (
 
 ## Kết Luận
 
-Các kỹ thuật tối ưu hóa hiệu suất trong React như `React.memo`, `useMemo`, `useCallback` giúp giảm thiểu render không cần thiết và tăng hiệu quả sử dụng tài nguyên. Khi áp dụng những kỹ thuật này, hãy đảm bảo chỉ sử dụng khi cần thiết để tránh làm cho mã trở nên phức tạp và khó duy trì.
+Các kỹ thuật tối ưu hóa hiệu suất trong React như `React.memo`, `useMemo`, `useCallback` giúp giảm thiểu render không
+cần thiết và tăng hiệu quả sử dụng tài nguyên. Khi áp dụng những kỹ thuật này, hãy đảm bảo chỉ sử dụng khi cần thiết để
+tránh làm cho mã trở nên phức tạp và khó duy trì.

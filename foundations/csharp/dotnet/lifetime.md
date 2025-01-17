@@ -1,6 +1,8 @@
 ## Lifetime trong C# và .NET
 
-**Lifetime** của một đối tượng hoặc thành phần trong ứng dụng C#/.NET đề cập đến thời gian tồn tại của nó trong bộ nhớ, từ lúc được tạo ra đến lúc bị giải phóng. Quản lý lifetime đúng cách giúp tối ưu hóa hiệu suất và tránh rò rỉ bộ nhớ trong ứng dụng.
+**Lifetime** của một đối tượng hoặc thành phần trong ứng dụng C#/.NET đề cập đến thời gian tồn tại của nó trong bộ nhớ,
+từ lúc được tạo ra đến lúc bị giải phóng. Quản lý lifetime đúng cách giúp tối ưu hóa hiệu suất và tránh rò rỉ bộ nhớ
+trong ứng dụng.
 
 ### Mục lục
 
@@ -14,7 +16,8 @@
 
 ### <a name="di-lifetime"></a>1. Lifetime trong Dependency Injection của ASP.NET Core
 
-Trong ASP.NET Core, **Dependency Injection (DI)** là một cơ chế quản lý và cung cấp các phụ thuộc của một lớp hoặc thành phần. Có ba kiểu lifetime phổ biến trong DI:
+Trong ASP.NET Core, **Dependency Injection (DI)** là một cơ chế quản lý và cung cấp các phụ thuộc của một lớp hoặc thành
+phần. Có ba kiểu lifetime phổ biến trong DI:
 
 #### a. Singleton
 
@@ -41,17 +44,20 @@ Trong ASP.NET Core, **Dependency Injection (DI)** là một cơ chế quản lý
 
 ### <a name="gc-lifetime"></a>2. Lifetime của đối tượng trong Garbage Collection (GC)
 
-**Garbage Collection (GC)** là hệ thống tự động quản lý bộ nhớ trong .NET, giúp giải phóng các đối tượng không còn được sử dụng. GC trong .NET chia các đối tượng thành ba thế hệ:
+**Garbage Collection (GC)** là hệ thống tự động quản lý bộ nhớ trong .NET, giúp giải phóng các đối tượng không còn được
+sử dụng. GC trong .NET chia các đối tượng thành ba thế hệ:
 
 - **Generation 0**: Dành cho các đối tượng có lifetime ngắn, dễ bị thu gom.
 - **Generation 1**: Đối tượng có lifetime trung bình, không bị thu gom lần đầu tiên.
 - **Generation 2**: Đối tượng có lifetime dài, khó bị thu gom.
 
-> **Lưu ý**: GC xác định lifetime dựa vào khả năng truy cập của đối tượng. Khi đối tượng không còn được tham chiếu, nó sẽ trở thành "rác" và được thu gom.
+> **Lưu ý**: GC xác định lifetime dựa vào khả năng truy cập của đối tượng. Khi đối tượng không còn được tham chiếu, nó
+> sẽ trở thành "rác" và được thu gom.
 
 ### <a name="static-lifetime"></a>3. Static và Non-static Lifetime
 
-- **Static lifetime**: Các biến hoặc phương thức `static` tồn tại trong suốt thời gian chạy của ứng dụng, chia sẻ trạng thái giữa các thành phần.
+- **Static lifetime**: Các biến hoặc phương thức `static` tồn tại trong suốt thời gian chạy của ứng dụng, chia sẻ trạng
+  thái giữa các thành phần.
 
   ```csharp
   public static class MyClass
@@ -60,7 +66,8 @@ Trong ASP.NET Core, **Dependency Injection (DI)** là một cơ chế quản lý
   }
   ```
 
-- **Non-static lifetime (Instance lifetime)**: Các đối tượng được tạo từ lớp thông thường có lifetime phụ thuộc vào tham chiếu. Khi không còn tham chiếu, đối tượng sẽ bị GC giải phóng.
+- **Non-static lifetime (Instance lifetime)**: Các đối tượng được tạo từ lớp thông thường có lifetime phụ thuộc vào tham
+  chiếu. Khi không còn tham chiếu, đối tượng sẽ bị GC giải phóng.
 
   ```csharp
   public class MyClass
@@ -73,7 +80,8 @@ Trong ASP.NET Core, **Dependency Injection (DI)** là một cơ chế quản lý
 
 ### <a name="event-lifetime"></a>4. Lifetime trong Event và Delegate
 
-- **Event handlers**: Đăng ký event có thể giữ tham chiếu đến đối tượng chứa phương thức, gây rò rỉ bộ nhớ nếu không hủy đăng ký đúng cách.
+- **Event handlers**: Đăng ký event có thể giữ tham chiếu đến đối tượng chứa phương thức, gây rò rỉ bộ nhớ nếu không hủy
+  đăng ký đúng cách.
 
   ```csharp
   eventHandler.EventOccurred += OnEventOccurred;
@@ -81,11 +89,13 @@ Trong ASP.NET Core, **Dependency Injection (DI)** là một cơ chế quản lý
   eventHandler.EventOccurred -= OnEventOccurred;
   ```
 
-- **Delegate lifetime**: Delegate có thể kéo dài lifetime của đối tượng chứa phương thức. Hủy delegate khi không cần để giải phóng đối tượng.
+- **Delegate lifetime**: Delegate có thể kéo dài lifetime của đối tượng chứa phương thức. Hủy delegate khi không cần để
+  giải phóng đối tượng.
 
 ### <a name="task-lifetime"></a>5. Lifetime trong Task và Async/Await
 
-- **Task lifetime**: Các `Task` trong async/await có lifetime dựa trên trạng thái hoàn thành. `Task` sẽ không bị thu gom nếu vẫn đang xử lý hoặc chờ.
+- **Task lifetime**: Các `Task` trong async/await có lifetime dựa trên trạng thái hoàn thành. `Task` sẽ không bị thu gom
+  nếu vẫn đang xử lý hoặc chờ.
 - **CancellationToken**: Giúp kết thúc sớm các task không cần thiết, tránh giữ lại các task không sử dụng.
 
 ```csharp
@@ -96,7 +106,8 @@ cts.Cancel(); // Hủy task khi không cần thiết
 
 ### <a name="file-lifetime"></a>6. Lifetime trong File Handling và I/O
 
-- **File Stream Lifetime**: Đối tượng `FileStream` cần được đóng hoặc hủy sau khi sử dụng để giải phóng tài nguyên hệ thống.
+- **File Stream Lifetime**: Đối tượng `FileStream` cần được đóng hoặc hủy sau khi sử dụng để giải phóng tài nguyên hệ
+  thống.
 
   ```csharp
   using (FileStream fileStream = new FileStream("file.txt", FileMode.Open))
@@ -109,11 +120,13 @@ Nếu không giải phóng tài nguyên đúng cách, file stream có thể tồ
 
 ### <a name="disposable-lifetime"></a>7. Disposable Pattern và Quản lý Lifetime thủ công
 
-**Disposable Pattern** trong C# cho phép quản lý tài nguyên một cách chính xác qua giao diện `IDisposable`. Điều này giúp giải phóng các tài nguyên không quản lý (unmanaged resources) khi không còn sử dụng.
+**Disposable Pattern** trong C# cho phép quản lý tài nguyên một cách chính xác qua giao diện `IDisposable`. Điều này
+giúp giải phóng các tài nguyên không quản lý (unmanaged resources) khi không còn sử dụng.
 
 #### Lifetime qua `Dispose`
 
-- **Dispose**: Khi gọi `Dispose()`, đối tượng giải phóng tài nguyên không quản lý, giúp giảm lượng tài nguyên giữ lại trong bộ nhớ.
+- **Dispose**: Khi gọi `Dispose()`, đối tượng giải phóng tài nguyên không quản lý, giúp giảm lượng tài nguyên giữ lại
+  trong bộ nhớ.
 
   ```csharp
   public class MyResource : IDisposable
@@ -130,11 +143,13 @@ Nếu không giải phóng tài nguyên đúng cách, file stream có thể tồ
   } // Dispose() được gọi tự động khi thoát khỏi using
   ```
 
-> **Lưu ý**: Disposable Pattern đặc biệt hữu ích cho các đối tượng dùng nhiều tài nguyên hoặc không thuộc quyền quản lý của GC, như kết nối cơ sở dữ liệu và tài nguyên hệ thống.
+> **Lưu ý**: Disposable Pattern đặc biệt hữu ích cho các đối tượng dùng nhiều tài nguyên hoặc không thuộc quyền quản lý
+> của GC, như kết nối cơ sở dữ liệu và tài nguyên hệ thống.
 
 ## Tóm tắt
 
-- **DI Lifetime (Singleton, Scoped, Transient)**: Cung cấp các tùy chọn quản lý dịch vụ, giúp tối ưu hóa bộ nhớ và hiệu suất trong ứng dụng ASP.NET Core.
+- **DI Lifetime (Singleton, Scoped, Transient)**: Cung cấp các tùy chọn quản lý dịch vụ, giúp tối ưu hóa bộ nhớ và hiệu
+  suất trong ứng dụng ASP.NET Core.
 - **GC Lifetime**: Dựa vào khả năng truy cập của đối tượng, giúp thu gom các đối tượng không còn sử dụng.
 - **Static và Instance Lifetime**: Static tồn tại toàn cục, trong khi instance phụ thuộc vào tham chiếu.
 - **Event và Delegate Lifetime**: Cẩn thận khi dùng event và delegate để tránh giữ tham chiếu không cần thiết.

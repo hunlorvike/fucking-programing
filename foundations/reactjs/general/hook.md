@@ -1,8 +1,11 @@
-Dưới đây là tài liệu chi tiết về quản lý trạng thái trong React với Redux và các thư viện bổ sung giúp giảm boilerplate như Redux Toolkit và Redux-Saga, cùng với ví dụ minh họa về chế độ **Dark Mode / Light Mode**.
+Dưới đây là tài liệu chi tiết về quản lý trạng thái trong React với Redux và các thư viện bổ sung giúp giảm boilerplate
+như Redux Toolkit và Redux-Saga, cùng với ví dụ minh họa về chế độ **Dark Mode / Light Mode**.
 
 # Quản Lý State Trong React: Kết Hợp Hooks và Redux Với Dark Mode / Light Mode
 
-React cung cấp quản lý trạng thái cục bộ qua **Hooks** như `useState` và `useReducer`. Tuy nhiên, khi ứng dụng trở nên phức tạp, cần giải pháp mạnh mẽ hơn cho quản lý trạng thái toàn cục và đó là khi **Redux** phát huy vai trò. Redux là một thư viện quản lý trạng thái phổ biến giúp đảm bảo tính nhất quán và dễ kiểm soát trạng thái trong các ứng dụng lớn.
+React cung cấp quản lý trạng thái cục bộ qua **Hooks** như `useState` và `useReducer`. Tuy nhiên, khi ứng dụng trở nên
+phức tạp, cần giải pháp mạnh mẽ hơn cho quản lý trạng thái toàn cục và đó là khi **Redux** phát huy vai trò. Redux là
+một thư viện quản lý trạng thái phổ biến giúp đảm bảo tính nhất quán và dễ kiểm soát trạng thái trong các ứng dụng lớn.
 
 ## Các Khái Niệm Cơ Bản Trong Redux
 
@@ -11,17 +14,20 @@ Trước khi triển khai ví dụ, cần hiểu rõ nhiệm vụ của các th�
 ### 1. **Store**
 
 - **Store** là nơi lưu trữ toàn bộ trạng thái của ứng dụng dưới dạng một cây đối tượng.
-- Mỗi khi trạng thái thay đổi, `store` sẽ cập nhật trạng thái này và tất cả các component có kết nối với `store` sẽ được cập nhật lại.
+- Mỗi khi trạng thái thay đổi, `store` sẽ cập nhật trạng thái này và tất cả các component có kết nối với `store` sẽ được
+  cập nhật lại.
 - Store được tạo ra bằng cách kết hợp các `reducer`, là nơi cập nhật trạng thái dựa trên các `action`.
 
 ### 2. **State**
 
 - **State** là một đối tượng JavaScript lưu trữ trạng thái hiện tại của ứng dụng.
-- Trong ví dụ này, state chứa thông tin về **theme** của ứng dụng (`light` hoặc `dark`), giúp ứng dụng hiển thị đúng giao diện người dùng.
+- Trong ví dụ này, state chứa thông tin về **theme** của ứng dụng (`light` hoặc `dark`), giúp ứng dụng hiển thị đúng
+  giao diện người dùng.
 
 ### 3. **Action**
 
-- **Action** là một đối tượng JavaScript có thuộc tính `type` mô tả loại hành động và có thể có thuộc tính `payload` chứa dữ liệu đi kèm.
+- **Action** là một đối tượng JavaScript có thuộc tính `type` mô tả loại hành động và có thể có thuộc tính `payload`
+  chứa dữ liệu đi kèm.
 - `Action` là tín hiệu yêu cầu thay đổi trạng thái. Ví dụ, `TOGGLE_THEME` là action sẽ yêu cầu chuyển đổi chế độ theme.
 
 ```javascript
@@ -155,7 +161,8 @@ export default ThemeToggle;
 
 ### 1. **Redux Toolkit**
 
-**Redux Toolkit** là bộ công cụ được xây dựng để giảm thiểu cấu trúc và mã lặp lại khi sử dụng Redux, hỗ trợ các API như `createSlice` để tạo reducer và action trong một bước:
+**Redux Toolkit** là bộ công cụ được xây dựng để giảm thiểu cấu trúc và mã lặp lại khi sử dụng Redux, hỗ trợ các API như
+`createSlice` để tạo reducer và action trong một bước:
 
 ```javascript
 // src/reducers/themeSlice.js
@@ -217,4 +224,6 @@ export default store;
 
 ## Kết Luận
 
-Sự kết hợp giữa Hooks và Redux giúp quản lý trạng thái trong React linh hoạt và mạnh mẽ. Redux Toolkit giảm bớt cấu trúc và mã lặp lại, trong khi Redux-Saga giúp quản lý các side effects. Tùy thuộc vào độ phức tạp của ứng dụng, bạn có thể chọn kết hợp Redux với các thư viện này để tối ưu hóa quy trình quản lý trạng thái.
+Sự kết hợp giữa Hooks và Redux giúp quản lý trạng thái trong React linh hoạt và mạnh mẽ. Redux Toolkit giảm bớt cấu trúc
+và mã lặp lại, trong khi Redux-Saga giúp quản lý các side effects. Tùy thuộc vào độ phức tạp của ứng dụng, bạn có thể
+chọn kết hợp Redux với các thư viện này để tối ưu hóa quy trình quản lý trạng thái.

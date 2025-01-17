@@ -1,17 +1,20 @@
 # Hướng Dẫn Sử Dụng JWT Trong C# .NET: Tổng Quan, Triển Khai và Các Yếu Tố Bảo Mật
 
-**JSON Web Token (JWT)** là một chuẩn mã hóa dùng để truyền tải thông tin giữa các bên một cách an toàn và không cần trạng thái (stateless). Với đặc tính “không trạng thái,” JWT trở thành lựa chọn hàng đầu trong việc xác thực và phân quyền cho các ứng dụng RESTful API, giúp đơn giản hóa quá trình xác thực trên các hệ thống phân tán hoặc các ứng dụng có yêu cầu về bảo mật.
+**JSON Web Token (JWT)** là một chuẩn mã hóa dùng để truyền tải thông tin giữa các bên một cách an toàn và không cần
+trạng thái (stateless). Với đặc tính “không trạng thái,” JWT trở thành lựa chọn hàng đầu trong việc xác thực và phân
+quyền cho các ứng dụng RESTful API, giúp đơn giản hóa quá trình xác thực trên các hệ thống phân tán hoặc các ứng dụng có
+yêu cầu về bảo mật.
 
 ## Mục Lục
 
 1. [Tổng Quan về JWT](#1-tổng-quan-về-jwt)
-   - [JWT là gì?](#jwt-là-gì)
-   - [JWT hoạt động như thế nào?](#jwt-hoạt-động-như-thế-nào)
-   - [Cấu trúc của JWT](#cấu-trúc-của-jwt)
+    - [JWT là gì?](#jwt-là-gì)
+    - [JWT hoạt động như thế nào?](#jwt-hoạt-động-như-thế-nào)
+    - [Cấu trúc của JWT](#cấu-trúc-của-jwt)
 2. [Sử Dụng JWT trong C# .NET](#2-sử-dụng-jwt-trong-c-net)
 
-   - [Thiết lập JWT trong ASP.NET Core](#a-thiết-lập-jwt-trong-aspnet-core)
-   - [Tạo JWT trong Controller](#b-tạo-jwt-trong-controller)
+    - [Thiết lập JWT trong ASP.NET Core](#a-thiết-lập-jwt-trong-aspnet-core)
+    - [Tạo JWT trong Controller](#b-tạo-jwt-trong-controller)
 
 3. [Xác Thực và Phân Quyền trong Các API Khác](#3-xác-thực-và-phân-quyền-trong-các-api-khác)
 
@@ -27,7 +30,8 @@
 
 ### JWT là gì?
 
-JWT là một chuỗi token chứa thông tin xác thực người dùng và các quyền liên quan. JWT gồm ba phần chính, được ngăn cách bằng dấu chấm (`.`):
+JWT là một chuỗi token chứa thông tin xác thực người dùng và các quyền liên quan. JWT gồm ba phần chính, được ngăn cách
+bằng dấu chấm (`.`):
 
 - **Header**: Chứa loại token và thuật toán mã hóa.
 - **Payload**: Chứa các claims (dữ liệu) liên quan đến người dùng hoặc phiên làm việc.
@@ -47,7 +51,8 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 1. Khi người dùng đăng nhập, hệ thống xác thực thông tin đăng nhập và tạo một JWT chứa thông tin người dùng.
 2. JWT này được gửi về client, lưu trữ ở phía client (trong `localStorage`, `sessionStorage`, hoặc `httpOnly cookies`).
-3. Trong các yêu cầu tới server, client gửi JWT qua HTTP header (Authorization: Bearer `JWT`) để server xác minh và cấp quyền truy cập tài nguyên mà không cần lưu trạng thái.
+3. Trong các yêu cầu tới server, client gửi JWT qua HTTP header (Authorization: Bearer `JWT`) để server xác minh và cấp
+   quyền truy cập tài nguyên mà không cần lưu trạng thái.
 
 ### Cấu trúc của JWT
 
@@ -66,20 +71,22 @@ SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
 ## 2. Sử Dụng JWT trong C# .NET
 
-Trong ASP.NET Core, việc sử dụng JWT thường kết hợp với **ASP.NET Core Identity** hoặc các hệ thống xác thực không trạng thái (stateless authentication) cho các API.
+Trong ASP.NET Core, việc sử dụng JWT thường kết hợp với **ASP.NET Core Identity** hoặc các hệ thống xác thực không trạng
+thái (stateless authentication) cho các API.
 
 ### a. Thiết lập JWT trong ASP.NET Core
 
 1. **Cài đặt các thư viện cần thiết**:
 
-   - Cài đặt thư viện `Microsoft.AspNetCore.Authentication.JwtBearer` qua **NuGet Package Manager**:
-     ```shell
-     Install-Package Microsoft.AspNetCore.Authentication.JwtBearer
-     ```
+    - Cài đặt thư viện `Microsoft.AspNetCore.Authentication.JwtBearer` qua **NuGet Package Manager**:
+      ```shell
+      Install-Package Microsoft.AspNetCore.Authentication.JwtBearer
+      ```
 
 2. **Cấu hình JWT trong `Startup.cs`**:
 
-   - Đầu tiên, thêm cấu hình cho JWT trong `ConfigureServices` của `Startup.cs` để ASP.NET biết cách xác thực yêu cầu từ client.
+    - Đầu tiên, thêm cấu hình cho JWT trong `ConfigureServices` của `Startup.cs` để ASP.NET biết cách xác thực yêu cầu
+      từ client.
 
    ```csharp
    public void ConfigureServices(IServiceCollection services)
@@ -117,7 +124,8 @@ Trong ASP.NET Core, việc sử dụng JWT thường kết hợp với **ASP.NET
 
 3. **Cấu hình `appsettings.json`**:
 
-   - Các giá trị như `Issuer`, `Audience`, và `Key` có thể được thêm vào `appsettings.json` để dễ dàng quản lý và chỉnh sửa.
+    - Các giá trị như `Issuer`, `Audience`, và `Key` có thể được thêm vào `appsettings.json` để dễ dàng quản lý và chỉnh
+      sửa.
 
    ```json
    {
@@ -191,7 +199,8 @@ public class AuthController : ControllerBase
 
 ## 3. Xác Thực và Phân Quyền trong Các API Khác
 
-Khi có JWT, client sẽ gửi JWT trong header `Authorization` của các yêu cầu tiếp theo với format `Bearer <token>`. ASP.NET sẽ tự động kiểm tra và cấp quyền nếu JWT hợp lệ.
+Khi có JWT, client sẽ gửi JWT trong header `Authorization` của các yêu cầu tiếp theo với format `Bearer <token>`.
+ASP.NET sẽ tự động kiểm tra và cấp quyền nếu JWT hợp lệ.
 
 - **Ví dụ Header**:
 
@@ -201,21 +210,21 @@ Khi có JWT, client sẽ gửi JWT trong header `Authorization` của các yêu 
 
 - **Kiểm tra quyền truy cập trong Controller**:
 
-  - Để hạn chế quyền truy cập vào các endpoint, sử dụng `[Authorize]` trong Controller hoặc các phương thức riêng lẻ.
+    - Để hạn chế quyền truy cập vào các endpoint, sử dụng `[Authorize]` trong Controller hoặc các phương thức riêng lẻ.
 
-    ```csharp
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SampleController : ControllerBase
-    {
-        [HttpGet("secure-data")]
-        public IActionResult GetSecureData()
-        {
-            return Ok(new { data = "This is secured data" });
-        }
-    }
-    ```
+      ```csharp
+      [Authorize]
+      [Route("api/[controller]")]
+      [ApiController]
+      public class SampleController : ControllerBase
+      {
+          [HttpGet("secure-data")]
+          public IActionResult GetSecureData()
+          {
+              return Ok(new { data = "This is secured data" });
+          }
+      }
+      ```
 
 ---
 
@@ -231,21 +240,24 @@ Khi có JWT, client sẽ gửi JWT trong header `Authorization` của các yêu 
 
 - **Thời Gian Sống của JWT (Expiration)**:
 
-- Để hạn chế rủi ro bảo mật, nên thiết lập thời gian sống ngắn cho JWT và sử dụng **Refresh Tokens** để cấp mới JWT khi hết hạn.
+- Để hạn chế rủi ro bảo mật, nên thiết lập thời gian sống ngắn cho JWT và sử dụng **Refresh Tokens** để cấp mới JWT khi
+  hết hạn.
 - **Refresh Tokens**:
 
-  - Là mã có thời gian sống dài hơn, thường dùng để lấy JWT mới mà không cần yêu cầu đăng nhập lại.
+    - Là mã có thời gian sống dài hơn, thường dùng để lấy JWT mới mà không cần yêu cầu đăng nhập lại.
 
 - **Lưu trữ JWT an toàn**:
 
-  - Tránh lưu trữ JWT trong các cookie hoặc storage không bảo mật.
-  - Sử dụng **HTTP-only cookies** hoặc **Secure storage** để ngăn ngừa truy cập từ JavaScript.
+    - Tránh lưu trữ JWT trong các cookie hoặc storage không bảo mật.
+    - Sử dụng **HTTP-only cookies** hoặc **Secure storage** để ngăn ngừa truy cập từ JavaScript.
 
 - **Xử lý JWT bị đánh cắp**:
-  - Sử dụng danh sách đen (blacklist) trên server để thu hồi các JWT không hợp lệ hoặc đã bị đánh cắp.
+    - Sử dụng danh sách đen (blacklist) trên server để thu hồi các JWT không hợp lệ hoặc đã bị đánh cắp.
 
 ---
 
 ## 6. Kết Luận
 
-**JWT** là một giải pháp mạnh mẽ và hiệu quả cho các ứng dụng không trạng thái. Tuy nhiên, khi triển khai JWT trong C# .NET, cần phải chú trọng đến các cơ chế bảo mật như refresh token, danh sách đen và cách lưu trữ an toàn để đảm bảo tính bảo mật cho ứng dụng.
+**JWT** là một giải pháp mạnh mẽ và hiệu quả cho các ứng dụng không trạng thái. Tuy nhiên, khi triển khai JWT trong C#
+.NET, cần phải chú trọng đến các cơ chế bảo mật như refresh token, danh sách đen và cách lưu trữ an toàn để đảm bảo tính
+bảo mật cho ứng dụng.

@@ -1,53 +1,55 @@
 # Tài liệu tổng hợp các tính năng nổi bật trong C#
 
-Dưới đây là tài liệu tổng hợp các tính năng mới của **C#** từ **phiên bản 1.0** đến **phiên bản 12.0**. Tài liệu cung cấp chi tiết về các tính năng chính được giới thiệu trong từng phiên bản, giúp bạn hiểu rõ hơn về sự phát triển và cải tiến của ngôn ngữ qua từng năm.
+Dưới đây là tài liệu tổng hợp các tính năng mới của **C#** từ **phiên bản 1.0** đến **phiên bản 12.0**. Tài liệu cung
+cấp chi tiết về các tính năng chính được giới thiệu trong từng phiên bản, giúp bạn hiểu rõ hơn về sự phát triển và cải
+tiến của ngôn ngữ qua từng năm.
 
 ## Mục lục
 
 1. [Phiên bản 1.0 (2002)](#phiên-bản-1-0-2002)
-   - Namespace
-   - Classes & Objects
-   - Interfaces
-   - Delegates
-   - Properties
+    - Namespace
+    - Classes & Objects
+    - Interfaces
+    - Delegates
+    - Properties
 2. [Phiên bản 2.0 (2005)](#phiên-bản-2-0-2005)
-   - Generics
-   - Nullable Types
-   - Iterators
-   - Partial Classes
-   - Anonymous Methods
+    - Generics
+    - Nullable Types
+    - Iterators
+    - Partial Classes
+    - Anonymous Methods
 3. [Phiên bản 3.0 (2007)](#phiên-bản-3-0-2007)
-   - LINQ
-   - Lambda Expressions
-   - Anonymous Types
-   - Extension Methods
-   - Auto-Implemented Properties
+    - LINQ
+    - Lambda Expressions
+    - Anonymous Types
+    - Extension Methods
+    - Auto-Implemented Properties
 4. [Phiên bản 4.0 (2010)](#phiên-bản-4-0-2010)
-   - Dynamic Binding
-   - Named and Optional Parameters
-   - Covariance và Contravariance
+    - Dynamic Binding
+    - Named and Optional Parameters
+    - Covariance và Contravariance
 5. [Phiên bản 5.0 (2012)](#phiên-bản-5-0-2012)
-   - Async & Await
-   - Caller Information
+    - Async & Await
+    - Caller Information
 6. [Phiên bản 6.0 (2015)](#phiên-bản-6-0-2015)
-   - Auto-Property Initializers
-   - Expression-bodied Members
-   - Null-conditional Operator
-   - String Interpolation
+    - Auto-Property Initializers
+    - Expression-bodied Members
+    - Null-conditional Operator
+    - String Interpolation
 7. [Phiên bản 7.0 (2017)](#phiên-bản-7-0-2017)
-   - Tuples
-   - Pattern Matching
-   - Out Variables
-   - Local Functions
+    - Tuples
+    - Pattern Matching
+    - Out Variables
+    - Local Functions
 8. [Phiên bản 7.1, 7.2, 7.3](#phiên-bản-7-1-7-2-7-3)
-   - Enhanced Pattern Matching
-   - Async Main
-   - Default Literals
+    - Enhanced Pattern Matching
+    - Async Main
+    - Default Literals
 9. [Phiên bản 8.0 (2019)](#phiên-bản-8-0-2019)
-   - Nullable Reference Types
-   - Async Streams
-   - Indices and Ranges
-   - Switch Expressions
+    - Nullable Reference Types
+    - Async Streams
+    - Indices and Ranges
+    - Switch Expressions
 10. [Phiên bản 9.0 (2020)](#phiên-bản-9-0-2020)
     - Record Types
     - Init-only Properties
@@ -86,7 +88,8 @@ namespace MyNamespace
 }
 ```
 
-- **Classes & Objects (Lớp và đối tượng)**: C# hỗ trợ lập trình hướng đối tượng (OOP), cho phép tạo các lớp và đối tượng.
+- **Classes & Objects (Lớp và đối tượng)**: C# hỗ trợ lập trình hướng đối tượng (OOP), cho phép tạo các lớp và đối
+  tượng.
 
 ```csharp
 public class Car
@@ -160,7 +163,8 @@ int? age = null;
 Console.WriteLine(age.HasValue ? age.Value.ToString() : "Age is unknown");
 ```
 
-- **Iterators**: Hỗ trợ `yield` để tạo các phương thức trả về tuần tự các phần tử mà không cần phải dùng đến các collections.
+- **Iterators**: Hỗ trợ `yield` để tạo các phương thức trả về tuần tự các phần tử mà không cần phải dùng đến các
+  collections.
 
 ```csharp
 public IEnumerable<int> GetNumbers()
@@ -513,6 +517,9 @@ using Project = MyNamespace.MyProject;
 
 ### Tóm Tắt
 
-Ngôn ngữ **C#** đã trải qua nhiều thay đổi và cải tiến từ phiên bản 1.0 đến 12.0, mỗi phiên bản mang lại nhiều tính năng mạnh mẽ, giúp lập trình viên viết mã hiệu quả và dễ hiểu hơn. Các tính năng như **LINQ**, **Async/Await**, **Nullable Types**, và **Record Types** đã thay đổi cách mà các ứng dụng được phát triển trong C#.
+Ngôn ngữ **C#** đã trải qua nhiều thay đổi và cải tiến từ phiên bản 1.0 đến 12.0, mỗi phiên bản mang lại nhiều tính năng
+mạnh mẽ, giúp lập trình viên viết mã hiệu quả và dễ hiểu hơn. Các tính năng như **LINQ**, **Async/Await**, **Nullable
+Types**, và **Record Types** đã thay đổi cách mà các ứng dụng được phát triển trong C#.
 
-Với mỗi phiên bản mới, Microsoft không ngừng nâng cao trải nghiệm lập trình và hỗ trợ lập trình viên trong việc xây dựng ứng dụng hiện đại.
+Với mỗi phiên bản mới, Microsoft không ngừng nâng cao trải nghiệm lập trình và hỗ trợ lập trình viên trong việc xây dựng
+ứng dụng hiện đại.

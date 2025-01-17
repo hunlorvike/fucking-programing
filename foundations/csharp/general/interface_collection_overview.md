@@ -4,32 +4,32 @@
 
 1. [Namespace `System.Collections`](#1-namespace-systemcollections)
 
-   - [ICollection](#-icollection)
-   - [IEnumerable](#-ienumerable)
-   - [IEnumerator](#-ienumerator)
-   - [IList](#-ilist)
-   - [IDictionary](#-idictionary)
-   - [IQueue](#-iqueue)
-   - [IStack](#-istack)
+    - [ICollection](#-icollection)
+    - [IEnumerable](#-ienumerable)
+    - [IEnumerator](#-ienumerator)
+    - [IList](#-ilist)
+    - [IDictionary](#-idictionary)
+    - [IQueue](#-iqueue)
+    - [IStack](#-istack)
 
 2. [Namespace `System.Collections.Generic`](#2-namespace-systemcollectionsgeneric)
 
-   - [ICollection<T>](#-icollectiont)
-   - [IEnumerable<T>](#-ienumerablet)
-   - [IEnumerator<T>](#-ienumeratort)
-   - [IList<T>](#-ilistt)
-   - [IDictionary<TKey, TValue>](#-idictionarytkey-tvalue)
-   - [ISet<T>](#-iset)
+    - [ICollection<T>](#-icollectiont)
+    - [IEnumerable<T>](#-ienumerablet)
+    - [IEnumerator<T>](#-ienumeratort)
+    - [IList<T>](#-ilistt)
+    - [IDictionary<TKey, TValue>](#-idictionarytkey-tvalue)
+    - [ISet<T>](#-iset)
 
 3. [Namespace `System.Collections.Concurrent`](#3-namespace-systemcollectionsconcurrent)
 
-   - [IProducerConsumerCollection<T>](#-iproducerconsumercollectiont)
-   - [IBlockingCollection<T>](#-iblockingcollectiont)
+    - [IProducerConsumerCollection<T>](#-iproducerconsumercollectiont)
+    - [IBlockingCollection<T>](#-iblockingcollectiont)
 
 4. [Namespace `System.Collections.Specialized`](#4-namespace-systemcollectionsspecialized)
 
-   - [INotifyCollectionChanged](#-inotifycollectionchanged)
-   - [INotifyPropertyChanged](#-inotifypropertychanged)
+    - [INotifyCollectionChanged](#-inotifycollectionchanged)
+    - [INotifyPropertyChanged](#-inotifypropertychanged)
 
 5. [Tổng Kết Lựa Chọn Interface Collection Phù Hợp](#5-tong-ket-lua-chon-interface-collection-phu-hop)
 
@@ -43,16 +43,18 @@
 
 ## 1. Namespace `System.Collections`
 
-`System.Collections` cung cấp các interface cho các collection không generic. Những interface này giúp quản lý các tập hợp đối tượng nhưng không bảo đảm an toàn về kiểu dữ liệu, có thể gây ra lỗi khi làm việc với các kiểu khác nhau.
+`System.Collections` cung cấp các interface cho các collection không generic. Những interface này giúp quản lý các tập
+hợp đối tượng nhưng không bảo đảm an toàn về kiểu dữ liệu, có thể gây ra lỗi khi làm việc với các kiểu khác nhau.
 
 ### **ICollection**
 
-- **Mô tả**: Đại diện cho một tập hợp các đối tượng có thể đếm được. Cho phép thêm, xóa, và kiểm tra sự tồn tại của các phần tử trong tập hợp.
+- **Mô tả**: Đại diện cho một tập hợp các đối tượng có thể đếm được. Cho phép thêm, xóa, và kiểm tra sự tồn tại của các
+  phần tử trong tập hợp.
 - **Phương thức chính**:
-  - `Add`: Thêm một phần tử vào collection.
-  - `Remove`: Xóa một phần tử khỏi collection.
-  - `Contains`: Kiểm tra sự tồn tại của một phần tử.
-  - `Clear`: Xóa tất cả các phần tử trong collection.
+    - `Add`: Thêm một phần tử vào collection.
+    - `Remove`: Xóa một phần tử khỏi collection.
+    - `Contains`: Kiểm tra sự tồn tại của một phần tử.
+    - `Clear`: Xóa tất cả các phần tử trong collection.
 - **Ví dụ**:
   ```csharp
   ICollection collection = new ArrayList();
@@ -63,9 +65,10 @@
 
 ### **IEnumerable**
 
-- **Mô tả**: Cung cấp một phương thức để duyệt qua các đối tượng trong một collection mà không cần biết loại collection cụ thể.
+- **Mô tả**: Cung cấp một phương thức để duyệt qua các đối tượng trong một collection mà không cần biết loại collection
+  cụ thể.
 - **Phương thức chính**:
-  - `GetEnumerator`: Trả về một enumerator cho phép duyệt qua collection.
+    - `GetEnumerator`: Trả về một enumerator cho phép duyệt qua collection.
 - **Ví dụ**:
   ```csharp
   IEnumerable enumerable = new ArrayList() { "Apple", "Banana" };
@@ -77,11 +80,12 @@
 
 ### **IEnumerator**
 
-- **Mô tả**: Cung cấp các phương thức để duyệt qua các phần tử trong collection. Phân biệt giữa vị trí của các phần tử và cho phép truy cập phần tử hiện tại.
+- **Mô tả**: Cung cấp các phương thức để duyệt qua các phần tử trong collection. Phân biệt giữa vị trí của các phần tử
+  và cho phép truy cập phần tử hiện tại.
 - **Phương thức chính**:
-  - `MoveNext`: Di chuyển đến phần tử tiếp theo trong collection.
-  - `Reset`: Đặt lại enumerator về vị trí đầu.
-  - `Current`: Lấy phần tử hiện tại.
+    - `MoveNext`: Di chuyển đến phần tử tiếp theo trong collection.
+    - `Reset`: Đặt lại enumerator về vị trí đầu.
+    - `Current`: Lấy phần tử hiện tại.
 - **Ví dụ**:
   ```csharp
   IEnumerator enumerator = new ArrayList() { "One", "Two", "Three" }.GetEnumerator();
@@ -93,11 +97,12 @@
 
 ### **IList**
 
-- **Mô tả**: Mở rộng từ `ICollection`, đại diện cho một danh sách có thể truy cập các phần tử theo chỉ số. Hỗ trợ các thao tác thêm, xóa, và truy cập bằng chỉ số.
+- **Mô tả**: Mở rộng từ `ICollection`, đại diện cho một danh sách có thể truy cập các phần tử theo chỉ số. Hỗ trợ các
+  thao tác thêm, xóa, và truy cập bằng chỉ số.
 - **Phương thức chính**:
-  - `Insert`: Chèn một phần tử tại chỉ số chỉ định.
-  - `RemoveAt`: Xóa phần tử tại chỉ số chỉ định.
-  - `this[int index]`: Truy cập phần tử tại chỉ số.
+    - `Insert`: Chèn một phần tử tại chỉ số chỉ định.
+    - `RemoveAt`: Xóa phần tử tại chỉ số chỉ định.
+    - `this[int index]`: Truy cập phần tử tại chỉ số.
 - **Ví dụ**:
   ```csharp
   IList list = new ArrayList() { "First", "Second" };
@@ -106,12 +111,13 @@
 
 ### **IDictionary**
 
-- **Mô tả**: Đại diện cho một collection các cặp khóa-giá trị, trong đó mỗi khóa là duy nhất. Hỗ trợ việc truy cập giá trị thông qua khóa.
+- **Mô tả**: Đại diện cho một collection các cặp khóa-giá trị, trong đó mỗi khóa là duy nhất. Hỗ trợ việc truy cập giá
+  trị thông qua khóa.
 - **Phương thức chính**:
-  - `Add`: Thêm một cặp khóa-giá trị.
-  - `Remove`: Xóa cặp khóa-giá trị bằng khóa.
-  - `ContainsKey`: Kiểm tra sự tồn tại của một khóa.
-  - `this[object key]`: Truy cập giá trị theo khóa.
+    - `Add`: Thêm một cặp khóa-giá trị.
+    - `Remove`: Xóa cặp khóa-giá trị bằng khóa.
+    - `ContainsKey`: Kiểm tra sự tồn tại của một khóa.
+    - `this[object key]`: Truy cập giá trị theo khóa.
 - **Ví dụ**:
   ```csharp
   IDictionary dictionary = new Hashtable();
@@ -121,10 +127,11 @@
 
 ### **IQueue**
 
-- **Mô tả**: Mặc dù không có interface chính thức cho hàng đợi, bạn có thể sử dụng `Queue` để quản lý các phần tử theo nguyên tắc FIFO (First In, First Out).
+- **Mô tả**: Mặc dù không có interface chính thức cho hàng đợi, bạn có thể sử dụng `Queue` để quản lý các phần tử theo
+  nguyên tắc FIFO (First In, First Out).
 - **Phương thức chính**:
-  - `Enqueue`: Thêm một phần tử vào cuối hàng đợi.
-  - `Dequeue`: Xóa và trả về phần tử ở đầu hàng đợi.
+    - `Enqueue`: Thêm một phần tử vào cuối hàng đợi.
+    - `Dequeue`: Xóa và trả về phần tử ở đầu hàng đợi.
 - **Ví dụ**:
   ```csharp
   Queue queue = new Queue();
@@ -134,10 +141,11 @@
 
 ### **IStack**
 
-- **Mô tả**: Tương tự như hàng đợi, không có interface cụ thể cho ngăn xếp nhưng `Stack` có thể được sử dụng để quản lý các phần tử theo nguyên tắc LIFO (Last In, First Out).
+- **Mô tả**: Tương tự như hàng đợi, không có interface cụ thể cho ngăn xếp nhưng `Stack` có thể được sử dụng để quản lý
+  các phần tử theo nguyên tắc LIFO (Last In, First Out).
 - **Phương thức chính**:
-  - `Push`: Thêm một phần tử vào ngăn xếp.
-  - `Pop`: Xóa và trả về phần tử ở đầu ngăn xếp.
+    - `Push`: Thêm một phần tử vào ngăn xếp.
+    - `Pop`: Xóa và trả về phần tử ở đầu ngăn xếp.
 - **Ví dụ**:
   ```csharp
   Stack stack = new Stack();
@@ -149,11 +157,13 @@
 
 ## 2. Namespace `System.Collections.Generic`
 
-`System.Collections.Generic` cung cấp các interface cho các collection generic, cho phép xác định kiểu dữ liệu cụ thể, tăng tính an toàn về kiểu và hiệu suất khi làm việc với các collection.
+`System.Collections.Generic` cung cấp các interface cho các collection generic, cho phép xác định kiểu dữ liệu cụ thể,
+tăng tính an toàn về kiểu và hiệu suất khi làm việc với các collection.
 
 ### **ICollection<T>**
 
-- **Mô tả**: Tương tự như `ICollection`, nhưng với kiểu dữ liệu cụ thể `T`. Cho phép thêm, xóa và kiểm tra sự tồn tại của các phần tử.
+- **Mô tả**: Tương tự như `ICollection`, nhưng với kiểu dữ liệu cụ thể `T`. Cho phép thêm, xóa và kiểm tra sự tồn tại
+  của các phần tử.
 - **Phương thức chính**: Tương tự như `ICollection`.
 - **Ví dụ**:
   ```csharp
@@ -164,7 +174,8 @@
 
 ### **IEnumerable<T>**
 
-- **Mô tả**: Cung cấp một phương thức để duyệt qua các đối tượng kiểu `T`. Cho phép truy cập vào từng phần tử trong collection theo kiểu an toàn.
+- **Mô tả**: Cung cấp một phương thức để duyệt qua các đối tượng kiểu `T`. Cho phép truy cập vào từng phần tử trong
+  collection theo kiểu an toàn.
 - **Phương thức chính**: Tương tự như `IEnumerable`.
 - **Ví dụ**:
   ```csharp
@@ -177,7 +188,8 @@
 
 ### **IEnumerator<T>**
 
-- **Mô tả**: Cung cấp các phương thức để duyệt qua các phần tử trong collection kiểu `T`, cho phép truy cập phần tử hiện tại và di chuyển qua các phần tử.
+- **Mô tả**: Cung cấp các phương thức để duyệt qua các phần tử trong collection kiểu `T`, cho phép truy cập phần tử hiện
+  tại và di chuyển qua các phần tử.
 - **Phương thức chính**: Tương tự như `IEnumerator`.
 - **Ví dụ**:
   ```csharp
@@ -190,7 +202,8 @@
 
 ### **IList<T>**
 
-- **Mô tả**: Mở rộng từ `ICollection<T>`, đại diện cho một danh sách cho phép truy cập các phần tử theo chỉ số với kiểu dữ liệu cụ thể.
+- **Mô tả**: Mở rộng từ `ICollection<T>`, đại diện cho một danh sách cho phép truy cập các phần tử theo chỉ số với kiểu
+  dữ liệu cụ thể.
 - **Phương thức chính**: Tương tự như `IList`.
 - \*\*
 
@@ -216,9 +229,9 @@ Console.WriteLine(list[1]); // Kết quả: Second
 
 - **Mô tả**: Đại diện cho một collection các phần tử duy nhất (không trùng lặp) với kiểu dữ liệu cụ thể.
 - **Phương thức chính**:
-  - `Add`: Thêm phần tử (nếu chưa tồn tại).
-  - `Remove`: Xóa phần tử.
-  - `Contains`: Kiểm tra sự tồn tại của phần tử.
+    - `Add`: Thêm phần tử (nếu chưa tồn tại).
+    - `Remove`: Xóa phần tử.
+    - `Contains`: Kiểm tra sự tồn tại của phần tử.
 - **Ví dụ**:
   ```csharp
   ISet<string> set = new HashSet<string>();
@@ -264,7 +277,8 @@ Console.WriteLine(list[1]); // Kết quả: Second
 
 ### **INotifyCollectionChanged**
 
-- **Mô tả**: Cung cấp sự kiện thông báo khi một collection thay đổi, hỗ trợ cho việc binding dữ liệu trong các ứng dụng WPF hoặc UWP.
+- **Mô tả**: Cung cấp sự kiện thông báo khi một collection thay đổi, hỗ trợ cho việc binding dữ liệu trong các ứng dụng
+  WPF hoặc UWP.
 - **Sự kiện chính**: `CollectionChanged`.
 - **Ví dụ**:
   ```csharp
@@ -317,7 +331,7 @@ Console.WriteLine(list[1]); // Kết quả: Second
 ## 6. So Sánh Các Interface Collection
 
 | Interface                 | Tính Chất                                         | Kiểu Dữ Liệu  |
-| ------------------------- | ------------------------------------------------- | ------------- |
+|---------------------------|---------------------------------------------------|---------------|
 | ICollection               | Tập hợp các đối tượng có thể đếm được             | Không generic |
 | IEnumerable               | Duyệt qua các đối tượng                           | Không generic |
 | IEnumerator               | Duyệt qua các phần tử trong collection            | Không generic |

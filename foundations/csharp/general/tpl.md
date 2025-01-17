@@ -4,23 +4,23 @@
 
 1. [Tổng Quan về Task Parallel Library (TPL)](#1-tổng-quan-về-task-parallel-library-tpl)
 
-   - [Mục Đích](#mục-đích)
-   - [Cách Hoạt Động](#cách-hoạt-động)
+    - [Mục Đích](#mục-đích)
+    - [Cách Hoạt Động](#cách-hoạt-động)
 
 2. [Các Thành Phần Chính của TPL](#2-các-thành-phần-chính-của-tpl)
 
 3. [Cách Sử Dụng TPL](#3-cách-sử-dụng-tpl)
 
-   - [a. Sử Dụng Task Class](#a-sử-dụng-task-class)
-   - [b. Sử Dụng Parallel Class](#b-sử-dụng-parallel-class)
+    - [a. Sử Dụng Task Class](#a-sử-dụng-task-class)
+    - [b. Sử Dụng Parallel Class](#b-sử-dụng-parallel-class)
 
 4. [Ưu Điểm và Nhược Điểm của TPL](#4-ưu-điểm-và-nhược-điểm-của-tpl)
 
 5. [Ví Dụ Thực Tế với TPL](#5-ví-dụ-thực-tế-với-tpl)
 
-   - [a. Tạo và Chạy Task](#a-tạo-và-chạy-task)
-   - [b. Chạy Nhiều Task Song Song](#b-chạy-nhiều-task-song-song)
-   - [c. Parallel.For và Parallel.ForEach](#c-parallelfor-và-parallelforeach)
+    - [a. Tạo và Chạy Task](#a-tạo-và-chạy-task)
+    - [b. Chạy Nhiều Task Song Song](#b-chạy-nhiều-task-song-song)
+    - [c. Parallel.For và Parallel.ForEach](#c-parallelfor-và-parallelforeach)
 
 6. [Các Lưu Ý Khi Sử Dụng TPL](#6-các-lưu-ý-khi-sử-dụng-tpl)
 
@@ -30,7 +30,9 @@
 
 ### 1. Tổng Quan về Task Parallel Library (TPL)
 
-**Task Parallel Library (TPL)** là một phần của thư viện .NET, được thiết kế để giúp lập trình viên xử lý các tác vụ đa luồng (multithreading) một cách dễ dàng và hiệu quả. TPL cung cấp các API mạnh mẽ để lập trình song song, tập trung vào việc tận dụng tối đa hiệu suất của CPU.
+**Task Parallel Library (TPL)** là một phần của thư viện .NET, được thiết kế để giúp lập trình viên xử lý các tác vụ đa
+luồng (multithreading) một cách dễ dàng và hiệu quả. TPL cung cấp các API mạnh mẽ để lập trình song song, tập trung vào
+việc tận dụng tối đa hiệu suất của CPU.
 
 #### Mục Đích
 
@@ -149,7 +151,9 @@ Parallel.ForEach(numbers, number =>
 
 ### 7. Tóm Tắt
 
-Task Parallel Library là một công cụ mạnh mẽ trong .NET để xây dựng các ứng dụng song song. TPL giúp lập trình viên đơn giản hóa việc quản lý đa luồng và tối ưu hóa hiệu suất ứng dụng. Việc nắm vững cách sử dụng các thành phần như `Task`, `Parallel`, và `CancellationToken` sẽ giúp bạn tận dụng tối đa lợi ích mà TPL mang lại.
+Task Parallel Library là một công cụ mạnh mẽ trong .NET để xây dựng các ứng dụng song song. TPL giúp lập trình viên đơn
+giản hóa việc quản lý đa luồng và tối ưu hóa hiệu suất ứng dụng. Việc nắm vững cách sử dụng các thành phần như `Task`,
+`Parallel`, và `CancellationToken` sẽ giúp bạn tận dụng tối đa lợi ích mà TPL mang lại.
 
 **Các điểm chính:**
 

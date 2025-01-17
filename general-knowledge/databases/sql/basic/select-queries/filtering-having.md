@@ -3,16 +3,16 @@
 ## Mục Lục
 
 1. [Tổng quan về Filtering với HAVING](#1-tổng-quan-về-filtering-với-having)
-   - [HAVING là gì?](#having-là-gì)
-   - [Lợi ích của HAVING](#lợi-ích-của-having)
-   - [HAVING hoạt động như thế nào?](#having-hoạt-động-như-thế-nào)
+    - [HAVING là gì?](#having-là-gì)
+    - [Lợi ích của HAVING](#lợi-ích-của-having)
+    - [HAVING hoạt động như thế nào?](#having-hoạt-động-như-thế-nào)
 2. [Cú pháp của HAVING](#2-cú-pháp-của-having)
-   - [Kết hợp với GROUP BY](#kết-hợp-với-group-by)
-   - [Kết hợp với SELECT](#kết-hợp-với-select)
+    - [Kết hợp với GROUP BY](#kết-hợp-với-group-by)
+    - [Kết hợp với SELECT](#kết-hợp-với-select)
 3. [Sử dụng HAVING với các hàm tổng hợp](#3-sử-dụng-having-với-các-hàm-tổng-hợp)
-   - [HAVING và COUNT](#having-và-count)
-   - [HAVING và SUM](#having-và-sum)
-   - [HAVING và AVG](#having-và-avg)
+    - [HAVING và COUNT](#having-và-count)
+    - [HAVING và SUM](#having-và-sum)
+    - [HAVING và AVG](#having-và-avg)
 4. [Ví dụ thực tế với HAVING](#4-ví-dụ-thực-tế-với-having)
 5. [Lưu ý và thực hành tốt](#5-lưu-ý-và-thực-hành-tốt)
 
@@ -22,19 +22,24 @@
 
 #### HAVING là gì?
 
-Mệnh đề `HAVING` trong SQL Server được sử dụng để lọc các nhóm kết quả sau khi nhóm dữ liệu bằng mệnh đề `GROUP BY`. Mặc dù `WHERE` lọc dữ liệu trước khi nhóm, `HAVING` lọc các nhóm sau khi dữ liệu đã được nhóm lại. Điều này có nghĩa là bạn có thể áp dụng điều kiện vào kết quả của các hàm tổng hợp như `COUNT()`, `SUM()`, `AVG()`, v.v.
+Mệnh đề `HAVING` trong SQL Server được sử dụng để lọc các nhóm kết quả sau khi nhóm dữ liệu bằng mệnh đề `GROUP BY`. Mặc
+dù `WHERE` lọc dữ liệu trước khi nhóm, `HAVING` lọc các nhóm sau khi dữ liệu đã được nhóm lại. Điều này có nghĩa là bạn
+có thể áp dụng điều kiện vào kết quả của các hàm tổng hợp như `COUNT()`, `SUM()`, `AVG()`, v.v.
 
 #### Lợi ích của HAVING
 
-- **Lọc nhóm dữ liệu**: Mệnh đề `HAVING` cho phép bạn lọc dữ liệu sau khi nhóm các bản ghi, điều này rất hữu ích khi bạn muốn làm việc với các kết quả tổng hợp.
-- **Sử dụng với hàm tổng hợp**: `HAVING` thường được sử dụng để lọc kết quả của các hàm tổng hợp (ví dụ: `COUNT()`, `SUM()`, `AVG()`), điều mà `WHERE` không thể thực hiện.
+- **Lọc nhóm dữ liệu**: Mệnh đề `HAVING` cho phép bạn lọc dữ liệu sau khi nhóm các bản ghi, điều này rất hữu ích khi bạn
+  muốn làm việc với các kết quả tổng hợp.
+- **Sử dụng với hàm tổng hợp**: `HAVING` thường được sử dụng để lọc kết quả của các hàm tổng hợp (ví dụ: `COUNT()`,
+  `SUM()`, `AVG()`), điều mà `WHERE` không thể thực hiện.
 - **Tăng khả năng phân tích dữ liệu**: Mệnh đề `HAVING` giúp bạn phân tích các nhóm dữ liệu theo các tiêu chí phức tạp.
 
 #### HAVING hoạt động như thế nào?
 
 1. **Nhóm dữ liệu**: Trước tiên, SQL Server sẽ nhóm các bản ghi theo các cột mà bạn chỉ định trong mệnh đề `GROUP BY`.
 2. **Áp dụng hàm tổng hợp**: Sau khi nhóm dữ liệu, SQL Server sẽ tính toán các hàm tổng hợp cho mỗi nhóm.
-3. **Lọc nhóm dữ liệu**: Sau đó, mệnh đề `HAVING` được áp dụng để lọc các nhóm dữ liệu dựa trên điều kiện mà bạn chỉ định.
+3. **Lọc nhóm dữ liệu**: Sau đó, mệnh đề `HAVING` được áp dụng để lọc các nhóm dữ liệu dựa trên điều kiện mà bạn chỉ
+   định.
 4. **Trả về kết quả**: SQL Server sẽ trả về các nhóm dữ liệu thỏa mãn điều kiện trong `HAVING`.
 
 ---
@@ -82,7 +87,8 @@ Câu lệnh này sẽ trả về các phòng ban có mức lương trung bình l
 
 ### 3. Sử dụng HAVING với các hàm tổng hợp
 
-Mệnh đề `HAVING` đặc biệt hữu ích khi bạn muốn lọc các nhóm dựa trên các kết quả tổng hợp như `COUNT()`, `SUM()`, `AVG()`, v.v.
+Mệnh đề `HAVING` đặc biệt hữu ích khi bạn muốn lọc các nhóm dựa trên các kết quả tổng hợp như `COUNT()`, `SUM()`,
+`AVG()`, v.v.
 
 #### HAVING và COUNT
 
@@ -131,7 +137,8 @@ Câu lệnh này sẽ trả về các phòng ban có mức lương trung bình l
 
 ---
 
-Dưới đây là phần bổ sung ví dụ kèm kết quả cho tài liệu về **Filtering với HAVING** trong SQL Server, giúp người đọc dễ dàng hình dung hơn.
+Dưới đây là phần bổ sung ví dụ kèm kết quả cho tài liệu về **Filtering với HAVING** trong SQL Server, giúp người đọc dễ
+dàng hình dung hơn.
 
 ---
 
@@ -155,7 +162,7 @@ HAVING COUNT(*) > 5;
 **Kết quả có thể xảy ra**:
 
 | department | num_employees |
-| ---------- | ------------- |
+|------------|---------------|
 | HR         | 8             |
 | IT         | 12            |
 | Sales      | 6             |
@@ -175,12 +182,13 @@ HAVING SUM(salary) > 100000;
 
 **Giải thích**:
 
-- Truy vấn này sẽ tính tổng lương của nhân viên trong từng phòng ban và trả về các phòng ban có tổng lương vượt quá 100000.
+- Truy vấn này sẽ tính tổng lương của nhân viên trong từng phòng ban và trả về các phòng ban có tổng lương vượt quá
+    100000.
 
 **Kết quả có thể xảy ra**:
 
 | department | total_salary |
-| ---------- | ------------ |
+|------------|--------------|
 | IT         | 150000       |
 | Sales      | 120000       |
 
@@ -199,12 +207,13 @@ HAVING AVG(salary) > 4000;
 
 **Giải thích**:
 
-- Truy vấn này sẽ tính mức lương trung bình trong từng phòng ban và chỉ trả về các phòng ban có mức lương trung bình lớn hơn 4000.
+- Truy vấn này sẽ tính mức lương trung bình trong từng phòng ban và chỉ trả về các phòng ban có mức lương trung bình lớn
+  hơn 4000.
 
 **Kết quả có thể xảy ra**:
 
 | department | avg_salary |
-| ---------- | ---------- |
+|------------|------------|
 | IT         | 5500       |
 | Sales      | 4600       |
 
@@ -228,7 +237,7 @@ HAVING COUNT(*) > 10 AND AVG(salary) > 5000;
 **Kết quả có thể xảy ra**:
 
 | department | num_employees | avg_salary |
-| ---------- | ------------- | ---------- |
+|------------|---------------|------------|
 | IT         | 12            | 6000       |
 
 ---
@@ -251,7 +260,7 @@ HAVING AVG(salary) < 4000 AND COUNT(*) > 5;
 **Kết quả có thể xảy ra**:
 
 | department | num_employees | avg_salary |
-| ---------- | ------------- | ---------- |
+|------------|---------------|------------|
 | HR         | 8             | 3500       |
 
 ---
@@ -274,7 +283,7 @@ HAVING SUM(salary) > 50000 AND COUNT(*) >= 3;
 **Kết quả có thể xảy ra**:
 
 | department | total_salary | num_employees |
-| ---------- | ------------ | ------------- |
+|------------|--------------|---------------|
 | IT         | 75000        | 10            |
 | Sales      | 55000        | 6             |
 
@@ -282,7 +291,11 @@ HAVING SUM(salary) > 50000 AND COUNT(*) >= 3;
 
 ### 5. Lưu ý và thực hành tốt
 
-- **Sử dụng HAVING sau GROUP BY**: `HAVING` luôn được sử dụng sau khi nhóm dữ liệu với `GROUP BY`. Điều này có nghĩa là bạn không thể sử dụng `HAVING` mà không có `GROUP BY`.
-- **Lọc sau khi nhóm**: `HAVING` là để lọc các nhóm, trong khi `WHERE` được sử dụng để lọc dữ liệu trước khi nhóm. Nếu bạn muốn lọc các bản ghi trước khi nhóm, hãy sử dụng `WHERE`.
-- **Tối ưu hóa truy vấn**: Cần lưu ý rằng mệnh đề `HAVING` có thể làm chậm truy vấn nếu nhóm dữ liệu quá lớn hoặc nếu bạn sử dụng các hàm tổng hợp phức tạp. Hãy tối ưu hóa truy vấn của bạn bằng cách sử dụng điều kiện lọc hợp lý.
-- **Kết hợp WHERE và HAVING**: Trong một số trường hợp, bạn có thể cần kết hợp `WHERE` và `HAVING` để lọc dữ liệu trước khi nhóm và sau khi nhóm. Hãy chắc chắn sử dụng `WHERE` cho các điều kiện không liên quan đến hàm tổng hợp.
+- **Sử dụng HAVING sau GROUP BY**: `HAVING` luôn được sử dụng sau khi nhóm dữ liệu với `GROUP BY`. Điều này có nghĩa là
+  bạn không thể sử dụng `HAVING` mà không có `GROUP BY`.
+- **Lọc sau khi nhóm**: `HAVING` là để lọc các nhóm, trong khi `WHERE` được sử dụng để lọc dữ liệu trước khi nhóm. Nếu
+  bạn muốn lọc các bản ghi trước khi nhóm, hãy sử dụng `WHERE`.
+- **Tối ưu hóa truy vấn**: Cần lưu ý rằng mệnh đề `HAVING` có thể làm chậm truy vấn nếu nhóm dữ liệu quá lớn hoặc nếu
+  bạn sử dụng các hàm tổng hợp phức tạp. Hãy tối ưu hóa truy vấn của bạn bằng cách sử dụng điều kiện lọc hợp lý.
+- **Kết hợp WHERE và HAVING**: Trong một số trường hợp, bạn có thể cần kết hợp `WHERE` và `HAVING` để lọc dữ liệu trước
+  khi nhóm và sau khi nhóm. Hãy chắc chắn sử dụng `WHERE` cho các điều kiện không liên quan đến hàm tổng hợp.

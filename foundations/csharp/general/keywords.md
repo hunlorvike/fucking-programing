@@ -1,6 +1,8 @@
 # **Từ khóa trong C#**
 
-Trong C#, từ khóa (keywords) là những từ được sử dụng để xây dựng cấu trúc của chương trình, biểu diễn các kiểu dữ liệu, thực hiện các thao tác điều khiển, khai báo phương thức và class, v.v. Dưới đây là danh sách các từ khóa phổ biến trong C# được phân loại theo chức năng.
+Trong C#, từ khóa (keywords) là những từ được sử dụng để xây dựng cấu trúc của chương trình, biểu diễn các kiểu dữ liệu,
+thực hiện các thao tác điều khiển, khai báo phương thức và class, v.v. Dưới đây là danh sách các từ khóa phổ biến trong
+C# được phân loại theo chức năng.
 
 ### **1. Từ khóa Kiểu dữ liệu (Data Types)**
 
@@ -117,7 +119,8 @@ class Program {
 }
 ```
 
-- **Giải thích**: `ref` yêu cầu biến được khởi tạo trước khi truyền vào phương thức. Biến `number` được thay đổi trong hàm `Increment` và cập nhật giá trị ở `Main`.
+- **Giải thích**: `ref` yêu cầu biến được khởi tạo trước khi truyền vào phương thức. Biến `number` được thay đổi trong
+  hàm `Increment` và cập nhật giá trị ở `Main`.
 
 ### 2. `out` - Tham số đầu ra
 
@@ -139,7 +142,8 @@ class Program {
 }
 ```
 
-- **Giải thích**: `out` yêu cầu biến phải được gán giá trị bên trong phương thức `Multiply`. Trong `Main`, biến `result` nhận giá trị từ `Multiply`.
+- **Giải thích**: `out` yêu cầu biến phải được gán giá trị bên trong phương thức `Multiply`. Trong `Main`, biến `result`
+  nhận giá trị từ `Multiply`.
 
 ### 3. `in` - Tham số chỉ đọc
 
@@ -162,7 +166,8 @@ class Program {
 }
 ```
 
-- **Giải thích**: `in` đảm bảo biến `x` trong `PrintDouble` chỉ có thể đọc, không được phép thay đổi. Giá trị `number` trong `Main` không bị ảnh hưởng.
+- **Giải thích**: `in` đảm bảo biến `x` trong `PrintDouble` chỉ có thể đọc, không được phép thay đổi. Giá trị `number`
+  trong `Main` không bị ảnh hưởng.
 
 ### 4. `params` - Mảng tham số có độ dài thay đổi
 
@@ -185,7 +190,8 @@ class Program {
 }
 ```
 
-- **Giải thích**: `params` giúp truyền vào nhiều số nguyên mà không cần khai báo trước số lượng. Các tham số được nhóm thành một mảng `numbers` và được duyệt bằng `foreach`.
+- **Giải thích**: `params` giúp truyền vào nhiều số nguyên mà không cần khai báo trước số lượng. Các tham số được nhóm
+  thành một mảng `numbers` và được duyệt bằng `foreach`.
 
 ### **5. Từ khóa Chỉ định Kiểu**
 

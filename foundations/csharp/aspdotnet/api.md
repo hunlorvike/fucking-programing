@@ -8,29 +8,29 @@
 
 - **Mục đích chính:** Là cầu nối giao tiếp giữa client và server, cho phép các ứng dụng khác nhau tương tác với nhau.
 - **Đặc điểm nổi bật:**
-  - **Giao thức:** Hỗ trợ nhiều giao thức khác nhau như HTTP, TCP/UDP, SOAP.
-  - **Định dạng phản hồi:** Không bị ràng buộc, có thể trả về JSON, XML, text, hoặc binary.
-  - **Phương thức:** Không bị ràng buộc bởi HTTP methods (có thể tự định nghĩa cách giao tiếp).
-  - **Tài nguyên:** Không tập trung vào việc quản lý tài nguyên thông qua URL.
+    - **Giao thức:** Hỗ trợ nhiều giao thức khác nhau như HTTP, TCP/UDP, SOAP.
+    - **Định dạng phản hồi:** Không bị ràng buộc, có thể trả về JSON, XML, text, hoặc binary.
+    - **Phương thức:** Không bị ràng buộc bởi HTTP methods (có thể tự định nghĩa cách giao tiếp).
+    - **Tài nguyên:** Không tập trung vào việc quản lý tài nguyên thông qua URL.
 
 ##### **1.1.2 RESTful API**
 
 - **Mục đích chính:** Là một loại API tuân theo các nguyên tắc của REST (Representational State Transfer).
 - **Đặc điểm nổi bật:**
-  - **Giao thức:** Sử dụng HTTP làm giao thức chính.
-  - **Định dạng phản hồi:** Chủ yếu là JSON hoặc XML.
-  - **Phương thức:** Tuân thủ các phương thức chuẩn của HTTP như GET, POST, PUT, DELETE.
-  - **Tài nguyên:** Mỗi tài nguyên được định danh bằng một URI, quản lý và thao tác thông qua URL.
+    - **Giao thức:** Sử dụng HTTP làm giao thức chính.
+    - **Định dạng phản hồi:** Chủ yếu là JSON hoặc XML.
+    - **Phương thức:** Tuân thủ các phương thức chuẩn của HTTP như GET, POST, PUT, DELETE.
+    - **Tài nguyên:** Mỗi tài nguyên được định danh bằng một URI, quản lý và thao tác thông qua URL.
 
 ##### **1.1.3 So sánh API và RESTful API**
 
-| **Tiêu chí**              | **API**                                  | **RESTful API**                         |
-|---------------------------|------------------------------------------|-----------------------------------------|
-| **Giao thức**             | HTTP, TCP, UDP, SOAP, v.v.               | HTTP                                   |
-| **Định dạng phản hồi**     | Không ràng buộc định dạng                | Thường là JSON hoặc XML                |
-| **Phương thức**           | Không bị ràng buộc                       | GET, POST, PUT, DELETE                 |
-| **Tài nguyên**            | Không tập trung vào tài nguyên cụ thể    | Dựa trên URL để quản lý tài nguyên     |
-| **Tuân theo nguyên tắc REST** | Không bắt buộc                          | Phải tuân thủ                          |
+| **Tiêu chí**                  | **API**                               | **RESTful API**                    |
+|-------------------------------|---------------------------------------|------------------------------------|
+| **Giao thức**                 | HTTP, TCP, UDP, SOAP, v.v.            | HTTP                               |
+| **Định dạng phản hồi**        | Không ràng buộc định dạng             | Thường là JSON hoặc XML            |
+| **Phương thức**               | Không bị ràng buộc                    | GET, POST, PUT, DELETE             |
+| **Tài nguyên**                | Không tập trung vào tài nguyên cụ thể | Dựa trên URL để quản lý tài nguyên |
+| **Tuân theo nguyên tắc REST** | Không bắt buộc                        | Phải tuân thủ                      |
 
 ---
 
@@ -39,70 +39,74 @@
 ##### **1.2.1 Web Application (Web App)**
 
 - **Đặc điểm chính:**
-  - Trả về giao diện người dùng (HTML, CSS, JavaScript) cho client.
-  - Thường dành cho người dùng cuối, tương tác qua giao diện web.
-  - Phù hợp cho các ứng dụng truyền thống với giao diện người dùng đầy đủ.
+    - Trả về giao diện người dùng (HTML, CSS, JavaScript) cho client.
+    - Thường dành cho người dùng cuối, tương tác qua giao diện web.
+    - Phù hợp cho các ứng dụng truyền thống với giao diện người dùng đầy đủ.
 - **Ví dụ:** Website thương mại điện tử, blog, diễn đàn.
 
 - **Quy trình hoạt động:**
-  1. Người dùng truy cập website qua trình duyệt.
-  2. Server xử lý yêu cầu và trả về HTML, CSS, và JavaScript.
-  3. Trình duyệt render nội dung và hiển thị.
+    1. Người dùng truy cập website qua trình duyệt.
+    2. Server xử lý yêu cầu và trả về HTML, CSS, và JavaScript.
+    3. Trình duyệt render nội dung và hiển thị.
 
 ##### **1.2.2 Web API**
 
 - **Đặc điểm chính:**
-  - Trả về dữ liệu (JSON, XML) thay vì giao diện người dùng.
-  - Dùng để giao tiếp giữa các hệ thống hoặc ứng dụng.
-  - Phù hợp cho ứng dụng di động, single-page applications (SPA), hoặc tích hợp dữ liệu giữa các hệ thống.
+    - Trả về dữ liệu (JSON, XML) thay vì giao diện người dùng.
+    - Dùng để giao tiếp giữa các hệ thống hoặc ứng dụng.
+    - Phù hợp cho ứng dụng di động, single-page applications (SPA), hoặc tích hợp dữ liệu giữa các hệ thống.
 - **Ví dụ:** API cho ứng dụng mobile, API cho ứng dụng React/Angular, API tích hợp ERP.
 
 - **Quy trình hoạt động:**
-  1. Một ứng dụng (ví dụ: ứng dụng di động) gửi yêu cầu HTTP tới API.
-  2. Server xử lý yêu cầu và trả về dữ liệu dạng JSON/XML.
-  3. Ứng dụng sử dụng dữ liệu để hiển thị hoặc thực hiện các tác vụ khác.
+    1. Một ứng dụng (ví dụ: ứng dụng di động) gửi yêu cầu HTTP tới API.
+    2. Server xử lý yêu cầu và trả về dữ liệu dạng JSON/XML.
+    3. Ứng dụng sử dụng dữ liệu để hiển thị hoặc thực hiện các tác vụ khác.
 
-| **Tiêu chí**              | **Web App**                             | **Web API**                            |
-|---------------------------|------------------------------------------|----------------------------------------|
-| **Phản hồi**              | HTML, CSS, JavaScript                   | JSON, XML                              |
-| **Mục tiêu**              | Tương tác trực tiếp với người dùng       | Giao tiếp giữa các hệ thống            |
-| **Giao diện người dùng**  | Có giao diện                            | Không có giao diện                     |
-| **Ứng dụng phù hợp**      | Web truyền thống                        | SPA, ứng dụng di động, tích hợp hệ thống |
+| **Tiêu chí**             | **Web App**                        | **Web API**                              |
+|--------------------------|------------------------------------|------------------------------------------|
+| **Phản hồi**             | HTML, CSS, JavaScript              | JSON, XML                                |
+| **Mục tiêu**             | Tương tác trực tiếp với người dùng | Giao tiếp giữa các hệ thống              |
+| **Giao diện người dùng** | Có giao diện                       | Không có giao diện                       |
+| **Ứng dụng phù hợp**     | Web truyền thống                   | SPA, ứng dụng di động, tích hợp hệ thống |
 
 ---
 
 #### **1.3 RESTful API trong ASP.NET Core**
 
-ASP.NET Core là framework mạnh mẽ để phát triển RESTful API, giúp xây dựng các API hiệu quả, dễ mở rộng, và tuân theo các nguyên tắc REST.
+ASP.NET Core là framework mạnh mẽ để phát triển RESTful API, giúp xây dựng các API hiệu quả, dễ mở rộng, và tuân theo
+các nguyên tắc REST.
 
 ##### **1.3.1 Nguyên tắc REST trong ASP.NET Core**
 
 - **Client-Server:**
-  - Kiến trúc RESTful trong ASP.NET Core phân tách rõ ràng giữa client và server.
-  - Ví dụ: API `GET /api/products` cho phép client nhận danh sách sản phẩm mà không cần biết cách xử lý dữ liệu bên trong server.
+    - Kiến trúc RESTful trong ASP.NET Core phân tách rõ ràng giữa client và server.
+    - Ví dụ: API `GET /api/products` cho phép client nhận danh sách sản phẩm mà không cần biết cách xử lý dữ liệu bên
+      trong server.
 
 - **Stateless (Không trạng thái):**
-  - Mỗi yêu cầu từ client phải chứa toàn bộ thông tin cần thiết (bao gồm token xác thực).
-  - Thực hiện qua JWT hoặc các token tương tự.
-  - Ví dụ: Gọi API `POST /api/orders` để tạo đơn hàng, token xác thực sẽ được gửi qua header `Authorization: Bearer <token>`.
+    - Mỗi yêu cầu từ client phải chứa toàn bộ thông tin cần thiết (bao gồm token xác thực).
+    - Thực hiện qua JWT hoặc các token tương tự.
+    - Ví dụ: Gọi API `POST /api/orders` để tạo đơn hàng, token xác thực sẽ được gửi qua header
+      `Authorization: Bearer <token>`.
 
 - **Cacheable (Có khả năng cache):**
-  - ASP.NET Core hỗ trợ cấu hình cache response để giảm tải cho server.
-  - Ví dụ: Với API `GET /api/products`, server có thể sử dụng `Cache-Control: public, max-age=3600` để client cache trong 1 giờ.
+    - ASP.NET Core hỗ trợ cấu hình cache response để giảm tải cho server.
+    - Ví dụ: Với API `GET /api/products`, server có thể sử dụng `Cache-Control: public, max-age=3600` để client cache
+      trong 1 giờ.
 
 - **Uniform Interface:**
-  - Sử dụng các phương thức HTTP chuẩn: `GET`, `POST`, `PUT`, `DELETE`.
-  - Tài nguyên được quản lý thông qua URI.
-  - Ví dụ các endpoint:
-    - `GET /api/products`: Lấy danh sách sản phẩm.
-    - `GET /api/products/{id}`: Lấy thông tin chi tiết sản phẩm.
-    - `POST /api/products`: Thêm sản phẩm mới.
-    - `PUT /api/products/{id}`: Cập nhật sản phẩm.
-    - `DELETE /api/products/{id}`: Xóa sản phẩm.
+    - Sử dụng các phương thức HTTP chuẩn: `GET`, `POST`, `PUT`, `DELETE`.
+    - Tài nguyên được quản lý thông qua URI.
+    - Ví dụ các endpoint:
+        - `GET /api/products`: Lấy danh sách sản phẩm.
+        - `GET /api/products/{id}`: Lấy thông tin chi tiết sản phẩm.
+        - `POST /api/products`: Thêm sản phẩm mới.
+        - `PUT /api/products/{id}`: Cập nhật sản phẩm.
+        - `DELETE /api/products/{id}`: Xóa sản phẩm.
 
 - **Layered System (Hệ thống phân lớp):**
-  - Middleware trong ASP.NET Core giúp quản lý logging, xác thực, xử lý lỗi.
-  - Các lớp như CDN, load balancer có thể được thêm vào để tối ưu hóa.
+    - Middleware trong ASP.NET Core giúp quản lý logging, xác thực, xử lý lỗi.
+    - Các lớp như CDN, load balancer có thể được thêm vào để tối ưu hóa.
 
 ##### **1.3.2 Ví dụ RESTful API trong ASP.NET Core**
 
@@ -141,18 +145,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
 
 ##### **1.3.3 HTTP Status Codes trong RESTful API**
 
-| **Mã HTTP**    | **Ý nghĩa**                                     |
-|-----------------|-------------------------------------------------|
-| **200 OK**      | Yêu cầu thành công                              |
-| **201 Created** | Tạo resource mới thành công                     |
-| **204 No Content** | Yêu cầu thành công nhưng không có dữ liệu trả về |
-| **400 Bad Request** | Yêu cầu không hợp lệ                         |
-| **401 Unauthorized** | Không được phép truy cập                    |
-| **404 Not Found** | Resource không tồn tại                        |
-| **409 Conflict** | Xung đột khi thao tác trên resource            |
-| **422 Unprocessable Entity** | Yêu cầu hợp lệ nhưng không thể xử lý |
-| **500 Internal Server Error** | Lỗi server                        |
-
+| **Mã HTTP**                   | **Ý nghĩa**                                      |
+|-------------------------------|--------------------------------------------------|
+| **200 OK**                    | Yêu cầu thành công                               |
+| **201 Created**               | Tạo resource mới thành công                      |
+| **204 No Content**            | Yêu cầu thành công nhưng không có dữ liệu trả về |
+| **400 Bad Request**           | Yêu cầu không hợp lệ                             |
+| **401 Unauthorized**          | Không được phép truy cập                         |
+| **404 Not Found**             | Resource không tồn tại                           |
+| **409 Conflict**              | Xung đột khi thao tác trên resource              |
+| **422 Unprocessable Entity**  | Yêu cầu hợp lệ nhưng không thể xử lý             |
+| **500 Internal Server Error** | Lỗi server                                       |
 
 ### 2. Controllers cho Web API
 
@@ -175,12 +178,12 @@ public class ProductsController : ControllerBase
 ```
 
 - **Giải thích:**
-  - `[ApiController]` Attribute: Ký hiệu cho controller là một API Controller.
-  - `[Route("api/[controller]")]` Attribute: Định nghĩa route cho controller.
-    - `[controller]` sẽ được thay thế bằng tên controller (ví dụ: "Products").
-  - `IProductService`: Interface đại diện cho dịch vụ xử lý sản phẩm.
-  - `_productService`: Biến private để truy cập vào dịch vụ sản phẩm.
-  - Constructor: Nhận đối tượng `IProductService` từ Dependency Injection để sử dụng trong controller.
+    - `[ApiController]` Attribute: Ký hiệu cho controller là một API Controller.
+    - `[Route("api/[controller]")]` Attribute: Định nghĩa route cho controller.
+        - `[controller]` sẽ được thay thế bằng tên controller (ví dụ: "Products").
+    - `IProductService`: Interface đại diện cho dịch vụ xử lý sản phẩm.
+    - `_productService`: Biến private để truy cập vào dịch vụ sản phẩm.
+    - Constructor: Nhận đối tượng `IProductService` từ Dependency Injection để sử dụng trong controller.
 
 #### 2.2. HTTP Request Methods
 
@@ -208,13 +211,13 @@ public async Task<ActionResult<Product>> GetProduct(int id)
 ```
 
 - **Giải thích:**
-  - `[HttpGet]` Attribute: Định nghĩa phương thức này xử lý yêu cầu GET.
-  - `GetProducts()`: Hàm xử lý yêu cầu lấy danh sách sản phẩm.
-  - `GetProduct(int id)`: Hàm xử lý yêu cầu lấy chi tiết sản phẩm theo ID.
-  - `_productService.GetAllAsync()`: Gọi hàm của `IProductService` để lấy danh sách sản phẩm.
-  - `_productService.GetByIdAsync(id)`: Gọi hàm của `IProductService` để lấy chi tiết sản phẩm theo ID.
-  - `Ok(products)`: Trả về HTTP status code 200 OK và danh sách sản phẩm.
-  - `NotFound()`: Trả về HTTP status code 404 Not Found khi sản phẩm không tồn tại.
+    - `[HttpGet]` Attribute: Định nghĩa phương thức này xử lý yêu cầu GET.
+    - `GetProducts()`: Hàm xử lý yêu cầu lấy danh sách sản phẩm.
+    - `GetProduct(int id)`: Hàm xử lý yêu cầu lấy chi tiết sản phẩm theo ID.
+    - `_productService.GetAllAsync()`: Gọi hàm của `IProductService` để lấy danh sách sản phẩm.
+    - `_productService.GetByIdAsync(id)`: Gọi hàm của `IProductService` để lấy chi tiết sản phẩm theo ID.
+    - `Ok(products)`: Trả về HTTP status code 200 OK và danh sách sản phẩm.
+    - `NotFound()`: Trả về HTTP status code 404 Not Found khi sản phẩm không tồn tại.
 
 ##### 2.2.2. POST Request
 
@@ -231,13 +234,14 @@ public async Task<ActionResult<Product>> CreateProduct(ProductCreateDto productD
 ```
 
 - **Giải thích:**
-  - `[HttpPost]` Attribute: Định nghĩa phương thức này xử lý yêu cầu POST.
-  - `CreateProduct(ProductCreateDto productDto)`: Hàm xử lý yêu cầu tạo sản phẩm mới.
-  - `ProductCreateDto`: DTO (Data Transfer Object) chứa thông tin cần thiết để tạo sản phẩm mới.
-  - `ModelState.IsValid`: Kiểm tra xem dữ liệu đầu vào (productDto) có hợp lệ hay không.
-  - `BadRequest(ModelState)`: Trả về HTTP status code 400 Bad Request nếu dữ liệu đầu vào không hợp lệ.
-  - `_productService.CreateAsync(productDto)`: Gọi hàm của `IProductService` để tạo sản phẩm mới.
-  - `CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product)`: Trả về HTTP status code 201 Created và thông tin sản phẩm mới được tạo.
+    - `[HttpPost]` Attribute: Định nghĩa phương thức này xử lý yêu cầu POST.
+    - `CreateProduct(ProductCreateDto productDto)`: Hàm xử lý yêu cầu tạo sản phẩm mới.
+    - `ProductCreateDto`: DTO (Data Transfer Object) chứa thông tin cần thiết để tạo sản phẩm mới.
+    - `ModelState.IsValid`: Kiểm tra xem dữ liệu đầu vào (productDto) có hợp lệ hay không.
+    - `BadRequest(ModelState)`: Trả về HTTP status code 400 Bad Request nếu dữ liệu đầu vào không hợp lệ.
+    - `_productService.CreateAsync(productDto)`: Gọi hàm của `IProductService` để tạo sản phẩm mới.
+    - `CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product)`: Trả về HTTP status code 201 Created và
+      thông tin sản phẩm mới được tạo.
 
 ##### 2.2.3. PUT Request
 
@@ -262,15 +266,15 @@ public async Task<IActionResult> UpdateProduct(int id, ProductUpdateDto productD
 ```
 
 - **Giải thích:**
-  - `[HttpPut("{id}")]` Attribute: Định nghĩa phương thức này xử lý yêu cầu PUT.
-  - `UpdateProduct(int id, ProductUpdateDto productDto)`: Hàm xử lý yêu cầu cập nhật sản phẩm.
-  - `ProductUpdateDto`: DTO chứa thông tin cần thiết để cập nhật sản phẩm.
-  - `id != productDto.Id`: Kiểm tra xem ID trong route và ID trong DTO có khớp nhau hay không.
-  - `BadRequest()`: Trả về HTTP status code 400 Bad Request nếu ID không khớp.
-  - `_productService.UpdateAsync(productDto)`: Gọi hàm của `IProductService` để cập nhật sản phẩm.
-  - `NotFoundException`: Ngoại lệ được ném ra khi sản phẩm không tồn tại.
-  - `NotFound()`: Trả về HTTP status code 404 Not Found nếu sản phẩm không tồn tại.
-  - `NoContent()`: Trả về HTTP status code 204 No Content khi cập nhật sản phẩm thành công.
+    - `[HttpPut("{id}")]` Attribute: Định nghĩa phương thức này xử lý yêu cầu PUT.
+    - `UpdateProduct(int id, ProductUpdateDto productDto)`: Hàm xử lý yêu cầu cập nhật sản phẩm.
+    - `ProductUpdateDto`: DTO chứa thông tin cần thiết để cập nhật sản phẩm.
+    - `id != productDto.Id`: Kiểm tra xem ID trong route và ID trong DTO có khớp nhau hay không.
+    - `BadRequest()`: Trả về HTTP status code 400 Bad Request nếu ID không khớp.
+    - `_productService.UpdateAsync(productDto)`: Gọi hàm của `IProductService` để cập nhật sản phẩm.
+    - `NotFoundException`: Ngoại lệ được ném ra khi sản phẩm không tồn tại.
+    - `NotFound()`: Trả về HTTP status code 404 Not Found nếu sản phẩm không tồn tại.
+    - `NoContent()`: Trả về HTTP status code 204 No Content khi cập nhật sản phẩm thành công.
 
 ##### 2.2.4. DELETE Request
 
@@ -292,12 +296,12 @@ public async Task<IActionResult> DeleteProduct(int id)
 ```
 
 - **Giải thích:**
-  - `[HttpDelete("{id}")]` Attribute: Định nghĩa phương thức này xử lý yêu cầu DELETE.
-  - `DeleteProduct(int id)`: Hàm xử lý yêu cầu xóa sản phẩm.
-  - `_productService.DeleteAsync(id)`: Gọi hàm của `IProductService` để xóa sản phẩm.
-  - `NotFoundException`: Ngoại lệ được ném ra khi sản phẩm không tồn tại.
-  - `NotFound()`: Trả về HTTP status code 404 Not Found nếu sản phẩm không tồn tại.
-  - `NoContent()`: Trả về HTTP status code 204 No Content khi xóa sản phẩm thành công.
+    - `[HttpDelete("{id}")]` Attribute: Định nghĩa phương thức này xử lý yêu cầu DELETE.
+    - `DeleteProduct(int id)`: Hàm xử lý yêu cầu xóa sản phẩm.
+    - `_productService.DeleteAsync(id)`: Gọi hàm của `IProductService` để xóa sản phẩm.
+    - `NotFoundException`: Ngoại lệ được ném ra khi sản phẩm không tồn tại.
+    - `NotFound()`: Trả về HTTP status code 404 Not Found nếu sản phẩm không tồn tại.
+    - `NoContent()`: Trả về HTTP status code 204 No Content khi xóa sản phẩm thành công.
 
 ### 3. Model Binding và Validation
 
@@ -312,9 +316,9 @@ public IActionResult Get([FromQuery] ProductFilterDto filter)
 
 - **Giải thích:**
 
-  - `[FromQuery]` Attribute: Chỉ định rằng dữ liệu được lấy từ query string của URL.
-  - `ProductFilterDto`: DTO chứa các thông tin lọc sản phẩm (ví dụ: name, price).
-  - **Ví dụ URL:** `/api/products?name=Sản phẩm A&price=100000`
+    - `[FromQuery]` Attribute: Chỉ định rằng dữ liệu được lấy từ query string của URL.
+    - `ProductFilterDto`: DTO chứa các thông tin lọc sản phẩm (ví dụ: name, price).
+    - **Ví dụ URL:** `/api/products?name=Sản phẩm A&price=100000`
 
 - **Binding từ Request Body:**
 
@@ -325,9 +329,9 @@ public IActionResult Create([FromBody] ProductCreateDto product)
 
 - **Giải thích:**
 
-  - `[FromBody]` Attribute: Chỉ định rằng dữ liệu được lấy từ body của request.
-  - `ProductCreateDto`: DTO chứa thông tin sản phẩm mới.
-  - **Ví dụ Request Body:**
+    - `[FromBody]` Attribute: Chỉ định rằng dữ liệu được lấy từ body của request.
+    - `ProductCreateDto`: DTO chứa thông tin sản phẩm mới.
+    - **Ví dụ Request Body:**
 
   ```json
   {
@@ -345,9 +349,9 @@ public IActionResult GetById([FromRoute] int id)
 
 - **Giải thích:**
 
-  - `[FromRoute]` Attribute: Chỉ định rằng dữ liệu được lấy từ route parameter.
-  - `id`: Biến int nhận giá trị ID từ route parameter.
-  - **Ví dụ URL:** `/api/products/123`
+    - `[FromRoute]` Attribute: Chỉ định rằng dữ liệu được lấy từ route parameter.
+    - `id`: Biến int nhận giá trị ID từ route parameter.
+    - **Ví dụ URL:** `/api/products/123`
 
 - **Binding từ Form:**
 
@@ -358,9 +362,9 @@ public IActionResult Upload([FromForm] ProductImageDto imageData)
 
 - **Giải thích:**
 
-  - `[FromForm]` Attribute: Chỉ định rằng dữ liệu được lấy từ form data.
-  - `ProductImageDto`: DTO chứa thông tin file ảnh (ví dụ: file, fileName).
-  - **Ví dụ Request Body (multipart/form-data):**
+    - `[FromForm]` Attribute: Chỉ định rằng dữ liệu được lấy từ form data.
+    - `ProductImageDto`: DTO chứa thông tin file ảnh (ví dụ: file, fileName).
+    - **Ví dụ Request Body (multipart/form-data):**
 
   ```
   --boundary
@@ -393,12 +397,12 @@ public class ProductCreateDto
 ```
 
 - **Giải thích:**
-  - **Data Annotations:** Các attribute được sử dụng để xác định quy tắc validate cho thuộc tính của DTO.
-  - `[Required]` Attribute: Yêu cầu trường phải có giá trị.
-  - `[StringLength]` Attribute: Giới hạn độ dài của chuỗi.
-  - `[Range]` Attribute: Giới hạn phạm vi giá trị.
-  - `[MinLength]` Attribute: Yêu cầu độ dài tối thiểu của chuỗi.
-  - `[EmailAddress]` Attribute: Kiểm tra xem giá trị có hợp lệ là địa chỉ email hay không.
+    - **Data Annotations:** Các attribute được sử dụng để xác định quy tắc validate cho thuộc tính của DTO.
+    - `[Required]` Attribute: Yêu cầu trường phải có giá trị.
+    - `[StringLength]` Attribute: Giới hạn độ dài của chuỗi.
+    - `[Range]` Attribute: Giới hạn phạm vi giá trị.
+    - `[MinLength]` Attribute: Yêu cầu độ dài tối thiểu của chuỗi.
+    - `[EmailAddress]` Attribute: Kiểm tra xem giá trị có hợp lệ là địa chỉ email hay không.
 
 #### 3.3. Custom Validation
 
@@ -419,10 +423,10 @@ public class CustomValidationAttribute : ValidationAttribute
 ```
 
 - **Giải thích:**
-  - Tạo một attribute class kế thừa từ `ValidationAttribute`.
-  - Override phương thức `IsValid()` để thực hiện logic validate.
-  - `ValidationResult.Success`: Trả về giá trị thành công nếu dữ liệu hợp lệ.
-  - `new ValidationResult("Custom error message")`: Trả về giá trị lỗi với thông điệp lỗi.
+    - Tạo một attribute class kế thừa từ `ValidationAttribute`.
+    - Override phương thức `IsValid()` để thực hiện logic validate.
+    - `ValidationResult.Success`: Trả về giá trị thành công nếu dữ liệu hợp lệ.
+    - `new ValidationResult("Custom error message")`: Trả về giá trị lỗi với thông điệp lỗi.
 
 ### 4. Authentication và Authorization
 
@@ -451,13 +455,14 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `AddAuthentication(JwtBearerDefaults.AuthenticationScheme)`: Cấu hình Authentication middleware sử dụng JWT.
-  - `AddJwtBearer(options => ...)`: Cấu hình các tham số cho JWT.
-    - `ValidateIssuer`: Kiểm tra issuer của token.
-    - `ValidateAudience`: Kiểm tra audience của token.
-    - `ValidateLifetime`: Kiểm tra thời hạn của token.
-    - `ValidateIssuerSigningKey`: Kiểm tra key được sử dụng để ký token.
-    - `ValidIssuer`, `ValidAudience`, `IssuerSigningKey`: Các giá trị được lấy từ `Configuration` (file appsettings.json).
+    - `AddAuthentication(JwtBearerDefaults.AuthenticationScheme)`: Cấu hình Authentication middleware sử dụng JWT.
+    - `AddJwtBearer(options => ...)`: Cấu hình các tham số cho JWT.
+        - `ValidateIssuer`: Kiểm tra issuer của token.
+        - `ValidateAudience`: Kiểm tra audience của token.
+        - `ValidateLifetime`: Kiểm tra thời hạn của token.
+        - `ValidateIssuerSigningKey`: Kiểm tra key được sử dụng để ký token.
+        - `ValidIssuer`, `ValidAudience`, `IssuerSigningKey`: Các giá trị được lấy từ `Configuration` (file
+          appsettings.json).
 
 #### 4.2. JWT Token Generation
 
@@ -490,12 +495,12 @@ public class AuthService
 ```
 
 - **Giải thích:**
-  - `GenerateJwtToken(User user)`: Hàm tạo JWT token.
-  - `claims`: Mảng các claims chứa thông tin về người dùng.
-  - `key`: Key được sử dụng để ký token.
-  - `credentials`: Chứa thông tin về key và algorithm được sử dụng để ký token.
-  - `token`: Đối tượng JwtSecurityToken chứa thông tin về token.
-  - `WriteToken()`: Hàm của `JwtSecurityTokenHandler` để tạo chuỗi token.
+    - `GenerateJwtToken(User user)`: Hàm tạo JWT token.
+    - `claims`: Mảng các claims chứa thông tin về người dùng.
+    - `key`: Key được sử dụng để ký token.
+    - `credentials`: Chứa thông tin về key và algorithm được sử dụng để ký token.
+    - `token`: Đối tượng JwtSecurityToken chứa thông tin về token.
+    - `WriteToken()`: Hàm của `JwtSecurityTokenHandler` để tạo chuỗi token.
 
 #### 4.3. Protecting API Endpoints
 
@@ -522,9 +527,10 @@ public class SecureController : ControllerBase
 ```
 
 - **Giải thích:**
-  - `[Authorize]` Attribute: Yêu cầu người dùng phải được xác thực (authentication) trước khi truy cập vào controller.
-  - `[Authorize(Roles = "Admin")]` Attribute: Yêu cầu người dùng phải có vai trò "Admin" để truy cập vào endpoint.
-  - `[Authorize(Policy = "RequireManagerRole")]` Attribute: Yêu cầu người dùng phải đáp ứng chính sách "RequireManagerRole" để truy cập vào endpoint.
+    - `[Authorize]` Attribute: Yêu cầu người dùng phải được xác thực (authentication) trước khi truy cập vào controller.
+    - `[Authorize(Roles = "Admin")]` Attribute: Yêu cầu người dùng phải có vai trò "Admin" để truy cập vào endpoint.
+    - `[Authorize(Policy = "RequireManagerRole")]` Attribute: Yêu cầu người dùng phải đáp ứng chính sách "
+      RequireManagerRole" để truy cập vào endpoint.
 
 #### 4.4. Policy-based Authorization
 
@@ -543,10 +549,10 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `AddAuthorization(options => ...)`: Cấu hình Authorization middleware.
-  - `AddPolicy()`: Định nghĩa một Authorization Policy.
-    - `RequireRole()`: Yêu cầu người dùng phải có vai trò cụ thể.
-    - `RequireClaim()`: Yêu cầu người dùng phải có claim cụ thể.
+    - `AddAuthorization(options => ...)`: Cấu hình Authorization middleware.
+    - `AddPolicy()`: Định nghĩa một Authorization Policy.
+        - `RequireRole()`: Yêu cầu người dùng phải có vai trò cụ thể.
+        - `RequireClaim()`: Yêu cầu người dùng phải có claim cụ thể.
 
 ### 5. Error Handling và Middleware
 
@@ -599,11 +605,12 @@ public class GlobalExceptionMiddleware
 ```
 
 - **Giải thích:**
-  - `GlobalExceptionMiddleware`: Middleware xử lý các ngoại lệ (exception) không được xử lý bởi các middleware khác.
-  - `InvokeAsync(HttpContext context)`: Phương thức xử lý request.
-  - `try...catch`: Bắt các ngoại lệ trong quá trình xử lý request.
-  - `_logger.LogError(ex, "An unhandled exception occurred.")`: Ghi log lỗi.
-  - `HandleExceptionAsync(HttpContext context, Exception exception)`: Hàm xử lý ngoại lệ, trả về mã lỗi và thông điệp lỗi cho client.
+    - `GlobalExceptionMiddleware`: Middleware xử lý các ngoại lệ (exception) không được xử lý bởi các middleware khác.
+    - `InvokeAsync(HttpContext context)`: Phương thức xử lý request.
+    - `try...catch`: Bắt các ngoại lệ trong quá trình xử lý request.
+    - `_logger.LogError(ex, "An unhandled exception occurred.")`: Ghi log lỗi.
+    - `HandleExceptionAsync(HttpContext context, Exception exception)`: Hàm xử lý ngoại lệ, trả về mã lỗi và thông điệp
+      lỗi cho client.
 
 ### 6. API Versioning
 
@@ -622,10 +629,10 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `AddApiVersioning(options => ...)`: Cấu hình API Versioning middleware.
-  - `DefaultApiVersion`: Phiên bản API mặc định.
-  - `AssumeDefaultVersionWhenUnspecified`: Giả sử phiên bản API mặc định khi client không cung cấp phiên bản.
-  - `ReportApiVersions`: Trả về thông tin về các phiên bản API trong response.
+    - `AddApiVersioning(options => ...)`: Cấu hình API Versioning middleware.
+    - `DefaultApiVersion`: Phiên bản API mặc định.
+    - `AssumeDefaultVersionWhenUnspecified`: Giả sử phiên bản API mặc định khi client không cung cấp phiên bản.
+    - `ReportApiVersions`: Trả về thông tin về các phiên bản API trong response.
 
 #### 6.2. Versioned Controllers
 
@@ -648,11 +655,12 @@ public class ProductsV2Controller : ControllerBase
 ```
 
 - **Giải thích:**
-  - `[ApiVersion("1.0")]`, `[ApiVersion("2.0")]`: Định nghĩa phiên bản cho từng controller.
-  - `Route("api/v{version:apiVersion}/[controller]")]`: Định nghĩa route cho controller, bao gồm phiên bản API trong URL.
-  - **Ví dụ URL:**
-    - `/api/v1/products`: Truy cập phiên bản 1.0 của API.
-    - `/api/v2/products`: Truy cập phiên bản 2.0 của API.
+    - `[ApiVersion("1.0")]`, `[ApiVersion("2.0")]`: Định nghĩa phiên bản cho từng controller.
+    - `Route("api/v{version:apiVersion}/[controller]")]`: Định nghĩa route cho controller, bao gồm phiên bản API trong
+      URL.
+    - **Ví dụ URL:**
+        - `/api/v1/products`: Truy cập phiên bản 1.0 của API.
+        - `/api/v2/products`: Truy cập phiên bản 2.0 của API.
 
 ### 7. API Documentation
 
@@ -698,10 +706,10 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `AddSwaggerGen(c => ...)`: Cấu hình Swagger middleware.
-  - `SwaggerDoc("v1", new OpenApiInfo {...})`: Định nghĩa thông tin cho API documentation.
-  - `AddSecurityDefinition()`: Định nghĩa schema cho JWT authentication.
-  - `AddSecurityRequirement()`: Yêu cầu client phải cung cấp JWT token để truy cập vào API.
+    - `AddSwaggerGen(c => ...)`: Cấu hình Swagger middleware.
+    - `SwaggerDoc("v1", new OpenApiInfo {...})`: Định nghĩa thông tin cho API documentation.
+    - `AddSecurityDefinition()`: Định nghĩa schema cho JWT authentication.
+    - `AddSecurityRequirement()`: Yêu cầu client phải cung cấp JWT token để truy cập vào API.
 
 #### 7.2. XML Comments
 
@@ -727,13 +735,15 @@ public async Task<ActionResult<Product>> GetProduct(int id)
 ```
 
 - **Giải thích:**
-  - **XML Comments:** Các comment được viết trong code để tạo tài liệu cho API.
-  - `/// <summary> ... </summary>`: Mô tả chung của action.
-  - `/// <param name="id"> ... </param>`: Mô tả tham số của action.
-  - `/// <returns> ... </returns>`: Mô tả giá trị trả về của action.
-  - `/// <response code="200"> ... </response>`: Mô tả HTTP status code trả về.
-  - `[ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]`: Chỉ định type dữ liệu trả về cho HTTP status code 200 OK.
-  - `[ProducesResponseType(StatusCodes.Status404NotFound)]`: Chỉ định HTTP status code 404 NotFound khi sản phẩm không tồn tại.
+    - **XML Comments:** Các comment được viết trong code để tạo tài liệu cho API.
+    - `/// <summary> ... </summary>`: Mô tả chung của action.
+    - `/// <param name="id"> ... </param>`: Mô tả tham số của action.
+    - `/// <returns> ... </returns>`: Mô tả giá trị trả về của action.
+    - `/// <response code="200"> ... </response>`: Mô tả HTTP status code trả về.
+    - `[ProducesResponseType(typeof(Product), StatusCodes.Status200OK)]`: Chỉ định type dữ liệu trả về cho HTTP status
+      code 200 OK.
+    - `[ProducesResponseType(StatusCodes.Status404NotFound)]`: Chỉ định HTTP status code 404 NotFound khi sản phẩm không
+      tồn tại.
 
 ### 8. Testing
 
@@ -773,11 +783,12 @@ public class ProductsControllerTests
 ```
 
 - **Giải thích:**
-  - `ProductsControllerTests`: Class test cho `ProductsController`.
-  - `Mock<IProductService>`: Mô phỏng `IProductService` để sử dụng trong test.
-  - `Setup(s => s.GetByIdAsync(productId)) .ReturnsAsync(expectedProduct)`: Cấu hình mock để trả về giá trị mong đợi khi gọi hàm `GetByIdAsync()`.
-  - `Assert.IsType<>()`: Kiểm tra type của kết quả trả về.
-  - `Assert.Equal()`: Kiểm tra xem kết quả trả về có khớp với giá trị mong đợi hay không.
+    - `ProductsControllerTests`: Class test cho `ProductsController`.
+    - `Mock<IProductService>`: Mô phỏng `IProductService` để sử dụng trong test.
+    - `Setup(s => s.GetByIdAsync(productId)) .ReturnsAsync(expectedProduct)`: Cấu hình mock để trả về giá trị mong đợi
+      khi gọi hàm `GetByIdAsync()`.
+    - `Assert.IsType<>()`: Kiểm tra type của kết quả trả về.
+    - `Assert.Equal()`: Kiểm tra xem kết quả trả về có khớp với giá trị mong đợi hay không.
 
 #### 8.2. Integration Testing
 
@@ -810,11 +821,11 @@ public class ProductsApiIntegrationTests : IClassFixture<WebApplicationFactory<S
 ```
 
 - **Giải thích:**
-  - `ProductsApiIntegrationTests`: Class test tích hợp cho API.
-  - `WebApplicationFactory<Startup>`: Khởi tạo một web application để sử dụng trong test.
-  - `HttpClient`: Client để gửi yêu cầu tới API.
-  - `EnsureSuccessStatusCode()`: Kiểm tra xem response có mã lỗi thành công (2xx) hay không.
-  - `Assert.Equal()`: Kiểm tra xem type của response có phù hợp hay không.
+    - `ProductsApiIntegrationTests`: Class test tích hợp cho API.
+    - `WebApplicationFactory<Startup>`: Khởi tạo một web application để sử dụng trong test.
+    - `HttpClient`: Client để gửi yêu cầu tới API.
+    - `EnsureSuccessStatusCode()`: Kiểm tra xem response có mã lỗi thành công (2xx) hay không.
+    - `Assert.Equal()`: Kiểm tra xem type của response có phù hợp hay không.
 
 ### 9. Performance Optimization
 
@@ -831,9 +842,10 @@ public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
 ```
 
 - **Giải thích:**
-  - `[ResponseCache]` Attribute: Cấu hình caching cho response.
-  - `Duration`: Thời gian cache (tính bằng giây).
-  - **Hoạt động:** Khi client gửi yêu cầu lần đầu tiên, response sẽ được cache trong 60 giây. Các yêu cầu tiếp theo trong vòng 60 giây sẽ được lấy từ cache.
+    - `[ResponseCache]` Attribute: Cấu hình caching cho response.
+    - `Duration`: Thời gian cache (tính bằng giây).
+    - **Hoạt động:** Khi client gửi yêu cầu lần đầu tiên, response sẽ được cache trong 60 giây. Các yêu cầu tiếp theo
+      trong vòng 60 giây sẽ được lấy từ cache.
 
 #### 9.2. Compression
 
@@ -850,19 +862,23 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `AddResponseCompression(options => ...)`: Cấu hình Response Compression middleware.
-  - `Providers.Add<GzipCompressionProvider>()`, `Providers.Add<BrotliCompressionProvider>()`: Thêm các provider để nén response.
-  - `EnableForHttps`: Bật nén cho kết nối HTTPS.
-  - **Hoạt động:** Middleware sẽ nén response trước khi gửi cho client. Việc nén giúp giảm dung lượng dữ liệu truyền tải, cải thiện hiệu năng.
+    - `AddResponseCompression(options => ...)`: Cấu hình Response Compression middleware.
+    - `Providers.Add<GzipCompressionProvider>()`, `Providers.Add<BrotliCompressionProvider>()`: Thêm các provider để nén
+      response.
+    - `EnableForHttps`: Bật nén cho kết nối HTTPS.
+    - **Hoạt động:** Middleware sẽ nén response trước khi gửi cho client. Việc nén giúp giảm dung lượng dữ liệu truyền
+      tải, cải thiện hiệu năng.
 
 ### 10. Best Practices
 
 #### 10.1. API Design Guidelines
 
 - **Sử dụng danh từ số nhiều cho tên resources:** `api/products`, `api/customers`.
-- **Sử dụng HTTP methods đúng mục đích:** `GET` cho lấy dữ liệu, `POST` cho tạo mới, `PUT` cho cập nhật, `DELETE` cho xóa.
+- **Sử dụng HTTP methods đúng mục đích:** `GET` cho lấy dữ liệu, `POST` cho tạo mới, `PUT` cho cập nhật, `DELETE` cho
+  xóa.
 - **Trả về đúng HTTP status codes:** 200, 201, 400, 401, 404, 500.
-- **Implement paging cho collections lớn:** Tránh trả về toàn bộ danh sách sản phẩm, chỉ trả về một số lượng nhỏ, có thể phân trang.
+- **Implement paging cho collections lớn:** Tránh trả về toàn bộ danh sách sản phẩm, chỉ trả về một số lượng nhỏ, có thể
+  phân trang.
 - **Sử dụng versioning cho API:** Giúp quản lý các phiên bản API và tránh xung đột.
 - **Implement HATEOAS khi cần thiết:** Thêm thông tin liên kết (link) để client dễ dàng tìm hiểu cách tương tác với API.
 - **Xử lý lỗi một cách nhất quán:** Trả về các mã lỗi và thông điệp rõ ràng để client xử lý lỗi.
@@ -873,7 +889,8 @@ public void ConfigureServices(IServiceCollection services)
 
 - **Sử dụng HTTPS:** Bảo mật kết nối giữa client và server.
 - **Implement Rate Limiting:** Giới hạn số lượng yêu cầu từ một IP address để chống DDos.
-- **Secure Headers Middleware:** Bảo mật các header của response (X-Frame-Options, X-Content-Type-Options, X-XSS-Protection).
+- **Secure Headers Middleware:** Bảo mật các header của response (X-Frame-Options, X-Content-Type-Options,
+  X-XSS-Protection).
 
 ### 11. Advanced Features
 
@@ -893,10 +910,11 @@ public class NotificationHub : Hub
 
 - **Giải thích:**
 
-  - `NotificationHub`: Class Hub của SignalR.
-  - `SendMessage(string user, string message)`: Phương thức gửi thông báo đến tất cả các client kết nối.
-  - `Clients.All`: Biểu thị tất cả các client kết nối.
-  - `SendAsync("ReceiveMessage", user, message)`: Gửi thông báo đến client với tên method "ReceiveMessage" và dữ liệu là `user` và `message`.
+    - `NotificationHub`: Class Hub của SignalR.
+    - `SendMessage(string user, string message)`: Phương thức gửi thông báo đến tất cả các client kết nối.
+    - `Clients.All`: Biểu thị tất cả các client kết nối.
+    - `SendAsync("ReceiveMessage", user, message)`: Gửi thông báo đến client với tên method "ReceiveMessage" và dữ liệu
+      là `user` và `message`.
 
 - **Startup Configuration:**
 
@@ -916,8 +934,9 @@ public void Configure(IApplicationBuilder app)
 ```
 
 - **Giải thích:**
-  - `services.AddSignalR()`: Cấu hình SignalR middleware.
-  - `endpoints.MapHub<NotificationHub>("/notificationHub")`: Mapping Hub `NotificationHub` với endpoint `/notificationHub`.
+    - `services.AddSignalR()`: Cấu hình SignalR middleware.
+    - `endpoints.MapHub<NotificationHub>("/notificationHub")`: Mapping Hub `NotificationHub` với endpoint
+      `/notificationHub`.
 
 #### 11.2. Background Tasks
 
@@ -943,10 +962,10 @@ public class BackgroundWorkerService : BackgroundService
 ```
 
 - **Giải thích:**
-  - `BackgroundWorkerService`: Class thực hiện background tasks.
-  - `ExecuteAsync(CancellationToken stoppingToken)`: Phương thức chính của background tasks.
-  - `while (!stoppingToken.IsCancellationRequested)`: Vòng lặp chạy liên tục cho đến khi `stoppingToken` được hủy.
-  - `Task.Delay(1000, stoppingToken)`: Chờ 1 giây (1000 mili giây) trước khi thực hiện lại vòng lặp.
+    - `BackgroundWorkerService`: Class thực hiện background tasks.
+    - `ExecuteAsync(CancellationToken stoppingToken)`: Phương thức chính của background tasks.
+    - `while (!stoppingToken.IsCancellationRequested)`: Vòng lặp chạy liên tục cho đến khi `stoppingToken` được hủy.
+    - `Task.Delay(1000, stoppingToken)`: Chờ 1 giây (1000 mili giây) trước khi thực hiện lại vòng lặp.
 
 #### 11.3. File Upload/Download
 
@@ -980,17 +999,18 @@ public class FilesController : ControllerBase
 ```
 
 - **Giải thích:**
-  - `FilesController`: Controller xử lý chức năng upload và download file.
-  - `IFileService`: Interface đại diện cho dịch vụ xử lý file.
-  - `_fileService`: Biến private để truy cập vào dịch vụ file.
-  - `Upload(IFormFile file)`: Hàm xử lý yêu cầu upload file.
-    - `IFormFile`: Đối tượng đại diện cho file được upload.
-    - `SaveFileAsync(file)`: Gọi hàm của `IFileService` để lưu file vào server.
-    - `Ok(new { fileName })`: Trả về HTTP status code 200 OK và tên file đã lưu.
-  - `Download(string fileName)`: Hàm xử lý yêu cầu download file.
-    - `GetFileStreamAsync(fileName)`: Gọi hàm của `IFileService` để lấy stream của file.
-    - `NotFound()`: Trả về HTTP status code 404 Not Found nếu file không tồn tại.
-    - `File(fileStream, "application/octet-stream", fileName)`: Trả về response là stream của file, cùng với header Content-Type là "application/octet-stream" và tên file để client download.
+    - `FilesController`: Controller xử lý chức năng upload và download file.
+    - `IFileService`: Interface đại diện cho dịch vụ xử lý file.
+    - `_fileService`: Biến private để truy cập vào dịch vụ file.
+    - `Upload(IFormFile file)`: Hàm xử lý yêu cầu upload file.
+        - `IFormFile`: Đối tượng đại diện cho file được upload.
+        - `SaveFileAsync(file)`: Gọi hàm của `IFileService` để lưu file vào server.
+        - `Ok(new { fileName })`: Trả về HTTP status code 200 OK và tên file đã lưu.
+    - `Download(string fileName)`: Hàm xử lý yêu cầu download file.
+        - `GetFileStreamAsync(fileName)`: Gọi hàm của `IFileService` để lấy stream của file.
+        - `NotFound()`: Trả về HTTP status code 404 Not Found nếu file không tồn tại.
+        - `File(fileStream, "application/octet-stream", fileName)`: Trả về response là stream của file, cùng với header
+          Content-Type là "application/octet-stream" và tên file để client download.
 
 ### 12. Logging và Monitoring
 
@@ -1035,12 +1055,12 @@ public class ProductsController : ControllerBase
 ```
 
 - **Giải thích:**
-  - `ILogger<ProductsController>`: Interface đại diện cho logger, được inject vào controller.
-  - `_logger`: Biến private để truy cập vào logger.
-  - `LogInformation()`, `LogWarning()`, `LogError()`: Các phương thức của logger để ghi log thông tin, cảnh báo, lỗi.
-  - **Hoạt động:**
-    - Khi controller xử lý request, logger sẽ ghi log thông tin về request, thời gian xử lý, và các ngoại lệ xảy ra.
-    - Các thông tin log có thể được lưu vào file, database hoặc console để tiện theo dõi và gỡ lỗi.
+    - `ILogger<ProductsController>`: Interface đại diện cho logger, được inject vào controller.
+    - `_logger`: Biến private để truy cập vào logger.
+    - `LogInformation()`, `LogWarning()`, `LogError()`: Các phương thức của logger để ghi log thông tin, cảnh báo, lỗi.
+    - **Hoạt động:**
+        - Khi controller xử lý request, logger sẽ ghi log thông tin về request, thời gian xử lý, và các ngoại lệ xảy ra.
+        - Các thông tin log có thể được lưu vào file, database hoặc console để tiện theo dõi và gỡ lỗi.
 
 #### 12.2. Health Checks
 
@@ -1086,13 +1106,14 @@ public void Configure(IApplicationBuilder app)
 ```
 
 - **Giải thích:**
-  - `AddHealthChecks()`: Cấu hình Health Checks middleware.
-  - `AddDbContextCheck()`: Kiểm tra kết nối đến database.
-  - `AddUrlGroup()`: Kiểm tra kết nối đến một URL (external API).
-  - `AddCheck()`: Thêm một Health Check tùy chỉnh.
-  - **Hoạt động:**
-    - Middleware sẽ kiểm tra trạng thái sức khỏe của các service và trả về response với thông tin về trạng thái của từng service.
-    - Endpoint `/health` có thể được sử dụng để giám sát trạng thái sức khỏe của API.
+    - `AddHealthChecks()`: Cấu hình Health Checks middleware.
+    - `AddDbContextCheck()`: Kiểm tra kết nối đến database.
+    - `AddUrlGroup()`: Kiểm tra kết nối đến một URL (external API).
+    - `AddCheck()`: Thêm một Health Check tùy chỉnh.
+    - **Hoạt động:**
+        - Middleware sẽ kiểm tra trạng thái sức khỏe của các service và trả về response với thông tin về trạng thái của
+          từng service.
+        - Endpoint `/health` có thể được sử dụng để giám sát trạng thái sức khỏe của API.
 
 ### 13. Dependency Injection và Service Lifetime
 
@@ -1121,14 +1142,15 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `services.AddTransient()`, `services.AddScoped()`, `services.AddSingleton()`: Các phương thức để đăng ký service.
-  - **Transient:** Service sẽ được tạo mới mỗi lần request.
-  - **Scoped:** Service sẽ được tạo mới mỗi HTTP request.
-  - **Singleton:** Service sẽ được tạo một lần duy nhất cho toàn bộ application.
-  - **Factory Pattern:** Sử dụng factory để tạo service.
-  - **Hoạt động:**
-    - Khi controller cần sử dụng service, Dependency Injection sẽ inject service vào controller.
-    - Vòng đời của service được quản lý bởi Dependency Injection dựa trên loại đăng ký (transient, scoped, singleton).
+    - `services.AddTransient()`, `services.AddScoped()`, `services.AddSingleton()`: Các phương thức để đăng ký service.
+    - **Transient:** Service sẽ được tạo mới mỗi lần request.
+    - **Scoped:** Service sẽ được tạo mới mỗi HTTP request.
+    - **Singleton:** Service sẽ được tạo một lần duy nhất cho toàn bộ application.
+    - **Factory Pattern:** Sử dụng factory để tạo service.
+    - **Hoạt động:**
+        - Khi controller cần sử dụng service, Dependency Injection sẽ inject service vào controller.
+        - Vòng đời của service được quản lý bởi Dependency Injection dựa trên loại đăng ký (transient, scoped,
+          singleton).
 
 #### 13.2. Service Consumption
 
@@ -1152,8 +1174,9 @@ public class ProductsController : ControllerBase
 ```
 
 - **Giải thích:**
-  - Các service (`IProductService`, `ILogger<ProductsController>`, `IConfiguration`) được inject vào constructor của controller.
-  - Dependency Injection tự động tạo instance của các service và inject vào controller.
+    - Các service (`IProductService`, `ILogger<ProductsController>`, `IConfiguration`) được inject vào constructor của
+      controller.
+    - Dependency Injection tự động tạo instance của các service và inject vào controller.
 
 ### 14. API Documentation và Client Generation
 
@@ -1191,9 +1214,9 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `SwaggerDoc()`: Cấu hình thông tin cho API documentation trong Swagger.
-  - `Contact`, `License`: Cấu hình thông tin liên hệ và giấy phép.
-  - `IncludeXmlComments()`: Bao gồm các XML comments vào API documentation.
+    - `SwaggerDoc()`: Cấu hình thông tin cho API documentation trong Swagger.
+    - `Contact`, `License`: Cấu hình thông tin liên hệ và giấy phép.
+    - `IncludeXmlComments()`: Bao gồm các XML comments vào API documentation.
 
 #### 14.2. Client Code Generation
 
@@ -1218,9 +1241,9 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 - **Giải thích:**
-  - `AddOpenApiDocument()`: Cấu hình NSwag middleware để generate API documentation và client code.
-  - `PostProcess()`: Cấu hình thông tin cho API documentation.
-  - `GenerateEnumMappingDescription`, `GenerateExamples`: Cấu hình thêm các tùy chọn cho client code generation.
+    - `AddOpenApiDocument()`: Cấu hình NSwag middleware để generate API documentation và client code.
+    - `PostProcess()`: Cấu hình thông tin cho API documentation.
+    - `GenerateEnumMappingDescription`, `GenerateExamples`: Cấu hình thêm các tùy chọn cho client code generation.
 
 ### 15. Performance Tips
 
@@ -1249,8 +1272,8 @@ public async Task<IActionResult> BadExample()
 ```
 
 - **Giải thích:**
-  - **Good Practice:** Sử dụng `async` và `await` một cách hợp lý trong các hàm để tránh blocking thread.
-  - **Avoid Blocking Calls:** Tránh sử dụng `Task.Run()` và `Result` để tránh blocking thread.
+    - **Good Practice:** Sử dụng `async` và `await` một cách hợp lý trong các hàm để tránh blocking thread.
+    - **Avoid Blocking Calls:** Tránh sử dụng `Task.Run()` và `Result` để tránh blocking thread.
 
 #### 15.2. Caching Strategies
 
@@ -1282,12 +1305,12 @@ public class ProductsController : ControllerBase
 ```
 
 - **Giải thích:**
-  - `IMemoryCache`: Interface đại diện cho in-memory cache.
-  - `_cache`: Biến private để truy cập vào cache.
-  - **Hoạt động:**
-    - Kiểm tra xem dữ liệu đã có trong cache hay chưa.
-    - Nếu chưa, lấy dữ liệu từ service và lưu vào cache.
-    - Nếu đã có, lấy dữ liệu từ cache.
+    - `IMemoryCache`: Interface đại diện cho in-memory cache.
+    - `_cache`: Biến private để truy cập vào cache.
+    - **Hoạt động:**
+        - Kiểm tra xem dữ liệu đã có trong cache hay chưa.
+        - Nếu chưa, lấy dữ liệu từ service và lưu vào cache.
+        - Nếu đã có, lấy dữ liệu từ cache.
 
 ### 16. Deployment và CI/CD
 
@@ -1316,14 +1339,15 @@ ENTRYPOINT ["dotnet", "MyApi.dll"]
 ```
 
 - **Giải thích:**
-  - Dockerfile: Định nghĩa cách tạo image Docker cho API.
-  - `FROM mcr.microsoft.com/dotnet/aspnet:7.0`: Sử dụng image ASP.NET Core 7.0 làm base image.
-  - `WORKDIR /app`: Thiết lập thư mục làm việc.
-  - `EXPOSE 80`, `EXPOSE 443`: Mở các port 80 và 443 cho API.
-  - `COPY`, `RUN`: Các lệnh để build và publish API trong Docker.
-  - **Hoạt động:**
-    - Dockerfile được sử dụng để tạo image Docker cho API.
-    - Image Docker có thể được deploy vào các nền tảng cloud như Azure, AWS, Google Cloud hoặc các server tự quản lý.
+    - Dockerfile: Định nghĩa cách tạo image Docker cho API.
+    - `FROM mcr.microsoft.com/dotnet/aspnet:7.0`: Sử dụng image ASP.NET Core 7.0 làm base image.
+    - `WORKDIR /app`: Thiết lập thư mục làm việc.
+    - `EXPOSE 80`, `EXPOSE 443`: Mở các port 80 và 443 cho API.
+    - `COPY`, `RUN`: Các lệnh để build và publish API trong Docker.
+    - **Hoạt động:**
+        - Dockerfile được sử dụng để tạo image Docker cho API.
+        - Image Docker có thể được deploy vào các nền tảng cloud như Azure, AWS, Google Cloud hoặc các server tự quản
+          lý.
 
 #### 16.2. Azure DevOps Pipeline
 
@@ -1368,13 +1392,14 @@ steps:
 ```
 
 - **Giải thích:**
-  - Azure DevOps Pipeline: Định nghĩa các bước để build, test và deploy API vào Azure.
-  - `trigger: - main`: Pipeline được trigger khi có commit mới vào branch `main`.
-  - `pool: vmImage: 'ubuntu-latest'`: Sử dụng virtual machine Ubuntu làm agent để chạy pipeline.
-  - `variables: buildConfiguration: 'Release'`: Khai báo biến `buildConfiguration` để sử dụng trong các bước của pipeline.
-  - **Hoạt động:**
-    - Pipeline sẽ chạy các bước build, test, publish và deploy API vào Azure khi có commit mới vào branch `main`.
-    - Pipeline có thể được tùy chỉnh để phù hợp với quy trình CI/CD của từng dự án.
+    - Azure DevOps Pipeline: Định nghĩa các bước để build, test và deploy API vào Azure.
+    - `trigger: - main`: Pipeline được trigger khi có commit mới vào branch `main`.
+    - `pool: vmImage: 'ubuntu-latest'`: Sử dụng virtual machine Ubuntu làm agent để chạy pipeline.
+    - `variables: buildConfiguration: 'Release'`: Khai báo biến `buildConfiguration` để sử dụng trong các bước của
+      pipeline.
+    - **Hoạt động:**
+        - Pipeline sẽ chạy các bước build, test, publish và deploy API vào Azure khi có commit mới vào branch `main`.
+        - Pipeline có thể được tùy chỉnh để phù hợp với quy trình CI/CD của từng dự án.
 
 ### 17. Mở rộng và Maintenance
 
@@ -1413,12 +1438,12 @@ public class AuthenticationModule : IModule
 ```
 
 - **Giải thích:**
-  - `IModule`: Interface định nghĩa các phương thức cần thiết cho một module.
-  - `RegisterServices()`: Phương thức để đăng ký các service của module.
-  - `Configure()`: Phương thức để cấu hình middleware của module.
-  - **Hoạt động:**
-    - Sử dụng module để chia nhỏ code thành các phần độc lập, dễ quản lý và bảo trì.
-    - Mỗi module có thể xử lý một chức năng cụ thể như authentication, logging, hoặc API documentation.
+    - `IModule`: Interface định nghĩa các phương thức cần thiết cho một module.
+    - `RegisterServices()`: Phương thức để đăng ký các service của module.
+    - `Configure()`: Phương thức để cấu hình middleware của module.
+    - **Hoạt động:**
+        - Sử dụng module để chia nhỏ code thành các phần độc lập, dễ quản lý và bảo trì.
+        - Mỗi module có thể xử lý một chức năng cụ thể như authentication, logging, hoặc API documentation.
 
 #### 17.2. Feature Flags
 
@@ -1445,12 +1470,13 @@ public async Task<IActionResult> GetProducts(
 ```
 
 - **Giải thích:**
-  - `AddFeatureManagement()`: Cấu hình Feature Management middleware.
-  - `AddFeatureFilter<PercentageFilter>()`: Cấu hình filter để điều khiển việc bật/tắt feature dựa trên tỷ lệ phần trăm.
-  - `IsEnabledAsync("BetaFeatures")`: Kiểm tra xem feature "BetaFeatures" có được bật hay không.
-  - **Hoạt động:**
-    - Sử dụng feature flags để bật/tắt các tính năng mới hoặc experimental features trong API.
-    - Việc bật/tắt feature có thể được thực hiện thông qua một dashboard hoặc API.
+    - `AddFeatureManagement()`: Cấu hình Feature Management middleware.
+    - `AddFeatureFilter<PercentageFilter>()`: Cấu hình filter để điều khiển việc bật/tắt feature dựa trên tỷ lệ phần
+      trăm.
+    - `IsEnabledAsync("BetaFeatures")`: Kiểm tra xem feature "BetaFeatures" có được bật hay không.
+    - **Hoạt động:**
+        - Sử dụng feature flags để bật/tắt các tính năng mới hoặc experimental features trong API.
+        - Việc bật/tắt feature có thể được thực hiện thông qua một dashboard hoặc API.
 
 ### 18. Hướng dẫn sử dụng
 
@@ -1555,8 +1581,12 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 dotnet run
 ```
 
-**Lưu ý:** Hướng dẫn này chỉ là một bản tóm tắt cơ bản. Để triển khai một API Web ASP.NET Core hoàn chỉnh, bạn sẽ cần tìm hiểu thêm về các khía cạnh nâng cao như bảo mật, quản lý lỗi, caching, testing, deployment và các kiến thức liên quan.
+**Lưu ý:** Hướng dẫn này chỉ là một bản tóm tắt cơ bản. Để triển khai một API Web ASP.NET Core hoàn chỉnh, bạn sẽ cần
+tìm hiểu thêm về các khía cạnh nâng cao như bảo mật, quản lý lỗi, caching, testing, deployment và các kiến thức liên
+quan.
 
 ### 19. Kết luận
 
-ASP.NET Core Web API là một framework mạnh mẽ và linh hoạt cho phép bạn phát triển các API web hiệu quả và an toàn. Hướng dẫn này cung cấp cho bạn kiến thức cơ bản để bắt đầu với ASP.NET Core Web API và xây dựng các ứng dụng API web của riêng bạn.
+ASP.NET Core Web API là một framework mạnh mẽ và linh hoạt cho phép bạn phát triển các API web hiệu quả và an toàn.
+Hướng dẫn này cung cấp cho bạn kiến thức cơ bản để bắt đầu với ASP.NET Core Web API và xây dựng các ứng dụng API web của
+riêng bạn.

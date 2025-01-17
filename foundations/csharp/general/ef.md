@@ -4,8 +4,8 @@
 
 1. [Tổng Quan về Entity Framework](#1-tổng-quan-về-entity-framework)
 
-   - [Mục Đích](#mục-đích)
-   - [Các Phiên Bản](#các-phiên-bản)
+    - [Mục Đích](#mục-đích)
+    - [Các Phiên Bản](#các-phiên-bản)
 
 2. [Kiến Trúc](#2-kiến-trúc)
 
@@ -17,20 +17,20 @@
 
 6. [Các Hoạt Động Cơ Bản với Entity Framework](#6-các-hoạt-động-cơ-bản-với-entity-framework)
 
-   - [a. Thêm Dữ Liệu](#a-thêm-dữ-liệu)
-   - [b. Truy Vấn Dữ Liệu](#b-truy-vấn-dữ-liệu)
-   - [c. Cập Nhật Dữ Liệu](#c-cập-nhật-dữ-liệu)
-   - [d. Xóa Dữ Liệu](#d-xóa-dữ-liệu)
+    - [a. Thêm Dữ Liệu](#a-thêm-dữ-liệu)
+    - [b. Truy Vấn Dữ Liệu](#b-truy-vấn-dữ-liệu)
+    - [c. Cập Nhật Dữ Liệu](#c-cập-nhật-dữ-liệu)
+    - [d. Xóa Dữ Liệu](#d-xóa-dữ-liệu)
 
 7. [Quản Lý Mối Quan Hệ](#7-quản-lý-mối-quan-hệ)
 
-   - [Mối Quan Hệ Một - Nhiều](#mối-quan-hệ-một---nhiều)
-   - [Cấu Hình Mối Quan Hệ](#cấu-hình-mối-quan-hệ)
+    - [Mối Quan Hệ Một - Nhiều](#mối-quan-hệ-một---nhiều)
+    - [Cấu Hình Mối Quan Hệ](#cấu-hình-mối-quan-hệ)
 
 8. [Migration](#8-migration)
 
-   - [a. Tạo Migration](#a-tạo-migration)
-   - [b. Áp Dụng Migration](#b-áp-dụng-migration)
+    - [a. Tạo Migration](#a-tạo-migration)
+    - [b. Áp Dụng Migration](#b-áp-dụng-migration)
 
 9. [Tóm Tắt](#9-tóm-tắt)
 
@@ -38,25 +38,33 @@
 
 ### 1. Tổng Quan về Entity Framework
 
-**Entity Framework (EF)** là một framework ORM (Object-Relational Mapping) được phát triển bởi Microsoft, giúp lập trình viên .NET làm việc với cơ sở dữ liệu mà không cần viết nhiều câu lệnh SQL phức tạp. Thay vào đó, lập trình viên có thể thao tác với dữ liệu bằng cách sử dụng các đối tượng trong ứng dụng.
+**Entity Framework (EF)** là một framework ORM (Object-Relational Mapping) được phát triển bởi Microsoft, giúp lập trình
+viên .NET làm việc với cơ sở dữ liệu mà không cần viết nhiều câu lệnh SQL phức tạp. Thay vào đó, lập trình viên có thể
+thao tác với dữ liệu bằng cách sử dụng các đối tượng trong ứng dụng.
 
 #### Mục Đích
 
-- **Giảm thiểu code SQL**: Thay vì phải viết các câu lệnh SQL thủ công, lập trình viên có thể làm việc với dữ liệu dưới dạng đối tượng.
+- **Giảm thiểu code SQL**: Thay vì phải viết các câu lệnh SQL thủ công, lập trình viên có thể làm việc với dữ liệu dưới
+  dạng đối tượng.
 - **Quản lý dữ liệu**: EF cung cấp các phương thức để dễ dàng thêm, sửa, xóa và truy vấn dữ liệu.
 
 #### Các Phiên Bản
 
-- **Entity Framework 6 (EF6)**: Là phiên bản ổn định, dễ sử dụng, phù hợp cho nhiều ứng dụng doanh nghiệp nhưng không còn được cập nhật thường xuyên.
-- **Entity Framework Core (EF Core)**: Là phiên bản mới, nhẹ hơn, hỗ trợ nhiều nền tảng (Windows, Linux, macOS), có hiệu suất tốt hơn và nhiều tính năng mới.
+- **Entity Framework 6 (EF6)**: Là phiên bản ổn định, dễ sử dụng, phù hợp cho nhiều ứng dụng doanh nghiệp nhưng không
+  còn được cập nhật thường xuyên.
+- **Entity Framework Core (EF Core)**: Là phiên bản mới, nhẹ hơn, hỗ trợ nhiều nền tảng (Windows, Linux, macOS), có hiệu
+  suất tốt hơn và nhiều tính năng mới.
 
 ### 2. Kiến Trúc
 
 Entity Framework hoạt động dựa trên mô hình 3 lớp:
 
-- **Model**: Định nghĩa các thực thể (entities) và các mối quan hệ giữa chúng. Đây là nơi bạn sẽ xác định các lớp biểu diễn các bảng trong cơ sở dữ liệu.
-- **DbContext**: Lớp trung gian chịu trách nhiệm quản lý các đối tượng thực thể và giao tiếp với cơ sở dữ liệu. `DbContext` là lớp chính mà bạn sẽ sử dụng khi làm việc với EF.
-- **Database**: Nơi lưu trữ dữ liệu thực tế. EF giúp bạn thực hiện các thao tác CRUD (Create, Read, Update, Delete) trên cơ sở dữ liệu thông qua các đối tượng.
+- **Model**: Định nghĩa các thực thể (entities) và các mối quan hệ giữa chúng. Đây là nơi bạn sẽ xác định các lớp biểu
+  diễn các bảng trong cơ sở dữ liệu.
+- **DbContext**: Lớp trung gian chịu trách nhiệm quản lý các đối tượng thực thể và giao tiếp với cơ sở dữ liệu.
+  `DbContext` là lớp chính mà bạn sẽ sử dụng khi làm việc với EF.
+- **Database**: Nơi lưu trữ dữ liệu thực tế. EF giúp bạn thực hiện các thao tác CRUD (Create, Read, Update, Delete) trên
+  cơ sở dữ liệu thông qua các đối tượng.
 
 ### 3. Cài Đặt Entity Framework
 
@@ -210,7 +218,8 @@ Update-Database
 
 ### 9. Tóm Tắt
 
-Entity Framework là một công cụ mạnh mẽ cho việc tương tác với cơ sở dữ liệu trong .NET. Việc sử dụng EF giúp lập trình viên giảm thiểu khối lượng công việc liên quan đến SQL và tăng cường hiệu suất phát triển ứng dụng.
+Entity Framework là một công cụ mạnh mẽ cho việc tương tác với cơ sở dữ liệu trong .NET. Việc sử dụng EF giúp lập trình
+viên giảm thiểu khối lượng công việc liên quan đến SQL và tăng cường hiệu suất phát triển ứng dụng.
 
 **Các điểm chính:**
 

@@ -4,9 +4,9 @@
 
 1. [Giới thiệu về `Dispose` và `IDisposable`](#1-gioi-thieu-ve-dispose-va-idisposable)
 2. [Cài đặt giao diện `IDisposable`](#2-cai-dat-giao-dien-idisposable)
-   1. [Cài đặt phương thức `Dispose`](#21-cai-dat-phuong-thuc-dispose)
-   2. [Phương thức `Dispose(bool disposing)`](#22-phuong-thuc-disposebool-disposing)
-   3. [Destructor và Finalizer](#23-destructor-va-finalizer)
+    1. [Cài đặt phương thức `Dispose`](#21-cai-dat-phuong-thuc-dispose)
+    2. [Phương thức `Dispose(bool disposing)`](#22-phuong-thuc-disposebool-disposing)
+    3. [Destructor và Finalizer](#23-destructor-va-finalizer)
 3. [Cách sử dụng `Dispose` với `using`](#3-cach-su-dung-dispose-voi-using)
 4. [Ví dụ thực tế với `Dispose`](#4-vi-du-thuc-te-voi-dispose)
 5. [Lưu ý khi sử dụng `Dispose`](#5-luu-y-khi-su-dung-dispose)
@@ -15,9 +15,12 @@
 
 ### 1. **Giới thiệu về `Dispose` và `IDisposable`**
 
-Trong C#, `Dispose` là một phương thức để giải phóng tài nguyên không quản lý (unmanaged resources) như tệp, kết nối cơ sở dữ liệu, bộ nhớ không được quản lý, v.v. Các tài nguyên này không thể được thu gom tự động bởi Garbage Collector (GC) của C#. Vì vậy, bạn phải chủ động giải phóng chúng.
+Trong C#, `Dispose` là một phương thức để giải phóng tài nguyên không quản lý (unmanaged resources) như tệp, kết nối cơ
+sở dữ liệu, bộ nhớ không được quản lý, v.v. Các tài nguyên này không thể được thu gom tự động bởi Garbage Collector (GC)
+của C#. Vì vậy, bạn phải chủ động giải phóng chúng.
 
-Để làm điều này, bạn sử dụng giao diện `IDisposable`, mà trong đó có phương thức `Dispose()` để giải phóng tài nguyên khi không còn cần thiết.
+Để làm điều này, bạn sử dụng giao diện `IDisposable`, mà trong đó có phương thức `Dispose()` để giải phóng tài nguyên
+khi không còn cần thiết.
 
 ---
 
@@ -25,7 +28,8 @@ Trong C#, `Dispose` là một phương thức để giải phóng tài nguyên k
 
 #### 2.1. **Cài đặt phương thức `Dispose`**
 
-Để đối tượng có thể giải phóng tài nguyên đúng cách, bạn cần cài đặt giao diện `IDisposable` và phương thức `Dispose`. Dưới đây là một ví dụ về cách thực hiện.
+Để đối tượng có thể giải phóng tài nguyên đúng cách, bạn cần cài đặt giao diện `IDisposable` và phương thức `Dispose`.
+Dưới đây là một ví dụ về cách thực hiện.
 
 ```csharp
 public class ResourceManager : IDisposable
@@ -90,20 +94,26 @@ public class ResourceManager : IDisposable
 
 #### 2.2. **Phương thức `Dispose(bool disposing)`**
 
-- **Tham số `disposing`**: Khi `disposing` là `true`, bạn sẽ giải phóng các tài nguyên quản lý, tức là các đối tượng `IDisposable` khác mà đối tượng hiện tại tham chiếu. Khi `disposing` là `false`, bạn chỉ giải phóng tài nguyên không quản lý (ví dụ: bộ nhớ, các đối tượng hệ thống như con trỏ).
+- **Tham số `disposing`**: Khi `disposing` là `true`, bạn sẽ giải phóng các tài nguyên quản lý, tức là các đối tượng
+  `IDisposable` khác mà đối tượng hiện tại tham chiếu. Khi `disposing` là `false`, bạn chỉ giải phóng tài nguyên không
+  quản lý (ví dụ: bộ nhớ, các đối tượng hệ thống như con trỏ).
 - Điều này giúp tránh lỗi khi cố gắng giải phóng tài nguyên mà Garbage Collector (GC) đã thu gom.
 
 #### 2.3. **Destructor và Finalizer**
 
-- Destructor hoặc **finalizer** (như trong ví dụ `~ResourceManager()`) là một phương thức đặc biệt để đảm bảo rằng tài nguyên sẽ được giải phóng ngay cả khi người dùng quên gọi `Dispose`. Tuy nhiên, finalizer không phải lúc nào cũng được gọi ngay lập tức. Do đó, việc gọi `Dispose` trong mã của bạn là cách tốt nhất để giải phóng tài nguyên.
+- Destructor hoặc **finalizer** (như trong ví dụ `~ResourceManager()`) là một phương thức đặc biệt để đảm bảo rằng tài
+  nguyên sẽ được giải phóng ngay cả khi người dùng quên gọi `Dispose`. Tuy nhiên, finalizer không phải lúc nào cũng được
+  gọi ngay lập tức. Do đó, việc gọi `Dispose` trong mã của bạn là cách tốt nhất để giải phóng tài nguyên.
 
 ---
 
 ### 3. **Cách sử dụng `Dispose` với `using`**
 
-Trong C#, bạn có thể sử dụng từ khóa `using` để tự động gọi phương thức `Dispose()` khi một đối tượng không còn cần thiết.
+Trong C#, bạn có thể sử dụng từ khóa `using` để tự động gọi phương thức `Dispose()` khi một đối tượng không còn cần
+thiết.
 
-Cấu trúc sử dụng `using` đảm bảo rằng tài nguyên được giải phóng ngay khi khối mã hoàn thành, giúp tránh rò rỉ tài nguyên.
+Cấu trúc sử dụng `using` đảm bảo rằng tài nguyên được giải phóng ngay khi khối mã hoàn thành, giúp tránh rò rỉ tài
+nguyên.
 
 #### Ví dụ:
 
@@ -120,7 +130,8 @@ class Program
 }
 ```
 
-Trong ví dụ này, khi khối `using` kết thúc, phương thức `Dispose` của `resourceManager` sẽ được tự động gọi để giải phóng tài nguyên.
+Trong ví dụ này, khi khối `using` kết thúc, phương thức `Dispose` của `resourceManager` sẽ được tự động gọi để giải
+phóng tài nguyên.
 
 ---
 
@@ -200,7 +211,11 @@ class Program
 
 ### 5. **Lưu ý khi sử dụng `Dispose`**
 
-- **Finalizer không được ưu tiên**: Bạn không nên chỉ dựa vào finalizer để giải phóng tài nguyên. Phương thức `Dispose` nên được gọi chủ động.
-- **Đảm bảo gọi `Dispose`**: Nếu bạn không sử dụng từ khóa `using`, hãy đảm bảo rằng `Dispose` được gọi bằng cách thủ công khi không còn cần thiết.
-- **Không gọi `Dispose` nhiều lần**: Đảm bảo rằng bạn không gọi `Dispose` nhiều lần hoặc trong những tình huống không cần thiết.
-- **Giải phóng tài nguyên theo thứ tự**: Hãy chắc chắn rằng tài nguyên được giải phóng theo đúng thứ tự: tài nguyên quản lý trước, tài nguyên không quản lý sau.
+- **Finalizer không được ưu tiên**: Bạn không nên chỉ dựa vào finalizer để giải phóng tài nguyên. Phương thức `Dispose`
+  nên được gọi chủ động.
+- **Đảm bảo gọi `Dispose`**: Nếu bạn không sử dụng từ khóa `using`, hãy đảm bảo rằng `Dispose` được gọi bằng cách thủ
+  công khi không còn cần thiết.
+- **Không gọi `Dispose` nhiều lần**: Đảm bảo rằng bạn không gọi `Dispose` nhiều lần hoặc trong những tình huống không
+  cần thiết.
+- **Giải phóng tài nguyên theo thứ tự**: Hãy chắc chắn rằng tài nguyên được giải phóng theo đúng thứ tự: tài nguyên quản
+  lý trước, tài nguyên không quản lý sau.

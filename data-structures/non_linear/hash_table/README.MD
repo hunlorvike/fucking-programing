@@ -4,8 +4,8 @@
 
 1. [Khái niệm](#khái-niệm)
 2. [Cách thức hoạt động](#cách-thức-hoạt-động)
-   - [Hàm băm](#hàm-băm)
-   - [Xung đột (Collision)](#xung-đột-collision)
+    - [Hàm băm](#hàm-băm)
+    - [Xung đột (Collision)](#xung-đột-collision)
 3. [Ưu điểm và nhược điểm](#ưu-điểm-và-nhược-điểm)
 4. [Ví dụ: Bài toán lưu trữ thông tin người dùng](#ví-dụ-bài-toán-lưu-trữ-thông-tin-người-dùng)
 5. [Triển khai Bảng băm trong TypeScript](#triển-khai-bảng-băm-trong-typescript)
@@ -16,17 +16,20 @@
 
 ## Khái niệm
 
-Bảng băm (Hash Table) là một cấu trúc dữ liệu sử dụng **hàm băm** để ánh xạ dữ liệu sang các vị trí trong bộ nhớ. Dữ liệu được lưu trữ dưới dạng các cặp khóa-giá trị (_key-value pairs_).
+Bảng băm (Hash Table) là một cấu trúc dữ liệu sử dụng **hàm băm** để ánh xạ dữ liệu sang các vị trí trong bộ nhớ. Dữ
+liệu được lưu trữ dưới dạng các cặp khóa-giá trị (_key-value pairs_).
 
 ## Cách thức hoạt động
 
 ### Hàm băm
 
-Hàm băm nhận một khóa (_key_) bất kỳ và trả về một giá trị số nguyên (_hash value_), đại diện cho vị trí trong bảng băm mà khóa đó sẽ được lưu trữ.
+Hàm băm nhận một khóa (_key_) bất kỳ và trả về một giá trị số nguyên (_hash value_), đại diện cho vị trí trong bảng băm
+mà khóa đó sẽ được lưu trữ.
 
 ### Xung đột (Collision)
 
-Khi hai khóa khác nhau được ánh xạ đến cùng một vị trí trong bảng băm, xảy ra **xung đột**. Các phương pháp giải quyết xung đột phổ biến gồm:
+Khi hai khóa khác nhau được ánh xạ đến cùng một vị trí trong bảng băm, xảy ra **xung đột**. Các phương pháp giải quyết
+xung đột phổ biến gồm:
 
 - **Chaining (Liên kết):** Lưu trữ các khóa có cùng hash value vào một danh sách liên kết tại vị trí đó.
 - **Open Addressing (Địa chỉ mở):** Tìm các vị trí tiếp theo trong bảng băm cho đến khi tìm được vị trí trống.
@@ -35,16 +38,18 @@ Khi hai khóa khác nhau được ánh xạ đến cùng một vị trí trong b
 
 - **Ưu điểm:**
 
-  - **Truy cập nhanh chóng:** Thao tác tìm kiếm, chèn và xóa trong bảng băm thường có độ phức tạp trung bình là \(O(1)\).
-  - **Phù hợp với truy cập ngẫu nhiên:** Bảng băm rất hiệu quả cho các thao tác truy cập nhanh dựa vào khóa.
+    - **Truy cập nhanh chóng:** Thao tác tìm kiếm, chèn và xóa trong bảng băm thường có độ phức tạp trung bình là \(O(
+      1)\).
+    - **Phù hợp với truy cập ngẫu nhiên:** Bảng băm rất hiệu quả cho các thao tác truy cập nhanh dựa vào khóa.
 
 - **Nhược điểm:**
-  - **Xung đột:** Xung đột có thể làm giảm hiệu suất của bảng băm.
-  - **Không hỗ trợ duyệt tuần tự:** Bảng băm không cung cấp một thứ tự cụ thể cho các phần tử.
+    - **Xung đột:** Xung đột có thể làm giảm hiệu suất của bảng băm.
+    - **Không hỗ trợ duyệt tuần tự:** Bảng băm không cung cấp một thứ tự cụ thể cho các phần tử.
 
 ## Ví dụ: Bài toán lưu trữ thông tin người dùng
 
-Giả sử muốn lưu trữ thông tin người dùng, với mỗi người dùng được xác định bởi một **ID duy nhất**. Sử dụng bảng băm để lưu trữ thông tin này:
+Giả sử muốn lưu trữ thông tin người dùng, với mỗi người dùng được xác định bởi một **ID duy nhất**. Sử dụng bảng băm để
+lưu trữ thông tin này:
 
 - **Key:** ID của người dùng.
 - **Value:** Thông tin về người dùng (tên, tuổi, địa chỉ...).
@@ -124,10 +129,13 @@ console.log(hashTable.get('name')); // Output: null
 
 ## Ứng dụng của Bảng băm
 
-- **Tìm kiếm nhanh các phần tử:** Bảng băm được sử dụng trong các thuật toán tìm kiếm nhanh, ví dụ: tìm kiếm từ trong văn bản, tìm khóa trong tập dữ liệu lớn.
-- **Bảng tra cứu:** Xây dựng bảng tra cứu (lookup table) cho các dữ liệu được truy cập thường xuyên, ví dụ: bảng mã hóa, bảng giá trị.
+- **Tìm kiếm nhanh các phần tử:** Bảng băm được sử dụng trong các thuật toán tìm kiếm nhanh, ví dụ: tìm kiếm từ trong
+  văn bản, tìm khóa trong tập dữ liệu lớn.
+- **Bảng tra cứu:** Xây dựng bảng tra cứu (lookup table) cho các dữ liệu được truy cập thường xuyên, ví dụ: bảng mã hóa,
+  bảng giá trị.
 - **Bộ nhớ cache:** Quản lý bộ nhớ đệm (cache) cho các dữ liệu thường xuyên truy cập, giúp tăng tốc độ truy xuất.
 
 ## Kết luận
 
-Bảng băm là một cấu trúc dữ liệu hiệu quả và được sử dụng rộng rãi trong các ứng dụng cần tìm kiếm nhanh. Nó cung cấp khả năng truy cập ngẫu nhiên với độ phức tạp trung bình là \(O(1)\), phù hợp với các thao tác như tìm kiếm, chèn và xóa.
+Bảng băm là một cấu trúc dữ liệu hiệu quả và được sử dụng rộng rãi trong các ứng dụng cần tìm kiếm nhanh. Nó cung cấp
+khả năng truy cập ngẫu nhiên với độ phức tạp trung bình là \(O(1)\), phù hợp với các thao tác như tìm kiếm, chèn và xóa.

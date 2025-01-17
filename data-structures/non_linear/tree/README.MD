@@ -108,20 +108,23 @@ preorder(root); // Output: 1 2 4 5 3
 
 1. **Cây nhị phân (Binary Tree):** Mỗi nút có tối đa hai nút con.
 2. **Cây tìm kiếm nhị phân (Binary Search Tree):** Cây nhị phân thỏa mãn điều kiện:
-   - Giá trị của nút con trái nhỏ hơn giá trị của nút cha.
-   - Giá trị của nút con phải lớn hơn giá trị của nút cha.
+    - Giá trị của nút con trái nhỏ hơn giá trị của nút cha.
+    - Giá trị của nút con phải lớn hơn giá trị của nút cha.
 3. **Cây AVL:** Cây tìm kiếm nhị phân tự cân bằng, đảm bảo độ cao của hai nhánh con của mỗi nút chênh lệch tối đa là 1.
 4. **Cây Red-Black:** Cây tìm kiếm nhị phân tự cân bằng, sử dụng màu sắc (đỏ hoặc đen) để quản lý độ cao của các nút.
 
 ## Ứng dụng của cây
 
-- **Lưu trữ dữ liệu:** Cây tìm kiếm nhị phân được sử dụng để lưu trữ dữ liệu hiệu quả, cho phép tìm kiếm, chèn, xóa nhanh chóng.
+- **Lưu trữ dữ liệu:** Cây tìm kiếm nhị phân được sử dụng để lưu trữ dữ liệu hiệu quả, cho phép tìm kiếm, chèn, xóa
+  nhanh chóng.
 - **Tìm kiếm:** Cây tìm kiếm nhị phân, cây AVL, cây Red-Black được sử dụng trong các thuật toán tìm kiếm hiệu quả.
 - **Tổ chức dữ liệu:** Cây được sử dụng để tổ chức dữ liệu theo dạng phân cấp, ví dụ: hệ thống tệp, biểu diễn ngữ pháp.
 - **Thuật toán:** Cây được sử dụng trong các thuật toán như:
-  - Dijkstra, Bellman-Ford (tìm đường đi ngắn nhất).
-  - Kruskal, Prim (tìm cây khung).
+    - Dijkstra, Bellman-Ford (tìm đường đi ngắn nhất).
+    - Kruskal, Prim (tìm cây khung).
 
 ## Kết luận
 
-Cây là một cấu trúc dữ liệu mạnh mẽ và linh hoạt, được sử dụng rộng rãi trong nhiều lĩnh vực của khoa học máy tính. Việc hiểu rõ các khái niệm và cách triển khai cây giúp bạn giải quyết hiệu quả các bài toán liên quan đến dữ liệu có cấu trúc phân cấp.
+Cây là một cấu trúc dữ liệu mạnh mẽ và linh hoạt, được sử dụng rộng rãi trong nhiều lĩnh vực của khoa học máy tính. Việc
+hiểu rõ các khái niệm và cách triển khai cây giúp bạn giải quyết hiệu quả các bài toán liên quan đến dữ liệu có cấu trúc
+phân cấp.

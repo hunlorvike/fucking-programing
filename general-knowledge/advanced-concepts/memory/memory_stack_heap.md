@@ -1,22 +1,26 @@
 # Cấu trúc dữ liệu Heap và vùng nhớ Heap trong lưu trữ bộ nhớ
 
-Mặc dù có tên gọi giống nhau, **Heap** trong cấu trúc dữ liệu và **vùng nhớ Heap** trong quản lý bộ nhớ có ý nghĩa và vai trò hoàn toàn khác biệt.
+Mặc dù có tên gọi giống nhau, **Heap** trong cấu trúc dữ liệu và **vùng nhớ Heap** trong quản lý bộ nhớ có ý nghĩa và
+vai trò hoàn toàn khác biệt.
 
 ## 1. Heap trong Cấu trúc Dữ liệu
 
 ### Định nghĩa và Đặc điểm
 
-- **Heap** là một cây nhị phân hoàn chỉnh, gồm hai loại: **Min Heap** (ưu tiên giá trị nhỏ nhất) và **Max Heap** (ưu tiên giá trị lớn nhất).
+- **Heap** là một cây nhị phân hoàn chỉnh, gồm hai loại: **Min Heap** (ưu tiên giá trị nhỏ nhất) và **Max Heap** (ưu
+  tiên giá trị lớn nhất).
 - Được lưu trữ trong mảng để tận dụng tính chất cây nhị phân, đảm bảo truy cập nhanh các phần tử.
 
 ### Ứng dụng và Các Phép Toán
 
-- **Ứng dụng**: Sử dụng trong các thuật toán như tìm đường đi ngắn nhất (Dijkstra), hàng đợi ưu tiên, và sắp xếp (Heapsort).
+- **Ứng dụng**: Sử dụng trong các thuật toán như tìm đường đi ngắn nhất (Dijkstra), hàng đợi ưu tiên, và sắp xếp (
+  Heapsort).
 - **Phép toán chính**: `insert`, `delete`, `heapify`, và `heapsort`.
 
 ### Lưu ý
 
-Cấu trúc dữ liệu heap chỉ là một phương pháp tổ chức dữ liệu và không liên quan đến vùng nhớ vật lý. Các phần tử của heap được lưu trong mảng để dễ dàng thao tác và duy trì tính chất của cây nhị phân hoàn chỉnh.
+Cấu trúc dữ liệu heap chỉ là một phương pháp tổ chức dữ liệu và không liên quan đến vùng nhớ vật lý. Các phần tử của
+heap được lưu trong mảng để dễ dàng thao tác và duy trì tính chất của cây nhị phân hoàn chỉnh.
 
 ## 2. Vùng nhớ Heap (Memory Heap)
 
@@ -27,12 +31,13 @@ Cấu trúc dữ liệu heap chỉ là một phương pháp tổ chức dữ li�
 
 ### Quản lý
 
-- **Hệ điều hành** hoặc **trình quản lý bộ nhớ** của ngôn ngữ lập trình sẽ quản lý vùng nhớ heap, thường yêu cầu lập trình viên thực hiện việc cấp phát và giải phóng bộ nhớ.
+- **Hệ điều hành** hoặc **trình quản lý bộ nhớ** của ngôn ngữ lập trình sẽ quản lý vùng nhớ heap, thường yêu cầu lập
+  trình viên thực hiện việc cấp phát và giải phóng bộ nhớ.
 
 ## So sánh giữa Heap trong Cấu trúc Dữ liệu và Memory Heap
 
 | **Tiêu chí**       | **Cấu trúc Dữ liệu Heap**             | **Memory Heap**                            |
-| ------------------ | ------------------------------------- | ------------------------------------------ |
+|--------------------|---------------------------------------|--------------------------------------------|
 | **Mục đích**       | Truy xuất dữ liệu theo thứ tự ưu tiên | Cấp phát và quản lý bộ nhớ động            |
 | **Cách lưu trữ**   | Lưu trong mảng                        | RAM (trong bộ nhớ động của chương trình)   |
 | **Quản lý**        | Bởi các phép toán trong cây nhị phân  | Bởi hệ điều hành hoặc trình quản lý bộ nhớ |
@@ -42,14 +47,16 @@ Cấu trúc dữ liệu heap chỉ là một phương pháp tổ chức dữ li�
 
 # Bộ nhớ Stack và Heap trong Lập trình: Phân tích và Quản lý
 
-Hiểu rõ sự khác biệt giữa **Stack** và **Heap** giúp lập trình viên quản lý hiệu quả bộ nhớ, tối ưu hóa tài nguyên, tránh lỗi và tăng cường kiểm soát. Điều này đặc biệt quan trọng trong xử lý biến, đối tượng, và dữ liệu động.
+Hiểu rõ sự khác biệt giữa **Stack** và **Heap** giúp lập trình viên quản lý hiệu quả bộ nhớ, tối ưu hóa tài nguyên,
+tránh lỗi và tăng cường kiểm soát. Điều này đặc biệt quan trọng trong xử lý biến, đối tượng, và dữ liệu động.
 
 ## 1. Bộ nhớ Stack
 
 ### Đặc điểm và Cấu trúc
 
 - **Stack**: Là vùng bộ nhớ dùng lưu trữ biến cục bộ và tham số hàm.
-- Hoạt động theo nguyên tắc **LIFO** (Last In, First Out), khi một hàm được gọi, một khối bộ nhớ (stack frame) được tạo ra trên đỉnh stack và tự động giải phóng khi hàm kết thúc.
+- Hoạt động theo nguyên tắc **LIFO** (Last In, First Out), khi một hàm được gọi, một khối bộ nhớ (stack frame) được tạo
+  ra trên đỉnh stack và tự động giải phóng khi hàm kết thúc.
 
 ### Quản lý Bộ nhớ
 
@@ -75,14 +82,18 @@ void foo() {
 ### Đặc điểm và Cấu trúc
 
 - **Heap**: Vùng nhớ lớn hơn, dùng cho đối tượng hoặc biến có kích thước và vòng đời dài hơn một hàm cụ thể.
-- **Không theo cấu trúc LIFO**: Bộ nhớ trên heap có thể cấp phát và giải phóng tùy theo nhu cầu trong suốt quá trình thực thi chương trình.
+- **Không theo cấu trúc LIFO**: Bộ nhớ trên heap có thể cấp phát và giải phóng tùy theo nhu cầu trong suốt quá trình
+  thực thi chương trình.
 
 ### Quản lý Bộ nhớ
 
-Quản lý bộ nhớ trên heap phức tạp hơn stack, yêu cầu lập trình viên kiểm soát cấp phát và giải phóng thủ công hoặc qua bộ **garbage collector**:
+Quản lý bộ nhớ trên heap phức tạp hơn stack, yêu cầu lập trình viên kiểm soát cấp phát và giải phóng thủ công hoặc qua
+bộ **garbage collector**:
 
-- **Quản lý thủ công**: Với ngôn ngữ như C/C++, lập trình viên tự cấp phát (`malloc`/`new`) và giải phóng (`free`/`delete`) bộ nhớ.
-- **Quản lý tự động**: Với các ngôn ngữ như Java, Python, garbage collector sẽ tự động dọn dẹp các đối tượng không còn được tham chiếu.
+- **Quản lý thủ công**: Với ngôn ngữ như C/C++, lập trình viên tự cấp phát (`malloc`/`new`) và giải phóng (`free`/
+  `delete`) bộ nhớ.
+- **Quản lý tự động**: Với các ngôn ngữ như Java, Python, garbage collector sẽ tự động dọn dẹp các đối tượng không còn
+  được tham chiếu.
 
 ### Đặc điểm Khác
 
@@ -101,7 +112,7 @@ delete ptr;
 ## Quản lý Bộ nhớ trong Các Ngôn ngữ Lập trình Phổ biến
 
 | Ngôn ngữ   | Quản lý Stack | Quản lý Heap                       |
-| ---------- | ------------- | ---------------------------------- |
+|------------|---------------|------------------------------------|
 | C/C++      | Tự động       | Thủ công (malloc/free, new/delete) |
 | Java       | Tự động       | Garbage Collector (tự động)        |
 | Python     | Tự động       | Garbage Collector (tự động)        |
@@ -109,13 +120,15 @@ delete ptr;
 
 ## Tham chiếu của Object và Biến Nguyên Thủy
 
-- **Biến nguyên thủy**: Thường lưu trên stack, truyền bằng giá trị (pass by value), không ảnh hưởng đến giá trị gốc khi truyền vào hàm.
-- **Đối tượng**: Được lưu trên heap, truyền bằng tham chiếu (pass by reference), giúp thao tác trực tiếp với dữ liệu gốc.
+- **Biến nguyên thủy**: Thường lưu trên stack, truyền bằng giá trị (pass by value), không ảnh hưởng đến giá trị gốc khi
+  truyền vào hàm.
+- **Đối tượng**: Được lưu trên heap, truyền bằng tham chiếu (pass by reference), giúp thao tác trực tiếp với dữ liệu
+  gốc.
 
 ## So sánh giữa Stack và Heap
 
 | Đặc điểm       | Stack              | Heap                  |
-| -------------- | ------------------ | --------------------- |
+|----------------|--------------------|-----------------------|
 | **Cấu trúc**   | LIFO               | Không theo cấu trúc   |
 | **Dung lượng** | Nhỏ, cố định       | Lớn, có thể thay đổi  |
 | **Quản lý**    | Tự động            | Thủ công hoặc tự động |
@@ -124,7 +137,9 @@ delete ptr;
 
 ## Tổng kết
 
-Hiểu rõ sự khác biệt giữa Stack và Heap giúp lập trình viên viết mã hiệu quả hơn, tối ưu hóa hiệu suất và tránh lỗi. Nhận thức về cách thức ngôn ngữ lập trình xử lý tham chiếu và quản lý bộ nhớ sẽ giúp hạn chế các lỗi phổ biến như rò rỉ bộ nhớ hoặc lỗi truy xuất dữ liệu.
+Hiểu rõ sự khác biệt giữa Stack và Heap giúp lập trình viên viết mã hiệu quả hơn, tối ưu hóa hiệu suất và tránh lỗi.
+Nhận thức về cách thức ngôn ngữ lập trình xử lý tham chiếu và quản lý bộ nhớ sẽ giúp hạn chế các lỗi phổ biến như rò rỉ
+bộ nhớ hoặc lỗi truy xuất dữ liệu.
 
 **Lưu ý Quan Trọng:**
 

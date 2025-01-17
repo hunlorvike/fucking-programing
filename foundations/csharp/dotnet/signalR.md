@@ -1,8 +1,11 @@
-Dưới đây là phiên bản nâng cấp của tài liệu về SignalR, tập trung vào việc xây dựng ứng dụng nhắn tin tương tự Messenger, với các ví dụ chi tiết về cách gửi tin nhắn giữa hai người và trong một nhóm.
+Dưới đây là phiên bản nâng cấp của tài liệu về SignalR, tập trung vào việc xây dựng ứng dụng nhắn tin tương tự
+Messenger, với các ví dụ chi tiết về cách gửi tin nhắn giữa hai người và trong một nhóm.
 
 ## SignalR trong .NET - Ứng Dụng Nhắn Tin Tương Tự Messenger
 
-**SignalR** là một thư viện trong .NET cho phép xây dựng các ứng dụng web thời gian thực, giúp truyền tải dữ liệu giữa máy chủ và client một cách nhanh chóng và hiệu quả. SignalR hỗ trợ nhiều giao thức truyền tải khác nhau, bao gồm WebSockets, Server-Sent Events, và Long Polling.
+**SignalR** là một thư viện trong .NET cho phép xây dựng các ứng dụng web thời gian thực, giúp truyền tải dữ liệu giữa
+máy chủ và client một cách nhanh chóng và hiệu quả. SignalR hỗ trợ nhiều giao thức truyền tải khác nhau, bao gồm
+WebSockets, Server-Sent Events, và Long Polling.
 
 ### Mục lục
 
@@ -42,7 +45,8 @@ connection
 
 ### <a name="signalr-hub"></a>3. Hub và Communication
 
-Hub là thành phần trung tâm trong SignalR, cho phép client gọi phương thức trên server và ngược lại. Dưới đây là ví dụ về một Hub cho ứng dụng nhắn tin.
+Hub là thành phần trung tâm trong SignalR, cho phép client gọi phương thức trên server và ngược lại. Dưới đây là ví dụ
+về một Hub cho ứng dụng nhắn tin.
 
 ```csharp
 using Microsoft.AspNetCore.SignalR;
@@ -130,7 +134,8 @@ connection.on('ReceiveGroupMessage', (user, message) => {
 
 ### <a name="signalr-connection-management"></a>6. Quản lý kết nối
 
-SignalR tự động quản lý kết nối và tái kết nối khi mất kết nối. Tuy nhiên, bạn cũng có thể xử lý các sự kiện kết nối như sau:
+SignalR tự động quản lý kết nối và tái kết nối khi mất kết nối. Tuy nhiên, bạn cũng có thể xử lý các sự kiện kết nối như
+sau:
 
 ```javascript
 connection.onreconnecting(err => {
@@ -156,7 +161,8 @@ SignalR cung cấp một số sự kiện để bạn có thể xử lý các t�
 
 ### <a name="signalr-aspnet-core"></a>8. Chạy SignalR trong ASP.NET Core
 
-Để sử dụng SignalR trong ứng dụng ASP.NET Core, bạn cần cài đặt gói NuGet `Microsoft.AspNetCore.SignalR`. Sau đó, bạn có thể cấu hình SignalR trong `Startup.cs` như sau:
+Để sử dụng SignalR trong ứng dụng ASP.NET Core, bạn cần cài đặt gói NuGet `Microsoft.AspNetCore.SignalR`. Sau đó, bạn có
+thể cấu hình SignalR trong `Startup.cs` như sau:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -183,4 +189,5 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 - **Quản lý kết nối**: SignalR tự động quản lý kết nối và cho phép xử lý các sự kiện kết nối.
 - **Chạy trong ASP.NET Core**: Cần cấu hình trong `Startup.cs` và cài đặt gói NuGet để sử dụng.
 
-SignalR là một công cụ mạnh mẽ giúp phát triển các ứng dụng thời gian thực, cải thiện trải nghiệm người dùng thông qua việc truyền tải dữ liệu nhanh chóng và hiệu quả, đặc biệt trong các ứng dụng nhắn tin.
+SignalR là một công cụ mạnh mẽ giúp phát triển các ứng dụng thời gian thực, cải thiện trải nghiệm người dùng thông qua
+việc truyền tải dữ liệu nhanh chóng và hiệu quả, đặc biệt trong các ứng dụng nhắn tin.

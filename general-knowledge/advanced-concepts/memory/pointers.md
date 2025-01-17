@@ -1,12 +1,16 @@
 # Con trỏ và Quản lý Bộ nhớ trong Lập trình C/C++
 
-Con trỏ là một khái niệm cơ bản nhưng vô cùng quan trọng trong lập trình. Chúng là một công cụ mạnh mẽ cho phép bạn thao tác trực tiếp với bộ nhớ, tăng hiệu suất và tạo ra các cấu trúc dữ liệu linh hoạt. Bài viết này sẽ giúp bạn hiểu rõ hơn về con trỏ, cách sử dụng chúng hiệu quả và phân biệt rõ giữa **tham chiếu** và **tham trị** khi truyền dữ liệu vào hàm.
+Con trỏ là một khái niệm cơ bản nhưng vô cùng quan trọng trong lập trình. Chúng là một công cụ mạnh mẽ cho phép bạn thao
+tác trực tiếp với bộ nhớ, tăng hiệu suất và tạo ra các cấu trúc dữ liệu linh hoạt. Bài viết này sẽ giúp bạn hiểu rõ hơn
+về con trỏ, cách sử dụng chúng hiệu quả và phân biệt rõ giữa **tham chiếu** và **tham trị** khi truyền dữ liệu vào hàm.
 
 ## 1. Con trỏ là gì?
 
-Mỗi biến trong chương trình đều được cấp phát một vùng nhớ để lưu trữ giá trị của nó. Ví dụ, một biến `int` được cấp phát 4 byte liên tiếp để lưu trữ giá trị nguyên, và địa chỉ của byte đầu tiên được coi là địa chỉ của biến.
+Mỗi biến trong chương trình đều được cấp phát một vùng nhớ để lưu trữ giá trị của nó. Ví dụ, một biến `int` được cấp
+phát 4 byte liên tiếp để lưu trữ giá trị nguyên, và địa chỉ của byte đầu tiên được coi là địa chỉ của biến.
 
-Con trỏ là một **biến lưu trữ địa chỉ bộ nhớ của một biến khác**. Hãy tưởng tượng con trỏ như một mẩu giấy ghi địa chỉ nhà của bạn, thay vì ghi chính tên nhà.
+Con trỏ là một **biến lưu trữ địa chỉ bộ nhớ của một biến khác**. Hãy tưởng tượng con trỏ như một mẩu giấy ghi địa chỉ
+nhà của bạn, thay vì ghi chính tên nhà.
 
 **Ví dụ:**
 
@@ -21,7 +25,8 @@ Trong ví dụ này, `a` có kiểu dữ liệu `int`, nên cần có một con 
 ## 2. Địa chỉ tham chiếu và giải tham chiếu
 
 - **Địa chỉ tham chiếu**: Dấu `&` được sử dụng để lấy địa chỉ của một biến. Ví dụ, `&a` sẽ trả về địa chỉ của biến `a`.
-- **Giải tham chiếu**: Dấu `*` được sử dụng để truy cập giá trị tại địa chỉ mà con trỏ đang trỏ tới. Ví dụ, `*ptr` sẽ trả về giá trị của biến `a` (5) vì `ptr` đang trỏ đến địa chỉ của `a`.
+- **Giải tham chiếu**: Dấu `*` được sử dụng để truy cập giá trị tại địa chỉ mà con trỏ đang trỏ tới. Ví dụ, `*ptr` sẽ
+  trả về giá trị của biến `a` (5) vì `ptr` đang trỏ đến địa chỉ của `a`.
 
 ## 3. Ưu điểm của con trỏ
 
@@ -82,7 +87,8 @@ int main(){
 
 ### Tham trị (Pass by Value)
 
-Khi truyền một biến theo tham trị, một **bản sao của dữ liệu gốc** được tạo ra và truyền vào hàm. Bất kỳ thay đổi nào trong hàm **không ảnh hưởng** đến biến gốc.
+Khi truyền một biến theo tham trị, một **bản sao của dữ liệu gốc** được tạo ra và truyền vào hàm. Bất kỳ thay đổi nào
+trong hàm **không ảnh hưởng** đến biến gốc.
 
 **Ví dụ:**
 
@@ -101,7 +107,8 @@ int main() {
 
 ### Tham chiếu (Pass by Reference)
 
-Khi truyền theo tham chiếu, hàm nhận một **tham chiếu đến địa chỉ của biến** ban đầu. Do đó, bất kỳ thay đổi nào thực hiện trong hàm sẽ **ảnh hưởng trực tiếp** đến biến gốc.
+Khi truyền theo tham chiếu, hàm nhận một **tham chiếu đến địa chỉ của biến** ban đầu. Do đó, bất kỳ thay đổi nào thực
+hiện trong hàm sẽ **ảnh hưởng trực tiếp** đến biến gốc.
 
 **Ví dụ:**
 
@@ -121,7 +128,7 @@ int main() {
 ### Bảng So sánh
 
 | **Đặc điểm**          | **Tham trị (Pass by Value)**        | **Tham chiếu (Pass by Reference)**            |
-| --------------------- | ----------------------------------- | --------------------------------------------- |
+|-----------------------|-------------------------------------|-----------------------------------------------|
 | **Tạo bản sao**       | Có, bản sao được tạo                | Không, truyền tham chiếu đến địa chỉ biến gốc |
 | **Ảnh hưởng đến gốc** | Không                               | Có, do tham chiếu trực tiếp vào biến gốc      |
 | **Bộ nhớ**            | Tốn thêm bộ nhớ do tạo bản sao      | Tiết kiệm bộ nhớ, chỉ truyền địa chỉ          |
@@ -164,7 +171,7 @@ int main() {
 ### Bảng so sánh Tham chiếu và Con trỏ
 
 | **Đặc điểm**            | **Tham chiếu (Reference)**      | **Con trỏ (Pointer)**                     |
-| ----------------------- | ------------------------------- | ----------------------------------------- |
+|-------------------------|---------------------------------|-------------------------------------------|
 | **Khái niệm**           | Bí danh của một biến đã tồn tại | Biến lưu địa chỉ của biến khác            |
 | **Kích thước**          | Không chiếm thêm bộ nhớ         | Chiếm bộ nhớ để lưu địa chỉ               |
 | **Thay đổi địa chỉ**    | Không thể thay đổi              | Có thể thay đổi                           |
@@ -176,4 +183,6 @@ int main() {
 
 7. Kết luận
 
-Con trỏ và các khái niệm về tham trị, tham chiếu đều là những phần quan trọng khi lập trình, đặc biệt là trong C/C++. Hiểu rõ các khái niệm này sẽ giúp lập trình viên tối ưu hóa hiệu suất và quản lý bộ nhớ tốt hơn, cũng như tránh các lỗi thường gặp trong lập trình liên quan đến con trỏ và tham chiếu.
+Con trỏ và các khái niệm về tham trị, tham chiếu đều là những phần quan trọng khi lập trình, đặc biệt là trong C/C++.
+Hiểu rõ các khái niệm này sẽ giúp lập trình viên tối ưu hóa hiệu suất và quản lý bộ nhớ tốt hơn, cũng như tránh các lỗi
+thường gặp trong lập trình liên quan đến con trỏ và tham chiếu.

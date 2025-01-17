@@ -3,21 +3,21 @@
 ## Mục Lục
 
 1. [Tổng quan về Cookies](#1-tổng-quan-về-cookies)
-   - [Cookies là gì?](#cookies-là-gì)
-   - [Cấu trúc của một Cookie](#cấu-trúc-của-một-cookie)
-   - [Cookies hoạt động như thế nào?](#cookies-hoạt-động-như-thế-nào)
+    - [Cookies là gì?](#cookies-là-gì)
+    - [Cấu trúc của một Cookie](#cấu-trúc-của-một-cookie)
+    - [Cookies hoạt động như thế nào?](#cookies-hoạt-động-như-thế-nào)
 2. [Triển khai Cookies trong C# .NET](#2-triển-khai-cookies-trong-c-net)
-   - [Cấu hình và tạo Cookies trong ASP.NET Core](#a-cấu-hình-và-tạo-cookies-trong-aspnet-core)
-   - [Thiết lập Cookie trong `appsettings.json` (Tùy chọn)](#b-thiết-lập-cookie-trong-appsettingsjson-tùy-chọn)
+    - [Cấu hình và tạo Cookies trong ASP.NET Core](#a-cấu-hình-và-tạo-cookies-trong-aspnet-core)
+    - [Thiết lập Cookie trong `appsettings.json` (Tùy chọn)](#b-thiết-lập-cookie-trong-appsettingsjson-tùy-chọn)
 3. [Bảo mật Cookies trong ASP.NET Core](#3-bảo-mật-cookies-trong-aspnet-core)
-   - [Secure và HttpOnly Cookies](#secure-và-httponly-cookies)
-   - [Cookie SameSite](#cookie-samesite)
-   - [Thời gian hết hạn hợp lý và Xóa Cookies](#thời-gian-hết-hạn-hợp-lý-và-xóa-cookies)
-   - [Mã hóa và ký Cookie](#mã-hóa-và-ký-cookie)
+    - [Secure và HttpOnly Cookies](#secure-và-httponly-cookies)
+    - [Cookie SameSite](#cookie-samesite)
+    - [Thời gian hết hạn hợp lý và Xóa Cookies](#thời-gian-hết-hạn-hợp-lý-và-xóa-cookies)
+    - [Mã hóa và ký Cookie](#mã-hóa-và-ký-cookie)
 4. [So sánh Cookies và Session](#4-so-sánh-cookies-và-session)
 5. [Ứng dụng Cookies trong Xác thực](#5-ứng-dụng-cookies-trong-xác-thực)
-   - [Cấu hình xác thực Cookie trong `Startup.cs`](#a-cấu-hình-xác-thực-cookie-trong-startupcs)
-   - [Thực hiện đăng nhập và tạo Cookie](#b-thực-hiện-đăng-nhập-và-tạo-cookie)
+    - [Cấu hình xác thực Cookie trong `Startup.cs`](#a-cấu-hình-xác-thực-cookie-trong-startupcs)
+    - [Thực hiện đăng nhập và tạo Cookie](#b-thực-hiện-đăng-nhập-và-tạo-cookie)
 6. [Kết luận](#kết-luận)
 
 ---
@@ -26,7 +26,9 @@
 
 #### Cookies là gì?
 
-Cookies là các tệp nhỏ được server gửi đến trình duyệt và lưu trữ trên máy client. Mỗi khi người dùng truy cập vào một trang web, cookie có thể được gửi kèm theo yêu cầu HTTP để server nhận diện người dùng, theo dõi trạng thái và lưu trữ các tùy chọn của người dùng trên trang web.
+Cookies là các tệp nhỏ được server gửi đến trình duyệt và lưu trữ trên máy client. Mỗi khi người dùng truy cập vào một
+trang web, cookie có thể được gửi kèm theo yêu cầu HTTP để server nhận diện người dùng, theo dõi trạng thái và lưu trữ
+các tùy chọn của người dùng trên trang web.
 
 #### Cấu trúc của một Cookie
 
@@ -60,7 +62,7 @@ ASP.NET Core cho phép dễ dàng tạo và quản lý cookie thông qua các ph
 
 1. **Thêm và cấu hình Cookie**:
 
-   - Để thêm một cookie mới vào `HttpContext.Response.Cookies`, có thể sử dụng phương thức `Append`.
+    - Để thêm một cookie mới vào `HttpContext.Response.Cookies`, có thể sử dụng phương thức `Append`.
 
    ```csharp
    public IActionResult SetCookie()
@@ -81,13 +83,13 @@ ASP.NET Core cho phép dễ dàng tạo và quản lý cookie thông qua các ph
 
    Các thiết lập quan trọng:
 
-   - `Expires`: Thời gian sống của cookie. Sau thời gian này, cookie sẽ tự động bị xóa.
-   - `HttpOnly`: Ngăn không cho JavaScript truy cập cookie, giúp bảo vệ cookie khỏi XSS.
-   - `Secure`: Đảm bảo cookie chỉ được gửi qua kết nối HTTPS.
+    - `Expires`: Thời gian sống của cookie. Sau thời gian này, cookie sẽ tự động bị xóa.
+    - `HttpOnly`: Ngăn không cho JavaScript truy cập cookie, giúp bảo vệ cookie khỏi XSS.
+    - `Secure`: Đảm bảo cookie chỉ được gửi qua kết nối HTTPS.
 
 2. **Đọc dữ liệu từ Cookie**:
 
-   - Để đọc dữ liệu từ cookie, sử dụng `Request.Cookies`.
+    - Để đọc dữ liệu từ cookie, sử dụng `Request.Cookies`.
 
    ```csharp
    public IActionResult GetCookie()
@@ -104,7 +106,8 @@ ASP.NET Core cho phép dễ dàng tạo và quản lý cookie thông qua các ph
 
 3. **Xóa Cookie**:
 
-   - Để xóa một cookie, bạn có thể đặt thời gian hết hạn của cookie về một thời điểm đã qua hoặc gọi `Delete` trực tiếp.
+    - Để xóa một cookie, bạn có thể đặt thời gian hết hạn của cookie về một thời điểm đã qua hoặc gọi `Delete` trực
+      tiếp.
 
    ```csharp
    public IActionResult DeleteCookie()
@@ -117,7 +120,8 @@ ASP.NET Core cho phép dễ dàng tạo và quản lý cookie thông qua các ph
 
 #### b. Thiết lập Cookie trong `appsettings.json` (Tùy chọn)
 
-Nếu cần, có thể cấu hình cookie trong `appsettings.json`, chủ yếu khi làm việc với cookie xác thực trong ứng dụng. Ví dụ về cấu hình xác thực qua cookie:
+Nếu cần, có thể cấu hình cookie trong `appsettings.json`, chủ yếu khi làm việc với cookie xác thực trong ứng dụng. Ví dụ
+về cấu hình xác thực qua cookie:
 
 ```json
 {
@@ -134,11 +138,13 @@ Nếu cần, có thể cấu hình cookie trong `appsettings.json`, chủ yếu 
 
 ### 3. Bảo mật Cookies trong ASP.NET Core
 
-Cookies có thể dễ dàng bị tấn công nếu không được bảo vệ đúng cách. Sau đây là các phương pháp bảo mật cookies quan trọng:
+Cookies có thể dễ dàng bị tấn công nếu không được bảo vệ đúng cách. Sau đây là các phương pháp bảo mật cookies quan
+trọng:
 
 #### Secure và HttpOnly Cookies
 
-- **HttpOnly**: Khi được bật, cookie chỉ có thể truy cập qua HTTP mà không thể truy cập bằng JavaScript, ngăn chặn các cuộc tấn công XSS.
+- **HttpOnly**: Khi được bật, cookie chỉ có thể truy cập qua HTTP mà không thể truy cập bằng JavaScript, ngăn chặn các
+  cuộc tấn công XSS.
 - **Secure**: Đảm bảo cookie chỉ được gửi qua HTTPS, bảo vệ khỏi các cuộc tấn công MITM (Man-in-the-Middle).
 
 ```csharp
@@ -152,7 +158,8 @@ Response.Cookies.Append("SecureCookie", "value", options);
 
 #### Cookie SameSite
 
-SameSite là thuộc tính cookie giúp ngăn ngừa tấn công CSRF (Cross-Site Request Forgery) bằng cách giới hạn phạm vi gửi cookie:
+SameSite là thuộc tính cookie giúp ngăn ngừa tấn công CSRF (Cross-Site Request Forgery) bằng cách giới hạn phạm vi gửi
+cookie:
 
 - **Strict**: Cookie chỉ được gửi trong các yêu cầu từ chính site đó.
 - **Lax**: Cookie được gửi cho các yêu cầu dẫn tới site khác nhưng giới hạn một số tình huống.
@@ -175,12 +182,13 @@ Response.Cookies.Append("StrictCookie", "value", options);
 
 #### Mã hóa và ký Cookie
 
-Nếu cần bảo mật thêm, có thể mã hóa và ký các cookie nhạy cảm trước khi gửi về client để ngăn chặn việc cookie bị giả mạo hoặc thay đổi.
+Nếu cần bảo mật thêm, có thể mã hóa và ký các cookie nhạy cảm trước khi gửi về client để ngăn chặn việc cookie bị giả
+mạo hoặc thay đổi.
 
 ### 4. So sánh Cookies và Session
 
 | Đặc điểm            | Cookies                                        | Session                                             |
-| ------------------- | ---------------------------------------------- | --------------------------------------------------- |
+|---------------------|------------------------------------------------|-----------------------------------------------------|
 | **Lưu trữ**         | Lưu trữ trên client                            | Lưu trữ trên server                                 |
 | **Tính bảo mật**    | Phụ thuộc vào mã hóa và thiết lập quyền hạn    | Dữ liệu session không tiếp xúc trực tiếp với client |
 | **Trạng thái**      | Không trạng thái (stateless)                   | Có trạng thái (stateful)                            |
@@ -190,7 +198,9 @@ Nếu cần bảo mật thêm, có thể mã hóa và ký các cookie nhạy c�
 
 ### 5. Ứng dụng Cookies trong Xác thực
 
-Cookies thường được sử dụng cho việc lưu trữ thông tin xác thực. Trong ASP.NET Core, `Cookie Authentication` là một phương pháp phổ biến để quản lý xác thực người dùng. Dưới đây là một số cấu hình cơ bản cho xác thực qua cookie trong ứng dụng ASP.NET Core.
+Cookies thường được sử dụng cho việc lưu trữ thông tin xác thực. Trong ASP.NET Core, `Cookie Authentication` là một
+phương pháp phổ biến để quản lý xác thực người dùng. Dưới đây là một số cấu hình cơ bản cho xác thực qua cookie trong
+ứng dụng ASP.NET Core.
 
 #### a. Cấu hình xác thực Cookie trong `Startup.cs`
 
@@ -232,4 +242,6 @@ public async Task<IActionResult> Login(string username, string password)
 
 ### Kết luận
 
-Cookies là một công cụ mạnh mẽ trong việc quản lý trạng thái người dùng trên trình duyệt client. Tuy nhiên, chúng đòi hỏi các biện pháp bảo mật thích hợp để bảo vệ khỏi các cuộc tấn công XSS và CSRF. Việc sử dụng **Secure**, **HttpOnly**, và **SameSite** là rất quan trọng trong việc bảo vệ cookies khỏi các lỗ hổng bảo mật.
+Cookies là một công cụ mạnh mẽ trong việc quản lý trạng thái người dùng trên trình duyệt client. Tuy nhiên, chúng đòi
+hỏi các biện pháp bảo mật thích hợp để bảo vệ khỏi các cuộc tấn công XSS và CSRF. Việc sử dụng **Secure**, **HttpOnly**,
+và **SameSite** là rất quan trọng trong việc bảo vệ cookies khỏi các lỗ hổng bảo mật.

@@ -3,15 +3,15 @@
 ## Mục Lục
 
 1. [Tổng quan về câu lệnh UPDATE](#1-tổng-quan-về-câu-lệnh-update)
-   - [UPDATE là gì?](#update-là-gì)
-   - [Lợi ích của câu lệnh UPDATE](#lợi-ích-của-câu-lệnh-update)
-   - [Câu lệnh UPDATE hoạt động như thế nào?](#câu-lệnh-update-hoạt-động-như-thế-nào)
+    - [UPDATE là gì?](#update-là-gì)
+    - [Lợi ích của câu lệnh UPDATE](#lợi-ích-của-câu-lệnh-update)
+    - [Câu lệnh UPDATE hoạt động như thế nào?](#câu-lệnh-update-hoạt-động-như-thế-nào)
 2. [Cú pháp cơ bản của câu lệnh UPDATE](#2-cú-pháp-cơ-bản-của-câu-lệnh-update)
-   - [Cập nhật một bản ghi](#cập-nhật-một-bản-ghi)
-   - [Cập nhật nhiều bản ghi](#cập-nhật-nhiều-bản-ghi)
+    - [Cập nhật một bản ghi](#cập-nhật-một-bản-ghi)
+    - [Cập nhật nhiều bản ghi](#cập-nhật-nhiều-bản-ghi)
 3. [Các tùy chọn mở rộng của câu lệnh UPDATE](#3-các-tùy-chọn-mở-rộng-của-câu-lệnh-update)
-   - [UPDATE với WHERE](#update-với-where)
-   - [UPDATE với JOIN](#update-với-join)
+    - [UPDATE với WHERE](#update-với-where)
+    - [UPDATE với JOIN](#update-với-join)
 4. [Các ví dụ thực tế với UPDATE](#4-các-ví-dụ-thực-tế-với-update)
 5. [Lưu ý và thực hành tốt](#5-lưu-ý-và-thực-hành-tốt)
 
@@ -21,13 +21,15 @@
 
 #### UPDATE là gì?
 
-Câu lệnh `UPDATE` trong SQL Server được sử dụng để thay đổi dữ liệu đã có trong bảng. Bạn có thể cập nhật một hoặc nhiều cột trong bảng với các giá trị mới. Đây là câu lệnh quan trọng để duy trì và chỉnh sửa dữ liệu trong cơ sở dữ liệu.
+Câu lệnh `UPDATE` trong SQL Server được sử dụng để thay đổi dữ liệu đã có trong bảng. Bạn có thể cập nhật một hoặc nhiều
+cột trong bảng với các giá trị mới. Đây là câu lệnh quan trọng để duy trì và chỉnh sửa dữ liệu trong cơ sở dữ liệu.
 
 #### Lợi ích của câu lệnh UPDATE
 
 - **Chỉnh sửa dữ liệu**: Cập nhật giá trị của các bản ghi đã có trong bảng mà không cần phải xóa và thêm lại dữ liệu.
 - **Tăng tính linh hoạt**: Cho phép bạn thay đổi thông tin trong bảng dựa trên các điều kiện cụ thể.
-- **Sửa lỗi hoặc cập nhật thông tin**: Có thể sử dụng `UPDATE` để sửa các lỗi hoặc bổ sung thông tin cho các bản ghi hiện tại.
+- **Sửa lỗi hoặc cập nhật thông tin**: Có thể sử dụng `UPDATE` để sửa các lỗi hoặc bổ sung thông tin cho các bản ghi
+  hiện tại.
 
 #### Câu lệnh UPDATE hoạt động như thế nào?
 
@@ -44,7 +46,8 @@ Khi thực thi câu lệnh `UPDATE`, SQL Server thực hiện các bước sau:
 
 #### Cập nhật một bản ghi
 
-Câu lệnh `UPDATE` có thể được sử dụng để thay đổi một bản ghi cụ thể trong bảng bằng cách xác định các cột cần cập nhật và giá trị mới.
+Câu lệnh `UPDATE` có thể được sử dụng để thay đổi một bản ghi cụ thể trong bảng bằng cách xác định các cột cần cập nhật
+và giá trị mới.
 
 **Cú pháp**:
 
@@ -84,7 +87,9 @@ SET department = 'Sales', salary = 7500
 WHERE department = 'Marketing';
 ```
 
-Câu lệnh trên sẽ cập nhật tất cả nhân viên thuộc phòng ban `Marketing`, thay đổi phòng ban thành `Sales` và lương thành 7500.
+Câu lệnh trên sẽ cập nhật tất cả nhân viên thuộc phòng ban `Marketing`, thay đổi phòng ban thành `Sales` và lương thành
+
+7500.
 
 ---
 
@@ -92,7 +97,8 @@ Câu lệnh trên sẽ cập nhật tất cả nhân viên thuộc phòng ban `M
 
 #### UPDATE với WHERE
 
-`WHERE` là phần quan trọng của câu lệnh `UPDATE` vì nó xác định các bản ghi nào cần được cập nhật. Nếu không có `WHERE`, toàn bộ bảng sẽ bị cập nhật.
+`WHERE` là phần quan trọng của câu lệnh `UPDATE` vì nó xác định các bản ghi nào cần được cập nhật. Nếu không có `WHERE`,
+toàn bộ bảng sẽ bị cập nhật.
 
 **Cú pháp**:
 
@@ -114,7 +120,8 @@ Câu lệnh này sẽ cập nhật mức lương của tất cả nhân viên th
 
 #### UPDATE với JOIN
 
-Câu lệnh `UPDATE` có thể kết hợp với `JOIN` để cập nhật dữ liệu từ các bảng khác. Đây là một kỹ thuật hữu ích khi bạn muốn cập nhật dữ liệu dựa trên thông tin từ bảng khác.
+Câu lệnh `UPDATE` có thể kết hợp với `JOIN` để cập nhật dữ liệu từ các bảng khác. Đây là một kỹ thuật hữu ích khi bạn
+muốn cập nhật dữ liệu dựa trên thông tin từ bảng khác.
 
 **Cú pháp**:
 
@@ -138,7 +145,8 @@ ON employees.department_id = departments.department_id
 WHERE departments.department_name = 'IT';
 ```
 
-Câu lệnh trên sẽ cập nhật mức lương của tất cả nhân viên trong phòng ban `IT` dựa trên ngân sách của phòng ban và số lượng nhân viên.
+Câu lệnh trên sẽ cập nhật mức lương của tất cả nhân viên trong phòng ban `IT` dựa trên ngân sách của phòng ban và số
+lượng nhân viên.
 
 ---
 
@@ -199,7 +207,8 @@ WHERE departments.department_name = 'HR';
 
 **Giải thích**:
 
-- Câu lệnh trên sẽ cập nhật mức lương của nhân viên trong phòng ban `HR` dựa trên ngân sách phòng ban chia cho số lượng nhân viên trong phòng ban đó.
+- Câu lệnh trên sẽ cập nhật mức lương của nhân viên trong phòng ban `HR` dựa trên ngân sách phòng ban chia cho số lượng
+  nhân viên trong phòng ban đó.
 
 **Kết quả**:
 
@@ -209,7 +218,11 @@ Mức lương của các nhân viên trong phòng ban `HR` sẽ được tính t
 
 ### 5. Lưu ý và thực hành tốt
 
-- **Sử dụng `WHERE` cẩn thận**: Nếu bạn không sử dụng điều kiện `WHERE` đúng cách, toàn bộ bảng có thể bị cập nhật, gây ra lỗi hoặc thay đổi không mong muốn.
-- **Kiểm tra trước khi cập nhật**: Trước khi thực thi câu lệnh `UPDATE`, hãy thực hiện một câu lệnh `SELECT` để kiểm tra xem những bản ghi nào sẽ bị ảnh hưởng.
-- **Sử dụng giao dịch (Transactions)**: Khi thực hiện các cập nhật quan trọng, hãy sử dụng giao dịch (`BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK`) để đảm bảo rằng bạn có thể khôi phục thay đổi nếu có sự cố.
-- **Chú ý đến hiệu suất**: Việc cập nhật nhiều bản ghi hoặc sử dụng `JOIN` trong câu lệnh `UPDATE` có thể ảnh hưởng đến hiệu suất. Hãy tối ưu hóa câu lệnh nếu cần thiết.
+- **Sử dụng `WHERE` cẩn thận**: Nếu bạn không sử dụng điều kiện `WHERE` đúng cách, toàn bộ bảng có thể bị cập nhật, gây
+  ra lỗi hoặc thay đổi không mong muốn.
+- **Kiểm tra trước khi cập nhật**: Trước khi thực thi câu lệnh `UPDATE`, hãy thực hiện một câu lệnh `SELECT` để kiểm tra
+  xem những bản ghi nào sẽ bị ảnh hưởng.
+- **Sử dụng giao dịch (Transactions)**: Khi thực hiện các cập nhật quan trọng, hãy sử dụng giao dịch (
+  `BEGIN TRANSACTION`, `COMMIT`, `ROLLBACK`) để đảm bảo rằng bạn có thể khôi phục thay đổi nếu có sự cố.
+- **Chú ý đến hiệu suất**: Việc cập nhật nhiều bản ghi hoặc sử dụng `JOIN` trong câu lệnh `UPDATE` có thể ảnh hưởng đến
+  hiệu suất. Hãy tối ưu hóa câu lệnh nếu cần thiết.

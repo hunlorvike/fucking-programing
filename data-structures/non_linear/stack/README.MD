@@ -12,24 +12,25 @@
 
 ## Đặc điểm
 
-- Ngăn xếp là một cấu trúc dữ liệu tuyến tính, trong đó các phần tử được sắp xếp và truy cập theo nguyên tắc LIFO (Last In, First Out), tức là phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.
+- Ngăn xếp là một cấu trúc dữ liệu tuyến tính, trong đó các phần tử được sắp xếp và truy cập theo nguyên tắc LIFO (Last
+  In, First Out), tức là phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.
 - **Các thao tác chính:**
-  - **Push:** Thêm một phần tử vào đỉnh ngăn xếp.
-  - **Pop:** Lấy ra phần tử ở đỉnh ngăn xếp.
-  - **Peek:** Xem phần tử ở đỉnh ngăn xếp mà không lấy nó ra.
-  - **IsEmpty:** Kiểm tra xem ngăn xếp có rỗng hay không.
+    - **Push:** Thêm một phần tử vào đỉnh ngăn xếp.
+    - **Pop:** Lấy ra phần tử ở đỉnh ngăn xếp.
+    - **Peek:** Xem phần tử ở đỉnh ngăn xếp mà không lấy nó ra.
+    - **IsEmpty:** Kiểm tra xem ngăn xếp có rỗng hay không.
 
 ## Ưu điểm và nhược điểm
 
 - **Ưu điểm:**
 
-  - **Quản lý lịch sử hiệu quả:** Lưu trữ lịch sử thao tác trong các ứng dụng (Undo/Redo, điều hướng lịch sử).
-  - **Dễ triển khai:** Ngăn xếp dễ triển khai bằng mảng hoặc danh sách liên kết.
-  - **Kiểm soát luồng chương trình:** Được sử dụng để quản lý bộ nhớ và luồng thực thi trong lập trình.
+    - **Quản lý lịch sử hiệu quả:** Lưu trữ lịch sử thao tác trong các ứng dụng (Undo/Redo, điều hướng lịch sử).
+    - **Dễ triển khai:** Ngăn xếp dễ triển khai bằng mảng hoặc danh sách liên kết.
+    - **Kiểm soát luồng chương trình:** Được sử dụng để quản lý bộ nhớ và luồng thực thi trong lập trình.
 
 - **Nhược điểm:**
-  - **Truy cập hạn chế:** Chỉ có thể thao tác với phần tử ở đỉnh, không thể truy cập trực tiếp các phần tử khác.
-  - **Khó tìm kiếm:** Tìm kiếm một phần tử cụ thể yêu cầu duyệt qua ngăn xếp với độ phức tạp O(n).
+    - **Truy cập hạn chế:** Chỉ có thể thao tác với phần tử ở đỉnh, không thể truy cập trực tiếp các phần tử khác.
+    - **Khó tìm kiếm:** Tìm kiếm một phần tử cụ thể yêu cầu duyệt qua ngăn xếp với độ phức tạp O(n).
 
 ## Ứng dụng
 
@@ -91,4 +92,6 @@ console.log(myStack.isEmpty()); // Output: false
 
 ## Bổ sung
 
-Ngăn xếp là một cấu trúc dữ liệu cơ bản trong lập trình, xuất hiện trong nhiều thuật toán và cấu trúc dữ liệu khác. Trong TypeScript, ta có thể dễ dàng triển khai ngăn xếp bằng cách sử dụng mảng hoặc danh sách liên kết, với các thao tác `push`, `pop`, `peek`, và `isEmpty`.
+Ngăn xếp là một cấu trúc dữ liệu cơ bản trong lập trình, xuất hiện trong nhiều thuật toán và cấu trúc dữ liệu khác.
+Trong TypeScript, ta có thể dễ dàng triển khai ngăn xếp bằng cách sử dụng mảng hoặc danh sách liên kết, với các thao tác
+`push`, `pop`, `peek`, và `isEmpty`.

@@ -4,7 +4,8 @@
 
 ASP.NET Core MVC là một framework cho phép phát triển ứng dụng web sử dụng mô hình MVC:
 
-- **Model**: Chứa các lớp đại diện cho dữ liệu và business logic của ứng dụng. Model tương tác với cơ sở dữ liệu và thực hiện các xử lý liên quan đến dữ liệu.
+- **Model**: Chứa các lớp đại diện cho dữ liệu và business logic của ứng dụng. Model tương tác với cơ sở dữ liệu và thực
+  hiện các xử lý liên quan đến dữ liệu.
 - **View**: Thành phần hiển thị giao diện người dùng. View lấy dữ liệu từ Model và hiển thị chúng cho người dùng.
 - **Controller**: Điều phối giữa Model và View, nhận các yêu cầu từ người dùng, xử lý và trả về dữ liệu cần thiết.
 
@@ -97,7 +98,8 @@ public class HomeController : Controller
 
 ### 3.2 Các Action Method và Kết quả Trả về
 
-Các Action Method là các phương thức công khai (`public`) trong controller, có nhiệm vụ nhận yêu cầu từ người dùng và trả về các kiểu kết quả (`ActionResult`).
+Các Action Method là các phương thức công khai (`public`) trong controller, có nhiệm vụ nhận yêu cầu từ người dùng và
+trả về các kiểu kết quả (`ActionResult`).
 
 - `ViewResult`: Trả về một View
 - `JsonResult`: Trả về JSON
@@ -165,7 +167,8 @@ public class Product
 
 ### 4.2 View Models
 
-View Model là các lớp đặc biệt dùng để truyền dữ liệu từ Controller tới View. Chúng được tối ưu hóa để hiển thị dữ liệu mà không liên quan đến cấu trúc dữ liệu trong cơ sở dữ liệu.
+View Model là các lớp đặc biệt dùng để truyền dữ liệu từ Controller tới View. Chúng được tối ưu hóa để hiển thị dữ liệu
+mà không liên quan đến cấu trúc dữ liệu trong cơ sở dữ liệu.
 
 ```csharp
 public class ProductViewModel
@@ -224,7 +227,8 @@ Layout là file chứa phần chung của các trang. File Layout thường nằ
 
 ### 5.3 Partial Views
 
-Partial View là các thành phần giao diện nhỏ được tái sử dụng trong các view khác nhau. Chúng có thể được tạo trong `Views/Shared`.
+Partial View là các thành phần giao diện nhỏ được tái sử dụng trong các view khác nhau. Chúng có thể được tạo trong
+`Views/Shared`.
 
 ```cshtml
 <!-- Partial view: _ProductCard.cshtml -->
@@ -270,7 +274,8 @@ public class ProductsController : Controller
 
 ## 7. Validation
 
-ASP.NET Core MVC hỗ trợ kiểm tra tính hợp lệ bằng cách sử dụng các thuộc tính Data Annotation như `[Required]`, `[StringLength]`, `[Range]`,...
+ASP.NET Core MVC hỗ trợ kiểm tra tính hợp lệ bằng cách sử dụng các thuộc tính Data Annotation như `[Required]`,
+`[StringLength]`, `[Range]`,...
 
 ```csharp
 public class RegisterViewModel

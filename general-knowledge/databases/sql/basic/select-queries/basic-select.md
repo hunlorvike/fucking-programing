@@ -3,19 +3,19 @@
 ## Mục Lục
 
 1. [Tổng quan về câu lệnh SELECT](#1-tổng-quan-về-câu-lệnh-select)
-   - [SELECT là gì?](#select-là-gì)
-   - [Lợi ích của câu lệnh SELECT](#lợi-ích-của-câu-lệnh-select)
-   - [Câu lệnh SELECT hoạt động như thế nào?](#câu-lệnh-select-hoạt-động-như-thế-nào)
+    - [SELECT là gì?](#select-là-gì)
+    - [Lợi ích của câu lệnh SELECT](#lợi-ích-của-câu-lệnh-select)
+    - [Câu lệnh SELECT hoạt động như thế nào?](#câu-lệnh-select-hoạt-động-như-thế-nào)
 2. [Cú pháp cơ bản của câu lệnh SELECT](#2-cú-pháp-cơ-bản-của-câu-lệnh-select)
-   - [Chọn các cột cụ thể](#chọn-các-cột-cụ-thể)
-   - [Chọn tất cả các cột](#chọn-tất-cả-các-cột)
+    - [Chọn các cột cụ thể](#chọn-các-cột-cụ-thể)
+    - [Chọn tất cả các cột](#chọn-tất-cả-các-cột)
 3. [Các tùy chọn mở rộng của câu lệnh SELECT](#3-các-tùy-chọn-mở-rộng-của-câu-lệnh-select)
-   - [WHERE](#where)
-   - [ORDER BY](#order-by)
-   - [DISTINCT](#distinct)
+    - [WHERE](#where)
+    - [ORDER BY](#order-by)
+    - [DISTINCT](#distinct)
 4. [Kết hợp nhiều bảng trong SELECT](#4-kết-hợp-nhiều-bảng-trong-select)
-   - [JOIN](#join)
-   - [INNER JOIN, LEFT JOIN](#inner-join-left-join)
+    - [JOIN](#join)
+    - [INNER JOIN, LEFT JOIN](#inner-join-left-join)
 5. [Các ví dụ thực tế với SELECT](#5-các-ví-dụ-thực-tế-với-select)
 6. [Lưu ý và thực hành tốt](#6-lưu-ý-và-thực-hành-tốt)
 
@@ -25,7 +25,9 @@
 
 #### SELECT là gì?
 
-Câu lệnh `SELECT` trong SQL Server là câu lệnh được sử dụng để truy vấn và lấy dữ liệu từ một hoặc nhiều bảng trong cơ sở dữ liệu. Đây là câu lệnh cơ bản và quan trọng nhất trong SQL vì nó cho phép người dùng truy xuất thông tin cần thiết từ các bảng.
+Câu lệnh `SELECT` trong SQL Server là câu lệnh được sử dụng để truy vấn và lấy dữ liệu từ một hoặc nhiều bảng trong cơ
+sở dữ liệu. Đây là câu lệnh cơ bản và quan trọng nhất trong SQL vì nó cho phép người dùng truy xuất thông tin cần thiết
+từ các bảng.
 
 #### Lợi ích của câu lệnh SELECT
 
@@ -212,12 +214,13 @@ WHERE salary > 5000;
 
 **Giải thích**:
 
-- Truy vấn này sẽ trả về tất cả các cột trong bảng `employees` nhưng chỉ với các nhân viên có lương (`salary`) lớn hơn 5000.
+- Truy vấn này sẽ trả về tất cả các cột trong bảng `employees` nhưng chỉ với các nhân viên có lương (`salary`) lớn hơn
+    5000.
 
 **Kết quả có thể xảy ra**:
 
 | employee_id | first_name | last_name | department | salary |
-| ----------- | ---------- | --------- | ---------- | ------ |
+|-------------|------------|-----------|------------|--------|
 | 1           | John       | Doe       | HR         | 6000   |
 | 2           | Jane       | Smith     | IT         | 7000   |
 | 3           | Jim        | Brown     | Sales      | 8000   |
@@ -241,7 +244,7 @@ ORDER BY salary DESC;
 **Kết quả có thể xảy ra**:
 
 | first_name | last_name | salary |
-| ---------- | --------- | ------ |
+|------------|-----------|--------|
 | Jim        | Brown     | 8000   |
 | Jane       | Smith     | 7000   |
 | John       | Doe       | 6000   |
@@ -264,7 +267,7 @@ FROM employees;
 **Kết quả có thể xảy ra**:
 
 | department |
-| ---------- |
+|------------|
 | HR         |
 | IT         |
 | Sales      |
@@ -284,12 +287,13 @@ ON employees.department_id = departments.department_id;
 
 **Giải thích**:
 
-- Truy vấn này sẽ kết hợp bảng `employees` và bảng `departments`, trả về tên của nhân viên và tên phòng ban mà họ thuộc về.
+- Truy vấn này sẽ kết hợp bảng `employees` và bảng `departments`, trả về tên của nhân viên và tên phòng ban mà họ thuộc
+  về.
 
 **Kết quả có thể xảy ra**:
 
 | first_name | last_name | department_name |
-| ---------- | --------- | --------------- |
+|------------|-----------|-----------------|
 | John       | Doe       | HR              |
 | Jane       | Smith     | IT              |
 | Jim        | Brown     | Sales           |
@@ -309,12 +313,13 @@ ON employees.department_id = departments.department_id;
 
 **Giải thích**:
 
-- Truy vấn này sử dụng `LEFT JOIN`, vì vậy nó sẽ trả về tất cả các nhân viên, kể cả những người không thuộc phòng ban nào. Nếu nhân viên không có phòng ban, cột `department_name` sẽ có giá trị NULL.
+- Truy vấn này sử dụng `LEFT JOIN`, vì vậy nó sẽ trả về tất cả các nhân viên, kể cả những người không thuộc phòng ban
+  nào. Nếu nhân viên không có phòng ban, cột `department_name` sẽ có giá trị NULL.
 
 **Kết quả có thể xảy ra**:
 
 | first_name | last_name | department_name |
-| ---------- | --------- | --------------- |
+|------------|-----------|-----------------|
 | John       | Doe       | HR              |
 | Jane       | Smith     | IT              |
 | Jim        | Brown     | Sales           |
@@ -335,19 +340,23 @@ ORDER BY last_name ASC;
 
 **Giải thích**:
 
-- Truy vấn này sẽ chỉ trả về các nhân viên có tên bắt đầu bằng chữ cái "J" và sắp xếp kết quả theo họ (last_name) theo thứ tự tăng dần.
+- Truy vấn này sẽ chỉ trả về các nhân viên có tên bắt đầu bằng chữ cái "J" và sắp xếp kết quả theo họ (last_name) theo
+  thứ tự tăng dần.
 
 **Kết quả có thể xảy ra**:
 
 | first_name | last_name |
-| ---------- | --------- |
+|------------|-----------|
 | Jane       | Smith     |
 | Jim        | Brown     |
 | John       | Doe       |
 
 ### 6. Lưu ý và thực hành tốt
 
-- **Chọn chỉ các cột cần thiết**: Để giảm thiểu tải hệ thống và cải thiện hiệu suất, hãy chọn chỉ các cột mà bạn thực sự cần.
+- **Chọn chỉ các cột cần thiết**: Để giảm thiểu tải hệ thống và cải thiện hiệu suất, hãy chọn chỉ các cột mà bạn thực sự
+  cần.
 - **Sử dụng `WHERE` để lọc dữ liệu sớm**: Lọc dữ liệu ngay từ đầu thay vì lấy tất cả rồi mới lọc.
-- **Chú ý đến hiệu suất khi sử dụng `JOIN`**: Kết hợp nhiều bảng có thể làm giảm hiệu suất, vì vậy hãy chắc chắn sử dụng các chỉ mục và tối ưu câu lệnh của bạn.
-- **Sắp xếp dữ liệu một cách hợp lý**: Sử dụng `ORDER BY` để sắp xếp kết quả, nhưng cần chú ý đến hiệu suất nếu bạn đang làm việc với một bộ dữ liệu lớn.
+- **Chú ý đến hiệu suất khi sử dụng `JOIN`**: Kết hợp nhiều bảng có thể làm giảm hiệu suất, vì vậy hãy chắc chắn sử dụng
+  các chỉ mục và tối ưu câu lệnh của bạn.
+- **Sắp xếp dữ liệu một cách hợp lý**: Sử dụng `ORDER BY` để sắp xếp kết quả, nhưng cần chú ý đến hiệu suất nếu bạn đang
+  làm việc với một bộ dữ liệu lớn.

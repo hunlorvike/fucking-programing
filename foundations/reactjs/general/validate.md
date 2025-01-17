@@ -1,6 +1,6 @@
-Trong React, có nhiều cách để thực hiện **validate form** (xác thực biểu mẫu), từ các giải pháp thủ công với **state** đến việc sử dụng các thư viện như **Formik**, **React Hook Form**, hoặc **Yup** để giảm thiểu mã lặp lại. Dưới đây là các phương pháp phổ biến:
-
-
+Trong React, có nhiều cách để thực hiện **validate form** (xác thực biểu mẫu), từ các giải pháp thủ công với **state**
+đến việc sử dụng các thư viện như **Formik**, **React Hook Form**, hoặc **Yup** để giảm thiểu mã lặp lại. Dưới đây là
+các phương pháp phổ biến:
 
 ## 1. Sử Dụng **State** và **Event Handlers** Để Tự Xác Thực
 
@@ -63,11 +63,10 @@ function SimpleForm() {
 }
 ```
 
-
-
 ## 2. Sử Dụng **React Hook Form**
 
-**React Hook Form** là một thư viện phổ biến trong React giúp quản lý form với API đơn giản và hiệu quả. React Hook Form hỗ trợ giảm thiểu re-render không cần thiết và tích hợp dễ dàng với các thư viện xác thực như **Yup**.
+**React Hook Form** là một thư viện phổ biến trong React giúp quản lý form với API đơn giản và hiệu quả. React Hook Form
+hỗ trợ giảm thiểu re-render không cần thiết và tích hợp dễ dàng với các thư viện xác thực như **Yup**.
 
 ### Cách làm:
 
@@ -127,11 +126,10 @@ function HookForm() {
 }
 ```
 
-
-
 ## 3. Kết Hợp **React Hook Form** và **Yup** để Xác Thực Schema
 
-**Yup** là thư viện giúp xây dựng schema xác thực cho form một cách dễ dàng, và kết hợp tốt với React Hook Form để tạo các form phức tạp.
+**Yup** là thư viện giúp xây dựng schema xác thực cho form một cách dễ dàng, và kết hợp tốt với React Hook Form để tạo
+các form phức tạp.
 
 1. Cài đặt **Yup** và **@hookform/resolvers** để tích hợp Yup với React Hook Form:
 
@@ -190,11 +188,10 @@ function FormWithYup() {
 }
 ```
 
-
-
 ## 4. Sử Dụng **Formik** và **Yup**
 
-**Formik** là một thư viện giúp đơn giản hóa quá trình quản lý form và xác thực trong React. Khi kết hợp với **Yup**, Formik giúp xây dựng các form phức tạp với mã lệnh gọn gàng.
+**Formik** là một thư viện giúp đơn giản hóa quá trình quản lý form và xác thực trong React. Khi kết hợp với **Yup**,
+Formik giúp xây dựng các form phức tạp với mã lệnh gọn gàng.
 
 1. Cài đặt **Formik** và **Yup**:
 
@@ -254,10 +251,9 @@ function FormikForm() {
 export default FormikForm;
 ```
 
-
-
 ## Kết Luận
 
 - **State và Event Handlers** phù hợp với các form nhỏ, đơn giản.
-- **React Hook Form** giúp quản lý form dễ dàng và tối ưu cho hiệu suất, rất phù hợp khi muốn kiểm soát form phức tạp mà vẫn giảm thiểu re-render.
+- **React Hook Form** giúp quản lý form dễ dàng và tối ưu cho hiệu suất, rất phù hợp khi muốn kiểm soát form phức tạp mà
+  vẫn giảm thiểu re-render.
 - **Formik** với Yup là một lựa chọn mạnh mẽ khi làm việc với các form lớn, phức tạp, hỗ trợ tốt xác thực schema.

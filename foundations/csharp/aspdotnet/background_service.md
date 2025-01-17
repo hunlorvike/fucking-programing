@@ -1,6 +1,8 @@
 # Tìm Hiểu về `Background Service` trong .NET
 
-`Background Service` trong .NET là một thành phần được sử dụng để thực thi các công việc chạy nền mà không ảnh hưởng đến luồng chính của ứng dụng. Các công việc này có thể bao gồm xử lý dữ liệu, gửi email, lập lịch tác vụ, hoặc xử lý hàng đợi.
+`Background Service` trong .NET là một thành phần được sử dụng để thực thi các công việc chạy nền mà không ảnh hưởng đến
+luồng chính của ứng dụng. Các công việc này có thể bao gồm xử lý dữ liệu, gửi email, lập lịch tác vụ, hoặc xử lý hàng
+đợi.
 
 Dưới đây là tài liệu chi tiết về `Background Service`, bao gồm các khái niệm, cách sử dụng, và ví dụ thực tiễn.
 
@@ -8,8 +10,8 @@ Dưới đây là tài liệu chi tiết về `Background Service`, bao gồm c�
 
 1. [Background Service là gì?](#1-background-service-là-gì)
 2. [Phân Loại Background Service](#2-phân-loại-background-service)
-   - 2.1 [IHostedService](#21-ihostedservice)
-   - 2.2 [BackgroundService](#22-backgroundservice)
+    - 2.1 [IHostedService](#21-ihostedservice)
+    - 2.2 [BackgroundService](#22-backgroundservice)
 3. [Cách Tạo Background Service](#3-cách-tạo-background-service)
 4. [Cách Đăng Ký Background Service](#4-cách-đăng-ký-background-service)
 5. [Sử Dụng Hosted Service với Dependency Injection](#5-sử-dụng-hosted-service-với-dependency-injection)
@@ -21,18 +23,23 @@ Dưới đây là tài liệu chi tiết về `Background Service`, bao gồm c�
 
 ### 1. Background Service là gì?
 
-`Background Service` là một cơ chế trong .NET được sử dụng để xử lý các tác vụ nền trong suốt vòng đời của ứng dụng. Những tác vụ này có thể chạy liên tục hoặc được lập lịch để thực hiện vào các thời điểm cụ thể.
+`Background Service` là một cơ chế trong .NET được sử dụng để xử lý các tác vụ nền trong suốt vòng đời của ứng dụng.
+Những tác vụ này có thể chạy liên tục hoặc được lập lịch để thực hiện vào các thời điểm cụ thể.
 
 ---
 
 ### 2. Phân Loại Background Service
 
 #### 2.1. **IHostedService**
-`IHostedService` là giao diện cơ bản nhất để triển khai các công việc nền trong .NET. Nó định nghĩa hai phương thức chính:
+
+`IHostedService` là giao diện cơ bản nhất để triển khai các công việc nền trong .NET. Nó định nghĩa hai phương thức
+chính:
+
 - `StartAsync(CancellationToken)`: Được gọi khi dịch vụ khởi động.
 - `StopAsync(CancellationToken)`: Được gọi khi dịch vụ dừng lại.
 
 **Ví dụ**:
+
 ```csharp
 using System;
 using System.Threading;
@@ -56,9 +63,12 @@ public class MyHostedService : IHostedService
 ```
 
 #### 2.2. **BackgroundService**
-`BackgroundService` là lớp cơ sở trừu tượng triển khai sẵn `IHostedService`. Bạn chỉ cần override phương thức `ExecuteAsync(CancellationToken)` để thực hiện logic xử lý nền.
+
+`BackgroundService` là lớp cơ sở trừu tượng triển khai sẵn `IHostedService`. Bạn chỉ cần override phương thức
+`ExecuteAsync(CancellationToken)` để thực hiện logic xử lý nền.
 
 **Ví dụ**:
+
 ```csharp
 using System;
 using System.Threading;
@@ -85,6 +95,7 @@ public class MyBackgroundService : BackgroundService
 Dưới đây là quy trình chi tiết để tạo một `Background Service`:
 
 #### Bước 1: Tạo lớp kế thừa `BackgroundService`
+
 ```csharp
 using System;
 using System.Threading;
@@ -111,6 +122,7 @@ public class LoggingService : BackgroundService
 Background Service cần được đăng ký vào Dependency Injection container để .NET quản lý.
 
 **Cách đăng ký trong `Program.cs`:**
+
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -131,6 +143,7 @@ app.Run();
 Bạn có thể sử dụng **Dependency Injection (DI)** để inject các dịch vụ cần thiết vào Background Service.
 
 **Ví dụ**:
+
 ```csharp
 using System;
 using System.Threading;
@@ -165,12 +178,14 @@ public class MyBackgroundService : BackgroundService
 Nếu bạn cần lập lịch các tác vụ định kỳ, hãy sử dụng **Quartz.NET**.
 
 **Cài đặt:**
+
 ```bash
 Install-Package Quartz
 Install-Package Quartz.Extensions.Hosting
 ```
 
 **Triển khai Job với Quartz.NET:**
+
 ```csharp
 using Quartz;
 using System;
@@ -187,6 +202,7 @@ public class SampleJob : IJob
 ```
 
 **Đăng ký Quartz.NET trong `Program.cs`:**
+
 ```csharp
 builder.Services.AddQuartz(q =>
 {
@@ -207,16 +223,18 @@ builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 ### 7. Các Tình Huống Sử Dụng Thực Tế
 
 1. **Xử lý hàng đợi email:**
-   - Lấy email từ hàng đợi và gửi chúng định kỳ.
+    - Lấy email từ hàng đợi và gửi chúng định kỳ.
 2. **Đồng bộ hóa dữ liệu với API bên thứ ba:**
-   - Lấy dữ liệu từ API và cập nhật cơ sở dữ liệu mỗi giờ.
+    - Lấy dữ liệu từ API và cập nhật cơ sở dữ liệu mỗi giờ.
 3. **Lập lịch báo cáo:**
-   - Tạo và gửi báo cáo hàng ngày hoặc hàng tuần.
+    - Tạo và gửi báo cáo hàng ngày hoặc hàng tuần.
 4. **Dọn dẹp dữ liệu cũ:**
-   - Xóa các bản ghi không còn cần thiết trong cơ sở dữ liệu.
+    - Xóa các bản ghi không còn cần thiết trong cơ sở dữ liệu.
 
 ---
 
 ### 8. Tổng Kết
 
-`Background Service` là một công cụ mạnh mẽ trong .NET, giúp xử lý các công việc nền một cách hiệu quả. Với sự kết hợp của `Hosted Service` và các thư viện như **Quartz.NET**, bạn có thể dễ dàng triển khai các tác vụ nền phức tạp và định kỳ trong ứng dụng của mình.
+`Background Service` là một công cụ mạnh mẽ trong .NET, giúp xử lý các công việc nền một cách hiệu quả. Với sự kết hợp
+của `Hosted Service` và các thư viện như **Quartz.NET**, bạn có thể dễ dàng triển khai các tác vụ nền phức tạp và định
+kỳ trong ứng dụng của mình.

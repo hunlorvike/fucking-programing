@@ -4,11 +4,11 @@
 
 1. [Giới thiệu về NextAuth và cách hoạt động](#1-gioi-thieu-ve-nextauth-va-cach-hoat-dong)
 2. [Cài đặt NextAuth trong Next.js](#2-cai-dat-nextauth-trong-nextjs)
-   1. [Cài đặt NextAuth trong dự án Next.js](#21-cai-dat-nextauth-trong-du-an-nextjs)
-   2. [Cấu hình NextAuth](#22-cau-hinh-nextauth)
+    1. [Cài đặt NextAuth trong dự án Next.js](#21-cai-dat-nextauth-trong-du-an-nextjs)
+    2. [Cấu hình NextAuth](#22-cau-hinh-nextauth)
 3. [Xử lý Authentication và Authorization](#3-xu-ly-authentication-va-authorization)
-   1. [Xác thực người dùng (Authentication)](#31-xac-thuc-nguoi-dung-authentication)
-   2. [Phân quyền người dùng (Authorization)](#32-phan-quyen-nguoi-dung-authorization)
+    1. [Xác thực người dùng (Authentication)](#31-xac-thuc-nguoi-dung-authentication)
+    2. [Phân quyền người dùng (Authorization)](#32-phan-quyen-nguoi-dung-authorization)
 4. [Sử dụng Refresh Token trong NextAuth](#4-su-dung-refresh-token-trong-nextauth)
 5. [Ví dụ thực tế về Authentication, Authorization, và Refresh Token](#5-vi-du-thuc-te-ve-authentication-authorization-va-refresh-token)
 6. [Lưu ý khi sử dụng NextAuth](#6-luu-y-khi-su-dung-nextauth)
@@ -17,7 +17,9 @@
 
 ### 1. **Giới thiệu về NextAuth và cách hoạt động**
 
-NextAuth là một thư viện mã nguồn mở dành cho Next.js, cung cấp giải pháp đơn giản và dễ sử dụng cho việc xử lý Authentication và Authorization trong ứng dụng. NextAuth hỗ trợ nhiều phương thức đăng nhập (login) khác nhau như OAuth, Email, Credentials (tài khoản và mật khẩu), và các dịch vụ xác thực bên ngoài như Google, Facebook, GitHub, v.v.
+NextAuth là một thư viện mã nguồn mở dành cho Next.js, cung cấp giải pháp đơn giản và dễ sử dụng cho việc xử lý
+Authentication và Authorization trong ứng dụng. NextAuth hỗ trợ nhiều phương thức đăng nhập (login) khác nhau như OAuth,
+Email, Credentials (tài khoản và mật khẩu), và các dịch vụ xác thực bên ngoài như Google, Facebook, GitHub, v.v.
 
 NextAuth giúp bạn xử lý các vấn đề như:
 
@@ -31,7 +33,8 @@ NextAuth giúp bạn xử lý các vấn đề như:
 
 #### 2.1. **Cài đặt NextAuth trong dự án Next.js**
 
-Để sử dụng NextAuth, bạn cần cài đặt thư viện `next-auth` vào dự án Next.js của bạn. Thực hiện cài đặt qua npm hoặc yarn:
+Để sử dụng NextAuth, bạn cần cài đặt thư viện `next-auth` vào dự án Next.js của bạn. Thực hiện cài đặt qua npm hoặc
+yarn:
 
 ```bash
 npm install next-auth
@@ -45,7 +48,8 @@ yarn add next-auth
 
 #### 2.2. **Cấu hình NextAuth**
 
-Sau khi cài đặt, bạn cần tạo một file cấu hình `[...]nextauth.js` (hoặc `.ts` nếu sử dụng TypeScript) trong thư mục `pages/api/auth/`. Đây là nơi bạn cấu hình các provider (ví dụ: Google, GitHub), cách xác thực và cách quản lý token.
+Sau khi cài đặt, bạn cần tạo một file cấu hình `[...]nextauth.js` (hoặc `.ts` nếu sử dụng TypeScript) trong thư mục
+`pages/api/auth/`. Đây là nơi bạn cấu hình các provider (ví dụ: Google, GitHub), cách xác thực và cách quản lý token.
 
 Ví dụ về cấu hình cơ bản:
 
@@ -104,6 +108,7 @@ export default NextAuth({
 ```
 
 Trong ví dụ trên:
+
 - **Google** và **Credentials** là hai provider để đăng nhập (Google OAuth và đăng nhập qua tài khoản/mật khẩu).
 - **JWT** được sử dụng để lưu trữ session của người dùng.
 - Các `callbacks` cho phép tùy chỉnh cách xử lý thông tin người dùng và session.
@@ -114,9 +119,11 @@ Trong ví dụ trên:
 
 #### 3.1. **Xác thực người dùng (Authentication)**
 
-NextAuth cung cấp các cơ chế xác thực người dùng qua nhiều provider khác nhau. Khi người dùng đăng nhập thành công, NextAuth sẽ tạo một session và lưu trữ thông tin vào JWT hoặc cookie (tùy vào cấu hình).
+NextAuth cung cấp các cơ chế xác thực người dùng qua nhiều provider khác nhau. Khi người dùng đăng nhập thành công,
+NextAuth sẽ tạo một session và lưu trữ thông tin vào JWT hoặc cookie (tùy vào cấu hình).
 
-Bạn có thể sử dụng hook `useSession` để lấy thông tin về session người dùng và xác thực người dùng trong các component React.
+Bạn có thể sử dụng hook `useSession` để lấy thông tin về session người dùng và xác thực người dùng trong các component
+React.
 
 Ví dụ:
 
@@ -150,7 +157,8 @@ export default function Home() {
 
 #### 3.2. **Phân quyền người dùng (Authorization)**
 
-Sau khi người dùng đã được xác thực, bạn có thể kiểm tra quyền truy cập của họ đối với các trang hoặc hành động cụ thể. Điều này có thể được thực hiện thông qua việc kiểm tra thông tin trong `session`.
+Sau khi người dùng đã được xác thực, bạn có thể kiểm tra quyền truy cập của họ đối với các trang hoặc hành động cụ thể.
+Điều này có thể được thực hiện thông qua việc kiểm tra thông tin trong `session`.
 
 Ví dụ, chỉ cho phép người dùng có quyền admin truy cập một trang quản trị:
 
@@ -175,9 +183,11 @@ Trong ví dụ trên, nếu người dùng không phải là admin hoặc chưa 
 
 ### 4. **Sử dụng Refresh Token trong NextAuth**
 
-NextAuth hỗ trợ sử dụng JWT để lưu trữ phiên làm việc của người dùng, và bạn có thể cấu hình refresh token để gia hạn phiên làm việc khi token hết hạn.
+NextAuth hỗ trợ sử dụng JWT để lưu trữ phiên làm việc của người dùng, và bạn có thể cấu hình refresh token để gia hạn
+phiên làm việc khi token hết hạn.
 
-Cấu hình refresh token trong NextAuth thường đi kèm với các provider hỗ trợ refresh token, ví dụ như Google OAuth, GitHub, v.v. Dưới đây là cách cấu hình refresh token trong NextAuth:
+Cấu hình refresh token trong NextAuth thường đi kèm với các provider hỗ trợ refresh token, ví dụ như Google OAuth,
+GitHub, v.v. Dưới đây là cách cấu hình refresh token trong NextAuth:
 
 ```js
 // pages/api/auth/[...nextauth].js
@@ -234,7 +244,8 @@ async function refreshAccessToken(refreshToken) {
 }
 ```
 
-Trong ví dụ này, khi token hết hạn, NextAuth sẽ sử dụng refresh token để gia hạn token và giữ người dùng đăng nhập mà không cần yêu cầu họ đăng nhập lại.
+Trong ví dụ này, khi token hết hạn, NextAuth sẽ sử dụng refresh token để gia hạn token và giữ người dùng đăng nhập mà
+không cần yêu cầu họ đăng nhập lại.
 
 ---
 
@@ -242,7 +253,7 @@ Trong ví dụ này, khi token hết hạn, NextAuth sẽ sử dụng refresh to
 
 Giả sử bạn có một ứng dụng với các tính năng yêu cầu người dùng phải đăng nhập, và chỉ cho phép người dùng
 
- có vai trò admin truy cập trang quản trị. Dưới đây là cách triển khai:
+có vai trò admin truy cập trang quản trị. Dưới đây là cách triển khai:
 
 ```js
 // pages/api/auth/[...nextauth].js
@@ -273,12 +284,15 @@ export default NextAuth({
 });
 ```
 
-Sau khi cấu hình như trên, bạn có thể sử dụng `useSession` để xác định quyền truy cập của người dùng và hiển thị các trang hoặc chức năng phù hợp với quyền của họ.
+Sau khi cấu hình như trên, bạn có thể sử dụng `useSession` để xác định quyền truy cập của người dùng và hiển thị các
+trang hoặc chức năng phù hợp với quyền của họ.
 
 ---
 
 ### 6. **Lưu ý khi sử dụng NextAuth**
 
 - **Bảo mật token**: Đảm bảo rằng bạn luôn lưu trữ token một cách an toàn, tránh việc rò rỉ hoặc đánh cắp token.
-- **Refresh token**: Khi sử dụng refresh token, hãy cẩn thận với các cuộc tấn công tái sử dụng token (replay attacks). Hãy đảm bảo rằng refresh token được sử dụng trong các kênh bảo mật.
-- **Tùy chỉnh pages**: NextAuth cho phép bạn tùy chỉnh các trang đăng nhập và lỗi, điều này giúp cải thiện trải nghiệm người dùng.
+- **Refresh token**: Khi sử dụng refresh token, hãy cẩn thận với các cuộc tấn công tái sử dụng token (replay attacks).
+  Hãy đảm bảo rằng refresh token được sử dụng trong các kênh bảo mật.
+- **Tùy chỉnh pages**: NextAuth cho phép bạn tùy chỉnh các trang đăng nhập và lỗi, điều này giúp cải thiện trải nghiệm
+  người dùng.

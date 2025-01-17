@@ -4,8 +4,8 @@
 
 1. [Tổng Quan về Extension Methods](#1-tổng-quan-về-extension-methods)
 
-   - [Mục Đích](#mục-đích)
-   - [Cách Hoạt Động](#cách-hoạt-động)
+    - [Mục Đích](#mục-đích)
+    - [Cách Hoạt Động](#cách-hoạt-động)
 
 2. [Cách Tạo Extension Methods](#2-cách-tạo-extension-methods)
 
@@ -13,9 +13,9 @@
 
 4. [Ví Dụ Sử Dụng Extension Methods](#4-ví-dụ-sử-dụng-extension-methods)
 
-   - [a. Mở Rộng Kiểu Dữ Liệu Chuỗi](#a-mở-rộng-kiểu-dữ-liệu-chuỗi)
-   - [b. Mở Rộng Kiểu Dữ Liệu Số](#b-mở-rộng-kiểu-dữ-liệu-số)
-   - [c. Mở Rộng Lớp Người Dùng](#c-mở-rộng-lớp-người-dùng)
+    - [a. Mở Rộng Kiểu Dữ Liệu Chuỗi](#a-mở-rộng-kiểu-dữ-liệu-chuỗi)
+    - [b. Mở Rộng Kiểu Dữ Liệu Số](#b-mở-rộng-kiểu-dữ-liệu-số)
+    - [c. Mở Rộng Lớp Người Dùng](#c-mở-rộng-lớp-người-dùng)
 
 5. [Ưu Điểm và Nhược Điểm](#5-ưu-điểm-và-nhược-điểm)
 
@@ -25,12 +25,15 @@
 
 ### 1. Tổng Quan về Extension Methods
 
-**Extension Methods** (Phương thức mở rộng) là một tính năng trong C# cho phép bạn thêm các phương thức mới vào một lớp hoặc interface hiện có mà không cần phải sửa đổi mã nguồn của nó hoặc tạo một lớp kế thừa. Điều này giúp bạn mở rộng khả năng của các lớp hiện có mà không làm ảnh hưởng đến tính toàn vẹn của mã gốc.
+**Extension Methods** (Phương thức mở rộng) là một tính năng trong C# cho phép bạn thêm các phương thức mới vào một lớp
+hoặc interface hiện có mà không cần phải sửa đổi mã nguồn của nó hoặc tạo một lớp kế thừa. Điều này giúp bạn mở rộng khả
+năng của các lớp hiện có mà không làm ảnh hưởng đến tính toàn vẹn của mã gốc.
 
 #### Mục Đích
 
 - **Tăng Tính Linh Hoạt**: Cho phép thêm các phương thức tiện ích mà không cần thay đổi mã nguồn của lớp gốc.
-- **Đơn Giản Hóa Mã Nguồn**: Giảm bớt sự lặp lại bằng cách cung cấp các phương thức tái sử dụng được cho các lớp hiện có.
+- **Đơn Giản Hóa Mã Nguồn**: Giảm bớt sự lặp lại bằng cách cung cấp các phương thức tái sử dụng được cho các lớp hiện
+  có.
 - **Cải Thiện Tính Đọc Hiểu**: Làm cho mã dễ đọc và gần gũi hơn với ngôn ngữ tự nhiên.
 
 #### Cách Hoạt Động
@@ -74,8 +77,10 @@ public static class MyExtensions
 
 1. **Lớp Chứa Phải Là Static**: Extension Methods phải được khai báo trong một lớp tĩnh.
 2. **Phương Thức Phải Là Static**: Phương thức mở rộng phải là phương thức tĩnh.
-3. **Tham Số Đầu Tiên Phải Có Từ Khóa `this`**: Tham số đầu tiên xác định lớp hoặc kiểu dữ liệu mà phương thức sẽ mở rộng.
-4. **Không Thay Thế Được Phương Thức Có Sẵn**: Nếu lớp đã có phương thức trùng tên, phương thức của lớp sẽ được ưu tiên sử dụng.
+3. **Tham Số Đầu Tiên Phải Có Từ Khóa `this`**: Tham số đầu tiên xác định lớp hoặc kiểu dữ liệu mà phương thức sẽ mở
+   rộng.
+4. **Không Thay Thế Được Phương Thức Có Sẵn**: Nếu lớp đã có phương thức trùng tên, phương thức của lớp sẽ được ưu tiên
+   sử dụng.
 
 ---
 
@@ -154,14 +159,17 @@ bool isAdmin = user.IsAdministrator(); // Kết quả: true
 #### Nhược Điểm
 
 - **Khó Theo Dõi**: Với những dự án lớn, việc tìm kiếm các Extension Methods áp dụng cho một lớp cụ thể có thể khó khăn.
-- **Ưu Tiên Thấp Hơn Phương Thức Nội Tại**: Nếu lớp gốc đã có phương thức trùng tên, Extension Methods sẽ không được gọi.
+- **Ưu Tiên Thấp Hơn Phương Thức Nội Tại**: Nếu lớp gốc đã có phương thức trùng tên, Extension Methods sẽ không được
+  gọi.
 - **Dễ Lạm Dụng**: Có thể dẫn đến việc thêm quá nhiều Extension Methods không cần thiết, làm mã phức tạp hơn.
 
 ---
 
 ### 6. Tóm Tắt
 
-Extension Methods là một tính năng mạnh mẽ của C#, giúp mở rộng các lớp và kiểu dữ liệu có sẵn mà không cần thay đổi mã nguồn gốc. Điều này giúp tăng tính tái sử dụng và đơn giản hóa mã. Tuy nhiên, việc sử dụng Extension Methods cần tuân thủ các quy tắc và phải cân nhắc để tránh lạm dụng.
+Extension Methods là một tính năng mạnh mẽ của C#, giúp mở rộng các lớp và kiểu dữ liệu có sẵn mà không cần thay đổi mã
+nguồn gốc. Điều này giúp tăng tính tái sử dụng và đơn giản hóa mã. Tuy nhiên, việc sử dụng Extension Methods cần tuân
+thủ các quy tắc và phải cân nhắc để tránh lạm dụng.
 
 **Các điểm chính:**
 

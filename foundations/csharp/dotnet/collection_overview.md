@@ -3,45 +3,47 @@
 ## Mục Lục
 
 1. [Namespace `System.Collections`](#1-namespace-systemcollections)
-   - 1.1 [ArrayList](#11-arraylist)
-   - 1.2 [Hashtable](#12-hashtable)
-   - 1.3 [Queue](#13-queue)
-   - 1.4 [Stack](#14-stack)
-   - 1.5 [SortedList](#15-sortedlist)
+    - 1.1 [ArrayList](#11-arraylist)
+    - 1.2 [Hashtable](#12-hashtable)
+    - 1.3 [Queue](#13-queue)
+    - 1.4 [Stack](#14-stack)
+    - 1.5 [SortedList](#15-sortedlist)
 2. [Namespace `System.Collections.Generic`](#2-namespace-systemcollectionsgeneric)
-   - 2.1 [List<T>](#21-listt)
-   - 2.2 [Dictionary<TKey, TValue>](#22-dictionarytkey-tvalue)
-   - 2.3 [Queue<T>](#23-queuet)
-   - 2.4 [Stack<T>](#24-stackt)
-   - 2.5 [SortedList<TKey, TValue>](#25-sortedlisttkey-tvalue)
-   - 2.6 [HashSet<T>](#26-hashsett)
-   - 2.7 [LinkedList<T>](#27-linkedlistt)
-   - 2.8 [SortedDictionary<TKey, TValue>](#28-sorteddictionarytkey-tvalue)
+    - 2.1 [List<T>](#21-listt)
+    - 2.2 [Dictionary<TKey, TValue>](#22-dictionarytkey-tvalue)
+    - 2.3 [Queue<T>](#23-queuet)
+    - 2.4 [Stack<T>](#24-stackt)
+    - 2.5 [SortedList<TKey, TValue>](#25-sortedlisttkey-tvalue)
+    - 2.6 [HashSet<T>](#26-hashsett)
+    - 2.7 [LinkedList<T>](#27-linkedlistt)
+    - 2.8 [SortedDictionary<TKey, TValue>](#28-sorteddictionarytkey-tvalue)
 3. [Namespace `System.Collections.Concurrent`](#3-namespace-systemcollectionsconcurrent)
-   - 3.1 [ConcurrentDictionary<TKey, TValue>](#31-concurrentdictionarytkey-tvalue)
-   - 3.2 [BlockingCollection<T>](#32-blockingcollectiont)
-   - 3.3 [ConcurrentQueue<T>](#33-concurrentqueuet)
-   - 3.4 [ConcurrentStack<T>](#34-concurrentstackt)
-   - 3.5 [ConcurrentBag<T>](#35-concurrentbagt)
+    - 3.1 [ConcurrentDictionary<TKey, TValue>](#31-concurrentdictionarytkey-tvalue)
+    - 3.2 [BlockingCollection<T>](#32-blockingcollectiont)
+    - 3.3 [ConcurrentQueue<T>](#33-concurrentqueuet)
+    - 3.4 [ConcurrentStack<T>](#34-concurrentstackt)
+    - 3.5 [ConcurrentBag<T>](#35-concurrentbagt)
 4. [Namespace `System.Collections.Specialized`](#4-namespace-systemcollectionsspecialized)
-   - 4.1 [NameValueCollection](#41-namevaluecollection)
-   - 4.2 [StringCollection](#42-stringcollection)
-   - 4.3 [StringDictionary](#43-stringdictionary)
-   - 4.4 [OrderedDictionary](#44-ordereddictionary)
-   - 4.5 [HybridDictionary](#45-hybriddictionary)
+    - 4.1 [NameValueCollection](#41-namevaluecollection)
+    - 4.2 [StringCollection](#42-stringcollection)
+    - 4.3 [StringDictionary](#43-stringdictionary)
+    - 4.4 [OrderedDictionary](#44-ordereddictionary)
+    - 4.5 [HybridDictionary](#45-hybriddictionary)
 5. [Namespace `System.Collections.Immutable`](#5-namespace-systemcollectionsimmutable)
-   - 5.1 [ImmutableList<T>](#51-immutablelistt)
-   - 5.2 [ImmutableDictionary<TKey, TValue>](#52-immutabledictionarytkey-tvalue)
-   - 5.3 [ImmutableQueue<T>](#53-immutablequeuet)
-   - 5.4 [ImmutableStack<T>](#54-immutablestackt)
-   - 5.5 [ImmutableHashSet<T>](#55-immutablehashsett)
+    - 5.1 [ImmutableList<T>](#51-immutablelistt)
+    - 5.2 [ImmutableDictionary<TKey, TValue>](#52-immutabledictionarytkey-tvalue)
+    - 5.3 [ImmutableQueue<T>](#53-immutablequeuet)
+    - 5.4 [ImmutableStack<T>](#54-immutablestackt)
+    - 5.5 [ImmutableHashSet<T>](#55-immutablehashsett)
 6. [Tổng Kết Lựa Chọn Collection Phù Hợp](#tổng-kết-lựa-chọn-collection-phù-hợp)
 
 ---
 
 ## 1. **Namespace `System.Collections`**
 
-`System.Collections` chứa các collection không generic, chủ yếu phục vụ cho các ứng dụng .NET Framework cũ. Những collection này vẫn hữu ích trong một số tình huống nhất định, nhưng thiếu tính an toàn về kiểu dữ liệu so với các collection generic.
+`System.Collections` chứa các collection không generic, chủ yếu phục vụ cho các ứng dụng .NET Framework cũ. Những
+collection này vẫn hữu ích trong một số tình huống nhất định, nhưng thiếu tính an toàn về kiểu dữ liệu so với các
+collection generic.
 
 ### 1.1. ArrayList
 
@@ -103,7 +105,8 @@
 
 ## 2. **Namespace `System.Collections.Generic`**
 
-`System.Collections.Generic` chứa các collection generic, cho phép định nghĩa kiểu dữ liệu cụ thể (type-safe), giúp tối ưu hóa hiệu suất và tránh lỗi khi sử dụng sai kiểu dữ liệu.
+`System.Collections.Generic` chứa các collection generic, cho phép định nghĩa kiểu dữ liệu cụ thể (type-safe), giúp tối
+ưu hóa hiệu suất và tránh lỗi khi sử dụng sai kiểu dữ liệu.
 
 ### 2.1. List<T>
 
@@ -198,7 +201,8 @@
 
 ## 3. **Namespace `System.Collections.Concurrent`**
 
-Các collection trong `System.Collections.Concurrent` được thiết kế để đảm bảo an toàn khi thao tác trong môi trường đa luồng (thread-safe).
+Các collection trong `System.Collections.Concurrent` được thiết kế để đảm bảo an toàn khi thao tác trong môi trường đa
+luồng (thread-safe).
 
 ### 3.1. ConcurrentDictionary<TKey, TValue>
 
@@ -323,7 +327,8 @@ Namespace này chứa các collection đặc biệt không thuộc các loại t
 
 ## 5. **Namespace `System.Collections.Immutable`**
 
-Các collection trong namespace này không thể thay đổi sau khi được tạo ra, cung cấp độ tin cậy trong các ứng dụng đa luồng.
+Các collection trong namespace này không thể thay đổi sau khi được tạo ra, cung cấp độ tin cậy trong các ứng dụng đa
+luồng.
 
 ### 5.1. ImmutableList<T>
 
@@ -381,10 +386,12 @@ Các collection trong namespace này không thể thay đổi sau khi được t
 
 ## 6. **Tổng Kết Lựa Chọn Collection Phù Hợp**
 
-Khi chọn collection trong .NET, bạn nên xem xét các yếu tố như tính an toàn về kiểu dữ liệu, hiệu suất, và khả năng đa luồng:
+Khi chọn collection trong .NET, bạn nên xem xét các yếu tố như tính an toàn về kiểu dữ liệu, hiệu suất, và khả năng đa
+luồng:
 
 - **Sử dụng `System.Collections`** khi bạn làm việc với các ứng dụng cũ hoặc cần tương thích với .NET Framework.
 - **Sử dụng `System.Collections.Generic`** để có các collection an toàn về kiểu dữ liệu và hiệu suất tốt hơn.
 - **Sử dụng `System.Collections.Concurrent`** khi cần thao tác an toàn trong môi trường đa luồng.
-- **Sử dụng `System.Collections.Specialized`** cho các nhu cầu đặc biệt như lưu trữ các cặp khóa-giá trị có khả năng trùng lặp.
+- **Sử dụng `System.Collections.Specialized`** cho các nhu cầu đặc biệt như lưu trữ các cặp khóa-giá trị có khả năng
+  trùng lặp.
 - **Sử dụng `System.Collections.Immutable`** khi cần các collection không thể thay đổi.

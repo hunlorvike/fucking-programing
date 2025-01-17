@@ -6,27 +6,33 @@
 2. [Hệ thống cấp bậc của các lớp ngoại lệ trong C# .NET](#2-h-s-th-m-c-p-b-c-c-l-s-ngoai-l-trong-c-net)
 3. [Các kịch bản phổ biến nơi ngoại lệ có thể xảy ra](#3-c-k-ch-b-n-ph-phi-n-n-ngoai-l-c-th-s-x-ra)
 4. [Xử lý ngoại lệ (Exception Handling) trong C# .NET](#4-x-l-ngoai-l-exception-handling-trong-c-net)
-   - [try - catch - finally](#try---catch---finally)
-   - [throw - Ném Ngoại Lệ](#throw---n-m-ngoai-l)
-   - [Các loại Ngoại Lệ Thông Dụng](#c-loi-ngoai-l-th-ng-d-ng)
-   - [Tạo Ngoại Lệ Tùy Chỉnh (Custom Exception)](#t-o-ngoai-l-tuy-ch-n-custom-exception)
-   - [Sử dụng when trong catch](#s-d-ng-when-trong-catch)
-   - [Global Exception Handling](#global-exception-handling)
-   - [Logging](#logging)
+    - [try - catch - finally](#try---catch---finally)
+    - [throw - Ném Ngoại Lệ](#throw---n-m-ngoai-l)
+    - [Các loại Ngoại Lệ Thông Dụng](#c-loi-ngoai-l-th-ng-d-ng)
+    - [Tạo Ngoại Lệ Tùy Chỉnh (Custom Exception)](#t-o-ngoai-l-tuy-ch-n-custom-exception)
+    - [Sử dụng when trong catch](#s-d-ng-when-trong-catch)
+    - [Global Exception Handling](#global-exception-handling)
+    - [Logging](#logging)
 5. [Tóm tắt](#5-t-m-t)
 
 ### 1. Ngoại lệ (Exception) là gì?
 
-Ngoại lệ là một sự kiện không mong muốn xảy ra trong quá trình thực thi chương trình, khiến mã không thể tiếp tục thực hiện bình thường. Các ngoại lệ thường là lỗi có thể dự đoán trước như lỗi phân chia cho 0, lỗi truy cập chỉ số mảng vượt quá phạm vi, hay lỗi gọi phương thức trên đối tượng `null`. Trong .NET, các ngoại lệ được thể hiện bằng lớp `Exception`.
+Ngoại lệ là một sự kiện không mong muốn xảy ra trong quá trình thực thi chương trình, khiến mã không thể tiếp tục thực
+hiện bình thường. Các ngoại lệ thường là lỗi có thể dự đoán trước như lỗi phân chia cho 0, lỗi truy cập chỉ số mảng vượt
+quá phạm vi, hay lỗi gọi phương thức trên đối tượng `null`. Trong .NET, các ngoại lệ được thể hiện bằng lớp `Exception`.
 
 ### 2. Hệ thống cấp bậc của các lớp ngoại lệ trong C# .NET
 
-.NET có hệ thống phân cấp lớp ngoại lệ, với `System.Exception` là lớp cơ sở. Các lớp ngoại lệ con của `Exception` cung cấp các lỗi đặc thù hơn. Cấp bậc này cho phép xử lý ngoại lệ chi tiết hơn:
+.NET có hệ thống phân cấp lớp ngoại lệ, với `System.Exception` là lớp cơ sở. Các lớp ngoại lệ con của `Exception` cung
+cấp các lỗi đặc thù hơn. Cấp bậc này cho phép xử lý ngoại lệ chi tiết hơn:
 
 - **System.Exception**: Lớp cơ sở của tất cả các ngoại lệ.
-  - **System.SystemException**: Lớp cơ bản của các ngoại lệ hệ thống như `ArgumentException`, `NullReferenceException`, và `IndexOutOfRangeException`.
-  - **System.ApplicationException**: Thường được sử dụng cho các lỗi thuộc về ứng dụng, tuy nhiên ít khi sử dụng trong thực tế.
-  - **Ngoại lệ tùy chỉnh (Custom Exceptions)**: Có thể kế thừa từ `Exception` để tạo ra các lớp ngoại lệ riêng biệt cho ứng dụng.
+    - **System.SystemException**: Lớp cơ bản của các ngoại lệ hệ thống như `ArgumentException`,
+      `NullReferenceException`, và `IndexOutOfRangeException`.
+    - **System.ApplicationException**: Thường được sử dụng cho các lỗi thuộc về ứng dụng, tuy nhiên ít khi sử dụng trong
+      thực tế.
+    - **Ngoại lệ tùy chỉnh (Custom Exceptions)**: Có thể kế thừa từ `Exception` để tạo ra các lớp ngoại lệ riêng biệt
+      cho ứng dụng.
 
 ### 3. Các kịch bản phổ biến nơi ngoại lệ có thể xảy ra
 
@@ -40,7 +46,8 @@ Dưới đây là một số kịch bản phổ biến mà ngoại lệ thườn
 
 ### 4. Xử lý ngoại lệ (Exception Handling) trong C# .NET
 
-Xử lý ngoại lệ giúp ứng dụng khắc phục sự cố và tiếp tục hoạt động bình thường hoặc ít nhất là dừng lại một cách an toàn. Trong .NET, cấu trúc `try`, `catch`, `finally`, và `throw` đóng vai trò cốt lõi trong xử lý ngoại lệ.
+Xử lý ngoại lệ giúp ứng dụng khắc phục sự cố và tiếp tục hoạt động bình thường hoặc ít nhất là dừng lại một cách an
+toàn. Trong .NET, cấu trúc `try`, `catch`, `finally`, và `throw` đóng vai trò cốt lõi trong xử lý ngoại lệ.
 
 #### `try` - `catch` - `finally`
 
@@ -185,7 +192,8 @@ Trong các ứng dụng lớn, xử lý ngoại lệ toàn cục giúp đảm b�
 
 #### Logging
 
-Ghi lại các ngoại lệ giúp dễ dàng tìm hiểu và sửa chữa lỗi. Sử dụng thư viện logging như NLog hoặc Serilog giúp lưu lại thông tin lỗi chi tiết, bao gồm stack trace.
+Ghi lại các ngoại lệ giúp dễ dàng tìm hiểu và sửa chữa lỗi. Sử dụng thư viện logging như NLog hoặc Serilog giúp lưu lại
+thông tin lỗi chi tiết, bao gồm stack trace.
 
 ### 5. Tóm tắt
 

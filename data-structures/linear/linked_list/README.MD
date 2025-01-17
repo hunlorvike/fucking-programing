@@ -15,7 +15,8 @@
 ## Các loại danh sách liên kết
 
 - **Danh sách liên kết đơn (Singly Linked List)**: Mỗi node chỉ có một con trỏ trỏ đến node tiếp theo.
-- **Danh sách liên kết đôi (Doubly Linked List)**: Mỗi node có hai con trỏ, một trỏ đến node trước và một trỏ đến node tiếp theo.
+- **Danh sách liên kết đôi (Doubly Linked List)**: Mỗi node có hai con trỏ, một trỏ đến node trước và một trỏ đến node
+  tiếp theo.
 
 ## Triển khai danh sách liên kết trong TypeScript
 
@@ -75,7 +76,8 @@ list1.printList(); // Output: 1 2 3
 
 ## Ưu điểm của danh sách liên kết
 
-- **Linh hoạt**: Dễ dàng chèn và xóa các node ở bất kỳ vị trí nào trong danh sách mà không cần phải di chuyển các node khác.
+- **Linh hoạt**: Dễ dàng chèn và xóa các node ở bất kỳ vị trí nào trong danh sách mà không cần phải di chuyển các node
+  khác.
 - **Kích thước động**: Không cần xác định kích thước của danh sách trước khi tạo.
 
 ## Nhược điểm của danh sách liên kết
@@ -85,10 +87,12 @@ list1.printList(); // Output: 1 2 3
 
 ## Ứng dụng của danh sách liên kết
 
-- **Quản lý bộ nhớ**: Danh sách liên kết được sử dụng trong quản lý bộ nhớ để theo dõi các vùng nhớ trống và phân bổ vùng nhớ cho các chương trình.
+- **Quản lý bộ nhớ**: Danh sách liên kết được sử dụng trong quản lý bộ nhớ để theo dõi các vùng nhớ trống và phân bổ
+  vùng nhớ cho các chương trình.
 - **Xử lý dữ liệu**: Danh sách liên kết được sử dụng trong các thuật toán xử lý dữ liệu như sắp xếp, tìm kiếm và duyệt.
 - **Cấu trúc dữ liệu khác**: Danh sách liên kết là nền tảng cho các cấu trúc dữ liệu khác như stack, queue, và đồ thị.
 
 ## Kết luận
 
-Danh sách liên kết là một cấu trúc dữ liệu linh hoạt và hữu ích, cho phép chèn và xóa các phần tử dễ dàng. Nó phù hợp với các ứng dụng cần quản lý dữ liệu động và linh hoạt, nhưng cần chú ý đến hiệu suất truy cập chậm hơn so với mảng.
+Danh sách liên kết là một cấu trúc dữ liệu linh hoạt và hữu ích, cho phép chèn và xóa các phần tử dễ dàng. Nó phù hợp
+với các ứng dụng cần quản lý dữ liệu động và linh hoạt, nhưng cần chú ý đến hiệu suất truy cập chậm hơn so với mảng.

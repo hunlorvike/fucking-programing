@@ -4,36 +4,38 @@
 
 1. [Giới Thiệu](#giới-thiệu)
 2. [Table per Hierarchy (TPH)](#1-table-per-hierarchy-tph)
-   - [Định nghĩa](#định-nghĩa)
-   - [Cấu trúc](#cấu-trúc)
-   - [Ví dụ](#ví-dụ)
-   - [Câu SQL tạo bảng](#câu-sql-tạo-bảng)
-   - [Cấu trúc Bảng](#cấu-trúc-bảng)
-   - [Ưu điểm](#ưu-điểm)
-   - [Nhược điểm](#nhược-điểm)
+    - [Định nghĩa](#định-nghĩa)
+    - [Cấu trúc](#cấu-trúc)
+    - [Ví dụ](#ví-dụ)
+    - [Câu SQL tạo bảng](#câu-sql-tạo-bảng)
+    - [Cấu trúc Bảng](#cấu-trúc-bảng)
+    - [Ưu điểm](#ưu-điểm)
+    - [Nhược điểm](#nhược-điểm)
 3. [Table per Type (TPT)](#2-table-per-type-tpt)
-   - [Định nghĩa](#định-nghĩa-1)
-   - [Cấu trúc](#cấu-trúc-1)
-   - [Ví dụ](#ví-dụ-1)
-   - [Câu SQL tạo bảng](#câu-sql-tạo-bảng-1)
-   - [Cấu trúc Bảng](#cấu-trúc-bảng-1)
-   - [Ưu điểm](#ưu-điểm-1)
-   - [Nhược điểm](#nhược-điểm-1)
+    - [Định nghĩa](#định-nghĩa-1)
+    - [Cấu trúc](#cấu-trúc-1)
+    - [Ví dụ](#ví-dụ-1)
+    - [Câu SQL tạo bảng](#câu-sql-tạo-bảng-1)
+    - [Cấu trúc Bảng](#cấu-trúc-bảng-1)
+    - [Ưu điểm](#ưu-điểm-1)
+    - [Nhược điểm](#nhược-điểm-1)
 4. [Table per Concrete Class (TPC)](#3-table-per-concrete-class-tpc)
-   - [Định nghĩa](#định-nghĩa-2)
-   - [Cấu trúc](#cấu-trúc-2)
-   - [Ví dụ](#ví-dụ-2)
-   - [Câu SQL tạo bảng](#câu-sql-tạo-bảng-2)
-   - [Cấu trúc Bảng](#cấu-trúc-bảng-2)
-   - [Ưu điểm](#ưu-điểm-2)
-   - [Nhược điểm](#nhược-điểm-2)
+    - [Định nghĩa](#định-nghĩa-2)
+    - [Cấu trúc](#cấu-trúc-2)
+    - [Ví dụ](#ví-dụ-2)
+    - [Câu SQL tạo bảng](#câu-sql-tạo-bảng-2)
+    - [Cấu trúc Bảng](#cấu-trúc-bảng-2)
+    - [Ưu điểm](#ưu-điểm-2)
+    - [Nhược điểm](#nhược-điểm-2)
 5. [Kết Luận](#kết-luận)
 
 ---
 
 ## Giới Thiệu
 
-Tài liệu này mô tả chi tiết hơn về các kiểu kế thừa trong Entity Framework, bao gồm `Table per Hierarchy (TPH)`, `Table per Type (TPT)`, và `Table per Concrete Class (TPC)`. Mỗi kiểu kế thừa sẽ được giải thích với định nghĩa, ưu điểm, nhược điểm và ví dụ cụ thể, bao gồm cả các câu SQL tạo bảng tương ứng.
+Tài liệu này mô tả chi tiết hơn về các kiểu kế thừa trong Entity Framework, bao gồm `Table per Hierarchy (TPH)`,
+`Table per Type (TPT)`, và `Table per Concrete Class (TPC)`. Mỗi kiểu kế thừa sẽ được giải thích với định nghĩa, ưu
+điểm, nhược điểm và ví dụ cụ thể, bao gồm cả các câu SQL tạo bảng tương ứng.
 
 ---
 
@@ -41,7 +43,8 @@ Tài liệu này mô tả chi tiết hơn về các kiểu kế thừa trong Ent
 
 ### Định nghĩa
 
-Trong mô hình TPH, tất cả các entity con được lưu trữ trong một bảng duy nhất. Một cột trong bảng này xác định loại entity (loại của lớp).
+Trong mô hình TPH, tất cả các entity con được lưu trữ trong một bảng duy nhất. Một cột trong bảng này xác định loại
+entity (loại của lớp).
 
 ### Cấu trúc
 
@@ -85,10 +88,10 @@ CREATE TABLE Animals (
 
 ### Cấu trúc Bảng
 
-| Id  | Name     | AnimalType | Breed  | IsIndoor |
-| --- | -------- | ---------- | ------ | -------- |
-| 1   | Max      | Dog        | Beagle | NULL     |
-| 2   | Whiskers | Cat        | NULL   | 1        |
+| Id | Name     | AnimalType | Breed  | IsIndoor |
+|----|----------|------------|--------|----------|
+| 1  | Max      | Dog        | Beagle | NULL     |
+| 2  | Whiskers | Cat        | NULL   | 1        |
 
 ### Ưu điểm
 
@@ -106,7 +109,8 @@ CREATE TABLE Animals (
 
 ### Định nghĩa
 
-Trong mô hình TPT, mỗi entity con sẽ có bảng riêng và các bảng này sẽ có quan hệ với bảng cha. Bảng cha chứa các thuộc tính chung, trong khi bảng con chứa các thuộc tính riêng.
+Trong mô hình TPT, mỗi entity con sẽ có bảng riêng và các bảng này sẽ có quan hệ với bảng cha. Bảng cha chứa các thuộc
+tính chung, trong khi bảng con chứa các thuộc tính riêng.
 
 ### Cấu trúc
 
@@ -190,7 +194,8 @@ CREATE TABLE Cats (
 
 ### Định nghĩa
 
-Trong mô hình TPC, mỗi lớp cụ thể (không bao gồm lớp cha) sẽ có bảng riêng. Không có quan hệ kế thừa giữa chúng trong cơ sở dữ liệu.
+Trong mô hình TPC, mỗi lớp cụ thể (không bao gồm lớp cha) sẽ có bảng riêng. Không có quan hệ kế thừa giữa chúng trong cơ
+sở dữ liệu.
 
 ### Cấu trúc
 
@@ -259,4 +264,7 @@ CREATE TABLE Cats (
 
 ## Kết Luận
 
-Việc chọn kiểu kế thừa trong Entity Framework phụ thuộc vào yêu cầu của ứng dụng và cách bạn muốn quản lý dữ liệu. Mỗi kiểu kế thừa đều có những ưu điểm và nhược điểm riêng, do đó, cần cân nhắc kỹ lưỡng trước khi quyết định áp dụng cho dự án của mình. Việc sử dụng đúng kiểu kế thừa sẽ giúp tối ưu hóa cấu trúc cơ sở dữ liệu và cải thiện hiệu suất của ứng dụng.
+Việc chọn kiểu kế thừa trong Entity Framework phụ thuộc vào yêu cầu của ứng dụng và cách bạn muốn quản lý dữ liệu. Mỗi
+kiểu kế thừa đều có những ưu điểm và nhược điểm riêng, do đó, cần cân nhắc kỹ lưỡng trước khi quyết định áp dụng cho dự
+án của mình. Việc sử dụng đúng kiểu kế thừa sẽ giúp tối ưu hóa cấu trúc cơ sở dữ liệu và cải thiện hiệu suất của ứng
+dụng.

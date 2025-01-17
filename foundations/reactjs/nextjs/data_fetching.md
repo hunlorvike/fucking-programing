@@ -4,10 +4,10 @@
 
 1. [Giới thiệu về Data Fetching](#1-gioi-thieu-ve-data-fetching)
 2. [Các phương pháp Data Fetching](#2-cac-phuong-phap-data-fetching)
-   1. [Server-side Rendering (SSR) với `getServerSideProps`](#21-server-side-rendering-ssr-voi-getserversideprops)
-   2. [Static Site Generation (SSG) với `getStaticProps`](#22-static-site-generation-ssg-voi-getstaticprops)
-   3. [Incremental Static Regeneration (ISR)](#23-incremental-static-regeneration-isr)
-   4. [Client-side Fetching](#24-client-side-fetching)
+    1. [Server-side Rendering (SSR) với `getServerSideProps`](#21-server-side-rendering-ssr-voi-getserversideprops)
+    2. [Static Site Generation (SSG) với `getStaticProps`](#22-static-site-generation-ssg-voi-getstaticprops)
+    3. [Incremental Static Regeneration (ISR)](#23-incremental-static-regeneration-isr)
+    4. [Client-side Fetching](#24-client-side-fetching)
 3. [Phân biệt SSR, SSG, ISR và Client-side Fetching](#3-phan-biet-ssr-ssg-isr-va-client-side-fetching)
 4. [Ví dụ thực tế](#4-vi-du-thuc-te)
 5. [Lưu ý khi sử dụng Data Fetching trong Next.js](#5-luu-y-khi-su-dung-data-fetching-trong-nextjs)
@@ -16,9 +16,12 @@
 
 ### 1. **Giới thiệu về Data Fetching**
 
-Data Fetching (lấy dữ liệu) là một phần quan trọng trong việc xây dựng các ứng dụng web động. Trong Next.js, bạn có thể lấy dữ liệu ở nhiều giai đoạn khác nhau tùy thuộc vào yêu cầu của ứng dụng, như trên server, khi biên dịch, hoặc trên client.
+Data Fetching (lấy dữ liệu) là một phần quan trọng trong việc xây dựng các ứng dụng web động. Trong Next.js, bạn có thể
+lấy dữ liệu ở nhiều giai đoạn khác nhau tùy thuộc vào yêu cầu của ứng dụng, như trên server, khi biên dịch, hoặc trên
+client.
 
 Next.js cung cấp các phương thức mạnh mẽ để xử lý data fetching như:
+
 - **Server-side Rendering (SSR)**
 - **Static Site Generation (SSG)**
 - **Incremental Static Regeneration (ISR)**
@@ -30,7 +33,8 @@ Next.js cung cấp các phương thức mạnh mẽ để xử lý data fetching
 
 #### 2.1. **Server-side Rendering (SSR) với `getServerSideProps`**
 
-Server-side Rendering là phương pháp lấy dữ liệu trên server **mỗi khi có request**. Dữ liệu sẽ được render trên server và trả về HTML tĩnh cho client.
+Server-side Rendering là phương pháp lấy dữ liệu trên server **mỗi khi có request**. Dữ liệu sẽ được render trên server
+và trả về HTML tĩnh cho client.
 
 ##### **Cú pháp**:
 
@@ -48,6 +52,7 @@ export async function getServerSideProps(context) {
 ```
 
 ##### **Đặc điểm**:
+
 - Lý tưởng cho dữ liệu thay đổi thường xuyên.
 - Thích hợp khi dữ liệu phụ thuộc vào request cụ thể (ví dụ: authentication, params).
 - Thời gian render có thể chậm hơn so với SSG vì phải thực hiện trên mỗi request.
@@ -74,7 +79,8 @@ export async function getServerSideProps() {
 
 #### 2.2. **Static Site Generation (SSG) với `getStaticProps`**
 
-SSG cho phép lấy dữ liệu **khi biên dịch (build time)** và tạo các trang tĩnh. Các trang này không được cập nhật cho đến khi ứng dụng được rebuild.
+SSG cho phép lấy dữ liệu **khi biên dịch (build time)** và tạo các trang tĩnh. Các trang này không được cập nhật cho đến
+khi ứng dụng được rebuild.
 
 ##### **Cú pháp**:
 
@@ -92,6 +98,7 @@ export async function getStaticProps() {
 ```
 
 ##### **Đặc điểm**:
+
 - Lý tưởng cho dữ liệu không thay đổi thường xuyên.
 - Tăng tốc độ tải trang vì nội dung đã được render trước (pre-rendered).
 - Không phù hợp cho các ứng dụng cần dữ liệu thời gian thực.
@@ -137,6 +144,7 @@ export async function getStaticProps() {
 ```
 
 ##### **Đặc điểm**:
+
 - Lý tưởng cho dữ liệu thay đổi không quá thường xuyên.
 - Kết hợp tốc độ của SSG và tính năng động của SSR.
 - Tự động cập nhật trang trong nền (background regeneration).
@@ -164,7 +172,8 @@ export async function getStaticProps() {
 
 #### 2.4. **Client-side Fetching**
 
-Dữ liệu được lấy trực tiếp trên trình duyệt sau khi trang đã được render. Sử dụng các thư viện như `fetch`, `axios`, hoặc React Query.
+Dữ liệu được lấy trực tiếp trên trình duyệt sau khi trang đã được render. Sử dụng các thư viện như `fetch`, `axios`,
+hoặc React Query.
 
 ##### **Ví dụ**:
 
@@ -189,6 +198,7 @@ export default ClientSidePage;
 ```
 
 ##### **Đặc điểm**:
+
 - Phù hợp cho các ứng dụng cần dữ liệu động hoặc tương tác cao.
 - Không tối ưu cho SEO nếu dữ liệu cần thiết cho nội dung chính của trang.
 
@@ -196,12 +206,12 @@ export default ClientSidePage;
 
 ### 3. **Phân biệt SSR, SSG, ISR và Client-side Fetching**
 
-| **Phương pháp**       | **Thời điểm lấy dữ liệu**        | **Ưu điểm**                                   | **Nhược điểm**                                   |
-|-----------------------|----------------------------------|----------------------------------------------|-------------------------------------------------|
-| **SSR**              | Mỗi request                     | Dữ liệu luôn mới                              | Hiệu suất chậm hơn vì render trên server         |
-| **SSG**              | Khi biên dịch (build time)      | Tăng hiệu suất, phù hợp dữ liệu tĩnh          | Không phù hợp dữ liệu thay đổi thường xuyên      |
-| **ISR**              | Khi biên dịch và sau thời gian revalidate | Kết hợp hiệu suất của SSG và SSR              | Cần quản lý thời gian revalidate                |
-| **Client-side**      | Sau khi trang render trên client | Tương tác tốt, cập nhật dữ liệu động          | Không tối ưu cho SEO                            |
+| **Phương pháp** | **Thời điểm lấy dữ liệu**                 | **Ưu điểm**                          | **Nhược điểm**                              |
+|-----------------|-------------------------------------------|--------------------------------------|---------------------------------------------|
+| **SSR**         | Mỗi request                               | Dữ liệu luôn mới                     | Hiệu suất chậm hơn vì render trên server    |
+| **SSG**         | Khi biên dịch (build time)                | Tăng hiệu suất, phù hợp dữ liệu tĩnh | Không phù hợp dữ liệu thay đổi thường xuyên |
+| **ISR**         | Khi biên dịch và sau thời gian revalidate | Kết hợp hiệu suất của SSG và SSR     | Cần quản lý thời gian revalidate            |
+| **Client-side** | Sau khi trang render trên client          | Tương tác tốt, cập nhật dữ liệu động | Không tối ưu cho SEO                        |
 
 ---
 
@@ -239,8 +249,10 @@ export default ProductsPage;
 
 ### 5. **Lưu ý khi sử dụng Data Fetching trong Next.js**
 
-1. **Chọn phương pháp phù hợp**: Xác định rõ yêu cầu về tốc độ, SEO và tính động của dữ liệu để chọn SSR, SSG, ISR hay Client-side Fetching.
+1. **Chọn phương pháp phù hợp**: Xác định rõ yêu cầu về tốc độ, SEO và tính động của dữ liệu để chọn SSR, SSG, ISR hay
+   Client-side Fetching.
 2. **Tối ưu hóa API**: Đảm bảo các API sử dụng nhanh chóng và đáng tin cậy.
 3. **Xử lý lỗi**: Kiểm tra lỗi trong các phương thức fetching (`try-catch`, kiểm tra status code, v.v.).
-4. **Phân biệt dữ liệu quan trọng và không quan trọng**: Sử dụng SSR hoặc SSG cho nội dung chính, Client-side Fetching cho các phần không quan trọng với SEO.
+4. **Phân biệt dữ liệu quan trọng và không quan trọng**: Sử dụng SSR hoặc SSG cho nội dung chính, Client-side Fetching
+   cho các phần không quan trọng với SEO.
 5. **Quản lý state**: Sử dụng các thư viện như React Query hoặc Redux để xử lý dữ liệu động phức tạp.

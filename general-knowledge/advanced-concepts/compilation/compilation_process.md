@@ -11,16 +11,20 @@
 
 ## **1. Tổng quan về MSIL và CIL** <a name="tong-quan-ve-msil-va-cil"></a>
 
-MSIL (Microsoft Intermediate Language) hay CIL (Common Intermediate Language) là ngôn ngữ trung gian trong nền tảng .NET, không thể thực thi trực tiếp mà cần phải biên dịch thành mã máy cụ thể cho hệ điều hành và phần cứng. MSIL là nền tảng cho việc triển khai ứng dụng .NET, giúp chúng có thể chạy trên nhiều môi trường mà không cần thay đổi mã nguồn.
+MSIL (Microsoft Intermediate Language) hay CIL (Common Intermediate Language) là ngôn ngữ trung gian trong nền tảng
+.NET, không thể thực thi trực tiếp mà cần phải biên dịch thành mã máy cụ thể cho hệ điều hành và phần cứng. MSIL là nền
+tảng cho việc triển khai ứng dụng .NET, giúp chúng có thể chạy trên nhiều môi trường mà không cần thay đổi mã nguồn.
 
 ![MSIL Image](../../assets/images/MSIL.png)
 
 ## **2. Quá trình biên dịch C# thành MSIL** <a name="qua-trinh-bien-dich-c-sharp-thanh-msil"></a>
 
 1. **Biên dịch C# thành MSIL**:
-   - Mã nguồn C# được biên dịch bởi trình biên dịch C# thành MSIL, đồng thời metadata cung cấp thông tin về các kiểu dữ liệu, phương thức, và chi tiết về runtime.
+    - Mã nguồn C# được biên dịch bởi trình biên dịch C# thành MSIL, đồng thời metadata cung cấp thông tin về các kiểu dữ
+      liệu, phương thức, và chi tiết về runtime.
 2. **Tạo Assembly**:
-   - Sau khi biên dịch, mã MSIL và metadata được đóng gói thành **assembly** (EXE hoặc DLL), chứa các thành phần quan trọng như bảo mật, phiên bản, và triển khai ứng dụng.
+    - Sau khi biên dịch, mã MSIL và metadata được đóng gói thành **assembly** (EXE hoặc DLL), chứa các thành phần quan
+      trọng như bảo mật, phiên bản, và triển khai ứng dụng.
 
 ## **3. Chuyển đổi MSIL thành Mã Máy qua JIT** <a name="chuyen-doi-msil-thanh-ma-may-qua-jit"></a>
 
@@ -79,18 +83,22 @@ public class Demo
 
 ## **5. Lý thuyết về Metadata và Assembly trong CLI** <a name="ly-thuyet-ve-metadata-va-assembly-trong-cli"></a>
 
-- **Metadata**: Chứa thông tin mô tả về các thành phần trong ứng dụng, như kiểu dữ liệu, thuộc tính, phương thức. Metadata hỗ trợ **reflection**, cho phép ứng dụng thao tác với các thành phần của runtime.
-- **Assembly**: Đóng vai trò là đơn vị đóng gói trong .NET, chứa MSIL và metadata. Các assembly có thể là EXE hoặc DLL, giúp quản lý bảo mật và phiên bản của ứng dụng.
+- **Metadata**: Chứa thông tin mô tả về các thành phần trong ứng dụng, như kiểu dữ liệu, thuộc tính, phương thức.
+  Metadata hỗ trợ **reflection**, cho phép ứng dụng thao tác với các thành phần của runtime.
+- **Assembly**: Đóng vai trò là đơn vị đóng gói trong .NET, chứa MSIL và metadata. Các assembly có thể là EXE hoặc DLL,
+  giúp quản lý bảo mật và phiên bản của ứng dụng.
 
 ## **6. Tổng quan về JIT và AOT** <a name="tong-quan-ve-jit-va-aot"></a>
 
-- **JIT (Just-In-Time Compilation)** biên dịch mã IL thành mã máy ngay khi ứng dụng thực thi. Phương pháp này cho phép tối ưu hóa mã theo điều kiện thực tế khi ứng dụng chạy.
-- **AOT (Ahead-Of-Time Compilation)** biên dịch toàn bộ mã IL thành mã máy trước khi ứng dụng chạy. Phương pháp này giúp giảm thời gian khởi động và tiết kiệm tài nguyên hệ thống.
+- **JIT (Just-In-Time Compilation)** biên dịch mã IL thành mã máy ngay khi ứng dụng thực thi. Phương pháp này cho phép
+  tối ưu hóa mã theo điều kiện thực tế khi ứng dụng chạy.
+- **AOT (Ahead-Of-Time Compilation)** biên dịch toàn bộ mã IL thành mã máy trước khi ứng dụng chạy. Phương pháp này giúp
+  giảm thời gian khởi động và tiết kiệm tài nguyên hệ thống.
 
 ## **7. So sánh JIT và AOT** <a name="so-sanh-jit-va-aot"></a>
 
 | Tiêu chí                | JIT (Just-In-Time)                              | AOT (Ahead-Of-Time)                    |
-| ----------------------- | ----------------------------------------------- | -------------------------------------- |
+|-------------------------|-------------------------------------------------|----------------------------------------|
 | Thời điểm biên dịch     | Tại runtime                                     | Trước khi runtime                      |
 | Hiệu suất khởi động     | Chậm hơn vì cần biên dịch khi chạy              | Nhanh hơn do đã biên dịch sẵn          |
 | Tối ưu hóa runtime      | Có, tối ưu hóa theo điều kiện runtime           | Không, tối ưu hóa tĩnh                 |
@@ -99,4 +107,6 @@ public class Demo
 
 ## **8. Kết luận** <a name="ket-luan"></a>
 
-Cả **JIT** và **AOT** đều có ưu và nhược điểm riêng. **JIT** phù hợp với các ứng dụng yêu cầu tối ưu hóa và khả năng thích ứng linh hoạt, trong khi **AOT** phù hợp với các ứng dụng cần khởi động nhanh và tiết kiệm tài nguyên. Tùy theo yêu cầu cụ thể của ứng dụng, hai phương pháp này có thể được sử dụng độc lập hoặc kết hợp để tối ưu hóa hiệu suất.
+Cả **JIT** và **AOT** đều có ưu và nhược điểm riêng. **JIT** phù hợp với các ứng dụng yêu cầu tối ưu hóa và khả năng
+thích ứng linh hoạt, trong khi **AOT** phù hợp với các ứng dụng cần khởi động nhanh và tiết kiệm tài nguyên. Tùy theo
+yêu cầu cụ thể của ứng dụng, hai phương pháp này có thể được sử dụng độc lập hoặc kết hợp để tối ưu hóa hiệu suất.

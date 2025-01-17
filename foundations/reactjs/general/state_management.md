@@ -1,6 +1,8 @@
 # Tìm hiểu về State Management với Redux trong ReactJS
 
-**Redux** là một thư viện quản lý trạng thái phổ biến, giúp quản lý trạng thái của ứng dụng React một cách có tổ chức và dễ dàng kiểm soát. Redux hoạt động dựa trên nguyên tắc lưu trữ một **state duy nhất** của ứng dụng trong một **store** và sử dụng các **action** và **reducer** để cập nhật state.
+**Redux** là một thư viện quản lý trạng thái phổ biến, giúp quản lý trạng thái của ứng dụng React một cách có tổ chức và
+dễ dàng kiểm soát. Redux hoạt động dựa trên nguyên tắc lưu trữ một **state duy nhất** của ứng dụng trong một **store**
+và sử dụng các **action** và **reducer** để cập nhật state.
 
 ## Các khái niệm cơ bản trong Redux
 
@@ -20,11 +22,13 @@
 ### 2. State
 
 - **Bản chất**: State là dữ liệu của ứng dụng, được lưu trong store.
-- **Vai trò**: State đại diện cho trạng thái hiện tại của ứng dụng và có thể được truy cập hoặc cập nhật thông qua các action và reducer.
+- **Vai trò**: State đại diện cho trạng thái hiện tại của ứng dụng và có thể được truy cập hoặc cập nhật thông qua các
+  action và reducer.
 
 ### 3. Action
 
-- **Bản chất**: Action là một đối tượng đơn giản có thuộc tính `type` (bắt buộc) và các dữ liệu cần thiết khác (payload) để truyền dữ liệu tới store.
+- **Bản chất**: Action là một đối tượng đơn giản có thuộc tính `type` (bắt buộc) và các dữ liệu cần thiết khác (payload)
+  để truyền dữ liệu tới store.
 - **Vai trò**: Action mô tả những gì cần thay đổi trong state, nhưng không tự thực hiện thay đổi.
 - **Cú pháp**:
 
@@ -157,7 +161,8 @@
 
 ## Middleware trong Redux
 
-- **Bản chất**: Middleware là các hàm trung gian xử lý action trước khi đến reducer. Các middleware phổ biến bao gồm `redux-thunk` và `redux-saga` để xử lý các tác vụ bất đồng bộ.
+- **Bản chất**: Middleware là các hàm trung gian xử lý action trước khi đến reducer. Các middleware phổ biến bao gồm
+  `redux-thunk` và `redux-saga` để xử lý các tác vụ bất đồng bộ.
 - **Cú pháp tích hợp redux-thunk**:
 
   ```javascript
@@ -236,9 +241,13 @@
 
 ## Kết luận
 
-Redux giúp quản lý trạng thái ứng dụng một cách rõ ràng và dễ bảo trì, đặc biệt là khi ứng dụng trở nên phức tạp. Việc hiểu và sử dụng các khái niệm của Redux, cùng với Redux DevTools và Redux Toolkit, sẽ giúp bạn xây dựng các ứng dụng React mạnh mẽ và dễ dàng kiểm soát.
+Redux giúp quản lý trạng thái ứng dụng một cách rõ ràng và dễ bảo trì, đặc biệt là khi ứng dụng trở nên phức tạp. Việc
+hiểu và sử dụng các khái niệm của Redux, cùng với Redux DevTools và Redux Toolkit, sẽ giúp bạn xây dựng các ứng dụng
+React mạnh mẽ và dễ dàng kiểm soát.
 
-Để minh họa cách sử dụng Redux để quản lý trạng thái, chúng ta sẽ triển khai một ví dụ về một **danh sách công việc** (to-do list). Trong ví dụ này, bạn có thể thêm, xóa và đánh dấu công việc là hoàn thành. Đây là một ví dụ cơ bản nhưng giúp bạn hiểu cách sử dụng Redux trong một ứng dụng React thực tế.
+Để minh họa cách sử dụng Redux để quản lý trạng thái, chúng ta sẽ triển khai một ví dụ về một **danh sách công việc** (
+to-do list). Trong ví dụ này, bạn có thể thêm, xóa và đánh dấu công việc là hoàn thành. Đây là một ví dụ cơ bản nhưng
+giúp bạn hiểu cách sử dụng Redux trong một ứng dụng React thực tế.
 
 ### 1. Cài đặt Redux và React-Redux
 
@@ -250,7 +259,8 @@ npm install redux react-redux @reduxjs/toolkit
 
 ### 2. Thiết lập Redux Store
 
-Chúng ta sẽ sử dụng **Redux Toolkit** để tạo store và các slice (khối mã chứa reducer và các action liên quan). Điều này sẽ giúp giảm thiểu boilerplate code.
+Chúng ta sẽ sử dụng **Redux Toolkit** để tạo store và các slice (khối mã chứa reducer và các action liên quan). Điều này
+sẽ giúp giảm thiểu boilerplate code.
 
 #### Tạo Redux Slice cho To-Do
 
@@ -340,7 +350,8 @@ ReactDOM.render(
 
 #### Tạo ToDoList Component
 
-Tạo file `ToDoList.js` trong thư mục `components` để hiển thị danh sách công việc và các nút điều khiển (hoàn thành, xóa).
+Tạo file `ToDoList.js` trong thư mục `components` để hiển thị danh sách công việc và các nút điều khiển (hoàn thành,
+xóa).
 
 ```javascript
 // src/components/ToDoList.js
@@ -443,7 +454,8 @@ export default App;
 Với cấu trúc này, bạn đã xây dựng thành công một ứng dụng To-Do sử dụng Redux để quản lý trạng thái:
 
 - Bạn có thể thêm một công việc mới vào danh sách thông qua component `AddToDo`.
-- `ToDoList` sẽ hiển thị danh sách công việc hiện tại, cho phép bạn đánh dấu là hoàn thành hoặc chưa hoàn thành, cũng như xóa các công việc khỏi danh sách.
+- `ToDoList` sẽ hiển thị danh sách công việc hiện tại, cho phép bạn đánh dấu là hoàn thành hoặc chưa hoàn thành, cũng
+  như xóa các công việc khỏi danh sách.
 
 ### 7. Kiểm thử
 
@@ -451,4 +463,6 @@ Với cấu trúc này, bạn đã xây dựng thành công một ứng dụng T
 2. **Hoàn thành công việc**: Nhấn nút "Complete" bên cạnh mỗi công việc để đánh dấu hoàn thành.
 3. **Xóa công việc**: Nhấn nút "Delete" để xóa công việc khỏi danh sách.
 
-Ứng dụng này minh họa cách Redux giúp quản lý trạng thái toàn cục của ứng dụng. Redux giúp dễ dàng kiểm soát các hành động thêm, cập nhật, và xóa công việc mà không cần quản lý trực tiếp trạng thái trong từng component, giúp mã dễ bảo trì hơn.
+Ứng dụng này minh họa cách Redux giúp quản lý trạng thái toàn cục của ứng dụng. Redux giúp dễ dàng kiểm soát các hành
+động thêm, cập nhật, và xóa công việc mà không cần quản lý trực tiếp trạng thái trong từng component, giúp mã dễ bảo trì
+hơn.

@@ -13,7 +13,8 @@
 
 ### 1.1 Routes trong Next.js là gì?
 
-Routes trong Next.js là cơ chế xác định cách ứng dụng phản hồi với các URL khác nhau. Next.js 14 sử dụng hệ thống định tuyến dựa trên file (file-based routing) với hai loại chính:
+Routes trong Next.js là cơ chế xác định cách ứng dụng phản hồi với các URL khác nhau. Next.js 14 sử dụng hệ thống định
+tuyến dựa trên file (file-based routing) với hai loại chính:
 
 - **App Router** (Mới - từ Next.js 13): Nằm trong thư mục `app/`
 - **Pages Router** (Cũ): Nằm trong thư mục `pages/`
@@ -42,13 +43,13 @@ app/
 
 ### 2.2 File Đặc Biệt
 
-| File | Mục đích |
-|------|----------|
-| `layout.js` | Layout chung cho nhiều trang |
-| `page.js` | UI của route |
-| `loading.js` | Loading UI |
-| `error.js` | Error UI |
-| `not-found.js` | UI khi không tìm thấy trang |
+| File           | Mục đích                     |
+|----------------|------------------------------|
+| `layout.js`    | Layout chung cho nhiều trang |
+| `page.js`      | UI của route                 |
+| `loading.js`   | Loading UI                   |
+| `error.js`     | Error UI                     |
+| `not-found.js` | UI khi không tìm thấy trang  |
 
 ### 2.3 Ví Dụ Cơ Bản
 
@@ -263,7 +264,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const post = await getPost(params.slug);
-  
+
   return {
     title: post.title,
     description: post.excerpt,
@@ -301,11 +302,11 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('token');
-  
+
   if (!token) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
-  
+
   return NextResponse.next();
 }
 
@@ -316,4 +317,6 @@ export const config = {
 
 ## Kết Luận
 
-Next.js 14 cung cấp một hệ thống routing mạnh mẽ và linh hoạt, cho phép xây dựng các ứng dụng web phức tạp một cách có tổ chức. Việc hiểu và áp dụng đúng các khái niệm về routing sẽ giúp tối ưu hóa hiệu suất và trải nghiệm người dùng của ứng dụng.
+Next.js 14 cung cấp một hệ thống routing mạnh mẽ và linh hoạt, cho phép xây dựng các ứng dụng web phức tạp một cách có
+tổ chức. Việc hiểu và áp dụng đúng các khái niệm về routing sẽ giúp tối ưu hóa hiệu suất và trải nghiệm người dùng của
+ứng dụng.

@@ -1,7 +1,7 @@
 ## So sánh các thuật toán sắp xếp
 
 | Thuật toán     | Độ phức tạp thời gian (trường hợp tốt nhất) | Độ phức tạp thời gian (trường hợp trung bình) | Độ phức tạp thời gian (trường hợp xấu nhất) | Độ phức tạp không gian | Ổn định | Ghi chú                                                                       |
-| -------------- | ------------------------------------------- | --------------------------------------------- | ------------------------------------------- | ---------------------- | ------- | ----------------------------------------------------------------------------- |
+|----------------|---------------------------------------------|-----------------------------------------------|---------------------------------------------|------------------------|---------|-------------------------------------------------------------------------------|
 | Bubble Sort    | O(n)                                        | O(n²)                                         | O(n²)                                       | O(1)                   | Có      | Thuật toán đơn giản, dễ hiểu, nhưng không hiệu quả cho dữ liệu lớn            |
 | Insertion Sort | O(n)                                        | O(n²)                                         | O(n²)                                       | O(1)                   | Có      | Hiệu quả cho dữ liệu gần như đã sắp xếp, nhưng không hiệu quả cho dữ liệu lớn |
 | Selection Sort | O(n²)                                       | O(n²)                                         | O(n²)                                       | O(1)                   | Không   | Không hiệu quả cho dữ liệu lớn, nhưng dễ hiểu                                 |
@@ -10,10 +10,11 @@
 
 **Giải thích:**
 
-- **Độ phức tạp thời gian:** Độ phức tạp thời gian đo lường số lượng phép toán cần thiết để sắp xếp một danh sách có `n` phần tử.
-  - **Trường hợp tốt nhất:** Độ phức tạp thời gian khi danh sách đã được sắp xếp hoặc gần như đã được sắp xếp.
-  - **Trường hợp trung bình:** Độ phức tạp thời gian khi danh sách được sắp xếp ngẫu nhiên.
-  - **Trường hợp xấu nhất:** Độ phức tạp thời gian khi danh sách được sắp xếp ngược chiều.
+- **Độ phức tạp thời gian:** Độ phức tạp thời gian đo lường số lượng phép toán cần thiết để sắp xếp một danh sách có `n`
+  phần tử.
+    - **Trường hợp tốt nhất:** Độ phức tạp thời gian khi danh sách đã được sắp xếp hoặc gần như đã được sắp xếp.
+    - **Trường hợp trung bình:** Độ phức tạp thời gian khi danh sách được sắp xếp ngẫu nhiên.
+    - **Trường hợp xấu nhất:** Độ phức tạp thời gian khi danh sách được sắp xếp ngược chiều.
 - **Độ phức tạp không gian:** Độ phức tạp không gian đo lường lượng bộ nhớ bổ sung cần thiết để thực hiện thuật toán.
 - **Ổn định:** Thuật toán được gọi là ổn định nếu nó duy trì thứ tự ban đầu của các phần tử có giá trị bằng nhau.
 - **Ghi chú:** Các ghi chú cung cấp thêm thông tin về ưu điểm và nhược điểm của mỗi thuật toán.

@@ -1,16 +1,21 @@
 # Sự kiện trong ReactJS
 
-Quản lý sự kiện là một phần thiết yếu trong phát triển ứng dụng React, cho phép bạn tương tác với người dùng và phản hồi lại các hành động của họ. React cung cấp một mô hình xử lý sự kiện rõ ràng và hiệu quả, giúp bạn quản lý sự kiện một cách dễ dàng.
+Quản lý sự kiện là một phần thiết yếu trong phát triển ứng dụng React, cho phép bạn tương tác với người dùng và phản hồi
+lại các hành động của họ. React cung cấp một mô hình xử lý sự kiện rõ ràng và hiệu quả, giúp bạn quản lý sự kiện một
+cách dễ dàng.
 
 ## Khái niệm cơ bản về sự kiện trong React
 
-Sự kiện trong React là các hành động do người dùng thực hiện, như nhấp chuột, nhập liệu, di chuyển chuột, hoặc các hành động khác mà ứng dụng có thể phản hồi. React xử lý các sự kiện này thông qua một hệ thống sự kiện ảo, giúp tối ưu hóa hiệu suất và đảm bảo tính nhất quán trong việc quản lý sự kiện.
+Sự kiện trong React là các hành động do người dùng thực hiện, như nhấp chuột, nhập liệu, di chuyển chuột, hoặc các hành
+động khác mà ứng dụng có thể phản hồi. React xử lý các sự kiện này thông qua một hệ thống sự kiện ảo, giúp tối ưu hóa
+hiệu suất và đảm bảo tính nhất quán trong việc quản lý sự kiện.
 
 ## Các bước xử lý sự kiện trong React
 
 ### 1. Định nghĩa sự kiện
 
-Trong React, bạn có thể định nghĩa sự kiện bằng cách sử dụng các thuộc tính sự kiện (event attributes) trên các component. Các thuộc tính sự kiện trong React thường được viết theo cú pháp camelCase, khác với HTML thông thường.
+Trong React, bạn có thể định nghĩa sự kiện bằng cách sử dụng các thuộc tính sự kiện (event attributes) trên các
+component. Các thuộc tính sự kiện trong React thường được viết theo cú pháp camelCase, khác với HTML thông thường.
 
 ```javascript
 <button onClick={handleClick}>Click me</button>
@@ -18,7 +23,8 @@ Trong React, bạn có thể định nghĩa sự kiện bằng cách sử dụng
 
 ### 2. Tạo hàm xử lý sự kiện
 
-Hàm xử lý sự kiện (event handler) là nơi bạn xác định hành động sẽ xảy ra khi sự kiện được kích hoạt. Bạn có thể tạo một hàm đơn giản như sau:
+Hàm xử lý sự kiện (event handler) là nơi bạn xác định hành động sẽ xảy ra khi sự kiện được kích hoạt. Bạn có thể tạo một
+hàm đơn giản như sau:
 
 ```javascript
 function handleClick() {
@@ -42,7 +48,8 @@ function App() {
 
 ## Các loại sự kiện trong React
 
-React hỗ trợ nhiều loại sự kiện khác nhau, từ sự kiện chuột đến sự kiện bàn phím và sự kiện form. Dưới đây là một số loại sự kiện phổ biến:
+React hỗ trợ nhiều loại sự kiện khác nhau, từ sự kiện chuột đến sự kiện bàn phím và sự kiện form. Dưới đây là một số
+loại sự kiện phổ biến:
 
 ### 1. Sự kiện chuột
 
@@ -79,7 +86,8 @@ React hỗ trợ nhiều loại sự kiện khác nhau, từ sự kiện chuột
 
 ## Sự kiện và quản lý trạng thái
 
-Khi xử lý sự kiện, bạn thường cần cập nhật state để phản ánh các thay đổi. Trong React, bạn có thể sử dụng hook `useState` để quản lý state trong component.
+Khi xử lý sự kiện, bạn thường cần cập nhật state để phản ánh các thay đổi. Trong React, bạn có thể sử dụng hook
+`useState` để quản lý state trong component.
 
 ### Ví dụ: Quản lý sự kiện nhấp chuột
 
@@ -124,7 +132,8 @@ function TextInput() {
 
 ## Ngăn chặn sự kiện mặc định
 
-Trong một số trường hợp, bạn có thể muốn ngăn chặn hành vi mặc định của sự kiện, chẳng hạn như khi gửi form. Để làm điều này, bạn có thể gọi `event.preventDefault()` trong hàm xử lý sự kiện.
+Trong một số trường hợp, bạn có thể muốn ngăn chặn hành vi mặc định của sự kiện, chẳng hạn như khi gửi form. Để làm điều
+này, bạn có thể gọi `event.preventDefault()` trong hàm xử lý sự kiện.
 
 ```javascript
 const handleSubmit = event => {
@@ -154,4 +163,7 @@ Nếu bạn muốn truyền tham số cho hàm xử lý sự kiện, bạn có t
 
 ## Kết luận
 
-Sự kiện trong React là một phần quan trọng trong việc tạo ra các ứng dụng web tương tác và linh hoạt. Với các thuộc tính sự kiện rõ ràng và mô hình xử lý sự kiện hiệu quả, React giúp lập trình viên dễ dàng quản lý và xử lý các hành động của người dùng. Hiểu rõ cách thức hoạt động của sự kiện trong React sẽ giúp bạn xây dựng những ứng dụng tốt hơn và tăng cường trải nghiệm người dùng.
+Sự kiện trong React là một phần quan trọng trong việc tạo ra các ứng dụng web tương tác và linh hoạt. Với các thuộc tính
+sự kiện rõ ràng và mô hình xử lý sự kiện hiệu quả, React giúp lập trình viên dễ dàng quản lý và xử lý các hành động của
+người dùng. Hiểu rõ cách thức hoạt động của sự kiện trong React sẽ giúp bạn xây dựng những ứng dụng tốt hơn và tăng
+cường trải nghiệm người dùng.

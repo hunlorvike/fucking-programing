@@ -4,12 +4,12 @@
 
 1. [Tổng quan về Hàm Tổng Hợp](#1-tổng-quan-về-hàm-tổng-hợp)
 2. [Các Hàm Tổng Hợp trong SQL Server](#2-các-hàm-tổng-hợp-trong-sql-server)
-   - [COUNT](#count)
-   - [SUM](#sum)
-   - [AVG](#avg)
-   - [MIN](#min)
-   - [MAX](#max)
-   - [GROUP_CONCAT](#group_concat)
+    - [COUNT](#count)
+    - [SUM](#sum)
+    - [AVG](#avg)
+    - [MIN](#min)
+    - [MAX](#max)
+    - [GROUP_CONCAT](#group_concat)
 3. [Sử dụng Hàm Tổng Hợp với GROUP BY](#3-sử-dụng-hàm-tổng-hợp-với-group-by)
 4. [Sử dụng Hàm Tổng Hợp với HAVING](#4-sử-dụng-hàm-tổng-hợp-với-having)
 5. [Ví dụ về Hàm Tổng Hợp](#5-ví-dụ-về-hàm-tổng-hợp)
@@ -20,7 +20,9 @@
 
 ### 1. Tổng quan về Hàm Tổng Hợp
 
-Hàm tổng hợp (aggregate functions) trong SQL Server là các hàm đặc biệt được sử dụng để tính toán hoặc tóm tắt dữ liệu trong bảng. Những hàm này giúp bạn thực hiện các phép toán trên một nhóm các bản ghi và trả về một giá trị duy nhất. Các hàm tổng hợp phổ biến trong SQL Server bao gồm `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`, và một số hàm khác.
+Hàm tổng hợp (aggregate functions) trong SQL Server là các hàm đặc biệt được sử dụng để tính toán hoặc tóm tắt dữ liệu
+trong bảng. Những hàm này giúp bạn thực hiện các phép toán trên một nhóm các bản ghi và trả về một giá trị duy nhất. Các
+hàm tổng hợp phổ biến trong SQL Server bao gồm `COUNT`, `SUM`, `AVG`, `MIN`, `MAX`, và một số hàm khác.
 
 Các hàm này thường được sử dụng kết hợp với câu lệnh `GROUP BY` để nhóm dữ liệu và tính toán giá trị cho từng nhóm.
 
@@ -145,7 +147,8 @@ Câu truy vấn trên sẽ trả về giá trị lớn nhất trong cột `salar
 
 #### GROUP_CONCAT (chỉ có trong một số phiên bản SQL Server)
 
-Hàm `GROUP_CONCAT` được sử dụng để nối các giá trị trong một cột thành một chuỗi duy nhất, phân cách bởi một ký tự nhất định.
+Hàm `GROUP_CONCAT` được sử dụng để nối các giá trị trong một cột thành một chuỗi duy nhất, phân cách bởi một ký tự nhất
+định.
 
 **Cú pháp**:
 
@@ -168,7 +171,8 @@ Lưu ý: Trong SQL Server, bạn cần sử dụng `STRING_AGG` thay vì `GROUP_
 
 ### 3. Sử dụng Hàm Tổng Hợp với GROUP BY
 
-Hàm tổng hợp thường được sử dụng cùng với câu lệnh `GROUP BY` để nhóm các bản ghi theo một hoặc nhiều cột và tính toán giá trị cho từng nhóm.
+Hàm tổng hợp thường được sử dụng cùng với câu lệnh `GROUP BY` để nhóm các bản ghi theo một hoặc nhiều cột và tính toán
+giá trị cho từng nhóm.
 
 **Cú pháp**:
 
@@ -194,7 +198,9 @@ Câu truy vấn trên sẽ trả về tổng lương cho mỗi phòng ban.
 
 ### 4. Sử dụng Hàm Tổng Hợp với HAVING
 
-Khi bạn sử dụng `GROUP BY` với các hàm tổng hợp, bạn có thể sử dụng `HAVING` để lọc các nhóm dữ liệu sau khi đã áp dụng hàm tổng hợp. `HAVING` khác với `WHERE` vì `WHERE` áp dụng trước khi nhóm dữ liệu, còn `HAVING` áp dụng sau khi dữ liệu đã được nhóm.
+Khi bạn sử dụng `GROUP BY` với các hàm tổng hợp, bạn có thể sử dụng `HAVING` để lọc các nhóm dữ liệu sau khi đã áp dụng
+hàm tổng hợp. `HAVING` khác với `WHERE` vì `WHERE` áp dụng trước khi nhóm dữ liệu, còn `HAVING` áp dụng sau khi dữ liệu
+đã được nhóm.
 
 **Cú pháp**:
 
@@ -264,12 +270,17 @@ HAVING SUM(salary) > 100000;
 
 ### 6. Lưu ý khi sử dụng Hàm Tổng Hợp
 
-- **NULL và Hàm Tổng Hợp**: Các giá trị NULL thường không được tính trong các hàm `SUM`, `AVG`, `MIN`, `MAX`. Tuy nhiên, `COUNT` chỉ đếm các giá trị không NULL trong một cột.
-- **Nhóm dữ liệu đúng cách**: Khi sử dụng `GROUP BY`, hãy đảm bảo rằng bạn chỉ nhóm các cột mà bạn thực sự muốn tính toán hoặc hiển thị.
-- **Sử dụng `HAVING` để lọc nhóm**: Khi bạn cần lọc dữ liệu sau khi đã nhóm và tính toán, hãy sử dụng `HAVING` thay vì `WHERE`.
+- **NULL và Hàm Tổng Hợp**: Các giá trị NULL thường không được tính trong các hàm `SUM`, `AVG`, `MIN`, `MAX`. Tuy nhiên,
+  `COUNT` chỉ đếm các giá trị không NULL trong một cột.
+- **Nhóm dữ liệu đúng cách**: Khi sử dụng `GROUP BY`, hãy đảm bảo rằng bạn chỉ nhóm các cột mà bạn thực sự muốn tính
+  toán hoặc hiển thị.
+- **Sử dụng `HAVING` để lọc nhóm**: Khi bạn cần lọc dữ liệu sau khi đã nhóm và tính toán, hãy sử dụng `HAVING` thay vì
+  `WHERE`.
 
 ---
 
 ### 7. Kết luận
 
-Hàm tổng hợp trong SQL Server là công cụ mạnh mẽ để xử lý và phân tích dữ liệu. Chúng cho phép bạn tính toán tổng số, giá trị trung bình, giá trị nhỏ nhất, giá trị lớn nhất và nhiều phép toán khác trên dữ liệu nhóm. Kết hợp với `GROUP BY` và `HAVING`, bạn có thể phân tích dữ liệu một cách linh hoạt và hiệu quả.
+Hàm tổng hợp trong SQL Server là công cụ mạnh mẽ để xử lý và phân tích dữ liệu. Chúng cho phép bạn tính toán tổng số,
+giá trị trung bình, giá trị nhỏ nhất, giá trị lớn nhất và nhiều phép toán khác trên dữ liệu nhóm. Kết hợp với `GROUP BY`
+và `HAVING`, bạn có thể phân tích dữ liệu một cách linh hoạt và hiệu quả.

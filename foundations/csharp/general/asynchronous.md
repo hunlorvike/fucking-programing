@@ -3,23 +3,23 @@
 ## Mục Lục
 
 1. [Tổng quan về Lập trình Bất đồng bộ](#1-tổng-quan-về-lập-trình-bất-đồng-bộ)
-   - [Lập trình Đồng bộ và Bất đồng bộ](#lập-trình-đồng-bộ-và-bất-đồng-bộ)
-   - [Lợi ích của Lập trình Bất đồng bộ](#lợi-ích-của-lập-trình-bất-đồng-bộ)
+    - [Lập trình Đồng bộ và Bất đồng bộ](#lập-trình-đồng-bộ-và-bất-đồng-bộ)
+    - [Lợi ích của Lập trình Bất đồng bộ](#lợi-ích-của-lập-trình-bất-đồng-bộ)
 2. [Task trong Lập trình Bất đồng bộ](#2-task-trong-lập-trình-bất-đồng-bộ)
-   - [Task là gì?](#task-là-gì)
-   - [Sử dụng Task trong C#](#sử-dụng-task-trong-c)
+    - [Task là gì?](#task-là-gì)
+    - [Sử dụng Task trong C#](#sử-dụng-task-trong-c)
 3. [Async/Await trong Lập trình Bất đồng bộ](#3-asyncawait-trong-lập-trình-bất-đồng-bộ)
-   - [Cách khai báo async và await](#cách-khai-báo-async-và-await)
-   - [Xử lý Ngoại lệ trong async/await](#xử-lý-ngoại-lệ-trong-asyncawait)
+    - [Cách khai báo async và await](#cách-khai-báo-async-và-await)
+    - [Xử lý Ngoại lệ trong async/await](#xử-lý-ngoại-lệ-trong-asyncawait)
 4. [Sử dụng Task.WhenAll để Xử lý Nhiều Tác vụ Đồng thời](#4-sử-dụng-taskwhenall-để-xử-lý-nhiều-tác-vụ-đồng-thời)
-   - [Task.WhenAll là gì?](#taskwhenall-là-gì)
-   - [Ví dụ sử dụng Task.WhenAll](#ví-dụ-sử-dụng-taskwhenall)
+    - [Task.WhenAll là gì?](#taskwhenall-là-gì)
+    - [Ví dụ sử dụng Task.WhenAll](#ví-dụ-sử-dụng-taskwhenall)
 5. [Quản lý Tác vụ Bất đồng bộ hiệu quả](#5-quản-lý-tác-vụ-bất-đồng-bộ-hiệu-quả)
-   - [Tránh sử dụng async/await không cần thiết](#tránh-sử-dụng-asyncawait-không-cần-thiết)
-   - [Tối ưu hóa hiệu suất và tránh Deadlock](#tối-ưu-hóa-hiệu-suất-và-tránh-deadlock)
+    - [Tránh sử dụng async/await không cần thiết](#tránh-sử-dụng-asyncawait-không-cần-thiết)
+    - [Tối ưu hóa hiệu suất và tránh Deadlock](#tối-ưu-hóa-hiệu-suất-và-tránh-deadlock)
 6. [So sánh Lập trình Đồng bộ và Bất đồng bộ](#6-so-sánh-lập-trình-đồng-bộ-và-bất-đồng-bộ)
-   - [Ưu và Nhược điểm của Lập trình Đồng bộ](#ưu-và-nhược-điểm-của-lập-trình-đồng-bộ)
-   - [Ưu và Nhược điểm của Lập trình Bất đồng bộ](#ưu-và-nhược-điểm-của-lập-trình-bất-đồng-bộ)
+    - [Ưu và Nhược điểm của Lập trình Đồng bộ](#ưu-và-nhược-điểm-của-lập-trình-đồng-bộ)
+    - [Ưu và Nhược điểm của Lập trình Bất đồng bộ](#ưu-và-nhược-điểm-của-lập-trình-bất-đồng-bộ)
 7. [Kết luận](#kết-luận)
 
 ---
@@ -28,10 +28,11 @@
 
 #### Lập trình Đồng bộ và Bất đồng bộ
 
-Lập trình đồng bộ và bất đồng bộ đều liên quan đến cách thức thực hiện các tác vụ trong chương trình, đặc biệt là các tác vụ I/O như truy xuất dữ liệu, đọc/ghi tệp, gọi API. Dưới đây là sự so sánh giữa hai cách tiếp cận này:
+Lập trình đồng bộ và bất đồng bộ đều liên quan đến cách thức thực hiện các tác vụ trong chương trình, đặc biệt là các
+tác vụ I/O như truy xuất dữ liệu, đọc/ghi tệp, gọi API. Dưới đây là sự so sánh giữa hai cách tiếp cận này:
 
 | **Đặc điểm**                   | **Lập trình Đồng bộ**                                                                       | **Lập trình Bất đồng bộ**                                                                                                     |
-| ------------------------------ | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+|--------------------------------|---------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | **Khái niệm**                  | Thực hiện các tác vụ tuần tự, mỗi tác vụ hoàn thành trước khi chuyển sang tác vụ tiếp theo. | Cho phép thực hiện các tác vụ song song mà không cần đợi tác vụ trước khi hoàn thành, trừ khi có sự phụ thuộc.                |
 | **Cách triển khai**            | Các phương thức được gọi và thực hiện tuần tự.                                              | Sử dụng `async`, `await`, `Task`, và `Task.WhenAll` để thực hiện nhiều tác vụ đồng thời.                                      |
 | **Ứng dụng phù hợp**           | Các tác vụ nhẹ và không yêu cầu I/O lớn, hoặc không yêu cầu phản hồi nhanh.                 | Các tác vụ I/O nặng như truy xuất cơ sở dữ liệu, gọi API, tải tệp; ứng dụng yêu cầu khả năng phản hồi nhanh và hiệu suất cao. |
@@ -45,7 +46,8 @@ Lập trình đồng bộ và bất đồng bộ đều liên quan đến cách 
 
 - **Tăng khả năng phản hồi**: Ứng dụng không bị "đóng băng" khi thực hiện các tác vụ dài.
 - **Tối ưu hóa hiệu suất**: Giảm thời gian chờ đợi cho các tác vụ I/O, như truy xuất cơ sở dữ liệu, gọi API, tải tệp.
-- **Sử dụng tài nguyên hiệu quả**: Cho phép hệ thống xử lý nhiều tác vụ cùng lúc, cải thiện hiệu suất, đặc biệt trong các ứng dụng web.
+- **Sử dụng tài nguyên hiệu quả**: Cho phép hệ thống xử lý nhiều tác vụ cùng lúc, cải thiện hiệu suất, đặc biệt trong
+  các ứng dụng web.
 
 ---
 
@@ -53,7 +55,8 @@ Lập trình đồng bộ và bất đồng bộ đều liên quan đến cách 
 
 #### Task là gì?
 
-Trong lập trình bất đồng bộ, `Task` đại diện cho một tác vụ đang thực hiện, giúp mô tả các tác vụ nền. Một `Task` có thể:
+Trong lập trình bất đồng bộ, `Task` đại diện cho một tác vụ đang thực hiện, giúp mô tả các tác vụ nền. Một `Task` có
+thể:
 
 - Trả về kết quả khi hoàn thành (sử dụng `Task<T>`).
 - Đại diện cho tác vụ không trả về kết quả (sử dụng `Task`).
@@ -115,7 +118,8 @@ public async Task ProcessDataSafelyAsync()
 
 #### Task.WhenAll là gì?
 
-`Task.WhenAll` giúp thực hiện nhiều tác vụ đồng thời và chờ tất cả chúng hoàn thành. Phương thức này giúp giảm thời gian tổng thể thay vì phải đợi từng tác vụ tuần tự.
+`Task.WhenAll` giúp thực hiện nhiều tác vụ đồng thời và chờ tất cả chúng hoàn thành. Phương thức này giúp giảm thời gian
+tổng thể thay vì phải đợi từng tác vụ tuần tự.
 
 #### Ví dụ sử dụng Task.WhenAll
 
@@ -141,7 +145,8 @@ tất cả hoàn thành.
 
 #### Tránh sử dụng `async/await` không cần thiết
 
-Chỉ sử dụng bất đồng bộ khi tác vụ thực sự yêu cầu tính chất bất đồng bộ (như I/O nặng). Việc sử dụng bất đồng bộ một cách không cần thiết sẽ làm giảm hiệu suất và gây khó khăn trong việc duy trì mã nguồn.
+Chỉ sử dụng bất đồng bộ khi tác vụ thực sự yêu cầu tính chất bất đồng bộ (như I/O nặng). Việc sử dụng bất đồng bộ một
+cách không cần thiết sẽ làm giảm hiệu suất và gây khó khăn trong việc duy trì mã nguồn.
 
 #### Tối ưu hóa hiệu suất và tránh Deadlock
 
@@ -166,4 +171,7 @@ Chỉ sử dụng bất đồng bộ khi tác vụ thực sự yêu cầu tính 
 
 ### 7. Kết luận
 
-Lập trình bất đồng bộ là một kỹ thuật mạnh mẽ giúp tối ưu hóa hiệu suất của các ứng dụng, đặc biệt là khi làm việc với các tác vụ I/O nặng. Tuy nhiên, nó yêu cầu lập trình viên phải hiểu rõ cách thức hoạt động của `async`, `await`, và các cấu trúc liên quan như `Task`. Khi được sử dụng đúng cách, lập trình bất đồng bộ có thể giúp ứng dụng trở nên nhanh chóng và hiệu quả hơn.
+Lập trình bất đồng bộ là một kỹ thuật mạnh mẽ giúp tối ưu hóa hiệu suất của các ứng dụng, đặc biệt là khi làm việc với
+các tác vụ I/O nặng. Tuy nhiên, nó yêu cầu lập trình viên phải hiểu rõ cách thức hoạt động của `async`, `await`, và các
+cấu trúc liên quan như `Task`. Khi được sử dụng đúng cách, lập trình bất đồng bộ có thể giúp ứng dụng trở nên nhanh
+chóng và hiệu quả hơn.

@@ -4,22 +4,22 @@
 
 1. [Tổng Quan về Pattern Matching](#1-tổng-quan-về-pattern-matching)
 
-   - [Mục Đích](#mục-đích)
-   - [Lịch Sử Phát Triển](#lịch-sử-phát-triển)
+    - [Mục Đích](#mục-đích)
+    - [Lịch Sử Phát Triển](#lịch-sử-phát-triển)
 
 2. [Các Loại Pattern Matching trong C#](#2-các-loại-pattern-matching-trong-c)
 
-   - [a. Type Pattern](#a-type-pattern)
-   - [b. Constant Pattern](#b-constant-pattern)
-   - [c. Relational Pattern](#c-relational-pattern)
-   - [d. Logical Pattern](#d-logical-pattern)
-   - [e. Property Pattern](#e-property-pattern)
-   - [f. Positional Pattern](#f-positional-pattern)
+    - [a. Type Pattern](#a-type-pattern)
+    - [b. Constant Pattern](#b-constant-pattern)
+    - [c. Relational Pattern](#c-relational-pattern)
+    - [d. Logical Pattern](#d-logical-pattern)
+    - [e. Property Pattern](#e-property-pattern)
+    - [f. Positional Pattern](#f-positional-pattern)
 
 3. [Ứng Dụng Pattern Matching](#3-ứng-dụng-pattern-matching)
 
-   - [a. Sử Dụng với Switch Expression](#a-sử-dụng-với-switch-expression)
-   - [b. Sử Dụng với Toán Tử `is`](#b-sử-dụng-với-toán-tử-is)
+    - [a. Sử Dụng với Switch Expression](#a-sử-dụng-với-switch-expression)
+    - [b. Sử Dụng với Toán Tử `is`](#b-sử-dụng-với-toán-tử-is)
 
 4. [Ưu Điểm và Nhược Điểm](#4-ưu-điểm-và-nhược-điểm)
 
@@ -29,7 +29,8 @@
 
 ### 1. Tổng Quan về Pattern Matching
 
-**Pattern Matching** là một tính năng trong C# cho phép bạn kiểm tra và xử lý dữ liệu dựa trên hình mẫu (pattern). Nó giúp mã nguồn ngắn gọn, dễ đọc và giảm thiểu các câu lệnh điều kiện lồng nhau.
+**Pattern Matching** là một tính năng trong C# cho phép bạn kiểm tra và xử lý dữ liệu dựa trên hình mẫu (pattern). Nó
+giúp mã nguồn ngắn gọn, dễ đọc và giảm thiểu các câu lệnh điều kiện lồng nhau.
 
 #### Mục Đích
 
@@ -182,7 +183,8 @@ void Print(object obj)
 
 ### 5. Tóm Tắt
 
-Pattern Matching là một tính năng mạnh mẽ giúp tối ưu hóa mã nguồn trong C#. Nó cung cấp nhiều loại hình mẫu (pattern) để kiểm tra và xử lý dữ liệu một cách linh hoạt và dễ hiểu. 
+Pattern Matching là một tính năng mạnh mẽ giúp tối ưu hóa mã nguồn trong C#. Nó cung cấp nhiều loại hình mẫu (pattern)
+để kiểm tra và xử lý dữ liệu một cách linh hoạt và dễ hiểu.
 
 **Các điểm chính:**
 

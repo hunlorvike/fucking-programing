@@ -4,22 +4,22 @@
 
 1. [Tổng Quan về Async/Await](#1-tổng-quan-về-asyncawait)
 
-   - [Khái Niệm](#khái-niệm)
-   - [Cách Hoạt Động](#cách-hoạt-động)
+    - [Khái Niệm](#khái-niệm)
+    - [Cách Hoạt Động](#cách-hoạt-động)
 
 2. [Các Mẫu Sử Dụng Async/Await](#2-các-mẫu-sử-dụng-asyncawait)
 
-   - [Mẫu Fire-and-Forget](#mẫu-fire-and-forget)
-   - [Mẫu Chuỗi Nhiệm Vụ (Task Chaining)](#mẫu-chuỗi-nhiệm-vụ-task-chaining)
-   - [Mẫu Đồng Thời Hóa (Parallelization)](#mẫu-đồng-thời-hóa-parallelization)
+    - [Mẫu Fire-and-Forget](#mẫu-fire-and-forget)
+    - [Mẫu Chuỗi Nhiệm Vụ (Task Chaining)](#mẫu-chuỗi-nhiệm-vụ-task-chaining)
+    - [Mẫu Đồng Thời Hóa (Parallelization)](#mẫu-đồng-thời-hóa-parallelization)
 
 3. [Quản Lý Ngoại Lệ trong Async/Await](#3-quản-lý-ngoại-lệ-trong-asyncawait)
 
 4. [Các Kỹ Thuật Tối Ưu với Async/Await](#4-các-kỹ-thuật-tối-ưu-với-asyncawait)
 
-   - [Sử Dụng `ValueTask`](#sử-dụng-valuetask)
-   - [Tránh `ConfigureAwait(false)` Không Hợp Lý](#tránh-configureawaitfalse-không-hợp-lý)
-   - [Hạn Chế Chặn (`Task.Wait()` hoặc `.Result`)](#hạn-chế-chặn-taskwait-hoặc-result)
+    - [Sử Dụng `ValueTask`](#sử-dụng-valuetask)
+    - [Tránh `ConfigureAwait(false)` Không Hợp Lý](#tránh-configureawaitfalse-không-hợp-lý)
+    - [Hạn Chế Chặn (`Task.Wait()` hoặc `.Result`)](#hạn-chế-chặn-taskwait-hoặc-result)
 
 5. [Ưu Điểm và Nhược Điểm](#5-ưu-điểm-và-nhược-điểm)
 
@@ -31,14 +31,17 @@
 
 #### Khái Niệm
 
-**Async/Await** là một cặp từ khóa trong C# được giới thiệu để làm việc với các hoạt động bất đồng bộ (asynchronous). Chúng giúp mã trở nên dễ đọc và bảo trì hơn so với việc sử dụng các callback hoặc các mô hình lập trình bất đồng bộ trước đây như `Task` hoặc `IAsyncResult`.
+**Async/Await** là một cặp từ khóa trong C# được giới thiệu để làm việc với các hoạt động bất đồng bộ (asynchronous).
+Chúng giúp mã trở nên dễ đọc và bảo trì hơn so với việc sử dụng các callback hoặc các mô hình lập trình bất đồng bộ
+trước đây như `Task` hoặc `IAsyncResult`.
 
 - **Từ khóa `async`**: Được sử dụng để khai báo một phương thức bất đồng bộ.
 - **Từ khóa `await`**: Dùng để "chờ" một tác vụ bất đồng bộ hoàn thành mà không chặn luồng chính.
 
 #### Cách Hoạt Động
 
-Khi một phương thức được đánh dấu là `async`, nó có thể chứa từ khóa `await` để tạm dừng thực thi phương thức đó cho đến khi tác vụ (task) được chờ hoàn thành. Sau đó, thực thi sẽ được tiếp tục.
+Khi một phương thức được đánh dấu là `async`, nó có thể chứa từ khóa `await` để tạm dừng thực thi phương thức đó cho đến
+khi tác vụ (task) được chờ hoàn thành. Sau đó, thực thi sẽ được tiếp tục.
 
 Ví dụ đơn giản:
 
@@ -182,7 +185,8 @@ public ValueTask<int> ComputeAsync(int x)
 
 #### Tránh `ConfigureAwait(false)` Không Hợp Lý
 
-Sử dụng `ConfigureAwait(false)` để tránh việc bắt buộc sử dụng context đồng bộ hóa khi không cần thiết (ví dụ: trong các thư viện).
+Sử dụng `ConfigureAwait(false)` để tránh việc bắt buộc sử dụng context đồng bộ hóa khi không cần thiết (ví dụ: trong các
+thư viện).
 
 ```csharp
 await Task.Delay(1000).ConfigureAwait(false);
@@ -234,7 +238,8 @@ public async Task ProcessAsync()
 
 ### 6. Tóm Tắt
 
-Async/Await là công cụ mạnh mẽ để thực hiện các tác vụ bất đồng bộ một cách hiệu quả và dễ đọc. Tuy nhiên, việc sử dụng không đúng cách có thể dẫn đến các vấn đề hiệu suất hoặc lỗi khó tìm.
+Async/Await là công cụ mạnh mẽ để thực hiện các tác vụ bất đồng bộ một cách hiệu quả và dễ đọc. Tuy nhiên, việc sử dụng
+không đúng cách có thể dẫn đến các vấn đề hiệu suất hoặc lỗi khó tìm.
 
 **Các điểm chính:**
 

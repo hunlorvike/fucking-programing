@@ -15,21 +15,21 @@
 - Là một cấu trúc dữ liệu phi tuyến tính, các phần tử không được sắp xếp theo một thứ tự cố định.
 - **Không cho phép phần tử trùng lặp** - mỗi phần tử chỉ xuất hiện một lần trong tập hợp.
 - Hỗ trợ nhiều thao tác tập hợp, ví dụ:
-  - **Hợp (Union):** Kết hợp các phần tử của hai tập hợp.
-  - **Giao (Intersection):** Tìm các phần tử chung của hai tập hợp.
-  - **Hiệu (Difference):** Tìm các phần tử chỉ có trong tập hợp đầu tiên mà không có trong tập hợp thứ hai.
-  - **Kiểm tra thuộc tính (Membership):** Kiểm tra xem một phần tử có tồn tại trong tập hợp hay không.
+    - **Hợp (Union):** Kết hợp các phần tử của hai tập hợp.
+    - **Giao (Intersection):** Tìm các phần tử chung của hai tập hợp.
+    - **Hiệu (Difference):** Tìm các phần tử chỉ có trong tập hợp đầu tiên mà không có trong tập hợp thứ hai.
+    - **Kiểm tra thuộc tính (Membership):** Kiểm tra xem một phần tử có tồn tại trong tập hợp hay không.
 
 ## Ưu điểm và nhược điểm
 
 - **Ưu điểm:**
 
-  - **Thao tác tập hợp nhanh:** Các thao tác như hợp, giao, hiệu, kiểm tra thuộc tính thường có độ phức tạp \(O(1)\).
-  - **Loại bỏ trùng lặp:** Tập hợp tự động loại bỏ các phần tử trùng lặp, giúp đảm bảo tính duy nhất.
+    - **Thao tác tập hợp nhanh:** Các thao tác như hợp, giao, hiệu, kiểm tra thuộc tính thường có độ phức tạp \(O(1)\).
+    - **Loại bỏ trùng lặp:** Tập hợp tự động loại bỏ các phần tử trùng lặp, giúp đảm bảo tính duy nhất.
 
 - **Nhược điểm:**
-  - **Không có thứ tự:** Các phần tử trong tập hợp không có thứ tự rõ ràng.
-  - **Khó duyệt:** Việc duyệt qua tất cả các phần tử có thể kém hiệu quả nếu tập hợp lớn.
+    - **Không có thứ tự:** Các phần tử trong tập hợp không có thứ tự rõ ràng.
+    - **Khó duyệt:** Việc duyệt qua tất cả các phần tử có thể kém hiệu quả nếu tập hợp lớn.
 
 ## Ứng dụng
 
@@ -112,4 +112,5 @@ differenceSet.display(); // Output: [1, 2, 3]
 
 ## Bổ sung
 
-Tập hợp là một cấu trúc dữ liệu rất hữu ích cho các thao tác liên quan đến lý thuyết tập hợp. Trong TypeScript, chúng ta có thể sử dụng lớp `Set` để triển khai các thao tác như `add`, `has`, `union`, `intersection`, và `difference`.
+Tập hợp là một cấu trúc dữ liệu rất hữu ích cho các thao tác liên quan đến lý thuyết tập hợp. Trong TypeScript, chúng ta
+có thể sử dụng lớp `Set` để triển khai các thao tác như `add`, `has`, `union`, `intersection`, và `difference`.

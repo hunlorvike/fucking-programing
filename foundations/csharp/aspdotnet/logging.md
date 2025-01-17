@@ -3,21 +3,21 @@
 ## Mục Lục
 
 1. [Tổng quan về Logging](#1-tổng-quan-về-logging)
-   - [Logging là gì?](#logging-là-gì)
-   - [Các mức độ Logging](#các-mức-độ-logging)
-   - [Logging hoạt động như thế nào?](#logging-hoạt-động-như-thế-nào)
+    - [Logging là gì?](#logging-là-gì)
+    - [Các mức độ Logging](#các-mức-độ-logging)
+    - [Logging hoạt động như thế nào?](#logging-hoạt-động-như-thế-nào)
 2. [Cấu hình Logging trong C# .NET](#2-cấu-hình-logging-trong-c-net)
-   - [Cấu hình Logging trong `appsettings.json`](#a-cấu-hình-logging-trong-appsettingsjson)
-   - [Sử dụng Logging trong các dịch vụ](#b-sử-dụng-logging-trong-các-dịch-vụ)
+    - [Cấu hình Logging trong `appsettings.json`](#a-cấu-hình-logging-trong-appsettingsjson)
+    - [Sử dụng Logging trong các dịch vụ](#b-sử-dụng-logging-trong-các-dịch-vụ)
 3. [Logging Provider trong ASP.NET Core](#3-logging-provider-trong-aspnet-core)
-   - [Console Logger](#console-logger)
-   - [File Logger (3rd Party)](#file-logger-3rd-party)
-   - [Debug Logger](#debug-logger)
-   - [EventLog Logger](#eventlog-logger)
+    - [Console Logger](#console-logger)
+    - [File Logger (3rd Party)](#file-logger-3rd-party)
+    - [Debug Logger](#debug-logger)
+    - [EventLog Logger](#eventlog-logger)
 4. [Logging định dạng và cấu trúc](#4-logging-định-dạng-và-cấu-trúc)
 5. [Logging hiệu suất và bảo mật](#5-logging-hiệu-suất-và-bảo-mật)
-   - [Độ chi tiết và hiệu suất của Logging](#độ-chi-tiết-và-hiệu-suất-của-logging)
-   - [Logging thông tin nhạy cảm](#logging-thông-tin-nhạy-cảm)
+    - [Độ chi tiết và hiệu suất của Logging](#độ-chi-tiết-và-hiệu-suất-của-logging)
+    - [Logging thông tin nhạy cảm](#logging-thông-tin-nhạy-cảm)
 6. [Logging trong Môi trường Production](#6-logging-trong-môi-trường-production)
 7. [Kết luận](#kết-luận)
 
@@ -27,7 +27,8 @@
 
 #### Logging là gì?
 
-Logging là quá trình ghi lại các sự kiện, trạng thái, và thông báo từ ứng dụng vào các tệp log hoặc hệ thống giám sát, giúp các nhà phát triển và quản trị hệ thống theo dõi, phân tích và khắc phục sự cố trong ứng dụng.
+Logging là quá trình ghi lại các sự kiện, trạng thái, và thông báo từ ứng dụng vào các tệp log hoặc hệ thống giám sát,
+giúp các nhà phát triển và quản trị hệ thống theo dõi, phân tích và khắc phục sự cố trong ứng dụng.
 
 #### Các mức độ Logging
 
@@ -50,7 +51,8 @@ C# .NET hỗ trợ nhiều mức độ logging để phân loại độ quan tr�
 
 #### a. Cấu hình Logging trong `appsettings.json`
 
-ASP.NET Core hỗ trợ cấu hình logging trực tiếp trong file `appsettings.json` để dễ dàng tùy chỉnh. Ví dụ cấu hình cơ bản:
+ASP.NET Core hỗ trợ cấu hình logging trực tiếp trong file `appsettings.json` để dễ dàng tùy chỉnh. Ví dụ cấu hình cơ
+bản:
 
 ```json
 {
@@ -72,7 +74,8 @@ Trong cấu hình này:
 
 #### b. Sử dụng Logging trong các dịch vụ
 
-ASP.NET Core sử dụng Dependency Injection để quản lý logging, cho phép bạn dễ dàng lấy đối tượng logger trong các dịch vụ của ứng dụng:
+ASP.NET Core sử dụng Dependency Injection để quản lý logging, cho phép bạn dễ dàng lấy đối tượng logger trong các dịch
+vụ của ứng dụng:
 
 ```csharp
 public class SampleService
@@ -172,7 +175,8 @@ services.AddLogging(config =>
 
 ### 4. Logging định dạng và cấu trúc
 
-Để ghi các thông điệp log có định dạng rõ ràng và dễ hiểu, ASP.NET Core hỗ trợ các placeholders trong thông điệp log. Điều này giúp các hệ thống phân tích log xử lý tốt hơn.
+Để ghi các thông điệp log có định dạng rõ ràng và dễ hiểu, ASP.NET Core hỗ trợ các placeholders trong thông điệp log.
+Điều này giúp các hệ thống phân tích log xử lý tốt hơn.
 
 ```csharp
 _logger.LogInformation("User {UserId} đã đăng nhập vào lúc {Time}", userId, DateTime.UtcNow);
@@ -188,7 +192,8 @@ User 123 đã đăng nhập vào lúc 11/13/2024 02:30:00
 
 #### Độ chi tiết và hiệu suất của Logging
 
-- Sử dụng log ở mức **Debug** và **Trace** chỉ khi cần thiết vì chúng tạo ra nhiều thông tin chi tiết, ảnh hưởng đến hiệu suất.
+- Sử dụng log ở mức **Debug** và **Trace** chỉ khi cần thiết vì chúng tạo ra nhiều thông tin chi tiết, ảnh hưởng đến
+  hiệu suất.
 - Hạn chế log ở mức cao như **Information**, **Warning** trong môi trường Production trừ khi có sự cố.
 
 #### Logging thông tin nhạy cảm
@@ -198,8 +203,12 @@ User 123 đã đăng nhập vào lúc 11/13/2024 02:30:00
 
 ### 6. Logging trong Môi trường Production
 
-Trong môi trường Production, chỉ nên ghi các log cần thiết (ví dụ: từ `Warning` trở lên) để tránh log quá nhiều và ảnh hưởng đến hiệu suất của ứng dụng. Có thể sử dụng các giải pháp quản lý log như **Application Insights**, **Seq**, **Splunk**, hoặc **Elasticsearch** để thu thập và phân tích log hiệu quả.
+Trong môi trường Production, chỉ nên ghi các log cần thiết (ví dụ: từ `Warning` trở lên) để tránh log quá nhiều và ảnh
+hưởng đến hiệu suất của ứng dụng. Có thể sử dụng các giải pháp quản lý log như **Application Insights**, **Seq**, *
+*Splunk**, hoặc **Elasticsearch** để thu thập và phân tích log hiệu quả.
 
 ### Kết luận
 
-Logging là một thành phần quan trọng trong việc giám sát và xử lý sự cố của ứng dụng. Trong C# .NET, có nhiều lựa chọn và cấu hình linh hoạt để ghi log, cho phép tích hợp với các hệ thống lưu trữ log khác nhau. Việc quản lý các mức độ log và bảo mật log là rất quan trọng để đảm bảo hiệu suất và an toàn của ứng dụng.
+Logging là một thành phần quan trọng trong việc giám sát và xử lý sự cố của ứng dụng. Trong C# .NET, có nhiều lựa chọn
+và cấu hình linh hoạt để ghi log, cho phép tích hợp với các hệ thống lưu trữ log khác nhau. Việc quản lý các mức độ log
+và bảo mật log là rất quan trọng để đảm bảo hiệu suất và an toàn của ứng dụng.

@@ -1,11 +1,14 @@
 ## Cấu trúc dữ liệu tuyến tính
 
-Cấu trúc dữ liệu tuyến tính là những cấu trúc dữ liệu mà các phần tử được sắp xếp theo một thứ tự tuần tự. Nói cách khác, chúng ta có thể truy cập trực tiếp đến mỗi phần tử dựa trên vị trí của nó trong chuỗi.
+Cấu trúc dữ liệu tuyến tính là những cấu trúc dữ liệu mà các phần tử được sắp xếp theo một thứ tự tuần tự. Nói cách
+khác, chúng ta có thể truy cập trực tiếp đến mỗi phần tử dựa trên vị trí của nó trong chuỗi.
 
 **Đặc điểm chính:**
 
-- **Thứ tự tuyến tính:** Các phần tử được sắp xếp theo một thứ tự nhất định, có thể là từ trái sang phải hoặc từ trên xuống dưới.
-- **Truy cập trực tiếp:** Chúng ta có thể truy cập trực tiếp đến một phần tử bất kỳ bằng cách sử dụng chỉ số (index) của nó.
+- **Thứ tự tuyến tính:** Các phần tử được sắp xếp theo một thứ tự nhất định, có thể là từ trái sang phải hoặc từ trên
+  xuống dưới.
+- **Truy cập trực tiếp:** Chúng ta có thể truy cập trực tiếp đến một phần tử bất kỳ bằng cách sử dụng chỉ số (index) của
+  nó.
 - **Lưu trữ tuyến tính:** Các phần tử được lưu trữ theo thứ tự tuyến tính trong bộ nhớ.
 
 **Các loại cấu trúc dữ liệu tuyến tính phổ biến:**
@@ -78,25 +81,34 @@ Cấu trúc dữ liệu tuyến tính là những cấu trúc dữ liệu mà c�
 
 **Ví dụ minh họa:**
 
-- **Mảng:** Bạn có thể hình dung một mảng như một dãy các ngăn xếp đồ chơi, mỗi ngăn chứa một món đồ chơi. Bạn có thể dễ dàng lấy ra món đồ chơi thứ ba bằng cách biết chỉ số của nó (trong trường hợp này là 2, vì chỉ số bắt đầu từ 0).
+- **Mảng:** Bạn có thể hình dung một mảng như một dãy các ngăn xếp đồ chơi, mỗi ngăn chứa một món đồ chơi. Bạn có thể dễ
+  dàng lấy ra món đồ chơi thứ ba bằng cách biết chỉ số của nó (trong trường hợp này là 2, vì chỉ số bắt đầu từ 0).
 
-- **Danh sách liên kết:** Hay một danh sách liên kết giống như một chuỗi các xe lửa, mỗi toa chứa một vật phẩm. Bạn có thể thêm hoặc gỡ bỏ một toa xe bất kỳ mà không cần phải di chuyển các toa khác.
+- **Danh sách liên kết:** Hay một danh sách liên kết giống như một chuỗi các xe lửa, mỗi toa chứa một vật phẩm. Bạn có
+  thể thêm hoặc gỡ bỏ một toa xe bất kỳ mà không cần phải di chuyển các toa khác.
 
 **Kết luận:**
 
-Cấu trúc dữ liệu tuyến tính đơn giản và hiệu quả cho các thao tác cơ bản, nhưng có thể không phù hợp cho các bài toán có cấu trúc phức tạp.
+Cấu trúc dữ liệu tuyến tính đơn giản và hiệu quả cho các thao tác cơ bản, nhưng có thể không phù hợp cho các bài toán có
+cấu trúc phức tạp.
 
-Cấu trúc dữ liệu phi tuyến tính, như cây và đồ thị, cung cấp nhiều tính năng nâng cao và thường được sử dụng cho các bài toán phức tạp hơn. Tuy nhiên, chúng cũng phức tạp hơn để triển khai và hiểu.
+Cấu trúc dữ liệu phi tuyến tính, như cây và đồ thị, cung cấp nhiều tính năng nâng cao và thường được sử dụng cho các bài
+toán phức tạp hơn. Tuy nhiên, chúng cũng phức tạp hơn để triển khai và hiểu.
 
 ## Cấu trúc dữ liệu phi tuyến tính
 
-Cấu trúc dữ liệu phi tuyến tính là những cấu trúc dữ liệu mà các phần tử không được sắp xếp theo một thứ tự tuần tự. Thay vào đó, chúng được liên kết với nhau thông qua các mối quan hệ phức tạp hơn, thường được biểu diễn bằng các con trỏ hoặc các liên kết.
+Cấu trúc dữ liệu phi tuyến tính là những cấu trúc dữ liệu mà các phần tử không được sắp xếp theo một thứ tự tuần tự.
+Thay vào đó, chúng được liên kết với nhau thông qua các mối quan hệ phức tạp hơn, thường được biểu diễn bằng các con trỏ
+hoặc các liên kết.
 
 **Đặc điểm chính:**
 
-- **Không có thứ tự tuyến tính:** Các phần tử không được sắp xếp theo một thứ tự nhất định, chúng có thể được liên kết với nhau theo nhiều cách khác nhau.
-- **Truy cập gián tiếp:** Chúng ta không thể truy cập trực tiếp đến một phần tử bằng cách sử dụng chỉ số (index) như trong mảng. Thay vào đó, chúng ta phải sử dụng các con trỏ hoặc các liên kết để tìm đến phần tử đó.
-- **Lưu trữ không tuyến tính:** Các phần tử được lưu trữ theo cấu trúc liên kết, không nhất thiết theo thứ tự tuyến tính trong bộ nhớ.
+- **Không có thứ tự tuyến tính:** Các phần tử không được sắp xếp theo một thứ tự nhất định, chúng có thể được liên kết
+  với nhau theo nhiều cách khác nhau.
+- **Truy cập gián tiếp:** Chúng ta không thể truy cập trực tiếp đến một phần tử bằng cách sử dụng chỉ số (index) như
+  trong mảng. Thay vào đó, chúng ta phải sử dụng các con trỏ hoặc các liên kết để tìm đến phần tử đó.
+- **Lưu trữ không tuyến tính:** Các phần tử được lưu trữ theo cấu trúc liên kết, không nhất thiết theo thứ tự tuyến tính
+  trong bộ nhớ.
 
 **Các loại cấu trúc dữ liệu phi tuyến tính phổ biến:**
 
@@ -161,12 +173,14 @@ Cấu trúc dữ liệu phi tuyến tính là những cấu trúc dữ liệu m�
 
 **Kết luận:**
 
-Cấu trúc dữ liệu phi tuyến tính cung cấp những lợi ích lớn trong việc lưu trữ và thao tác dữ liệu có cấu trúc phức tạp. Tuy nhiên, chúng cũng phức tạp hơn để triển khai và hiểu so với các cấu trúc dữ liệu tuyến tính. Lựa chọn loại cấu trúc dữ liệu phù hợp phụ thuộc vào nhu cầu của bài toán.
+Cấu trúc dữ liệu phi tuyến tính cung cấp những lợi ích lớn trong việc lưu trữ và thao tác dữ liệu có cấu trúc phức tạp.
+Tuy nhiên, chúng cũng phức tạp hơn để triển khai và hiểu so với các cấu trúc dữ liệu tuyến tính. Lựa chọn loại cấu trúc
+dữ liệu phù hợp phụ thuộc vào nhu cầu của bài toán.
 
 ## So sánh Cấu trúc Dữ liệu Tuyến tính và Phi tuyến tính
 
 | Tiêu chí                         | Kiểu dữ liệu tuyến tính (Linear Data Structures)                                                                                               | Kiểu dữ liệu phi tuyến tính (Non-linear Data Structures)                                                                    |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+|----------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Cấu trúc                         | Các phần tử được sắp xếp tuần tự, theo một trình tự nhất định.                                                                                 | Các phần tử không được sắp xếp tuần tự, có thể có nhiều quan hệ phức tạp giữa các phần tử.                                  |
 | Mối quan hệ giữa các phần tử     | Mỗi phần tử chỉ liên kết với một phần tử trước và sau nó (ngoại trừ đầu và cuối).                                                              | Mỗi phần tử có thể liên kết với nhiều phần tử khác theo nhiều hướng (đồ thị) hoặc cấu trúc phân cấp (cây).                  |
 | Truy cập phần tử                 | Dễ dàng truy cập phần tử theo thứ tự tuyến tính. Truy cập phần tử thường theo trình tự từ đầu đến cuối hoặc thông qua chỉ số.                  | Truy cập phần tử phức tạp hơn, thường thông qua các thuật toán tìm kiếm đặc biệt. Không có thứ tự rõ ràng giữa các phần tử. |
@@ -178,5 +192,6 @@ Cấu trúc dữ liệu phi tuyến tính cung cấp những lợi ích lớn tr
 
 **Lưu ý:** Bảng này cung cấp một cái nhìn tổng quan về sự khác biệt giữa cấu trúc dữ liệu tuyến tính và phi tuyến tính.
 
-**Cấu trúc dữ liệu tuyến tính và phi tuyến tính** đều có ưu điểm và nhược điểm riêng, và lựa chọn loại cấu trúc dữ liệu phù hợp phụ thuộc vào nhu cầu của bài toán.
+**Cấu trúc dữ liệu tuyến tính và phi tuyến tính** đều có ưu điểm và nhược điểm riêng, và lựa chọn loại cấu trúc dữ liệu
+phù hợp phụ thuộc vào nhu cầu của bài toán.
 

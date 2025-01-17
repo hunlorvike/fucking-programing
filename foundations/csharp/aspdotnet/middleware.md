@@ -1,6 +1,8 @@
 # Khái Niệm và Cách Thức Hoạt Động của Middleware trong ASP.NET Core
 
-Middleware là một phần không thể thiếu trong kiến trúc của ASP.NET Core. Nó cho phép bạn chèn các thành phần xử lý vào chuỗi xử lý yêu cầu HTTP, giúp bạn kiểm soát cách thức yêu cầu và phản hồi được xử lý. Hãy cùng tìm hiểu chi tiết về middleware và cách sử dụng nó trong ứng dụng của bạn.
+Middleware là một phần không thể thiếu trong kiến trúc của ASP.NET Core. Nó cho phép bạn chèn các thành phần xử lý vào
+chuỗi xử lý yêu cầu HTTP, giúp bạn kiểm soát cách thức yêu cầu và phản hồi được xử lý. Hãy cùng tìm hiểu chi tiết về
+middleware và cách sử dụng nó trong ứng dụng của bạn.
 
 ## Mục Lục
 
@@ -17,7 +19,9 @@ Middleware là một phần không thể thiếu trong kiến trúc của ASP.NE
 
 ## 1. Middleware Là Gì?
 
-Middleware là một đoạn mã nằm giữa các yêu cầu và phản hồi HTTP trong một ứng dụng ASP.NET Core. Khi một yêu cầu HTTP được gửi đến ứng dụng, middleware có thể thực hiện nhiều tác vụ trước khi yêu cầu được chuyển đến controller hoặc endpoint, và cũng có thể thao tác với phản hồi trước khi nó được gửi về cho khách hàng.
+Middleware là một đoạn mã nằm giữa các yêu cầu và phản hồi HTTP trong một ứng dụng ASP.NET Core. Khi một yêu cầu HTTP
+được gửi đến ứng dụng, middleware có thể thực hiện nhiều tác vụ trước khi yêu cầu được chuyển đến controller hoặc
+endpoint, và cũng có thể thao tác với phản hồi trước khi nó được gửi về cho khách hàng.
 
 ### Một số tác vụ chính của middleware:
 
@@ -30,7 +34,8 @@ Middleware là một đoạn mã nằm giữa các yêu cầu và phản hồi H
 
 ## 2. Cấu Trúc của Middleware
 
-Mỗi middleware trong ASP.NET Core thực hiện nhiệm vụ của mình thông qua phương thức `Invoke` hoặc `InvokeAsync`. Phương thức này nhận vào một đối tượng `HttpContext` và một delegate (hàm) đại diện cho middleware tiếp theo trong chuỗi.
+Mỗi middleware trong ASP.NET Core thực hiện nhiệm vụ của mình thông qua phương thức `Invoke` hoặc `InvokeAsync`. Phương
+thức này nhận vào một đối tượng `HttpContext` và một delegate (hàm) đại diện cho middleware tiếp theo trong chuỗi.
 
 ### Ví dụ về một middleware đơn giản
 
@@ -62,7 +67,9 @@ public class SimpleMiddleware
 
 ## 3. Đăng Ký Middleware
 
-Để sử dụng middleware trong ứng dụng ASP.NET Core, bạn cần đăng ký nó trong phương thức `Configure` của lớp `Startup`. Middleware được đăng ký theo thứ tự, và thứ tự này rất quan trọng vì nó ảnh hưởng đến cách yêu cầu và phản hồi được xử lý.
+Để sử dụng middleware trong ứng dụng ASP.NET Core, bạn cần đăng ký nó trong phương thức `Configure` của lớp `Startup`.
+Middleware được đăng ký theo thứ tự, và thứ tự này rất quan trọng vì nó ảnh hưởng đến cách yêu cầu và phản hồi được xử
+lý.
 
 ### Cách đăng ký middleware
 
@@ -92,7 +99,8 @@ public class Startup
 
 ASP.NET Core hỗ trợ nhiều loại middleware khác nhau. Dưới đây là một số ví dụ điển hình:
 
-- **Middleware Xác Thực và Ủy Quyền:** Kiểm tra xem người dùng đã đăng nhập hay chưa, và xem họ có quyền truy cập vào tài nguyên hay không.
+- **Middleware Xác Thực và Ủy Quyền:** Kiểm tra xem người dùng đã đăng nhập hay chưa, và xem họ có quyền truy cập vào
+  tài nguyên hay không.
 - **Middleware Xử Lý Lỗi:** Bắt và xử lý các lỗi phát sinh trong quá trình xử lý yêu cầu.
 - **Middleware Ghi Nhật Ký:** Ghi lại thông tin về yêu cầu và phản hồi để theo dõi hoạt động của ứng dụng.
 - **Middleware CORS:** Cho phép hoặc từ chối các yêu cầu từ các nguồn khác nhau.
@@ -129,7 +137,8 @@ public class Startup
 
 ## 6. Tạo Middleware Tùy Chỉnh
 
-Ngoài việc sử dụng các middleware có sẵn, bạn cũng có thể tạo middleware tùy chỉnh để thực hiện các tác vụ cụ thể theo nhu cầu của ứng dụng. Dưới đây là một ví dụ về middleware kiểm tra một tiêu đề tùy chỉnh trong yêu cầu:
+Ngoài việc sử dụng các middleware có sẵn, bạn cũng có thể tạo middleware tùy chỉnh để thực hiện các tác vụ cụ thể theo
+nhu cầu của ứng dụng. Dưới đây là một ví dụ về middleware kiểm tra một tiêu đề tùy chỉnh trong yêu cầu:
 
 ```csharp
 public class CustomMiddleware
@@ -182,7 +191,9 @@ public class Startup
 
 ## 7. Chạy Middleware Đối Chiếu
 
-Một điểm quan trọng là middleware có thể chạy đồng thời (concurrently). Bạn có thể gọi middleware bằng cách sử dụng phương thức `Task.Run`, nhưng cần thận trọng để tránh các vấn đề về đồng bộ. Việc sử dụng các async/await hợp lý sẽ giúp bạn kiểm soát tốt hơn quá trình này.
+Một điểm quan trọng là middleware có thể chạy đồng thời (concurrently). Bạn có thể gọi middleware bằng cách sử dụng
+phương thức `Task.Run`, nhưng cần thận trọng để tránh các vấn đề về đồng bộ. Việc sử dụng các async/await hợp lý sẽ giúp
+bạn kiểm soát tốt hơn quá trình này.
 
 ### Ví dụ về chạy middleware đồng thời
 
@@ -213,6 +224,9 @@ public class ConcurrentMiddleware
 
 ## 8. Kết Luận
 
-Middleware là một phần quan trọng trong kiến trúc của ASP.NET Core, giúp bạn mở rộng và tùy chỉnh ứng dụng của mình một cách linh hoạt. Việc hiểu rõ cách thức hoạt động và cách đăng ký middleware sẽ giúp bạn kiểm soát tốt hơn quy trình xử lý yêu cầu và phản hồi trong ứng dụng của mình.
+Middleware là một phần quan trọng trong kiến trúc của ASP.NET Core, giúp bạn mở rộng và tùy chỉnh ứng dụng của mình một
+cách linh hoạt. Việc hiểu rõ cách thức hoạt động và cách đăng ký middleware sẽ giúp bạn kiểm soát tốt hơn quy trình xử
+lý yêu cầu và phản hồi trong ứng dụng của mình.
 
-Hãy nhớ rằng thứ tự của middleware cũng rất quan trọng vì nó ảnh hưởng đến cách yêu cầu và phản hồi được xử lý. Nếu bạn có thêm câu hỏi hoặc muốn tìm hiểu sâu hơn về một khía cạnh nào đó của middleware, hãy cho tôi biết!
+Hãy nhớ rằng thứ tự của middleware cũng rất quan trọng vì nó ảnh hưởng đến cách yêu cầu và phản hồi được xử lý. Nếu bạn
+có thêm câu hỏi hoặc muốn tìm hiểu sâu hơn về một khía cạnh nào đó của middleware, hãy cho tôi biết!

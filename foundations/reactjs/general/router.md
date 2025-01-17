@@ -1,8 +1,12 @@
-Dưới đây là tài liệu chi tiết về sử dụng **React Router** để triển khai **Single Page Application (SPA)** trong React. Tài liệu sẽ hướng dẫn cách cấu hình và sử dụng React Router để chuyển đổi giữa các trang mà không cần tải lại toàn bộ trang.
+Dưới đây là tài liệu chi tiết về sử dụng **React Router** để triển khai **Single Page Application (SPA)** trong React.
+Tài liệu sẽ hướng dẫn cách cấu hình và sử dụng React Router để chuyển đổi giữa các trang mà không cần tải lại toàn bộ
+trang.
 
 # Điều Hướng Trong React: Sử Dụng React Router Để Tạo SPA
 
-React Router là thư viện giúp quản lý điều hướng (routing) trong ứng dụng React. Điều này cho phép tạo các ứng dụng SPA (Single Page Application), nơi người dùng có thể chuyển đổi giữa các trang mà không cần tải lại toàn bộ trang, mang đến trải nghiệm mượt mà và nhanh chóng.
+React Router là thư viện giúp quản lý điều hướng (routing) trong ứng dụng React. Điều này cho phép tạo các ứng dụng
+SPA (Single Page Application), nơi người dùng có thể chuyển đổi giữa các trang mà không cần tải lại toàn bộ trang, mang
+đến trải nghiệm mượt mà và nhanh chóng.
 
 ## Cài Đặt và Thiết Lập React Router
 
@@ -51,7 +55,8 @@ Dưới đây là các thành phần chính giúp React Router hoạt động m�
 
 ### 1. **BrowserRouter**
 
-- **BrowserRouter** tạo một router chính sử dụng API `History` của trình duyệt, giúp điều hướng mà không cần tải lại trang.
+- **BrowserRouter** tạo một router chính sử dụng API `History` của trình duyệt, giúp điều hướng mà không cần tải lại
+  trang.
 - Thường được dùng để bọc toàn bộ ứng dụng để kích hoạt điều hướng cho các component con.
 
 ### 2. **Routes** và **Route**
@@ -66,7 +71,8 @@ Dưới đây là các thành phần chính giúp React Router hoạt động m�
 ### 3. **Link** và **NavLink**
 
 - **Link** thay thế thẻ `<a>` để chuyển trang trong ứng dụng SPA mà không cần tải lại.
-- **NavLink** là phiên bản nâng cao của `Link`, cung cấp thêm tính năng để tự động thêm class `active` khi đường dẫn tương ứng đang được chọn.
+- **NavLink** là phiên bản nâng cao của `Link`, cung cấp thêm tính năng để tự động thêm class `active` khi đường dẫn
+  tương ứng đang được chọn.
 
 ```javascript
 // src/components/Navbar.js
@@ -94,7 +100,8 @@ export default Navbar;
 
 ### 4. **useNavigate**
 
-- **useNavigate** là một hook được dùng để điều hướng (navigation) một cách chương trình hóa. Bạn có thể dùng nó trong các tình huống khi cần điều hướng sau khi một sự kiện xảy ra, chẳng hạn như sau khi hoàn thành một form.
+- **useNavigate** là một hook được dùng để điều hướng (navigation) một cách chương trình hóa. Bạn có thể dùng nó trong
+  các tình huống khi cần điều hướng sau khi một sự kiện xảy ra, chẳng hạn như sau khi hoàn thành một form.
 
 ```javascript
 // src/pages/LoginPage.js
@@ -117,7 +124,8 @@ export default LoginPage;
 
 ### 5. **Outlet** (Nested Routes)
 
-**Outlet** được sử dụng để tạo ra **nested routes** (các route lồng nhau), cho phép xây dựng cấu trúc trang có các layout phụ.
+**Outlet** được sử dụng để tạo ra **nested routes** (các route lồng nhau), cho phép xây dựng cấu trúc trang có các
+layout phụ.
 
 ```javascript
 // src/pages/Dashboard.js
@@ -210,8 +218,10 @@ export default Product;
 
 ## Kết Hợp React Router Với Quản Lý State
 
-React Router có thể kết hợp với **Redux** hoặc **Context API** để quản lý trạng thái, tạo nên các ứng dụng SPA mạnh mẽ và dễ mở rộng.
+React Router có thể kết hợp với **Redux** hoặc **Context API** để quản lý trạng thái, tạo nên các ứng dụng SPA mạnh mẽ
+và dễ mở rộng.
 
 ## Kết Luận
 
-Việc sử dụng React Router giúp dễ dàng quản lý và điều hướng trong ứng dụng React theo cấu trúc SPA. Qua đó, trải nghiệm người dùng được tối ưu hơn, không cần tải lại toàn bộ trang.
+Việc sử dụng React Router giúp dễ dàng quản lý và điều hướng trong ứng dụng React theo cấu trúc SPA. Qua đó, trải nghiệm
+người dùng được tối ưu hơn, không cần tải lại toàn bộ trang.

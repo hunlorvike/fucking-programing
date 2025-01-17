@@ -1,6 +1,8 @@
 ## Khái quát về Cấu trúc dữ liệu và Thuật toán
 
-Bài viết này cung cấp một cái nhìn tổng quát về khái niệm Cấu trúc dữ liệu và Thuật toán, giúp độc giả tiếp cận từ góc độ tổng quát đến chi tiết, từ trừu tượng đến cụ thể khi xem xét về Cấu trúc dữ liệu. Hy vọng thông qua bài viết này, người đọc có thể có một cái nhìn tổng quan tốt hơn trong việc học và hiểu về Cấu trúc dữ liệu.
+Bài viết này cung cấp một cái nhìn tổng quát về khái niệm Cấu trúc dữ liệu và Thuật toán, giúp độc giả tiếp cận từ góc
+độ tổng quát đến chi tiết, từ trừu tượng đến cụ thể khi xem xét về Cấu trúc dữ liệu. Hy vọng thông qua bài viết này,
+người đọc có thể có một cái nhìn tổng quan tốt hơn trong việc học và hiểu về Cấu trúc dữ liệu.
 
 ***Nếu bạn không có thời gian đọc kỹ, đừng bỏ qua phần thứ tư***
 
@@ -8,15 +10,21 @@ Bài viết này cung cấp một cái nhìn tổng quát về khái niệm Cấ
 
 Ở mức độ trừu tượng cao nhất, Cấu trúc dữ liệu chỉ có hai loại: mảng (array) và danh sách liên kết (linked list).
 
-Câu này có vẻ hơi bất ngờ, bởi vì chúng ta còn biết đến các cấu trúc dữ liệu khác như bảng băm (hash table), ngăn xếp (stack), hàng đợi (queue), cây (tree), đồ thị (graph) và nhiều loại khác nữa.
+Câu này có vẻ hơi bất ngờ, bởi vì chúng ta còn biết đến các cấu trúc dữ liệu khác như bảng băm (hash table), ngăn xếp (
+stack), hàng đợi (queue), cây (tree), đồ thị (graph) và nhiều loại khác nữa.
 
-Khi phân tích vấn đề, chúng ta cần có tư duy đệ quy, từ trên xuống dưới, từ trừu tượng đến cụ thể. Những cấu trúc dữ liệu mà bạn liệt kê thuộc về "kiến trúc nâng cao", trong khi mảng và danh sách liên kết là "nền tảng cơ bản". Bởi vì các cấu trúc dữ liệu đa dạng kia, xét về nguồn gốc, đều là các thao tác đặc biệt trên danh sách liên kết hoặc mảng, chỉ khác nhau ở API mà thôi.
+Khi phân tích vấn đề, chúng ta cần có tư duy đệ quy, từ trên xuống dưới, từ trừu tượng đến cụ thể. Những cấu trúc dữ
+liệu mà bạn liệt kê thuộc về "kiến trúc nâng cao", trong khi mảng và danh sách liên kết là "nền tảng cơ bản". Bởi vì các
+cấu trúc dữ liệu đa dạng kia, xét về nguồn gốc, đều là các thao tác đặc biệt trên danh sách liên kết hoặc mảng, chỉ khác
+nhau ở API mà thôi.
 
 **Ví dụ:**
 
 - **Stack** và **Queue** đều có thể được thực hiện bằng mảng hoặc danh sách liên kết.
-  - **Mảng**: `Stack` có thể được mô phỏng bằng một mảng, đẩy và lấy phần tử từ cuối mảng. `Queue` có thể được mô phỏng bằng mảng, đẩy phần tử vào cuối mảng và lấy phần tử từ đầu mảng.
-  - **Danh sách liên kết**: `Stack` và `Queue` có thể được mô phỏng bằng danh sách liên kết, sử dụng thao tác chèn và xóa đầu hoặc cuối danh sách.
+    - **Mảng**: `Stack` có thể được mô phỏng bằng một mảng, đẩy và lấy phần tử từ cuối mảng. `Queue` có thể được mô
+      phỏng bằng mảng, đẩy phần tử vào cuối mảng và lấy phần tử từ đầu mảng.
+    - **Danh sách liên kết**: `Stack` và `Queue` có thể được mô phỏng bằng danh sách liên kết, sử dụng thao tác chèn và
+      xóa đầu hoặc cuối danh sách.
 
 ```python
 # Stack sử dụng danh sách liên kết
@@ -56,8 +64,8 @@ class Queue:
 ```
 
 - **Graph**: Có thể được biểu diễn bằng danh sách kề (linked list) hoặc ma trận kề (array).
-  - **Danh sách kề**: Dùng một danh sách để lưu trữ các nút kết nối với một nút cụ thể.
-  - **Ma trận kề**: Dùng một mảng hai chiều để biểu diễn các cạnh của đồ thị.
+    - **Danh sách kề**: Dùng một danh sách để lưu trữ các nút kết nối với một nút cụ thể.
+    - **Ma trận kề**: Dùng một mảng hai chiều để biểu diễn các cạnh của đồ thị.
 
 ```python
 # Graph sử dụng danh sách kề
@@ -81,9 +89,10 @@ class Graph:
         self.adj_matrix[v][u] = 1 # Cho đồ thị vô hướng
 ```
 
-- **Hash Table**: Sử dụng hàm băm để ánh xạ các khóa vào một mảng lớn. Để giải quyết xung đột băm, có thể sử dụng phương pháp chuỗi liên kết (linked list) hoặc thăm dò tuyến tính (linear probing).
-  - **Chuỗi liên kết**: Mỗi vị trí trong mảng chứa một danh sách liên kết chứa các phần tử có cùng khóa băm.
-  - **Thăm dò tuyến tính**: Nếu vị trí băm đã bị chiếm, tìm vị trí tiếp theo trống trong mảng.
+- **Hash Table**: Sử dụng hàm băm để ánh xạ các khóa vào một mảng lớn. Để giải quyết xung đột băm, có thể sử dụng phương
+  pháp chuỗi liên kết (linked list) hoặc thăm dò tuyến tính (linear probing).
+    - **Chuỗi liên kết**: Mỗi vị trí trong mảng chứa một danh sách liên kết chứa các phần tử có cùng khóa băm.
+    - **Thăm dò tuyến tính**: Nếu vị trí băm đã bị chiếm, tìm vị trí tiếp theo trống trong mảng.
 
 ```python
 # Hash Table sử dụng chuỗi liên kết
@@ -121,15 +130,17 @@ class HashTable:
 
 Duyệt (traverse) và truy cập (access), cụ thể hơn là: thêm (insert), xóa (delete), tìm kiếm (search), sửa đổi (update).
 
-Các loại cấu trúc dữ liệu rất nhiều, nhưng mục đích tồn tại của chúng là để thực hiện thêm, xóa, tìm kiếm, sửa đổi một cách hiệu quả trong các tình huống ứng dụng khác nhau. Hỏi xem, ngoài những thao tác đó ra, còn gì khác không?
+Các loại cấu trúc dữ liệu rất nhiều, nhưng mục đích tồn tại của chúng là để thực hiện thêm, xóa, tìm kiếm, sửa đổi một
+cách hiệu quả trong các tình huống ứng dụng khác nhau. Hỏi xem, ngoài những thao tác đó ra, còn gì khác không?
 
-Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, việc duyệt và truy cập của các loại cấu trúc dữ liệu chỉ có hai hình thức: tuyến tính (linear) và phi tuyến tính (non-linear).
+Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, việc duyệt và truy cập của các loại cấu trúc dữ liệu chỉ
+có hai hình thức: tuyến tính (linear) và phi tuyến tính (non-linear).
 
 **Ví dụ:**
 
 - **Duyệt mảng (linear):**
 
-  - **Python:**
+    - **Python:**
 
   ```python
   arr = [1, 2, 3, 4, 5]
@@ -137,7 +148,7 @@ Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, vi
       print(arr[i])
   ```
 
-  - **Java:**
+    - **Java:**
 
   ```java
   int[] arr = {1, 2, 3, 4, 5};
@@ -148,7 +159,7 @@ Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, vi
 
 - **Duyệt cây nhị phân (non-linear):**
 
-  - **Python:**
+    - **Python:**
 
   ```python
   class Node:
@@ -174,7 +185,7 @@ Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, vi
   preorder_traversal(root) # Output: 1 2 4 5 3
   ```
 
-  - **Java:**
+    - **Java:**
 
   ```java
   class Node {
@@ -212,9 +223,14 @@ Cách duyệt và truy cập? Chúng ta vẫn xem xét từ mức cao nhất, vi
 
 Cấu trúc dữ liệu là công cụ, thuật toán là cách giải quyết vấn đề bằng công cụ thích hợp.
 
-Lấy ví dụ về con người nguyên thủy, khi chúng ta học cấu trúc dữ liệu, giống như con người nguyên thủy sở hữu công cụ như dao đá, rìu đá. Và tùy vào kỹ thuật chế tạo công cụ khác nhau, dao đá lại chia thành loại dao sắc nhọn và dao răng cưa, loại trước thích hợp để săn bắn, loại sau thích hợp để cắt gọt; giống như cấu trúc dữ liệu "đồ thị", tùy vào cách thực hiện khác nhau (danh sách liên kết, mảng), có thể biểu diễn thành danh sách kề và ma trận kề, cái trước thích hợp xử lý đồ thị thưa, cái sau thích hợp xử lý đồ thị dày.
+Lấy ví dụ về con người nguyên thủy, khi chúng ta học cấu trúc dữ liệu, giống như con người nguyên thủy sở hữu công cụ
+như dao đá, rìu đá. Và tùy vào kỹ thuật chế tạo công cụ khác nhau, dao đá lại chia thành loại dao sắc nhọn và dao răng
+cưa, loại trước thích hợp để săn bắn, loại sau thích hợp để cắt gọt; giống như cấu trúc dữ liệu "đồ thị", tùy vào cách
+thực hiện khác nhau (danh sách liên kết, mảng), có thể biểu diễn thành danh sách kề và ma trận kề, cái trước thích hợp
+xử lý đồ thị thưa, cái sau thích hợp xử lý đồ thị dày.
 
-Người nguyên thủy muốn xây nhà, cần phải lập kế hoạch, dùng rìu đá để chặt cây, dao đá để mài góc,... cũng giống như khi chúng ta thiết kế thuật toán, phải tận dụng đặc tính của cấu trúc dữ liệu để giải quyết vấn đề thực tế.
+Người nguyên thủy muốn xây nhà, cần phải lập kế hoạch, dùng rìu đá để chặt cây, dao đá để mài góc,... cũng giống như khi
+chúng ta thiết kế thuật toán, phải tận dụng đặc tính của cấu trúc dữ liệu để giải quyết vấn đề thực tế.
 
 **Ví dụ:**
 
@@ -255,15 +271,20 @@ print("Sorted array:", arr)
 
 ### 4. Tóm tắt (quan trọng)
 
-Đối với người mới học thuật toán, điều quan trọng là phải học cách xem xét vấn đề từ góc độ khung, thay vì bận tâm đến các chi tiết.
+Đối với người mới học thuật toán, điều quan trọng là phải học cách xem xét vấn đề từ góc độ khung, thay vì bận tâm đến
+các chi tiết.
 
 Vấn đề chi tiết là gì? Ví dụ như i nên tăng đến n hay n - 1? Kích thước của mảng nên mở rộng n hay n + 1?
 
-Xem xét vấn đề từ góc độ khung là gì? Ví dụ như vấn đề tìm kiếm tiền xu trong lập trình động được đề cập trong phần trước, nếu bạn chỉ cần nhìn thoáng qua đoạn mã, tự động loại trừ các vấn đề chi tiết, trực tiếp trích xuất khung duyệt cây N nhánh, thì tư duy khung của bạn đã 到位了 (đạt được).
+Xem xét vấn đề từ góc độ khung là gì? Ví dụ như vấn đề tìm kiếm tiền xu trong lập trình động được đề cập trong phần
+trước, nếu bạn chỉ cần nhìn thoáng qua đoạn mã, tự động loại trừ các vấn đề chi tiết, trực tiếp trích xuất khung duyệt
+cây N nhánh, thì tư duy khung của bạn đã 到位了 (đạt được).
 
 **Tổng kết:**
 
-Cấu trúc dữ liệu và thuật toán là hai khái niệm không thể tách rời. Cấu trúc dữ liệu cung cấp công cụ, thuật toán sử dụng công cụ đó để giải quyết vấn đề. Hiểu rõ về cấu trúc dữ liệu và thuật toán giúp chúng ta viết code hiệu quả, giải quyết các vấn đề một cách logic và dễ dàng.
+Cấu trúc dữ liệu và thuật toán là hai khái niệm không thể tách rời. Cấu trúc dữ liệu cung cấp công cụ, thuật toán sử
+dụng công cụ đó để giải quyết vấn đề. Hiểu rõ về cấu trúc dữ liệu và thuật toán giúp chúng ta viết code hiệu quả, giải
+quyết các vấn đề một cách logic và dễ dàng.
 
 **Lời khuyên:**
 

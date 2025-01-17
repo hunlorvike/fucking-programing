@@ -4,23 +4,26 @@
 
 1. [Giới Thiệu](#1-giới-thiệu)
 2. [Tổng Quan về Session, Cookies và JWT](#2-tổng-quan-về-session-cookies-và-jwt)
-   - [Session](#session)
-   - [Cookies](#cookies)
-   - [JWT (JSON Web Token)](#jwt-json-web-token)
+    - [Session](#session)
+    - [Cookies](#cookies)
+    - [JWT (JSON Web Token)](#jwt-json-web-token)
 3. [So Sánh Chi Tiết](#3-so-sánh-chi-tiết)
-   - [Ưu và Nhược Điểm](#ưu-và-nhược-điểm)
+    - [Ưu và Nhược Điểm](#ưu-và-nhược-điểm)
 4. [Kết Luận](#4-kết-luận)
 
 ## 1. Giới Thiệu
 
-Session, Cookies và JWT là ba phương thức phổ biến để quản lý thông tin và trạng thái người dùng trong các ứng dụng web. Mỗi phương pháp có cách tiếp cận riêng để lưu trữ và xác thực, phù hợp với các yêu cầu và kịch bản sử dụng khác nhau.
+Session, Cookies và JWT là ba phương thức phổ biến để quản lý thông tin và trạng thái người dùng trong các ứng dụng web.
+Mỗi phương pháp có cách tiếp cận riêng để lưu trữ và xác thực, phù hợp với các yêu cầu và kịch bản sử dụng khác nhau.
 
 ## 2. Tổng Quan về Session, Cookies và JWT
 
 ### Session
 
-- **Stateful**: Server lưu trữ thông tin phiên cho từng người dùng. Mỗi lần người dùng thực hiện yêu cầu, server kiểm tra session ID và truy xuất dữ liệu trạng thái từ bộ nhớ hoặc cơ sở dữ liệu.
-- **Cách hoạt động**: Tạo một **Session ID** duy nhất cho mỗi phiên người dùng, lưu trên server và client gửi kèm ID trong cookie.
+- **Stateful**: Server lưu trữ thông tin phiên cho từng người dùng. Mỗi lần người dùng thực hiện yêu cầu, server kiểm
+  tra session ID và truy xuất dữ liệu trạng thái từ bộ nhớ hoặc cơ sở dữ liệu.
+- **Cách hoạt động**: Tạo một **Session ID** duy nhất cho mỗi phiên người dùng, lưu trên server và client gửi kèm ID
+  trong cookie.
 
 ### Cookies
 
@@ -29,13 +32,14 @@ Session, Cookies và JWT là ba phương thức phổ biến để quản lý th
 
 ### JWT (JSON Web Token)
 
-- **Stateless**: JWT chứa tất cả thông tin người dùng cần thiết trong chính token. Server chỉ cần xác thực token mà không cần lưu trữ thông tin phiên.
+- **Stateless**: JWT chứa tất cả thông tin người dùng cần thiết trong chính token. Server chỉ cần xác thực token mà
+  không cần lưu trữ thông tin phiên.
 - **Cách hoạt động**: Token bao gồm thông tin người dùng và xác thực, client gửi kèm token với mỗi yêu cầu HTTP.
 
 ## 3. So Sánh Chi Tiết
 
 | **Tiêu chí**                    | **Session**                                                                                                          | **Cookies**                                                                                                | **JWT (JSON Web Token)**                                                                                    |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
 | **Vị trí lưu trữ**              | Lưu trữ trên **server**; chỉ lưu **Session ID** trên client.                                                         | Lưu trữ trực tiếp trên **client** (trong trình duyệt).                                                     | Lưu trữ **token** trên client, thường là trong localStorage hoặc sessionStorage.                            |
 | **Cách thức hoạt động**         | Tạo **Session ID** duy nhất cho mỗi phiên người dùng, lưu trên server, và client gửi kèm ID trong cookie.            | Dữ liệu được lưu trực tiếp dưới dạng key-value trong cookie và gửi kèm với mọi yêu cầu HTTP.               | Token bao gồm thông tin người dùng và xác thực, client gửi kèm token với mỗi yêu cầu HTTP.                  |
 | **Kiểm tra tính toàn vẹn**      | Không có kiểm tra tự động từ server, nếu session ID bị đánh cắp thì nguy cơ mất thông tin cao.                       | Cookie có thể được mã hóa nhưng nếu không bảo vệ tốt, dễ bị đánh cắp.                                      | JWT sử dụng chữ ký số để đảm bảo tính toàn vẹn của token (Signature).                                       |
@@ -51,18 +55,23 @@ Session, Cookies và JWT là ba phương thức phổ biến để quản lý th
 
 1. **Session**:
 
-   - **Ưu điểm**: Bảo mật cao hơn vì dữ liệu lưu trên server, dễ quản lý dữ liệu người dùng.
-   - **Nhược điểm**: Không phù hợp với các hệ thống phân tán hoặc có lượng truy cập lớn, vì cần lưu session trên server.
+    - **Ưu điểm**: Bảo mật cao hơn vì dữ liệu lưu trên server, dễ quản lý dữ liệu người dùng.
+    - **Nhược điểm**: Không phù hợp với các hệ thống phân tán hoặc có lượng truy cập lớn, vì cần lưu session trên
+      server.
 
 2. **Cookies**:
 
-   - **Ưu điểm**: Đơn giản để sử dụng và thiết lập. Có thể lưu trữ trạng thái nhẹ và duy trì qua các lần truy cập.
-   - **Nhược điểm**: Bảo mật thấp nếu không được cấu hình đúng. Dễ bị lộ nếu không sử dụng `HttpOnly`, `Secure`, và `SameSite` để bảo vệ khỏi XSS, CSRF.
+    - **Ưu điểm**: Đơn giản để sử dụng và thiết lập. Có thể lưu trữ trạng thái nhẹ và duy trì qua các lần truy cập.
+    - **Nhược điểm**: Bảo mật thấp nếu không được cấu hình đúng. Dễ bị lộ nếu không sử dụng `HttpOnly`, `Secure`, và
+      `SameSite` để bảo vệ khỏi XSS, CSRF.
 
 3. **JWT**:
-   - **Ưu điểm**: Tính chất không trạng thái, cho phép xác thực nhanh và hiệu quả trong các ứng dụng phân tán. Bảo mật tốt khi sử dụng signature.
-   - **Nhược điểm**: Khó thu hồi hoặc vô hiệu hóa token khi bị đánh cắp. Thường cần triển khai thêm cơ chế Refresh Token để gia hạn.
+    - **Ưu điểm**: Tính chất không trạng thái, cho phép xác thực nhanh và hiệu quả trong các ứng dụng phân tán. Bảo mật
+      tốt khi sử dụng signature.
+    - **Nhược điểm**: Khó thu hồi hoặc vô hiệu hóa token khi bị đánh cắp. Thường cần triển khai thêm cơ chế Refresh
+      Token để gia hạn.
 
 ## 4. Kết Luận
 
-Session, Cookies và JWT đều có vai trò quan trọng trong việc quản lý thông tin và trạng thái người dùng trong ứng dụng web. Việc lựa chọn phương pháp phù hợp phụ thuộc vào yêu cầu cụ thể của ứng dụng, khả năng mở rộng và yếu tố bảo mật.
+Session, Cookies và JWT đều có vai trò quan trọng trong việc quản lý thông tin và trạng thái người dùng trong ứng dụng
+web. Việc lựa chọn phương pháp phù hợp phụ thuộc vào yêu cầu cụ thể của ứng dụng, khả năng mở rộng và yếu tố bảo mật.
