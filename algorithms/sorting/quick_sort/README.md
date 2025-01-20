@@ -1,123 +1,158 @@
-# Thuật toán Quick Sort: Sắp xếp nhanh
+## **🚀 "GIẢI MÃ" THUẬT TOÁN QUICK SORT: SẮP XẾP NHANH CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một trong những thuật toán sắp xếp được yêu thích
+nhất: Quick Sort (sắp xếp nhanh). Đây là một thuật toán "chia để trị" cực kỳ hiệu quả, thường được dùng trong các thư
+viện sắp xếp chuẩn. Cùng mình "mổ xẻ" nó nhé!
 
-1. [Giới thiệu](#giới-thiệu)
-2. [Cách hoạt động](#cách-hoạt-động)
-3. [Mã giả của thuật toán Quick Sort](#mã-giả-của-thuật-toán-quick-sort)
-4. [Giải thích](#giải-thích)
-5. [Ví dụ](#ví-dụ)
-6. [Độ phức tạp](#độ-phức-tạp)
-7. [Cải tiến](#cải-tiến)
-8. [Lưu ý](#lưu-ý)
+### **I. QUICK SORT LÀ GÌ?**
 
----
+* **Quick Sort (Sắp xếp nhanh):** Là thuật toán sắp xếp dựa trên kỹ thuật "chia để trị" (divide and conquer), chọn một
+  phần tử làm "pivot" rồi phân chia và đệ quy.
+* **Nó hoạt động như thế nào?**
+    * Giống như khi bạn chia một công việc lớn thành các phần nhỏ hơn, giải quyết từng phần rồi kết hợp lại.
+* **Ưu điểm:**
+    * **Nhanh:** Chạy rất nhanh trong trường hợp trung bình.
+    * **Hiệu quả:** Phù hợp với các danh sách lớn.
+    * **In-place:** Ít tốn bộ nhớ hơn Merge Sort.
+* **Nhược điểm:**
+    * **Có thể chậm:** Chạy chậm trong trường hợp xấu nhất (danh sách đã được sắp xếp hoặc gần sắp xếp).
+    * **Không ổn định:** Có thể thay đổi thứ tự các phần tử bằng nhau.
 
-## Giới thiệu
+### **II. CÁCH HOẠT ĐỘNG (TỪNG BƯỚC CHI TIẾT)**
 
-Thuật toán Quick Sort (hay còn gọi là sắp xếp nhanh) là một thuật toán sắp xếp chia để trị (divide and conquer) rất hiệu
-quả và được sử dụng rộng rãi trong lập trình. Nó hoạt động bằng cách chọn một phần tử làm "pivot" (trụ) và chia danh
-sách thành hai phần: các phần tử nhỏ hơn pivot và các phần tử lớn hơn pivot. Sau đó, nó đệ quy sắp xếp hai phần này cho
-đến khi danh sách được sắp xếp hoàn toàn.
+1. **Chọn Pivot:**
+    * Chọn một phần tử trong danh sách làm "pivot" (phần tử trụ).
+    * Có nhiều cách chọn, ví dụ: chọn phần tử giữa, chọn ngẫu nhiên, ...
+2. **Phân chia (Partition):**
+    * Chia danh sách thành 2 phần:
+        * Phần bên trái: Các phần tử nhỏ hơn hoặc bằng `pivot`.
+        * Phần bên phải: Các phần tử lớn hơn `pivot`.
+3. **Sắp xếp đệ quy:**
+    * Gọi đệ quy `quickSort` cho phần bên trái và bên phải.
+4. **Kết hợp:**
+    * Kết hợp phần bên trái, `pivot` và phần bên phải thành danh sách đã sắp xếp.
 
-## Cách hoạt động
+### **III. MÃ GIẢ (PSEUDOCODE) - DỄ HIỂU NHƯ ĐANG CHƠI GAME**
 
-1. **Chọn pivot:** Chọn một phần tử từ danh sách để làm pivot. Có nhiều cách chọn pivot, ví dụ như:
-    - Lấy phần tử đầu tiên hoặc cuối cùng.
-    - Lấy phần tử ở giữa danh sách.
-    - Chọn ngẫu nhiên một phần tử.
-2. **Phân chia:** Tạo hai danh sách con:
-    - Danh sách con trái: chứa các phần tử nhỏ hơn hoặc bằng pivot.
-    - Danh sách con phải: chứa các phần tử lớn hơn pivot.
-3. **Sắp xếp đệ quy:** Gọi đệ quy hàm sắp xếp nhanh cho danh sách con trái và danh sách con phải.
-4. **Kết hợp:** Kết hợp danh sách con trái, pivot, và danh sách con phải để tạo thành danh sách đã sắp xếp.
+```
+quickSort(arr):
+  n = length(arr)
 
-## Mã giả của thuật toán Quick Sort
+  IF n <= 1:
+    RETURN arr  // Dừng khi có 0 hoặc 1 phần tử
 
-```typescript
-function quickSort(arr: number[]): number[] {
-  const n = arr.length;
+  pivot = arr[floor(n / 2)]  // Chọn phần tử giữa làm pivot
+  left = [], right = []
 
-  if (n <= 1) {
-    return arr;
-  }
+  FOR i FROM 0 to n-1:
+    IF arr[i] < pivot:
+      left.append(arr[i])
+    ELSE IF arr[i] > pivot:
+      right.append(arr[i])
 
-  const pivot = arr[Math.floor(n / 2)];
-  const left: number[] = [];
-  const right: number[] = [];
+  RETURN quickSort(left) + [pivot] + quickSort(right) // Kết hợp và đệ quy
+```
 
-  for (let i = 0; i < n; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else if (arr[i] > pivot) {
-      right.push(arr[i]);
+### **IV. GIẢI THÍCH CHI TIẾT (ĐỌC KỸ NHA!)**
+
+* **`quickSort(arr)`:** Hàm chính của thuật toán.
+* **`n = length(arr)`:** Lấy độ dài của danh sách.
+* **`IF n <= 1`:** Nếu danh sách có 0 hoặc 1 phần tử thì đã được sắp xếp, trả về luôn.
+* **`pivot = arr[floor(n / 2)]`:** Chọn phần tử giữa làm `pivot`.
+* **`left = [], right = []`:** Tạo 2 danh sách con để lưu trữ các phần tử nhỏ hơn và lớn hơn `pivot`.
+* **`FOR i FROM 0 to n-1`:** Vòng lặp duyệt qua các phần tử.
+* **`IF arr[i] < pivot`:** Nếu phần tử nhỏ hơn `pivot` thì thêm vào danh sách `left`.
+* **`ELSE IF arr[i] > pivot`:** Nếu phần tử lớn hơn `pivot` thì thêm vào danh sách `right`.
+* **`RETURN quickSort(left) + [pivot] + quickSort(right)`:** Đệ quy sắp xếp danh sách `left` và `right`, kết hợp với
+  `pivot` để tạo thành danh sách đã sắp xếp.
+
+### **V. VÍ DỤ MINH HỌA (CỰC KỲ TRỰC QUAN)**
+
+Giả sử ta có danh sách: `[5, 1, 4, 2, 8]` và cần sắp xếp tăng dần.
+
+1. **Chọn pivot và phân chia:**
+    * `pivot = 4`.
+    * `left = [1, 2]`.
+    * `right = [5, 8]`.
+
+2. **Đệ quy (sắp xếp từng nửa):**
+    * `quickSort([1, 2])` -> `[1, 2]` (đã sắp xếp).
+    * `quickSort([5, 8])` -> `[5, 8]` (đã sắp xếp).
+
+3. **Kết hợp:**
+    * `[1, 2] + [4] + [5, 8]` -> `[1, 2, 4, 5, 8]`.
+
+* **Kết quả:** `[1, 2, 4, 5, 8]` (đã sắp xếp).
+
+### **VI. CODE VÍ DỤ BẰNG C#**
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class QuickSortExample
+{
+    public static int[] QuickSort(int[] arr)
+    {
+        if (arr.Length <= 1)
+        {
+            return arr;
+        }
+
+        int pivot = arr[arr.Length / 2];
+        List<int> left = new List<int>();
+        List<int> right = new List<int>();
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (arr[i] < pivot)
+            {
+                left.Add(arr[i]);
+            }
+            else if (arr[i] > pivot)
+            {
+                right.Add(arr[i]);
+            }
+        }
+
+        return QuickSort(left.ToArray())
+            .Concat(new int[] { pivot })
+            .Concat(QuickSort(right.ToArray()))
+            .ToArray();
     }
-  }
 
-  return [...quickSort(left), pivot, ...quickSort(right)];
+    public static void Main(string[] args)
+    {
+        int[] arr = { 5, 1, 4, 2, 8 };
+        int[] sortedArr = QuickSort(arr);
+
+        Console.WriteLine("Mảng đã sắp xếp: " + string.Join(", ", sortedArr));
+        // Output: Mảng đã sắp xếp: 1, 2, 4, 5, 8
+    }
 }
 ```
 
-## Giải thích
+### **VII. ĐỘ PHỨC TẠP (ĐỘ NHANH CHẬM CỦA THUẬT TOÁN)**
 
-- **n = arr.length:** Lấy độ dài của mảng arr.
-- **IF n <= 1:** Nếu mảng có độ dài nhỏ hơn hoặc bằng 1, mảng đã được sắp xếp và trả về trực tiếp.
-- **pivot = arr[Math.floor(n / 2)]:** Chọn phần tử ở giữa mảng làm pivot.
-- **left: number[] = [], right: number[] = []:** Khởi tạo hai danh sách con trống để lưu trữ các phần tử nhỏ hơn và lớn
-  hơn pivot.
-- **for (let i = 0; i < n; i++):** Vòng lặp duyệt qua từng phần tử trong mảng.
-- **if (arr[i] < pivot):** Nếu phần tử nhỏ hơn pivot, thêm vào danh sách con trái.
-- **else if (arr[i] > pivot):** Nếu phần tử lớn hơn pivot, thêm vào danh sách con phải.
-- **return [...quickSort(left), pivot, ...quickSort(right)]:** Gọi đệ quy hàm `quickSort` cho danh sách con trái và danh
-  sách con phải, sau đó kết hợp chúng với pivot để tạo thành danh sách đã sắp xếp.
+* **Độ phức tạp thời gian:**
+    * **Trường hợp tốt nhất:** O(n log n)
+    * **Trường hợp trung bình:** O(n log n)
+    * **Trường hợp xấu nhất:** O(n²)
+* **Độ phức tạp không gian:** O(log n) (do đệ quy).
 
-## Ví dụ
+### **VIII. CẢI TIẾN (MỘT SỐ MẸO)**
 
-Giả sử chúng ta có danh sách cần sắp xếp tăng dần: `5, 1, 4, 2, 8`
+* **Chọn pivot thông minh:** Chọn pivot ngẫu nhiên hoặc dùng "median-of-three" để tránh trường hợp xấu nhất.
+* **Tối ưu hóa đệ quy:** Sử dụng "tail recursion" để tối ưu đệ quy.
 
-### Bước 1: Chọn pivot và phân chia
+### **IX. LƯU Ý QUAN TRỌNG**
 
-- Pivot = 4 (phần tử giữa).
-- Danh sách trái: [1, 2]
-- Danh sách phải: [5, 8]
+* **Nhanh trong thực tế:** Quick Sort rất nhanh trong trường hợp trung bình.
+* **Chọn pivot quan trọng:** Cách chọn `pivot` ảnh hưởng lớn đến hiệu suất.
+* **Không ổn định:** Thứ tự các phần tử bằng nhau có thể bị thay đổi.
 
-### Bước 2: Sắp xếp đệ quy
+### **KẾT LUẬN**
 
-- Gọi `quickSort` cho danh sách trái: `1, 2`
-    - Pivot = 1
-    - Danh sách trái: []
-    - Danh sách phải: [2]
-    - Kết quả: [1, 2]
-- Gọi `quickSort` cho danh sách phải: `5, 8`
-    - Pivot = 5
-    - Danh sách trái: []
-    - Danh sách phải: [8]
-    - Kết quả: [5, 8]
-
-### Bước 3: Kết hợp
-
-- Kết hợp danh sách trái, pivot và danh sách phải: `1, 2` + `4` + `5, 8` -> `1, 2, 4, 5, 8`
-
-**Kết quả:** Danh sách đã được sắp xếp: `1, 2, 4, 5, 8`
-
-## Độ phức tạp
-
-- **Độ phức tạp thời gian:**
-    - Trường hợp xấu nhất: O(n²), khi mảng đã được sắp xếp hoặc gần như đã sắp xếp.
-    - Trường hợp tốt nhất: O(n log n), khi pivot được chọn một cách hiệu quả.
-    - Trường hợp trung bình: O(n log n).
-- **Độ phức tạp không gian:** O(log n), do việc đệ quy.
-
-## Cải tiến
-
-- **Chọn pivot:** Chọn pivot một cách thông minh (ví dụ, bằng cách sử dụng phương pháp "median-of-three") để tránh
-  trường hợp xấu nhất.
-- **Tối ưu hóa đệ quy:** Sử dụng kỹ thuật "tail recursion" để tối ưu hóa đệ quy.
-
-## Lưu ý
-
-- Thuật toán Quick Sort rất hiệu quả trong trường hợp trung bình, nhưng có thể gặp phải trường hợp xấu nhất với độ phức
-  tạp thời gian O(n²).
-- Chọn pivot một cách hợp lý là rất quan trọng để tối ưu hóa hiệu suất của thuật toán.
-- Thuật toán Quick Sort có thể được tối ưu hóa bằng cách sử dụng kỹ thuật "tail recursion" để loại bỏ đệ quy và cải
-  thiện hiệu suất.
+Quick Sort là một thuật toán sắp xếp rất quan trọng và được sử dụng rộng rãi trong thực tế. Hy vọng qua bài viết này,
+các bạn đã hiểu rõ hơn về cách nó hoạt động. Chúc các bạn code thành công! 😎

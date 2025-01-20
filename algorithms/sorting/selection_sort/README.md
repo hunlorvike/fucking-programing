@@ -1,117 +1,135 @@
-# Thuật toán Selection Sort: Sắp xếp chọn
+## **🚀 "GIẢI MÃ" THUẬT TOÁN SELECTION SORT: SẮP XẾP CHỌN CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một thuật toán sắp xếp đơn giản mà hiệu quả: Selection
+Sort (sắp xếp chọn). Tuy không phải là thuật toán nhanh nhất, nhưng nó lại rất dễ hiểu và là nền tảng cho nhiều thuật
+toán khác. Cùng mình "mổ xẻ" nó nhé!
 
-1. [Giới thiệu](#giới-thiệu)
-2. [Cách hoạt động](#cách-hoạt-động)
-3. [Mã giả của thuật toán Selection Sort](#mã-giả-của-thuật-toán-selection-sort)
-4. [Giải thích](#giải-thích)
-5. [Ví dụ](#ví-dụ)
-6. [Độ phức tạp](#độ-phức-tạp)
-7. [Lưu ý](#lưu-ý)
+### **I. SELECTION SORT LÀ GÌ?**
 
----
+* **Selection Sort (Sắp xếp chọn):** Là thuật toán sắp xếp bằng cách tìm phần tử nhỏ nhất (hoặc lớn nhất) trong danh
+  sách chưa sắp xếp, rồi hoán đổi nó với phần tử đầu tiên của danh sách chưa sắp xếp.
+* **Nó hoạt động như thế nào?**
+    * Giống như khi bạn đang chọn ra người thấp nhất (hoặc cao nhất) trong một hàng, rồi đưa người đó lên đầu hàng, và
+      tiếp tục chọn người thấp nhất trong những người còn lại.
+* **Ưu điểm:**
+    * **Đơn giản:** Dễ hiểu và dễ cài đặt.
+    * **In-place:** Không cần dùng thêm nhiều bộ nhớ.
+* **Nhược điểm:**
+    * **Chậm:** Không hiệu quả với danh sách lớn.
+    * **Luôn duyệt toàn bộ:** Luôn phải duyệt hết các phần tử, không dừng sớm được.
 
-## Giới thiệu
+### **II. CÁCH HOẠT ĐỘNG (TỪNG BƯỚC CHI TIẾT)**
 
-Thuật toán Selection Sort (hay còn gọi là sắp xếp chọn) là một thuật toán sắp xếp đơn giản, hoạt động dựa trên việc tìm
-phần tử nhỏ nhất (hoặc lớn nhất) trong danh sách và hoán đổi nó với phần tử đầu tiên của danh sách. Quá trình này được
-lặp lại cho đến khi toàn bộ danh sách được sắp xếp.
+1. **Tìm phần tử nhỏ nhất (hoặc lớn nhất):** Duyệt qua danh sách chưa sắp xếp, tìm phần tử nhỏ nhất (hoặc lớn nhất).
+2. **Hoán đổi:** Hoán đổi phần tử nhỏ nhất (hoặc lớn nhất) tìm được với phần tử đầu tiên của danh sách chưa sắp xếp.
+3. **Lặp lại:** Lặp lại bước 1 và 2 cho phần còn lại của danh sách, mỗi lần bỏ qua các phần tử đã sắp xếp.
 
-## Cách hoạt động
+### **III. MÃ GIẢ (PSEUDOCODE) - DỄ HIỂU NHƯ ĂN KẸO**
 
-1. **Tìm phần tử nhỏ nhất:** Thuật toán bắt đầu bằng việc duyệt qua danh sách và tìm phần tử nhỏ nhất.
-2. **Hoán đổi:** Phần tử nhỏ nhất được hoán đổi với phần tử đầu tiên của danh sách.
-3. **Lặp lại:** Bước 1 và 2 được lặp lại cho phần còn lại của danh sách, bắt đầu từ phần tử thứ hai, cho đến khi danh
-   sách được sắp xếp hoàn toàn.
+```
+selectionSort(arr):
+  n = length(arr)
 
-## Mã giả của thuật toán Selection Sort
+  FOR i FROM 0 to n-2:
+    minIndex = i
+    FOR j FROM i+1 to n-1:
+      IF arr[j] < arr[minIndex]:
+        minIndex = j
+    IF minIndex != i:
+      swap(arr[i], arr[minIndex])
+  RETURN arr
+```
 
-```typescript
-function selectionSort(arr: number[]): number[] {
-  const n = arr.length;
+### **IV. GIẢI THÍCH CHI TIẾT (ĐỌC KỸ NHA!)**
 
-  for (let i = 0; i < n - 1; i++) {
-    let minIndex = i; // Giả sử phần tử đầu tiên là nhỏ nhất
-    for (let j = i + 1; j < n; j++) {
-      // Duyệt phần chưa được sắp xếp
-      if (arr[j] < arr[minIndex]) {
-        // Tìm phần tử nhỏ hơn
-        minIndex = j; // Cập nhật chỉ số phần tử nhỏ nhất
-      }
+* **`n = length(arr)`:** Lấy số lượng phần tử của danh sách.
+* **`FOR i FROM 0 to n-2`:** Vòng lặp ngoài, duyệt qua từng phần tử (trừ phần tử cuối cùng).
+* **`minIndex = i`:** Giả sử phần tử hiện tại (tại vị trí `i`) là nhỏ nhất.
+* **`FOR j FROM i+1 to n-1`:** Vòng lặp trong, tìm phần tử nhỏ nhất trong phần còn lại của danh sách.
+* **`IF arr[j] < arr[minIndex]`:** Nếu tìm thấy phần tử nhỏ hơn, cập nhật `minIndex`.
+* **`IF minIndex != i`:** Nếu phần tử nhỏ nhất không phải là phần tử hiện tại, hoán đổi chúng.
+* **`RETURN arr`:** Trả về danh sách đã sắp xếp.
+
+### **V. VÍ DỤ MINH HỌA (CỰC KỲ TRỰC QUAN)**
+
+Giả sử ta có danh sách: `[64, 25, 12, 22, 11]` và cần sắp xếp tăng dần.
+
+* **Lần 1 (`i=0`):**
+    * Tìm min: `11` tại vị trí `4`.
+    * Hoán đổi: `[11, 25, 12, 22, 64]`.
+* **Lần 2 (`i=1`):**
+    * Tìm min (từ vị trí 1): `12` tại vị trí `2`.
+    * Hoán đổi: `[11, 12, 25, 22, 64]`.
+* **Lần 3 (`i=2`):**
+    * Tìm min (từ vị trí 2): `22` tại vị trí `3`.
+    * Hoán đổi: `[11, 12, 22, 25, 64]`.
+* **Lần 4 (`i=3`):**
+    * Tìm min (từ vị trí 3): `25` tại vị trí `3`.
+    * Hoán đổi: `[11, 12, 22, 25, 64]`.
+
+* **Kết quả:** `[11, 12, 22, 25, 64]` (đã sắp xếp).
+
+### **VI. CODE VÍ DỤ BẰNG C#**
+
+```csharp
+using System;
+
+public class SelectionSortExample
+{
+    public static int[] SelectionSort(int[] arr)
+    {
+        int n = arr.Length;
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++)
+            {
+                if (arr[j] < arr[minIndex])
+                {
+                    minIndex = j;
+                }
+            }
+
+            // Hoán đổi nếu tìm thấy phần tử nhỏ hơn
+            if (minIndex != i)
+            {
+                int temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+        }
+
+        return arr;
     }
 
-    // Hoán đổi nếu tìm thấy phần tử nhỏ hơn
-    if (minIndex !== i) {
-      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
-    }
-  }
+    public static void Main(string[] args)
+    {
+        int[] arr = { 64, 25, 12, 22, 11 };
+        int[] sortedArr = SelectionSort(arr);
 
-  return arr;
+        Console.WriteLine("Mảng đã sắp xếp: " + string.Join(", ", sortedArr));
+        // Output: Mảng đã sắp xếp: 11, 12, 22, 25, 64
+    }
 }
 ```
 
-## Giải thích
+### **VII. ĐỘ PHỨC TẠP (ĐỘ NHANH CHẬM CỦA THUẬT TOÁN)**
 
-- **n = arr.length:** Lấy độ dài của mảng arr.
-- **for i from 0 to n - 1 do:** Vòng lặp ngoài duyệt qua từng phần tử trong mảng (n lần).
-- **minIndex = i:** Khởi tạo biến minIndex với giá trị i, giả sử phần tử đầu tiên là nhỏ nhất.
-- **for j from i + 1 to n do:** Vòng lặp trong để tìm phần tử nhỏ nhất trong phần còn lại của mảng (trừ phần tử đầu).
-- **if (arr[j] < arr[minIndex]) then minIndex = j:** So sánh phần tử hiện tại (arr[j]) với phần tử nhỏ nhất hiện tại (
-  arr[minIndex]). Nếu arr[j] nhỏ hơn, cập nhật minIndex với j.
-- **if (minIndex !== i) then swap arr[i] and arr[minIndex]:** Nếu phần tử nhỏ nhất không phải là phần tử đầu tiên (
-  minIndex !== i), hoán đổi hai phần tử.
+* **Độ phức tạp thời gian:** O(n²) (luôn phải duyệt hết các phần tử).
+* **Độ phức tạp không gian:** O(1) (không dùng thêm bộ nhớ).
 
-## Ví dụ
+### **VIII. LƯU Ý QUAN TRỌNG**
 
-Giả sử chúng ta có danh sách cần sắp xếp tăng dần: `64, 25, 12, 22, 11`
+* **Đơn giản nhưng không nhanh:** Selection Sort dễ hiểu, dễ cài đặt nhưng không hiệu quả với danh sách lớn.
+* **Không có trường hợp tốt nhất:** Luôn duyệt hết các phần tử dù danh sách đã được sắp xếp gần như hoàn chỉnh.
+* **In-place:** Không cần dùng thêm nhiều bộ nhớ.
+* **Không ổn định:** Thứ tự của các phần tử bằng nhau có thể bị thay đổi.
+* **Không nên dùng cho danh sách lớn:** Hãy dùng các thuật toán khác như Merge Sort, Quick Sort khi cần sắp xếp danh
+  sách lớn.
 
-### Lần lặp 1:
+### **KẾT LUẬN**
 
-- i = 0
-    - minIndex = 0
-    - j = 1: **25 < 64**, minIndex = 1
-    - j = 2: **12 < 25**, minIndex = 2
-    - j = 3: 22 < 12, minIndex vẫn giữ là 2
-    - j = 4: **11 < 12**, minIndex = 4
-    - Hoán đổi: `11, 25, 12, 22, 64`
-
-### Lần lặp 2:
-
-- i = 1
-    - minIndex = 1
-    - j = 2: **12 < 25**, minIndex = 2
-    - j = 3: 22 < 12, minIndex vẫn giữ là 2
-    - j = 4: 64 < 12, minIndex vẫn giữ là 3
-    - Hoán đổi: `11, 12, 25, 22, 64`
-
-### Lần lặp 3:
-
-- i = 2
-    - minIndex = 2
-    - j = 3: **22 < 25**, minIndex = 3
-    - j = 4: **64 < 22**, minIndex vẫn giữ là 3
-    - Hoán đổi: `11, 12, 22, 25, 64`
-
-### Lần lặp 4:
-
-- i = 3
-    - minIndex = 3
-    - j = 4: 64 < 25, minIndex vẫn giữ là 3
-    - Hoán đổi: `11, 12, 22, 25, 64`
-
-**Kết quả:** Danh sách đã được sắp xếp: `11, 12, 22, 25, 64`
-
-## Độ phức tạp
-
-- **Độ phức tạp thời gian:** O(n²)
-- **Độ phức tạp không gian:** O(1)
-
-## Lưu ý
-
-- **Tìm phần tử nhỏ nhất (hoặc lớn nhất):** Thuật toán duyệt qua danh sách và tìm phần tử nhỏ nhất (hoặc lớn nhất) trong
-  phần chưa được sắp xếp.
-- **Hoán đổi vị trí:** Phần tử nhỏ nhất (hoặc lớn nhất) được hoán đổi vị trí với phần tử đầu tiên của phần chưa được sắp
-  xếp.
-- **Lặp lại:** Quá trình tìm và hoán đổi được lặp lại cho phần còn lại của danh sách, mỗi lần thu hẹp phần chưa được sắp
-  xếp.
+Selection Sort là một thuật toán sắp xếp rất cơ bản, giúp bạn hiểu rõ hơn về cách các thuật toán sắp xếp hoạt động. Tuy
+không phải là thuật toán nhanh nhất, nhưng nó là một bước quan trọng để bạn tiến xa hơn trong thế giới thuật toán. Chúc
+các bạn code thành công! 😎

@@ -1,140 +1,176 @@
-# Thuật toán Merge Sort: Sắp xếp trộn
+## **🚀 "GIẢI MÃ" THUẬT TOÁN MERGE SORT: SẮP XẾP TRỘN CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một thuật toán sắp xếp rất mạnh mẽ: Merge Sort (sắp xếp trộn). Đây là một thuật toán "chia để trị" cực kỳ hiệu quả, thường được dùng trong các ứng dụng thực tế. Cùng mình "mổ xẻ" nó nhé!
 
-1. [Giới thiệu](#giới-thiệu)
-2. [Cách hoạt động](#cách-hoạt-động)
-3. [Mã giả của thuật toán Merge Sort](#mã-giả-của-thuật-toán-merge-sort)
-4. [Giải thích](#giải-thích)
-5. [Ví dụ](#ví-dụ)
-6. [Độ phức tạp](#độ-phức-tạp)
-7. [Cải tiến](#cải-tiến)
-8. [Lưu ý](#lưu-ý)
+### **I. MERGE SORT LÀ GÌ?**
 
----
+*   **Merge Sort (Sắp xếp trộn):** Là thuật toán sắp xếp dựa trên kỹ thuật "chia để trị" (divide and conquer).
+*   **Nó hoạt động như thế nào?**
+    *   Giống như khi bạn chia một công việc lớn thành các công việc nhỏ hơn, giải quyết từng công việc nhỏ rồi "trộn" lại kết quả.
+*   **Ưu điểm:**
+    *   **Hiệu quả:** Chạy nhanh ngay cả trên danh sách lớn.
+    *   **Ổn định:** Không làm thay đổi thứ tự các phần tử bằng nhau.
+    *   **Đảm bảo hiệu suất:** Độ phức tạp thời gian luôn là O(n log n).
+*   **Nhược điểm:**
+    *   **Tốn bộ nhớ:** Cần thêm bộ nhớ để lưu các mảng con.
 
-## Giới thiệu
+### **II. CÁCH HOẠT ĐỘNG (TỪNG BƯỚC CHI TIẾT)**
 
-Thuật toán Merge Sort (hay còn gọi là sắp xếp trộn) là một thuật toán sắp xếp dựa trên kỹ thuật chia để trị (divide and
-conquer). Thuật toán này chia mảng cần sắp xếp thành hai nửa, sau đó sắp xếp từng nửa và cuối cùng là gộp (merge) chúng
-lại với nhau. Merge Sort có ưu điểm là ổn định và hiệu quả ngay cả với các mảng lớn, với độ phức tạp thời gian là O(n
-log n).
+1.  **Chia (Divide):**
+    *   Chia danh sách cần sắp xếp thành hai nửa (trái và phải).
+    *   Tiếp tục chia đôi đến khi mỗi nửa chỉ còn một phần tử (hoặc rỗng).
 
-## Cách hoạt động
+2.  **Sắp xếp (Conquer):**
+    *   Các nửa có một phần tử được xem là đã sắp xếp.
 
-1. **Chia:** Thuật toán bắt đầu bằng việc chia mảng cần sắp xếp thành hai nửa bằng nhau.
-2. **Sắp xếp đệ quy:** Tiếp tục chia nhỏ hai nửa đó cho đến khi chỉ còn một phần tử (một phần tử được xem là đã sắp
-   xếp).
-3. **Gộp:** Sau đó, gộp hai nửa đã sắp xếp thành một mảng lớn hơn bằng cách so sánh từng phần tử từ hai nửa và đưa phần
-   tử nhỏ hơn vào mảng kết quả.
+3.  **Trộn (Merge):**
+    *   Gộp (merge) hai nửa đã sắp xếp lại thành một mảng lớn hơn bằng cách so sánh và chèn từng phần tử vào đúng vị trí.
 
-## Mã giả của thuật toán Merge Sort
+### **III. MÃ GIẢ (PSEUDOCODE) - DỄ HIỂU NHƯ ĐỌC TRUYỆN**
 
-```typescript
-function mergeSort(arr: number[]): number[] {
-  const n = arr.length;
+```
+mergeSort(arr):
+  n = length(arr)
 
-  if (n <= 1) {
-    return arr;
-  }
+  IF n <= 1:
+    RETURN arr  // Dừng khi có 0 hoặc 1 phần tử
 
-  const mid = Math.floor(n / 2);
-  const leftHalf = arr.slice(0, mid);
-  const rightHalf = arr.slice(mid);
+  mid = floor(n / 2)
+  leftHalf = arr[0...mid]
+  rightHalf = arr[mid...n]
 
-  return merge(mergeSort(leftHalf), mergeSort(rightHalf));
-}
+  leftSorted = mergeSort(leftHalf)
+  rightSorted = mergeSort(rightHalf)
 
-function merge(left: number[], right: number[]): number[] {
-  let i = 0,
-    j = 0,
-    result: number[] = [];
+  RETURN merge(leftSorted, rightSorted)
 
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i]);
-      i++;
-    } else {
-      result.push(right[j]);
-      j++;
+merge(left, right):
+  i = 0, j = 0, result = []
+
+  WHILE i < length(left) AND j < length(right):
+    IF left[i] < right[j]:
+      result.append(left[i])
+      i = i + 1
+    ELSE:
+      result.append(right[j])
+      j = j + 1
+
+  result.append(left[i...])
+  result.append(right[j...])
+  RETURN result
+```
+
+### **IV. GIẢI THÍCH CHI TIẾT (ĐỌC KỸ NHA!)**
+
+*   **`mergeSort(arr)`:** Hàm chính của thuật toán.
+*   **`n = length(arr)`:** Lấy độ dài danh sách.
+*   **`IF n <= 1`:** Nếu danh sách có 0 hoặc 1 phần tử thì đã được sắp xếp, trả về luôn.
+*   **`mid = floor(n / 2)`:** Tìm vị trí giữa danh sách.
+*   **`leftHalf = arr[0...mid]`:** Tách danh sách thành nửa trái.
+*   **`rightHalf = arr[mid...n]`:** Tách danh sách thành nửa phải.
+*   **`leftSorted = mergeSort(leftHalf)`:** Đệ quy sắp xếp nửa trái.
+*   **`rightSorted = mergeSort(rightHalf)`:** Đệ quy sắp xếp nửa phải.
+*   **`RETURN merge(leftSorted, rightSorted)`:** Trộn hai nửa đã sắp xếp.
+*   **`merge(left, right)`:** Hàm trộn hai danh sách đã sắp xếp.
+*   **`i = 0, j = 0, result = []`:** Khởi tạo các biến.
+*   **`WHILE i < length(left) AND j < length(right)`:** Vòng lặp so sánh các phần tử từ hai danh sách.
+*   **`IF left[i] < right[j]`:** Nếu phần tử trái nhỏ hơn, chèn vào `result`.
+*   **`ELSE`:** Nếu phần tử phải nhỏ hơn, chèn vào `result`.
+*   **`result.append(left[i...])`:** Chèn các phần tử còn lại của nửa trái vào `result`.
+*   **`result.append(right[j...])`:** Chèn các phần tử còn lại của nửa phải vào `result`.
+*   **`RETURN result`:** Trả về mảng kết quả.
+
+### **V. VÍ DỤ MINH HỌA (CỰC KỲ TRỰC QUAN)**
+
+Giả sử ta có danh sách: `[5, 1, 4, 2, 8]` và cần sắp xếp tăng dần.
+
+1.  **Chia:**
+    *   `[5, 1, 4, 2, 8]` -> `[5, 1], [4, 2, 8]`
+    *   `[5, 1]` -> `[5], [1]`
+    *   `[4, 2, 8]` -> `[4], [2, 8]`
+    *   `[2, 8]` -> `[2], [8]`
+2.  **Sắp xếp (đệ quy):** Các mảng có một phần tử đã được sắp xếp.
+3.  **Trộn:**
+    *   `[5], [1]` -> `[1, 5]`
+    *   `[4], [2]` -> `[2, 4]`
+    *   `[2, 4], [8]` -> `[2, 4, 8]`
+    *   `[1, 5], [2, 4, 8]` -> `[1, 2, 4, 5, 8]`
+
+*   **Kết quả:** `[1, 2, 4, 5, 8]` (đã sắp xếp).
+
+### **VI. CODE VÍ DỤ BẰNG C# (DÀNH CHO DÂN .NET)**
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class MergeSortExample
+{
+    public static int[] MergeSort(int[] arr)
+    {
+        if (arr.Length <= 1)
+        {
+            return arr;
+        }
+
+        int mid = arr.Length / 2;
+        int[] leftHalf = arr.Take(mid).ToArray();
+        int[] rightHalf = arr.Skip(mid).ToArray();
+
+        return Merge(MergeSort(leftHalf), MergeSort(rightHalf));
     }
-  }
 
-  return result.concat(left.slice(i), right.slice(j));
+    public static int[] Merge(int[] left, int[] right)
+    {
+        List<int> result = new List<int>();
+        int i = 0, j = 0;
+
+        while (i < left.Length && j < right.Length)
+        {
+            if (left[i] < right[j])
+            {
+                result.Add(left[i++]);
+            }
+            else
+            {
+                result.Add(right[j++]);
+            }
+        }
+
+        result.AddRange(left.Skip(i));
+        result.AddRange(right.Skip(j));
+        return result.ToArray();
+    }
+
+    public static void Main(string[] args)
+    {
+        int[] arr = { 5, 1, 4, 2, 8 };
+        int[] sortedArr = MergeSort(arr);
+
+        Console.WriteLine("Mảng đã sắp xếp: " + string.Join(", ", sortedArr));
+        // Output: Mảng đã sắp xếp: 1, 2, 4, 5, 8
+    }
 }
 ```
 
-## Giải thích
+### **VII. ĐỘ PHỨC TẠP (ĐỘ NHANH CHẬM CỦA THUẬT TOÁN)**
 
-- **mergeSort(arr):** Hàm chính của thuật toán Merge Sort, nhận đầu vào là một mảng arr.
-- **n = length(arr):** Lấy độ dài của mảng arr.
-- **IF n <= 1:** Kiểm tra xem mảng có nhiều hơn một phần tử hay không. Nếu mảng có một phần tử hoặc rỗng, thuật toán sẽ
-  trả về mảng đó.
-- **mid = Math.floor(n / 2):** Tìm điểm giữa của mảng.
-- **leftHalf = arr.slice(0, mid):** Tạo mảng nửa trái chứa các phần tử từ đầu đến điểm giữa.
-- **rightHalf = arr.slice(mid):** Tạo mảng nửa phải chứa các phần tử từ điểm giữa đến cuối.
-- **mergeSort(leftHalf):** Đệ quy gọi hàm mergeSort để sắp xếp mảng nửa trái.
-- **mergeSort(rightHalf):** Đệ quy gọi hàm mergeSort để sắp xếp mảng nửa phải.
-- **merge(left, right):** Gọi hàm merge để gộp hai mảng nửa trái và nửa phải đã được sắp xếp vào mảng kết quả.
+*   **Độ phức tạp thời gian:** O(n log n) (cho mọi trường hợp).
+*   **Độ phức tạp không gian:** O(n) (cần bộ nhớ để lưu các mảng con).
 
-- **merge(left, right):** Hàm gộp hai mảng đã sắp xếp vào mảng kết quả.
-- **i = j = 0:** Khởi tạo các chỉ số cho hai mảng và mảng kết quả.
-- **while i < left.length && j < right.length:** Vòng lặp duyệt qua hai mảng, so sánh từng phần tử và chèn phần tử nhỏ
-  hơn vào mảng kết quả.
-- **if left[i] < right[j]:** So sánh phần tử hiện tại của hai mảng. Nếu phần tử ở mảng trái nhỏ hơn, chèn nó vào mảng
-  kết quả.
-- **result.push(left[i]):** Chèn phần tử vào mảng kết quả.
-- **i++:** Di chuyển chỉ số của mảng trái.
-- **else:** Nếu phần tử ở mảng phải nhỏ hơn, chèn nó vào mảng kết quả.
-- **result.push(right[j]):** Chèn phần tử vào mảng kết quả.
-- **j++:** Di chuyển chỉ số của mảng phải.
-- **return result.concat(left.slice(i), right.slice(j)):** Sau khi hết một mảng, nối phần tử còn lại của mảng trái hoặc
-  mảng phải vào mảng kết quả.
+### **VIII. CẢI TIẾN (MỘT SỐ MẸO)**
 
-## Ví dụ
+*   **Bộ nhớ bổ sung:** Cố gắng tái sử dụng bộ nhớ thay vì tạo mới trong mỗi lần đệ quy.
+*   **Tối ưu hóa trộn:** Sử dụng các thuật toán khác để trộn nếu danh sách nhỏ.
 
-Giả sử chúng ta có danh sách cần sắp xếp tăng dần: `5, 1, 4, 2, 8`
+### **IX. LƯU Ý QUAN TRỌNG**
 
-### Bước 1: Chia mảng thành hai nửa
+*   **Thuật toán mạnh mẽ:** Merge Sort rất hiệu quả và thường được sử dụng trong các ứng dụng thực tế.
+*   **Thích hợp cho danh sách lớn:** Chạy tốt khi danh sách có nhiều phần tử.
+*   **Ổn định:** Không thay đổi thứ tự của các phần tử bằng nhau.
+*   **Không "in-place":** Cần thêm bộ nhớ để lưu các mảng con.
 
-- Nửa trái: `5, 1`
-- Nửa phải: `4, 2, 8`
+### **KẾT LUẬN**
 
-### Bước 2: Đệ quy gọi mergeSort cho mỗi nửa
-
-- Nửa trái: `1, 5` (đã được sắp xếp)
-- Nửa phải: `2, 4, 8` (đã được sắp xếp)
-
-### Bước 3: Gộp hai nửa đã sắp xếp
-
-- So sánh `1` và `2`, chèn `1` vào mảng kết quả.
-- So sánh `5` và `2`, chèn `2` vào mảng kết quả.
-- So sánh `5` và `4`, chèn `4` vào mảng kết quả.
-- So sánh `5` và `8`, chèn `5` vào mảng kết quả.
-- Chèn `8` vào mảng kết quả.
-
-**Kết quả:** Danh sách đã được sắp xếp: `1, 2, 4, 5, 8`
-
-## Độ phức tạp
-
-- **Độ phức tạp thời gian:** O(n log n) cho mọi trường hợp.
-- **Độ phức tạp không gian:** O(n) (do cần bộ nhớ để lưu trữ các mảng con).
-
-## Cải tiến
-
-- **Sử dụng bộ nhớ bổ sung:** Có thể cải tiến thuật toán bằng cách sử dụng bộ nhớ bổ sung để lưu trữ các mảng con thay
-  vì tạo mảng mới trong mỗi lần đệ quy. Điều này có thể cải thiện hiệu suất của thuật toán, đặc biệt là khi mảng rất
-  lớn.
-- **Tối ưu hóa việc gộp:** Có thể tối ưu hóa việc gộp bằng cách sử dụng các kỹ thuật như insertion sort hoặc binary
-  search.
-
-## Lưu ý
-
-- Thuật toán Merge Sort là một thuật toán sắp xếp rất hiệu quả và được sử dụng rộng rãi trong các ứng dụng thực tế.
-- Thuật toán này là một thuật toán chia để trị, chia mảng thành các phần nhỏ hơn cho đến khi chỉ còn một phần tử, sau đó
-  gộp chúng lại theo thứ tự.
-- Merge Sort là một thuật toán ổn định, nghĩa là thứ tự của các phần tử bằng nhau được giữ nguyên sau khi sắp xếp.
-- Thuật toán này sử dụng bộ nhớ bổ sung để lưu trữ các mảng con, điều này có thể là nhược điểm đối với các ứng dụng hạn
-  chế về bộ nhớ.
-- Tuy nhiên, độ phức tạp thời gian O(n log n) của thuật toán Merge Sort là rất hiệu quả và khiến nó trở thành một thuật
-  toán được ưa chuộng cho các ứng dụng cần sắp xếp danh sách lớn.
+Merge Sort là một thuật toán sắp xếp rất quan trọng, thường được sử dụng trong nhiều tình huống thực tế. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về cách nó hoạt động. Chúc các bạn thành công! 😎

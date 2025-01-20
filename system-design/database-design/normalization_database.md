@@ -26,7 +26,7 @@ vừa "sạch", vừa "ngon", lại vừa dễ bảo trì nhé!
     * **Chưa đạt 1NF:**
 
       | StudentID | Name  | Subjects      |
-                      |-----------|-------|---------------|
+                            |-----------|-------|---------------|
       | 1         | John  | Math, Science |
       | 2         | Mary  | Science       |
       | 3         | Peter | Math, English |
@@ -35,7 +35,7 @@ vừa "sạch", vừa "ngon", lại vừa dễ bảo trì nhé!
     * **Đạt 1NF:**
 
       | StudentID | Name  | Subject |
-                      |-----------|-------|---------|
+                            |-----------|-------|---------|
       | 1         | John  | Math    |
       | 1         | John  | Science |
       | 2         | Mary  | Science |
@@ -60,7 +60,7 @@ vừa "sạch", vừa "ngon", lại vừa dễ bảo trì nhé!
     * **Chưa đạt 2NF:**
 
       | StudentID | CourseID | CourseName | Grade |
-                      |-----------|----------|------------|-------|
+                            |-----------|----------|------------|-------|
       | 1         | C001     | Math       | A     |
       | 2         | C002     | Science    | B     |
 
@@ -72,13 +72,13 @@ vừa "sạch", vừa "ngon", lại vừa dễ bảo trì nhé!
         1. **Bảng `Courses`:**
 
            | CourseID | CourseName |
-                                   |----------|------------|
+                                              |----------|------------|
            | C001     | Math       |
            | C002     | Science    |
         2. **Bảng `Enrollments`:**
 
            | StudentID | CourseID | Grade |
-                                   |-----------|----------|-------|
+                                              |-----------|----------|-------|
            | 1         | C001     | A     |
            | 2         | C002     | B     |
 
@@ -101,7 +101,7 @@ vừa "sạch", vừa "ngon", lại vừa dễ bảo trì nhé!
     * **Chưa đạt 3NF:**
 
       | StudentID | AdvisorID | AdvisorName |
-                      |-----------|-----------|-------------|
+                            |-----------|-----------|-------------|
       | 1         | A001      | John        |
       | 2         | A002      | Mary        |
 
@@ -114,13 +114,13 @@ vừa "sạch", vừa "ngon", lại vừa dễ bảo trì nhé!
         1. **Bảng `Advisors`:**
 
            | AdvisorID | AdvisorName |
-                                   |-----------|-------------|
+                                              |-----------|-------------|
            | A001      | John        |
            | A002      | Mary        |
         2. **Bảng `Students`:**
 
            | StudentID | AdvisorID |
-                                   |-----------|-----------|
+                                              |-----------|-----------|
            | 1         | A001      |
            | 2         | A002      |
 

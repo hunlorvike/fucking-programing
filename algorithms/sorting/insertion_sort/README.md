@@ -1,112 +1,141 @@
-## Thuật toán Insertion Sort: Sắp xếp chèn
+## **🚀 "GIẢI MÃ" THUẬT TOÁN INSERTION SORT: SẮP XẾP CHÈN CHO DÂN CODE 🚀**
 
-### Giới thiệu
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một thuật toán sắp xếp khá thú vị: Insertion Sort (sắp xếp chèn). Đây là một thuật toán đơn giản, dễ hiểu và thường được dùng trong nhiều tình huống thực tế. Cùng mình "mổ xẻ" nó nhé!
 
-Thuật toán Insertion Sort (hay còn gọi là sắp xếp chèn) là một thuật toán sắp xếp đơn giản, hoạt động dựa trên việc chèn
-từng phần tử vào đúng vị trí của nó trong phần đã sắp xếp của danh sách. Thuật toán này hoạt động tương tự như cách
-chúng ta sắp xếp bài trong tay: ta chọn từng lá bài và chèn nó vào đúng vị trí trong dãy các lá bài đã được sắp xếp
-trước đó.
+### **I. INSERTION SORT LÀ GÌ?**
 
-### Cách hoạt động
+*   **Insertion Sort (Sắp xếp chèn):** Là thuật toán sắp xếp dựa trên việc chèn từng phần tử vào đúng vị trí trong phần đã sắp xếp của danh sách.
+*   **Nó hoạt động như thế nào?**
+    *   Giống như khi bạn sắp xếp bài trên tay: bạn lấy từng lá bài và chèn nó vào đúng vị trí trong các lá bài đã được sắp xếp.
+*   **Ưu điểm:**
+    *   **Đơn giản:** Thuật toán dễ hiểu và dễ cài đặt.
+    *   **Hiệu quả cho danh sách nhỏ:** Chạy nhanh trên danh sách nhỏ hoặc gần như đã sắp xếp.
+    *   **In-place:** Không cần dùng thêm nhiều bộ nhớ.
+*   **Nhược điểm:**
+    *   **Chậm cho danh sách lớn:** Không hiệu quả với danh sách lớn.
 
-1. **Chia danh sách:** Danh sách được chia thành hai phần: phần đã sắp xếp và phần chưa sắp xếp. Ban đầu, phần đã sắp
-   xếp chỉ có phần tử đầu tiên, phần còn lại là chưa sắp xếp.
-2. **Chọn phần tử:** Lấy phần tử đầu tiên từ phần chưa sắp xếp (gọi là `key`).
-3. **So sánh và di chuyển:** So sánh `key` với các phần tử trong phần đã sắp xếp, từ phải sang trái. Nếu gặp phần tử lớn
-   hơn `key`, di chuyển phần tử đó sang phải để tạo khoảng trống cho `key`.
-4. **Chèn:** Chèn `key` vào vị trí chính xác trong phần đã sắp xếp.
-5. **Lặp lại:** Bước 2 đến 4 được lặp lại cho đến khi tất cả các phần tử trong phần chưa sắp xếp được chèn vào phần đã
-   sắp xếp.
+### **II. CÁCH HOẠT ĐỘNG (TỪNG BƯỚC CHI TIẾT)**
 
-### Mã giả của thuật toán Insertion Sort
+1.  **Chia danh sách:** Xem danh sách như có hai phần:
+    *   Phần đã sắp xếp (ban đầu chỉ có phần tử đầu tiên).
+    *   Phần chưa sắp xếp (phần còn lại).
 
-```typescript
-function insertionSort(arr: number[]): number[] {
-  let n = arr.length;
+2.  **Lấy phần tử:** Lấy phần tử đầu tiên từ phần chưa sắp xếp (`key`).
 
-  for (let i = 1; i < n; i++) {
-    let key = arr[i];
-    let j = i - 1;
+3.  **So sánh và di chuyển:**
+    *   So sánh `key` với các phần tử trong phần đã sắp xếp, đi từ phải sang trái.
+    *   Nếu gặp phần tử lớn hơn `key`, thì di chuyển phần tử đó sang phải để tạo chỗ trống.
 
-    // So sánh và di chuyển các phần tử lớn hơn key sang phải
-    while (j >= 0 && arr[j] > key) {
-      arr[j + 1] = arr[j];
-      j--;
+4.  **Chèn:** Chèn `key` vào chỗ trống vừa tạo.
+
+5.  **Lặp lại:** Lặp lại bước 2, 3 và 4 cho đến khi tất cả phần tử được chèn vào phần đã sắp xếp.
+
+### **III. MÃ GIẢ (PSEUDOCODE) - DỄ HIỂU NHƯ ĂN BÁNH**
+
+```
+insertionSort(arr):
+  n = length(arr)
+
+  FOR i FROM 1 to n-1:
+    key = arr[i]
+    j = i - 1
+
+    WHILE j >= 0 AND arr[j] > key:
+      arr[j+1] = arr[j]
+      j = j - 1
+
+    arr[j+1] = key
+
+  return arr
+```
+
+### **IV. GIẢI THÍCH CHI TIẾT (ĐỌC KỸ NHA!)**
+
+*   **`n = length(arr)`:** Lấy độ dài của danh sách.
+*   **`FOR i FROM 1 to n-1`:** Vòng lặp ngoài, duyệt qua các phần tử (trừ phần tử đầu tiên).
+*   **`key = arr[i]`:** Lấy phần tử hiện tại để chèn (`key`).
+*   **`j = i - 1`:** Khởi tạo vị trí so sánh trong phần đã sắp xếp.
+*   **`WHILE j >= 0 AND arr[j] > key`:** Vòng lặp trong, so sánh và di chuyển phần tử lớn hơn `key` sang phải.
+*   **`arr[j+1] = arr[j]`:** Di chuyển phần tử sang phải.
+*   **`j = j - 1`:** Di chuyển vị trí so sánh sang trái.
+*   **`arr[j+1] = key`:** Chèn `key` vào đúng vị trí.
+*   **`return arr`:** Trả về danh sách đã được sắp xếp.
+
+### **V. VÍ DỤ MINH HỌA (CỰC KỲ TRỰC QUAN)**
+
+Giả sử ta có danh sách: `[12, 11, 13, 5, 6]` và cần sắp xếp tăng dần.
+
+*   **Lần 1 (`i=1`):**
+    *   `key = 11`, so sánh với `12`.
+    *   Di chuyển `12` sang phải: `[12, 12, 13, 5, 6]`.
+    *   Chèn `11`: `[11, 12, 13, 5, 6]`.
+*   **Lần 2 (`i=2`):**
+    *   `key = 13`, so sánh với `12` và `11` (không cần di chuyển).
+    *   Chèn `13`: `[11, 12, 13, 5, 6]`.
+*   **Lần 3 (`i=3`):**
+    *   `key = 5`, so sánh với `13`, `12`, `11`.
+    *   Di chuyển `13`, `12`, `11` sang phải: `[11, 12, 13, 13, 6]`.
+    *   Chèn `5`: `[5, 11, 12, 13, 6]`.
+*   **Lần 4 (`i=4`):**
+    *   `key = 6`, so sánh với `13`, `12`, `11`, `5`.
+    *   Di chuyển `13`, `12`, `11` sang phải: `[5, 11, 11, 12, 13]`.
+    *    Chèn `6`: `[5, 6, 11, 12, 13]`.
+
+*   **Kết quả:** `[5, 6, 11, 12, 13]` (đã sắp xếp).
+
+### **VI. CODE VÍ DỤ BẰNG C#**
+
+```csharp
+using System;
+
+public class InsertionSortExample
+{
+    public static int[] InsertionSort(int[] arr)
+    {
+        int n = arr.Length;
+
+        for (int i = 1; i < n; i++)
+        {
+            int key = arr[i];
+            int j = i - 1;
+
+            // So sánh và di chuyển các phần tử lớn hơn key sang phải
+            while (j >= 0 && arr[j] > key)
+            {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+
+            // Chèn key vào vị trí đúng
+            arr[j + 1] = key;
+        }
+
+        return arr;
     }
 
-    // Chèn key vào vị trí đúng
-    arr[j + 1] = key;
-  }
+    public static void Main(string[] args)
+    {
+        int[] arr = { 12, 11, 13, 5, 6 };
+        int[] sortedArr = InsertionSort(arr);
 
-  return arr;
+        Console.WriteLine("Mảng đã sắp xếp: " + string.Join(", ", sortedArr));
+        // Output: Mảng đã sắp xếp: 5, 6, 11, 12, 13
+    }
 }
 ```
 
-### Giải thích
+### **VII. ĐỘ PHỨC TẠP (ĐỘ NHANH CHẬM CỦA THUẬT TOÁN)**
 
-- **i** là chỉ số của phần tử hiện tại được lấy ra từ phần chưa được sắp xếp để chèn vào phần đã sắp xếp. `i` sẽ tăng
-  dần trong mỗi vòng lặp ngoài, và nó luôn cố định trong vòng lặp trong.
-- **j** là chỉ số của phần tử trong phần đã sắp xếp mà ta đang so sánh với `key`. `j` sẽ giảm dần trong mỗi vòng lặp (
-  while) để so sánh với `key` theo chiều từ phải sang trái.
-- **n = arr.length:** Lấy độ dài của mảng `arr`.
-- **for (let i = 1; i < n; i++):** Vòng lặp ngoài duyệt qua từng phần tử trong mảng (trừ phần tử đầu tiên).
-- **key = arr[i]:** Lấy phần tử hiện tại (`arr[i]`) làm `key` để chèn.
-- **j = i - 1:** Khởi tạo biến `j` là chỉ số của phần tử trước `key`.
-- **while (j >= 0 && arr[j] > key):** Vòng lặp trong để so sánh `key` với các phần tử trong phần đã sắp xếp, từ phải
-  sang trái.
-- **arr[j + 1] = arr[j]:** Di chuyển phần tử hiện tại (`arr[j]`) sang vị trí tiếp theo (`arr[j + 1]`). (Đi từ phải ->
-  trái)
+*   **Độ phức tạp thời gian:** O(n²) (thường chậm hơn các thuật toán sắp xếp khác).
+*   **Độ phức tạp không gian:** O(1) (không dùng thêm nhiều bộ nhớ).
 
-- **j--:** Giảm chỉ số `j` để tiếp tục so sánh với phần tử tiếp theo ở bên trái.
-- **arr[j + 1] = key:** Chèn `key` vào vị trí chính xác trong phần đã sắp xếp.
+### **VIII. LƯU Ý QUAN TRỌNG**
 
-### Ví dụ
+*   **Hiệu quả với danh sách nhỏ:** Chạy nhanh với danh sách ít phần tử.
+*   **Ổn định:** Không thay đổi thứ tự các phần tử bằng nhau.
+*   **Thích hợp cho dữ liệu gần như đã sắp xếp:** Chạy nhanh khi dữ liệu gần như đã được sắp xếp.
+*   **Không nên dùng cho danh sách lớn:** Hãy dùng các thuật toán khác như Merge Sort, Quick Sort khi cần sắp xếp danh sách lớn.
 
-Giả sử chúng ta có danh sách cần sắp xếp tăng dần: `12, 11, 13, 5, 6`.
+### **KẾT LUẬN**
 
-**Lần lặp 1:**
-
-- `i = 1`
-    - `key = 11`
-    - `j = 0: 12 > 11`, di chuyển `12` sang phải: `[12, 12, 13, 5, 6]`, `j = -1`
-    - `arr[0] = 11`: Chèn `11` vào đầu danh sách. Danh sách hiện tại: `[11, 12, 13, 5, 6]`
-
-**Lần lặp 2:**
-
-- `i = 2`
-    - `key = 13`
-    - `j = 1: 12 <= 13`, không cần di chuyển.
-    - `j = 0: 11 <= 13`, không cần di chuyển. Chèn `13` vào vị trí hiện tại. Danh sách hiện tại: `[11, 12, 13, 5, 6]`
-
-**Lần lặp 3:**
-
-- `i = 3`
-    - `key = 5`
-    - `j = 2: 13 > 5`, di chuyển `13` sang phải: `[11, 12, 13, 13, 6]`, `j = 1`
-    - `j = 1: 12 > 5`, di chuyển `12` sang phải: `[11, 12, 12, 13, 6]`, `j = 0`
-    - `j = 0: 11 > 5`, di chuyển `11` sang phải: `[11, 11, 12, 13, 6]`, `j = -1`
-    - `arr[0] = 5`: Chèn `5` vào đầu danh sách. Danh sách hiện tại: `[5, 11, 12, 13, 6]`
-
-**Lần lặp 4:**
-
-- `i = 4`
-    - `key = 6`
-    - `j = 3: 13 > 6`, di chuyển `13` sang phải: `[5, 11, 12, 13, 13]`, `j = 2`
-    - `j = 2: 12 > 6`, di chuyển `12` sang phải: `[5, 11, 12, 12, 13]`, `j = 1`
-    - `j = 1: 11 > 6`, di chuyển `11` sang phải: `[5, 11, 11, 12, 13]`, `j = 0`
-    - `j = 0: 5 < 6`, không cần di chuyển.
-    - `arr[1] = 6`: Chèn `6` vào vị trí sau `5`. Danh sách hiện tại: `[5, 6, 11, 12, 13]`
-
-**Kết quả:** Danh sách đã được sắp xếp: `[5, 6, 11, 12, 13]`
-
-### Độ phức tạp
-
-- **Độ phức tạp thời gian:** O(n²)
-- **Độ phức tạp không gian:** O(1)
-
-### Lưu ý
-
-- **Chèn phần tử:** Thuật toán chèn từng phần tử vào đúng vị trí của nó trong phần đã sắp xếp của danh sách.
-- **So sánh và di chuyển:** Phần tử được chèn sẽ được so sánh với các phần tử trong phần đã sắp xếp, từ phải sang trái.
-  Nếu gặp phần tử lớn hơn, phần tử đó được di chuyển sang phải để tạo khoảng trống cho phần tử cần chèn.
-- **Lặp lại:** Quá trình chèn và so sánh được lặp lại cho đến khi tất cả các phần tử được chèn vào phần đã sắp xếp.
+Insertion Sort là một thuật toán sắp xếp đơn giản, dễ hiểu và có thể dùng trong nhiều tình huống thực tế. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về nó. Chúc các bạn code thành công! 😎

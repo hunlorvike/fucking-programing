@@ -1,131 +1,52 @@
-## **Backtracking vs Dynamic Programming: Khi Nào Nên Sử Dụng Phương Pháp Nào?**
+## **🚀 "GIẢI MÃ" BACKTRACKING VS DYNAMIC PROGRAMMING: KHI NÀO DÙNG CÁI NÀO CHO DÂN CODE 🚀**
 
-**Mục lục**
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "mổ xẻ" hai kỹ thuật giải thuật rất quan trọng và hay bị nhầm
+lẫn: Backtracking (quay lui) và Dynamic Programming (quy hoạch động). Nghe có vẻ "khoai" nhưng thực ra rất thú vị và hữu
+ích đấy. Mình sẽ cố gắng giải thích dễ hiểu nhất có thể, kèm theo ví dụ thực tế để các bạn dễ hình dung nhé! Let's go!
 
-1. **Giới thiệu**
-    * 1.1. Mục tiêu của bài viết
-    * 1.2. Tổng quan về Backtracking và Dynamic Programming
-2. **Backtracking (Quay Lui)**
-    * 2.1. Định nghĩa và nguyên lý hoạt động
-    * 2.2. Các trường hợp sử dụng phù hợp
-        * 2.2.1. Tìm kiếm không gian giải pháp lớn
-        * 2.2.2. Bài toán tổ hợp và hoán vị
-        * 2.2.3. Kết hợp heuristic để giảm không gian tìm kiếm
-    * 2.3. Các loại bài toán phù hợp
-        * 2.3.1. Bài toán tô màu đồ thị (Graph Coloring)
-        * 2.3.2. Bài toán N-Queens
-        * 2.3.3. Các bài toán tổ hợp và hoán vị
-    * 2.4. Ưu điểm của Backtracking
-    * 2.5. Nhược điểm của Backtracking
-    * 2.6. Ví dụ minh họa
-3. **Dynamic Programming (Quy Hoạch Động)**
-    * 3.1. Định nghĩa và nguyên lý hoạt động
-        * 3.1.1. Tính chất bài toán con lặp (Overlapping Subproblems)
-        * 3.1.2. Tính chất cấu trúc tối ưu (Optimal Substructure)
-    * 3.2. Các trường hợp sử dụng phù hợp
-        * 3.2.1. Bài toán tối ưu hóa
-        * 3.2.2. Bài toán chia để trị có tính chất lặp
-        * 3.2.3. Bài toán với cấu trúc bảng (Grid Problems)
-    * 3.3. Các loại bài toán phù hợp
-        * 3.3.1. Bài toán ba lô (Knapsack Problem)
-        * 3.3.2. Bài toán chuỗi con chung dài nhất (Longest Common Subsequence)
-        * 3.3.3. Bài toán Fibonacci, tam giác Pascal
-        * 3.3.4. Bài toán đường đi ngắn nhất trên lưới
-    * 3.4. Ưu điểm của Dynamic Programming
-    * 3.5. Nhược điểm của Dynamic Programming
-    * 3.6. Ví dụ minh họa
-4. **So Sánh Chi Tiết Backtracking và Dynamic Programming**
-    * 4.1. Bảng so sánh tóm tắt
-    * 4.2. Phân tích sự khác biệt
-        * 4.2.1. Cách tiếp cận giải quyết bài toán
-        * 4.2.2. Quản lý bộ nhớ
-        * 4.2.3. Độ phức tạp thời gian
-        * 4.2.4. Độ phức tạp không gian
-5. **Khi Nào Nên Chọn Backtracking?**
-6. **Khi Nào Nên Chọn Dynamic Programming?**
-7. **Ví Dụ Cụ Thể và Phân Tích**
-    * 7.1. Bài toán tìm kiếm trên cây (Tree Traversal): Áp dụng cả Backtracking và Dynamic Programming
-    * 7.2. Bài toán tìm số cách đi lên cầu thang: Áp dụng Dynamic Programming
-8. **Kết luận**
+### **I. BACKTRACKING VS DYNAMIC PROGRAMMING: LÀ GÌ VẬY?**
 
----
+* **Backtracking (Quay lui):** Là kỹ thuật "thử và sai", đi từng bước, nếu "sai đường" thì quay lại bước trước thử hướng
+  khác.
+* **Dynamic Programming (Quy hoạch động):** Là kỹ thuật "chia để trị", chia bài toán thành các bài toán nhỏ hơn, giải
+  rồi lưu lại kết quả để dùng tiếp, không cần tính lại.
+* **Tóm lại:**
+    * **Backtracking:** "Thử nghiệm" nhiều hướng, đi đến đâu biết đến đấy.
+    * **Dynamic Programming:** "Lập kế hoạch" trước, giải quyết từng phần, tận dụng kết quả cũ.
 
-### **1. Giới thiệu**
+### **II. BACKTRACKING (QUAY LUI) - "THỬ SAI KHÔNG THÀNH VẤN ĐỀ"**
 
-#### 1.1. Mục tiêu của bài viết
+#### **2.1. ĐỊNH NGHĨA VÀ NGUYÊN LÝ HOẠT ĐỘNG**
 
-Bài viết này nhằm mục đích cung cấp một cái nhìn chi tiết và rõ ràng về hai kỹ thuật quan trọng trong thiết kế thuật
-toán: Backtracking (Quay lui) và Dynamic Programming (Quy hoạch động). Chúng ta sẽ cùng nhau khám phá các đặc điểm, ưu
-nhược điểm, và các trường hợp ứng dụng phù hợp của từng phương pháp, giúp bạn có thể đưa ra quyết định đúng đắn khi lựa
-chọn cách tiếp cận cho các bài toán phức tạp.
+* **Backtracking:**
+    * Xây dựng giải pháp từng bước một.
+    * Nếu gặp "ngõ cụt" (không thỏa mãn điều kiện), quay lại bước trước và thử hướng khác.
+    * Tiếp tục cho đến khi tìm thấy giải pháp hoặc đã thử hết các khả năng.
+* **Nguyên lý:** Đi từng bước, gặp sai thì quay lại.
 
-#### 1.2. Tổng quan về Backtracking và Dynamic Programming
+#### **2.2. KHI NÀO NÊN DÙNG?**
 
-Cả Backtracking và Dynamic Programming đều là những kỹ thuật giải quyết vấn đề hiệu quả, đặc biệt là đối với các bài
-toán phức tạp. Tuy nhiên, chúng có cách tiếp cận và ưu nhược điểm khác nhau:
+1. **Không gian giải pháp lớn:** Nhiều khả năng, nhưng không phải cái nào cũng đúng.
+2. **Bài toán tổ hợp, hoán vị:** Tạo ra các cách sắp xếp, chọn nhóm.
+3. **Kết hợp heuristic:** Có thể dùng thêm các "mẹo" để giảm không gian tìm kiếm.
 
-* **Backtracking:** Sử dụng phương pháp thử và sai, quay lui khi gặp bế tắc, thường áp dụng cho các bài toán có không
-  gian giải pháp lớn và nhiều lựa chọn.
-* **Dynamic Programming:** Chia bài toán lớn thành các bài toán con nhỏ hơn, lưu trữ kết quả của các bài toán con để
-  tránh tính toán lại, thường áp dụng cho các bài toán tối ưu hóa và có tính chất lặp lại.
+#### **2.3. CÁC BÀI TOÁN PHÙ HỢP**
 
-### **2. Backtracking (Quay Lui)**
+1. **Tô màu đồ thị (Graph Coloring):** Tô màu các đỉnh sao cho các đỉnh kề nhau không cùng màu.
+2. **N-Queens:** Đặt N quân hậu lên bàn cờ NxN sao cho không quân nào ăn nhau.
+3. **Bài toán tổ hợp, hoán vị:** Tạo các tổ hợp, hoán vị của 1 tập hợp.
 
-#### 2.1. Định nghĩa và nguyên lý hoạt động
+#### **2.4. ƯU ĐIỂM**
 
-Backtracking (Quay lui) là một kỹ thuật giải quyết vấn đề dựa trên việc thử nghiệm từng bước để xây dựng một giải pháp.
-Nếu một bước dẫn đến bế tắc hoặc không thỏa mãn điều kiện của bài toán, thuật toán sẽ quay lui (backtrack) về bước trước
-đó và thử một lựa chọn khác. Quá trình này tiếp diễn cho đến khi tìm được một giải pháp hoặc đã thử hết tất cả các khả
-năng.
+1. **Dễ cài đặt:** Code không quá phức tạp.
+2. **Tìm được mọi phương án:** Tìm tất cả các giải pháp có thể.
 
-#### 2.2. Các trường hợp sử dụng phù hợp
+#### **2.5. NHƯỢC ĐIỂM**
 
-##### 2.2.1. Tìm kiếm không gian giải pháp lớn
+1. **Chậm:** Có thể phải duyệt hết mọi trường hợp (độ phức tạp thời gian cao).
+2. **Không nhớ kết quả cũ:** Phải tính toán lại các bước tương tự nhiều lần.
 
-Backtracking phù hợp khi bài toán có một không gian giải pháp lớn và phức tạp, nhưng không phải tất cả các lựa chọn đều
-khả thi. Backtracking giúp loại bỏ các hướng đi không tiềm năng, tránh việc phải duyệt hết toàn bộ không gian giải pháp.
-
-##### 2.2.2. Bài toán tổ hợp và hoán vị
-
-Backtracking đặc biệt hữu ích trong các bài toán liên quan đến việc tạo ra các tổ hợp hoặc hoán vị, ví dụ như tìm tất cả
-các cách sắp xếp, chọn tập con thỏa mãn một điều kiện nào đó.
-
-##### 2.2.3. Kết hợp heuristic để giảm không gian tìm kiếm
-
-Trong một số trường hợp, ta có thể kết hợp backtracking với các kỹ thuật heuristic (phỏng đoán) để định hướng quá trình
-tìm kiếm, giúp giảm bớt không gian phải duyệt. Một ví dụ điển hình là thuật toán Branch and Bound kết hợp với
-backtracking.
-
-#### 2.3. Các loại bài toán phù hợp
-
-##### 2.3.1. Bài toán tô màu đồ thị (Graph Coloring)
-
-Tô màu các đỉnh của đồ thị sao cho không có hai đỉnh kề nhau nào có cùng màu.
-
-##### 2.3.2. Bài toán N-Queens
-
-Đặt N quân hậu trên bàn cờ N x N sao cho không có quân hậu nào ăn nhau.
-
-##### 2.3.3. Các bài toán tổ hợp và hoán vị
-
-Tìm tất cả các tổ hợp hoặc hoán vị của một tập hợp. Ví dụ, tìm tất cả các chuỗi con của một chuỗi số.
-
-#### 2.4. Ưu điểm của Backtracking
-
-* **Dễ triển khai:** Thuật toán backtracking thường dễ hiểu và dễ triển khai.
-* **Hiệu quả cho các bài toán tổ hợp:** Có thể giúp tìm ra tất cả các phương án có thể (nếu không có yêu cầu tối ưu hóa
-  về thời gian).
-
-#### 2.5. Nhược điểm của Backtracking
-
-* **Chậm trong trường hợp không tối ưu hóa:** Nếu không có cơ chế cắt tỉa (pruning), backtracking có thể phải duyệt hết
-  toàn bộ không gian tìm kiếm, dẫn đến độ phức tạp thời gian rất lớn (thường là O(2^n) hoặc O(n!)).
-* **Thiếu tính nhớ (memoization):** Backtracking thường không nhớ các kết quả trung gian, dẫn đến việc lặp lại các bước
-  tính toán tương tự nhiều lần.
-
-#### 2.6. Ví dụ minh họa
-
-**Bài toán N-Queens:**
+#### **2.6. VÍ DỤ MINH HỌA - BÀI TOÁN N-QUEENS (C#)**
 
 ```csharp
 using System;
@@ -207,74 +128,40 @@ class NQueens
 }
 ```
 
-### **3. Dynamic Programming (Quy Hoạch Động)**
+### **III. DYNAMIC PROGRAMMING (QUY HOẠCH ĐỘNG) - "LẬP KẾ HOẠCH TRƯỚC CHO CHẮC ĂN"**
 
-#### 3.1. Định nghĩa và nguyên lý hoạt động
+#### **3.1. ĐỊNH NGHĨA VÀ NGUYÊN LÝ HOẠT ĐỘNG**
 
-Dynamic Programming (Quy hoạch động) là một kỹ thuật giải quyết các bài toán bằng cách chia bài toán lớn thành các bài
-toán con nhỏ hơn, giải các bài toán con một lần và lưu trữ kết quả, từ đó tránh việc tính toán lại. DP dựa trên hai tính
-chất quan trọng:
+* **Dynamic Programming:**
+    * Chia bài toán lớn thành các bài toán con nhỏ hơn.
+    * Giải các bài toán con một lần, lưu lại kết quả (memoization).
+    * Sử dụng kết quả đã lưu để giải bài toán lớn.
+* **Nguyên lý:** Giải các bài toán nhỏ trước, dùng kết quả đó cho các bài toán lớn hơn.
 
-##### 3.1.1. Tính chất bài toán con lặp (Overlapping Subproblems)
+#### **3.2. KHI NÀO NÊN DÙNG?**
 
-Bài toán có nhiều bài toán con nhỏ trùng lặp nhau. DP giải quyết các bài toán con này một lần và lưu kết quả để sử dụng
-cho các lần xuất hiện tiếp theo.
+1. **Bài toán tối ưu:** Tìm giá trị lớn nhất, nhỏ nhất, đường đi ngắn nhất,...
+2. **Bài toán "chia để trị" có tính chất lặp:** Các bài toán con bị trùng lặp nhau.
+3. **Bài toán với cấu trúc bảng:** Các bài toán trên lưới, ...
 
-##### 3.1.2. Tính chất cấu trúc tối ưu (Optimal Substructure)
+#### **3.3. CÁC BÀI TOÁN PHÙ HỢP**
 
-Giải pháp tối ưu của bài toán lớn có thể được xây dựng từ các giải pháp tối ưu của các bài toán con.
+1. **Bài toán ba lô (Knapsack):** Chọn vật phẩm để có tổng giá trị lớn nhất mà không vượt quá trọng lượng cho phép.
+2. **Chuỗi con chung dài nhất (LCS):** Tìm chuỗi con chung dài nhất của 2 chuỗi.
+3. **Fibonacci, tam giác Pascal:** Các bài toán liên quan đến dãy số.
+4. **Đường đi ngắn nhất trên lưới:** Tìm đường đi ngắn nhất giữa 2 điểm trên lưới.
 
-#### 3.2. Các trường hợp sử dụng phù hợp
+#### **3.4. ƯU ĐIỂM**
 
-##### 3.2.1. Bài toán tối ưu hóa
+1. **Tối ưu thời gian:** Nhờ memoization (lưu kết quả), không cần tính toán lại nhiều lần.
+2. **Hiệu quả:** Tìm được giải pháp tối ưu.
 
-DP thường được sử dụng trong các bài toán tìm giải pháp tối ưu (lớn nhất, nhỏ nhất, dài nhất, v.v.), ví dụ như tìm đường
-đi ngắn nhất, chuỗi con chung dài nhất, hay bài toán ba lô.
+#### **3.5. NHƯỢC ĐIỂM**
 
-##### 3.2.2. Bài toán chia để trị có tính chất lặp
+1. **Tốn bộ nhớ:** Cần bộ nhớ để lưu kết quả trung gian.
+2. **Khó cài đặt hơn:** Cần xác định bài toán con và công thức truy hồi.
 
-DP cũng phù hợp với các bài toán sử dụng phương pháp chia để trị nhưng có tính chất lặp lại, ví dụ như bài toán
-Fibonacci, tam giác Pascal, hay bài toán đếm số cách đi lên bậc thang.
-
-##### 3.2.3. Bài toán với cấu trúc bảng (Grid Problems)
-
-DP có thể được áp dụng cho các bài toán với cấu trúc bảng (grid), ví dụ như tìm đường đi ngắn nhất trên lưới.
-
-#### 3.3. Các loại bài toán phù hợp
-
-##### 3.3.1. Bài toán ba lô (Knapsack Problem)
-
-Tìm giá trị lớn nhất của các vật phẩm có thể cho vào một chiếc ba lô có giới hạn về trọng lượng.
-
-##### 3.3.2. Bài toán chuỗi con chung dài nhất (Longest Common Subsequence)
-
-Tìm chuỗi con chung dài nhất của hai chuỗi cho trước.
-
-##### 3.3.3. Bài toán Fibonacci, tam giác Pascal
-
-Các bài toán tính toán các dãy số có tính chất lặp lại.
-
-##### 3.3.4. Bài toán đường đi ngắn nhất trên lưới
-
-Tìm đường đi ngắn nhất giữa hai điểm trên lưới.
-
-#### 3.4. Ưu điểm của Dynamic Programming
-
-* **Tối ưu hóa thời gian:** DP giúp giảm đáng kể thời gian tính toán bằng cách lưu trữ các kết quả trung gian và sử dụng
-  lại chúng (memoization).
-* **Hiệu quả với các bài toán có tính tối ưu con:** DP giúp tối ưu hóa và đưa ra lời giải chính xác cho bài toán mà
-  không cần phải duyệt toàn bộ không gian tìm kiếm.
-
-#### 3.5. Nhược điểm của Dynamic Programming
-
-* **Đòi hỏi bộ nhớ:** DP thường yêu cầu bộ nhớ lớn hơn so với backtracking, vì cần lưu trữ kết quả của các bài toán con
-  trong một bảng hoặc cấu trúc tương tự.
-* **Phức tạp hơn để triển khai:** Một số bài toán DP có thể khó triển khai hơn backtracking, đặc biệt nếu việc xác định
-  các bài toán con và công thức truy hồi không rõ ràng.
-
-#### 3.6. Ví dụ minh họa
-
-**Bài toán Fibonacci:**
+#### **3.6. VÍ DỤ MINH HỌA - BÀI TOÁN FIBONACCI (C#)**
 
 ```csharp
 using System;
@@ -304,74 +191,38 @@ class Fibonacci
 }
 ```
 
-### **4. So Sánh Chi Tiết Backtracking và Dynamic Programming**
+### **IV. SO SÁNH CHI TIẾT (TỔNG KẾT LẠI)**
 
-#### 4.1. Bảng so sánh tóm tắt
+| Yếu tố            | Backtracking                | Dynamic Programming         |
+|-------------------|-----------------------------|-----------------------------|
+| **Cách tiếp cận** | Thử sai, quay lui           | Chia để trị, lưu kết quả    |
+| **Tính toán lặp** | Không nhớ, tính lại         | Nhớ kết quả, không tính lại |
+| **Bài toán**      | Tổ hợp, hoán vị, tìm tất cả | Tối ưu, có tính lặp         |
+| **Thời gian**     | Thường chậm                 | Thường nhanh hơn            |
+| **Bộ nhớ**        | Ít hơn                      | Nhiều hơn                   |
+| **Cài đặt**       | Thường dễ hơn               | Phức tạp hơn                |
+| **Cắt tỉa**       | Dùng heuristic              | Không cần heuristic         |
 
-| Yếu tố                     | Backtracking                                       | Dynamic Programming (DP)                                    |
-|----------------------------|----------------------------------------------------|-------------------------------------------------------------|
-| **Cách tiếp cận**          | Thử từng bước, quay lui khi thất bại               | Chia bài toán lớn thành bài toán con, lưu kết quả           |
-| **Tính toán lặp lại**      | Không lưu trữ kết quả trung gian, tính lại         | Lưu trữ kết quả trung gian, tránh tính lại                  |
-| **Bài toán phù hợp**       | Bài toán tổ hợp, hoán vị, tìm tất cả các giải pháp | Bài toán tối ưu hóa, có tính chất lặp, tối ưu hiệu suất     |
-| **Độ phức tạp thời gian**  | Thường cao (O(2^n), O(n!)), có thể chậm            | Thường tốt hơn, giảm độ phức tạp nhờ memoization            |
-| **Độ phức tạp không gian** | Thường thấp, không cần lưu trữ nhiều               | Yêu cầu bộ nhớ cao hơn do cần lưu trữ bảng DP               |
-| **Cắt tỉa (Pruning)**      | Có thể kết hợp heuristic để cắt tỉa                | Không cần heuristic, chỉ dựa vào tính toán bài toán con     |
-| **Độ phức tạp triển khai** | Thường dễ triển khai hơn                           | Phức tạp hơn, cần xác định bài toán con, công thức truy hồi |
+### **V. KHI NÀO NÊN DÙNG BACKTRACKING?**
 
-#### 4.2. Phân tích sự khác biệt
+* Khi có nhiều hướng đi và không biết hướng nào là đúng.
+* Khi cần tìm tất cả các giải pháp có thể.
+* Khi không cần tối ưu thời gian và có thể dùng thêm các "mẹo" để cắt tỉa không gian tìm kiếm.
 
-##### 4.2.1. Cách tiếp cận giải quyết bài toán
+### **VI. KHI NÀO NÊN DÙNG DYNAMIC PROGRAMMING?**
 
-* **Backtracking:** Tiếp cận bài toán một cách trực tiếp, xây dựng giải pháp từng bước, và quay lui khi gặp bế tắc.
-* **Dynamic Programming:** Tiếp cận bài toán một cách gián tiếp, giải các bài toán con trước, và sử dụng các kết quả này
-  để xây dựng giải pháp cho bài toán lớn hơn.
+* Khi bài toán có các bài toán con bị trùng lặp (overlapping subproblems).
+* Khi bài toán có cấu trúc tối ưu (optimal substructure).
+* Khi cần tìm giải pháp tối ưu (nhất, ngắn nhất, ...).
+* Khi muốn giảm thời gian chạy bằng cách lưu kết quả.
 
-##### 4.2.2. Quản lý bộ nhớ
+### **VII. VÍ DỤ CỤ THỂ (ĐỂ CÁC BẠN THẤY RÕ HƠN)**
 
-* **Backtracking:** Yêu cầu bộ nhớ thấp hơn, vì không cần lưu trữ nhiều kết quả trung gian.
-* **Dynamic Programming:** Yêu cầu bộ nhớ cao hơn, vì cần lưu trữ kết quả của các bài toán con trong một bảng hoặc cấu
-  trúc tương tự.
-
-##### 4.2.3. Độ phức tạp thời gian
-
-* **Backtracking:** Thường có độ phức tạp thời gian cao, đặc biệt khi không gian tìm kiếm lớn.
-* **Dynamic Programming:** Có thể đạt độ phức tạp thời gian tốt hơn bằng cách tránh tính toán lại các bài toán con.
-
-##### 4.2.4. Độ phức tạp không gian
-
-* **Backtracking:** Có độ phức tạp không gian thấp hơn do không cần lưu trữ các kết quả trung gian.
-* **Dynamic Programming:** Có độ phức tạp không gian cao hơn do cần một bảng để lưu trữ kết quả của các bài toán con.
-
-### **5. Khi Nào Nên Chọn Backtracking?**
-
-* Khi bài toán có không gian giải pháp lớn và cần thử nhiều phương án khác nhau.
-* Khi bài toán liên quan đến việc tìm kiếm tất cả các giải pháp có thể.
-* Khi bài toán có thể được giải bằng cách xây dựng giải pháp từng bước và quay lui khi gặp bế tắc.
-* Khi bạn không cần tối ưu hóa thời gian và có thể chấp nhận độ phức tạp thời gian cao.
-* Khi có thể sử dụng heuristic để cắt tỉa không gian tìm kiếm, giảm thiểu thời gian chạy.
-
-### **6. Khi Nào Nên Chọn Dynamic Programming?**
-
-* Khi bài toán có tính chất bài toán con lặp (Overlapping Subproblems).
-* Khi bài toán có tính chất cấu trúc tối ưu (Optimal Substructure).
-* Khi bạn cần tìm giải pháp tối ưu (như lớn nhất, nhỏ nhất, dài nhất).
-* Khi bạn cần tối ưu hóa về thời gian bằng cách lưu trữ các kết quả trung gian.
-* Khi các bài toán con và công thức truy hồi có thể được xác định một cách rõ ràng.
-
-### **7. Ví Dụ Cụ Thể và Phân Tích**
-
-#### 7.1. Bài toán tìm kiếm trên cây (Tree Traversal): Áp dụng cả Backtracking và Dynamic Programming
-
-* **Backtracking:** Dùng để duyệt cây theo thứ tự trước, giữa, hoặc sau bằng cách gọi đệ quy và quay lui.
-* **Dynamic Programming:** Trong trường hợp này, DP có thể được sử dụng nếu ta cần tính toán thông tin (ví dụ: chiều
-  cao, số lượng node) từ cây.
-
-#### 7.2. Bài toán tìm số cách đi lên cầu thang: Áp dụng Dynamic Programming
-
-Cho một cầu thang có n bậc. Tìm số cách đi lên cầu thang, biết rằng mỗi lần đi có thể bước 1 hoặc 2 bậc.
-
-* **Dynamic Programming:** Có thể giải bài toán này bằng cách sử dụng một mảng dp, với dp[i] là số cách để đi đến bậc
-  thứ i.
+1. **Tìm kiếm trên cây (Tree Traversal):**
+    * **Backtracking:** Để duyệt cây theo các thứ tự (preorder, inorder, postorder).
+    * **Dynamic Programming:** Để tính các thông tin từ cây (chiều cao, số node,...).
+2. **Bài toán đếm số cách đi cầu thang:**
+    * **Dynamic Programming:** Chia thành các bài toán con, lưu kết quả.
 
 ```csharp
 using System;
@@ -381,32 +232,3 @@ class ClimbStairs
     public static int CountWaysToClimb(int n)
     {
         int[] dp = new int[n + 1];
-        dp[0] = 1;
-        if (n > 0)
-        {
-            dp[1] = 1;
-        }
-        for (int i = 2; i <= n; i++)
-        {
-            dp[i] = dp[i - 1] + dp[i - 2];
-        }
-        return dp[n];
-    }
-
-    static void Main(string[] args)
-    {
-        int n = 5;
-        Console.WriteLine($"Số cách đi lên cầu thang {n} bậc: {CountWaysToClimb(n)}");
-    }
-}
-```
-
-### **8. Kết luận**
-
-Backtracking và Dynamic Programming đều là những kỹ thuật quan trọng trong thiết kế thuật toán, nhưng chúng có cách tiếp
-cận và ứng dụng khác nhau. Backtracking phù hợp với các bài toán tìm kiếm không gian lớn và các bài toán tổ hợp, trong
-khi Dynamic Programming phù hợp với các bài toán tối ưu hóa và có tính chất lặp lại. Việc hiểu rõ ưu nhược điểm của từng
-phương pháp sẽ giúp bạn đưa ra lựa chọn tối ưu cho từng bài toán cụ thể, từ đó giải quyết các vấn đề một cách hiệu quả
-và tối ưu.
-
----
