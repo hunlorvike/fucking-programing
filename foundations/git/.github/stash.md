@@ -1,6 +1,8 @@
 # Quản Lý Stash trong Git và GitHub
 
-Stash là một tính năng trong Git cho phép bạn lưu trữ tạm thời các thay đổi trong working directory mà không cần commit chúng. Tính năng này hữu ích khi bạn muốn chuyển sang một nhánh khác hoặc làm việc trên một nhiệm vụ mới mà không làm mất đi các thay đổi chưa hoàn thành.
+Stash là một tính năng trong Git cho phép bạn lưu trữ tạm thời các thay đổi trong working directory mà không cần commit
+chúng. Tính năng này hữu ích khi bạn muốn chuyển sang một nhánh khác hoặc làm việc trên một nhiệm vụ mới mà không làm
+mất đi các thay đổi chưa hoàn thành.
 
 ---
 
@@ -10,8 +12,8 @@ Stash là một tính năng trong Git cho phép bạn lưu trữ tạm thời c�
 
 Stash tạo một "ngăn tạm" để lưu trữ các thay đổi chưa được commit. Nó bao gồm:
 
--   Các thay đổi trong tracked files.
--   Thay đổi trong staged files.
+- Các thay đổi trong tracked files.
+- Thay đổi trong staged files.
 
 **Lưu ý**: Thay đổi trong untracked files hoặc ignored files không được lưu trữ mặc định.
 
@@ -79,19 +81,19 @@ git stash pop
 
 Xóa stash sau khi không còn cần thiết:
 
--   Xóa stash đầu tiên (stash@{0}):
+- Xóa stash đầu tiên (stash@{0}):
 
 ```bash
 git stash drop
 ```
 
--   Xóa một stash cụ thể:
+- Xóa một stash cụ thể:
 
 ```bash
 git stash drop stash@{<index>}
 ```
 
--   Xóa tất cả các stash:
+- Xóa tất cả các stash:
 
 ```bash
 git stash clear
@@ -161,27 +163,29 @@ git stash push -m "Lưu thay đổi file index.html" index.html
 
 Stash là tính năng cục bộ trong Git. Khi làm việc với GitHub:
 
--   Bạn cần áp dụng stash vào repository local (`git stash apply` hoặc `git stash pop`) trước khi commit và push lên remote repository.
--   Stash không được đồng bộ trực tiếp với GitHub.
+- Bạn cần áp dụng stash vào repository local (`git stash apply` hoặc `git stash pop`) trước khi commit và push lên
+  remote repository.
+- Stash không được đồng bộ trực tiếp với GitHub.
 
 ---
 
 ## 5. **Các Lệnh Hữu Ích Khác**
 
--   **Áp dụng stash nhưng giữ nguyên trong danh sách stash**:
+- **Áp dụng stash nhưng giữ nguyên trong danh sách stash**:
 
 ```bash
 git stash apply stash@{0}
 ```
 
--   **Chỉ stash staged files**:
+- **Chỉ stash staged files**:
 
 ```bash
 git stash --keep-index
 ```
 
--   **Stash một phần thay đổi**:
-    Nếu chỉ muốn stash một phần thay đổi, sử dụng interactive mode với `git add -p`, sau đó stash các thay đổi đã được staged:
+- **Stash một phần thay đổi**:
+  Nếu chỉ muốn stash một phần thay đổi, sử dụng interactive mode với `git add -p`, sau đó stash các thay đổi đã được
+  staged:
 
 ```bash
 git add -p
@@ -237,4 +241,5 @@ git stash apply stash@{1}
 
 ## 7. **Kết Luận**
 
-Stash là một công cụ mạnh mẽ giúp bạn quản lý các thay đổi tạm thời mà không cần commit. Hiểu và sử dụng thành thạo các lệnh stash sẽ giúp bạn làm việc linh hoạt hơn, tránh mất mát dữ liệu và tăng năng suất làm việc.
+Stash là một công cụ mạnh mẽ giúp bạn quản lý các thay đổi tạm thời mà không cần commit. Hiểu và sử dụng thành thạo các
+lệnh stash sẽ giúp bạn làm việc linh hoạt hơn, tránh mất mát dữ liệu và tăng năng suất làm việc.
