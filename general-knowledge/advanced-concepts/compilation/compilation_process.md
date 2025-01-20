@@ -15,7 +15,7 @@ MSIL (Microsoft Intermediate Language) hay CIL (Common Intermediate Language) l�
 .NET, không thể thực thi trực tiếp mà cần phải biên dịch thành mã máy cụ thể cho hệ điều hành và phần cứng. MSIL là nền
 tảng cho việc triển khai ứng dụng .NET, giúp chúng có thể chạy trên nhiều môi trường mà không cần thay đổi mã nguồn.
 
-![MSIL Image](../../assets/images/MSIL.png)
+![MSIL Image](/assets/images/MSIL.png)
 
 ## **2. Quá trình biên dịch C# thành MSIL** <a name="qua-trinh-bien-dich-c-sharp-thanh-msil"></a>
 

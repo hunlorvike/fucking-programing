@@ -1,11 +1,5 @@
 # Tài Liệu Quản Lý Bộ Nhớ: C++, Java và .NET
 
-Để sửa lại mục lục sao cho các mục trỏ đến các tiêu đề tương ứng và phần ví dụ về Garbage Collection (GC) trong C#, bạn
-có thể làm theo cách dưới đây. Đầu tiên, bạn cần sửa mục lục sao cho mỗi mục liên kết tới các tiêu đề hoặc nội dung
-tương ứng trong văn bản. Sau đó, thêm phần ví dụ về GC trong C# vào đúng vị trí.
-
----
-
 ### Mục Lục:
 
 1. [Tổng quan về quản lý bộ nhớ](#tổng-quan-về-quản-lý-bộ-nhớ)
@@ -149,16 +143,12 @@ class Program
 
 ### 5. So sánh quản lý bộ nhớ giữa C++, Java và .NET
 
-| **Đặc điểm**     | **C++**  | **Java** | **.NET (C#)** |
-|------------------|----------|----------|---------------|
-| **Loại quản lý** | Thủ công | Tự động  |
-
-Tự động |
-| **Cơ chế** | `new`, `delete`, `malloc`, `free` | Garbage Collection | Garbage Collection |
-| **Ưu điểm** | Kiểm soát hoàn toàn, tối ưu hiệu suất | Đơn giản, giảm rủi ro rò rỉ bộ nhớ | Dễ sử dụng, phù hợp cho các
-ứng dụng lớn |
-| **Nhược điểm** | Dễ dẫn đến rò rỉ bộ nhớ, lỗi truy cập không hợp lệ | Tạm dừng trong khi GC hoạt động | Tạm dừng trong
-khi GC hoạt động |
+| **Đặc điểm**     | **C++**                                            | **Java**                           | **.NET (C#)**                            |
+|------------------|----------------------------------------------------|------------------------------------|------------------------------------------|
+| **Loại quản lý** | Thủ công                                           | Tự động                            |
+| **Cơ chế**       | `new`, `delete`, `malloc`, `free`                  | Garbage Collection                 | Garbage Collection                       |
+| **Ưu điểm**      | Kiểm soát hoàn toàn, tối ưu hiệu suất              | Đơn giản, giảm rủi ro rò rỉ bộ nhớ | Dễ sử dụng, phù hợp cho các ứng dụng lớn |
+| **Nhược điểm**   | Dễ dẫn đến rò rỉ bộ nhớ, lỗi truy cập không hợp lệ | Tạm dừng trong khi GC hoạt động    | Tạm dừng trong khi GC hoạt động          |
 
 ---
 
