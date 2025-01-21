@@ -2,42 +2,9 @@
 .DS_Store
 Thumbs.db
 
-# Node.js
-node_modules/
-.node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# TypeScript
-*.tsbuildinfo
-
-# Build output
-dist/
-build/
-out/
-
-# Caches
-.cache/
-.temp/
-.vscode/
-
 # IDEs và Editors
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Thư mục lockfile cho các package managers
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
