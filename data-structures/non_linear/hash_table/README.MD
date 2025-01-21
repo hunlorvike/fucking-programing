@@ -1,141 +1,161 @@
-# Bảng Băm (Hash Table)
+## **🚀 "GIẢI MÃ" BẢNG BĂM (HASH TABLE): CẤU TRÚC DỮ LIỆU "TÌM NHANH" CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một cấu trúc dữ liệu cực kỳ quan trọng và "bá đạo": Bảng băm (Hash Table). Đây là một "vũ khí" bí mật giúp bạn tìm kiếm và quản lý dữ liệu siêu nhanh. Cùng mình "mổ xẻ" nó nhé!
 
-1. [Khái niệm](#khái-niệm)
-2. [Cách thức hoạt động](#cách-thức-hoạt-động)
-    - [Hàm băm](#hàm-băm)
-    - [Xung đột (Collision)](#xung-đột-collision)
-3. [Ưu điểm và nhược điểm](#ưu-điểm-và-nhược-điểm)
-4. [Ví dụ: Bài toán lưu trữ thông tin người dùng](#ví-dụ-bài-toán-lưu-trữ-thông-tin-người-dùng)
-5. [Triển khai Bảng băm trong TypeScript](#triển-khai-bảng-băm-trong-typescript)
-6. [Ứng dụng của Bảng băm](#ứng-dụng-của-bảng-băm)
-7. [Kết luận](#kết-luận)
+### **I. BẢNG BĂM (HASH TABLE) LÀ GÌ?**
 
----
+-   **Bảng băm (Hash Table):** Là cấu trúc dữ liệu dùng "hàm băm" để ánh xạ dữ liệu sang các vị trí trong bộ nhớ, giúp tìm kiếm nhanh.
+-   **Nó hoạt động như thế nào?**
+    -   Giống như khi bạn tìm sách trong thư viện: bạn dùng "mã số" của sách để biết nó ở kệ nào, chứ không cần tìm từng cuốn một.
+-   **Đặc điểm:**
+    -   **Hàm băm:** Ánh xạ "khóa" (key) thành "vị trí" (hash value).
+    -   **Khóa - giá trị:** Lưu dữ liệu dưới dạng cặp "khóa - giá trị" (key-value).
+    -   **Truy cập nhanh:** Thường mất O(1) để tìm kiếm, thêm, xóa (nhưng có thể chậm trong trường hợp xấu).
 
-## Khái niệm
+### **II. CÁCH HOẠT ĐỘNG (TỪNG BƯỚC CHI TIẾT)**
 
-Bảng băm (Hash Table) là một cấu trúc dữ liệu sử dụng **hàm băm** để ánh xạ dữ liệu sang các vị trí trong bộ nhớ. Dữ
-liệu được lưu trữ dưới dạng các cặp khóa-giá trị (_key-value pairs_).
+1.  **Hàm băm:**
+    -   Nhận "khóa" (key) đầu vào.
+    -   Trả về một số nguyên (hash value), đó là vị trí trong bảng.
+2.  **Lưu trữ:**
+    -   Dùng hash value làm vị trí lưu trữ dữ liệu.
+    -   Nếu có 2 khóa cùng hash value (xung đột), dùng các cách giải quyết (liên kết hoặc địa chỉ mở).
+3.  **Tìm kiếm:**
+    -   Dùng hash function để tính hash value từ "khóa" cần tìm.
+    -   Truy cập trực tiếp vào vị trí đó để lấy dữ liệu.
 
-## Cách thức hoạt động
+### **III. GIẢI QUYẾT XUNG ĐỘT (KHI CÓ NHIỀU "SÁCH" Ở CÙNG "KỆ")**
 
-### Hàm băm
+1.  **Chaining (Liên kết):** Mỗi vị trí trong bảng là 1 danh sách liên kết, các phần tử trùng hash value sẽ cùng nằm trong danh sách này.
+2.  **Open Addressing (Địa chỉ mở):** Nếu vị trí đã đầy, sẽ tìm vị trí trống tiếp theo theo một quy luật nhất định.
 
-Hàm băm nhận một khóa (_key_) bất kỳ và trả về một giá trị số nguyên (_hash value_), đại diện cho vị trí trong bảng băm
-mà khóa đó sẽ được lưu trữ.
+### **IV. ƯU ĐIỂM CỦA BẢNG BĂM (NHỮNG ĐIỂM "ĐÁNG YÊU")**
 
-### Xung đột (Collision)
+-   **Truy cập nhanh:** Tìm kiếm, thêm, xóa thường nhanh (O(1)).
+-   **Truy cập ngẫu nhiên:** Phù hợp khi cần truy cập dữ liệu bằng khóa.
 
-Khi hai khóa khác nhau được ánh xạ đến cùng một vị trí trong bảng băm, xảy ra **xung đột**. Các phương pháp giải quyết
-xung đột phổ biến gồm:
+### **V. NHƯỢC ĐIỂM CỦA BẢNG BĂM (NHỮNG ĐIỂM "KHÓ CHỊU")**
 
-- **Chaining (Liên kết):** Lưu trữ các khóa có cùng hash value vào một danh sách liên kết tại vị trí đó.
-- **Open Addressing (Địa chỉ mở):** Tìm các vị trí tiếp theo trong bảng băm cho đến khi tìm được vị trí trống.
+-   **Xung đột:** Có thể làm chậm nếu có quá nhiều xung đột.
+-   **Không duyệt tuần tự:** Không có thứ tự cho các phần tử, không duyệt được theo thứ tự.
 
-## Ưu điểm và nhược điểm
+### **VI. VÍ DỤ MINH HỌA - LƯU THÔNG TIN NGƯỜI DÙNG (C#)**
 
-- **Ưu điểm:**
+```csharp
+using System;
+using System.Collections.Generic;
 
-    - **Truy cập nhanh chóng:** Thao tác tìm kiếm, chèn và xóa trong bảng băm thường có độ phức tạp trung bình là \(O(
-      1)\).
-    - **Phù hợp với truy cập ngẫu nhiên:** Bảng băm rất hiệu quả cho các thao tác truy cập nhanh dựa vào khóa.
+public class HashTableExample
+{
+    public class HashTable<K, V>
+        {
+            private int size;
+            private List<(K, V)>[] table;
 
-- **Nhược điểm:**
-    - **Xung đột:** Xung đột có thể làm giảm hiệu suất của bảng băm.
-    - **Không hỗ trợ duyệt tuần tự:** Bảng băm không cung cấp một thứ tự cụ thể cho các phần tử.
+            public HashTable(int size)
+            {
+                this.size = size;
+                table = new List<(K, V)>[size];
+                for(int i = 0; i < size; i++)
+                {
+                     table[i] = new List<(K, V)>();
+                }
 
-## Ví dụ: Bài toán lưu trữ thông tin người dùng
+            }
 
-Giả sử muốn lưu trữ thông tin người dùng, với mỗi người dùng được xác định bởi một **ID duy nhất**. Sử dụng bảng băm để
-lưu trữ thông tin này:
+              private int Hash(K key)
+           {
+              int hash = 0;
+                string keyStr = key.ToString();
+               for (int i = 0; i < keyStr.Length; i++)
+                  {
+                         hash = (hash << 5) - hash + keyStr[i];
+                            hash |= 0;
+                   }
+              return Math.Abs(hash) % size;
+             }
 
-- **Key:** ID của người dùng.
-- **Value:** Thông tin về người dùng (tên, tuổi, địa chỉ...).
 
-## Triển khai Bảng băm trong TypeScript
+             // Thêm cặp key-value vào bảng băm
+             public void Put(K key, V value)
+             {
+                int index = Hash(key);
+                List<(K, V)> bucket = table[index];
+                foreach (var item in bucket)
+                {
+                     if(item.Item1.Equals(key))
+                     {
+                        bucket.Remove(item);
+                        break;
+                     }
 
-```typescript
-class HashTable<K, V> {
-  private size: number;
-  private table: Array<[K, V][]>;
+                 }
+              bucket.Add((key,value));
 
-  constructor(size: number) {
-    this.size = size;
-    this.table = new Array(size).fill(null).map(() => []);
-  }
+             }
 
-  private hash(key: K): number {
-    let hash = 0;
-    const keyStr = String(key);
-    for (let i = 0; i < keyStr.length; i++) {
-      hash = (hash << 5) - hash + keyStr.charCodeAt(i);
-      hash |= 0; // Chuyển hash thành 32-bit integer
-    }
-    return Math.abs(hash) % this.size;
-  }
+            // Lấy giá trị từ bảng băm
+             public V Get(K key)
+            {
+               int index = Hash(key);
+                List<(K, V)> bucket = table[index];
+                foreach(var item in bucket)
+                {
+                     if(item.Item1.Equals(key))
+                     {
+                           return item.Item2;
+                     }
+                }
+               return default(V);
+            }
 
-  // Thêm cặp key-value vào bảng băm
-  put(key: K, value: V): void {
-    const index = this.hash(key);
-    const bucket = this.table[index];
-    for (let i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] === key) {
-        bucket[i][1] = value;
-        return;
-      }
-    }
-    bucket.push([key, value]);
-  }
+               // Xóa một khóa khỏi bảng băm
+            public bool Delete(K key)
+            {
+                 int index = Hash(key);
+                 List<(K,V)> bucket = table[index];
+                 for (int i = 0; i < bucket.Count; i++)
+                     {
+                            if(bucket[i].Item1.Equals(key))
+                            {
+                                bucket.RemoveAt(i);
+                                return true;
+                            }
+                     }
+                 return false;
+             }
 
-  // Lấy giá trị từ bảng băm
-  get(key: K): V | null {
-    const index = this.hash(key);
-    const bucket = this.table[index];
-    for (const [k, v] of bucket) {
-      if (k === key) {
-        return v;
-      }
-    }
-    return null;
-  }
+        }
+    public static void Main(string[] args)
+    {
+         HashTable<string, string> hashTable = new HashTable<string, string>(10);
+            hashTable.Put("name", "John");
+            hashTable.Put("age", "30");
 
-  // Xóa một khóa khỏi bảng băm
-  delete(key: K): boolean {
-    const index = this.hash(key);
-    const bucket = this.table[index];
-    for (let i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] === key) {
-        bucket.splice(i, 1);
-        return true;
-      }
-    }
-    return false;
-  }
+             Console.WriteLine("Tên: " + hashTable.Get("name")); // Output: Tên: John
+            Console.WriteLine("Tuổi: " + hashTable.Get("age")); // Output: Tuổi: 30
+
+            hashTable.Delete("name");
+             Console.WriteLine("Tên: " + hashTable.Get("name"));  // Output: Tên:
+        }
 }
-
-// Ví dụ sử dụng
-const hashTable = new HashTable<string, any>(10);
-hashTable.put('name', 'John');
-hashTable.put('age', 30);
-
-console.log(hashTable.get('name')); // Output: "John"
-console.log(hashTable.get('age')); // Output: 30
-
-hashTable.delete('name');
-console.log(hashTable.get('name')); // Output: null
 ```
 
-## Ứng dụng của Bảng băm
+**Giải thích:**
 
-- **Tìm kiếm nhanh các phần tử:** Bảng băm được sử dụng trong các thuật toán tìm kiếm nhanh, ví dụ: tìm kiếm từ trong
-  văn bản, tìm khóa trong tập dữ liệu lớn.
-- **Bảng tra cứu:** Xây dựng bảng tra cứu (lookup table) cho các dữ liệu được truy cập thường xuyên, ví dụ: bảng mã hóa,
-  bảng giá trị.
-- **Bộ nhớ cache:** Quản lý bộ nhớ đệm (cache) cho các dữ liệu thường xuyên truy cập, giúp tăng tốc độ truy xuất.
+-   **`HashTable<K, V>`:** Class dùng generic để có thể chứa nhiều kiểu dữ liệu.
+-   **`table`:** Mảng chứa các danh sách liên kết (dùng List để làm danh sách liên kết)
+-   **`Hash(K key)`:** Hàm băm để tính index từ key
+-   **`Put(K key, V value)`:** Thêm cặp key-value vào bảng băm
+-   **`Get(K key)`:** Tìm và trả về value dựa vào key.
+-   **`Delete(K key)`:** Xóa key-value dựa vào key.
 
-## Kết luận
+### **VII. ỨNG DỤNG CỦA BẢNG BĂM (ĐƯỢC DÙNG Ở ĐÂU?)**
 
-Bảng băm là một cấu trúc dữ liệu hiệu quả và được sử dụng rộng rãi trong các ứng dụng cần tìm kiếm nhanh. Nó cung cấp
-khả năng truy cập ngẫu nhiên với độ phức tạp trung bình là \(O(1)\), phù hợp với các thao tác như tìm kiếm, chèn và xóa.
+-   **Tìm kiếm nhanh:** Tìm kiếm các phần tử nhanh chóng (từ điển, cơ sở dữ liệu).
+-   **Bảng tra cứu:** Dùng để tra cứu dữ liệu dựa trên khóa.
+-   **Bộ nhớ cache:** Quản lý các dữ liệu thường dùng để truy cập nhanh.
+
+### **VIII. KẾT LUẬN (TỔNG KẾT)**
+
+Bảng băm là một cấu trúc dữ liệu cực kỳ quan trọng, giúp bạn tìm kiếm, thêm, xóa dữ liệu một cách nhanh chóng. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về nó và có thể sử dụng nó một cách hiệu quả. Chúc các bạn code thành công! 😎

@@ -1,137 +1,143 @@
-# Cấu trúc dữ liệu Đồ thị (Graph)
+## **🚀 "GIẢI MÃ" CẤU TRÚC DỮ LIỆU ĐỒ THỊ (GRAPH): "BẢN ĐỒ" KẾT NỐI CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một cấu trúc dữ liệu rất quan trọng và thú vị: Đồ thị (Graph). Đây là một "công cụ" mạnh mẽ giúp bạn biểu diễn các mối quan hệ giữa các đối tượng. Cùng mình "mổ xẻ" nó nhé!
 
-1. [Giới thiệu](#giới-thiệu)
-2. [Các loại đồ thị](#các-loại-đồ-thị)
-3. [Biểu diễn đồ thị trong TypeScript](#biểu-diễn-đồ-thị-trong-typescript)
-    - [Danh sách kề (Adjacency List)](#danh-sách-kề-adjacency-list)
-    - [Ma trận kề (Adjacency Matrix)](#ma-trận-kề-adjacency-matrix)
-4. [Triển khai đồ thị trong TypeScript](#triển-khai-đồ-thị-trong-typescript)
-5. [Các thuật toán liên quan đến đồ thị](#các-thuật-toán-liên-quan-đến-đồ-thị)
-6. [Ứng dụng của đồ thị](#ứng-dụng-của-đồ-thị)
-7. [Kết luận](#kết-luận)
+### **I. ĐỒ THỊ (GRAPH) LÀ GÌ?**
 
----
+-   **Đồ thị (Graph):** Là cấu trúc dữ liệu phi tuyến tính, dùng để biểu diễn mối quan hệ giữa các đối tượng.
+-   **Nó hoạt động như thế nào?**
+    -   Giống như bản đồ giao thông: có các "thành phố" (đỉnh), và các "con đường" (cạnh) nối các thành phố đó.
+-   **Đặc điểm:**
+    -   **Đỉnh (Node/Vertex):** Các đối tượng trong đồ thị.
+    -   **Cạnh (Edge):** Liên kết giữa các đỉnh.
+        -   **Có hướng (Directed):** Cạnh có hướng (ví dụ: A -> B).
+        -   **Vô hướng (Undirected):** Cạnh không có hướng (ví dụ: A <-> B).
+        -   **Có trọng số (Weighted):** Cạnh có giá trị (ví dụ: khoảng cách, chi phí).
 
-## Giới thiệu
+### **II. CÁC LOẠI ĐỒ THỊ (MỖI LOẠI MỘT VẺ)**
 
-Đồ thị là một cấu trúc dữ liệu phi tuyến tính đại diện cho mối quan hệ giữa các đối tượng. Nó được cấu tạo từ hai thành
-phần chính:
+1.  **Đồ thị có hướng (Directed Graph):** Các cạnh có hướng rõ ràng.
+    -   **Ví dụ:** Quan hệ "theo dõi" trên mạng xã hội (A follow B).
+2.  **Đồ thị vô hướng (Undirected Graph):** Các cạnh không có hướng.
+    -   **Ví dụ:** Quan hệ "bạn bè" trên mạng xã hội (A is friend with B).
+3.  **Đồ thị có trọng số (Weighted Graph):** Các cạnh có trọng số.
+    -   **Ví dụ:** Bản đồ đường đi có khoảng cách giữa các thành phố.
 
-- **Đỉnh (Node/Vertex):** Các đối tượng trong đồ thị.
-- **Cạnh (Edge):** Mối quan hệ kết nối giữa hai đỉnh. Cạnh có thể có hướng (directed) hoặc không có hướng (undirected),
-  và có thể được gán trọng số (weighted).
+### **III. BIỂU DIỄN ĐỒ THỊ (CÁCH "VẼ" ĐỒ THỊ)**
 
-## Các loại đồ thị
+1.  **Danh sách kề (Adjacency List):**
+    -   Dùng danh sách để lưu các đỉnh kề của từng đỉnh.
+    -   **Ví dụ:**
 
-- **Đồ thị có hướng (Directed Graph):** Các cạnh có hướng xác định, ví dụ: quan hệ "theo dõi" trên mạng xã hội.
-- **Đồ thị vô hướng (Undirected Graph):** Các cạnh không có hướng, ví dụ: quan hệ "bạn bè" trên mạng xã hội.
-- **Đồ thị có trọng số (Weighted Graph):** Các cạnh được gán trọng số, ví dụ: khoảng cách giữa các thành phố.
-
-## Biểu diễn đồ thị trong TypeScript
-
-### Danh sách kề (Adjacency List)
-
-- Sử dụng một đối tượng hoặc `Map` để lưu trữ các đỉnh và danh sách các đỉnh kề với nó.
-
-```typescript
-const graph: { [key: string]: string[] } = {
-  A: ['B', 'C'],
-  B: ['D', 'E'],
-  C: ['F'],
-  D: [],
-  E: ['F'],
-  F: [],
-};
+```
+A: [B, C]
+B: [D, E]
+C: [F]
+D: []
+E: [F]
+F: []
 ```
 
-### Ma trận kề (Adjacency Matrix)
+2.  **Ma trận kề (Adjacency Matrix):**
+    -   Dùng ma trận 2 chiều để biểu diễn cạnh.
+    -   **Ví dụ:**
 
-- Sử dụng một mảng hai chiều để biểu diễn các cạnh. Mỗi hàng và cột đại diện cho một đỉnh, và giá trị tại ô `(i, j)` thể
-  hiện có cạnh kết nối giữa đỉnh `i` và `j`.
-
-```typescript
-const graph: number[][] = [
-  [0, 1, 1, 0, 0, 0],
-  [1, 0, 0, 1, 1, 0],
-  [1, 0, 0, 0, 0, 1],
-  [0, 1, 0, 0, 0, 0],
-  [0, 1, 0, 0, 0, 1],
-  [0, 0, 1, 0, 1, 0],
-];
+```
+      A B C D E F
+  A   0 1 1 0 0 0
+  B   1 0 0 1 1 0
+  C   1 0 0 0 0 1
+  D   0 1 0 0 0 0
+  E   0 1 0 0 0 1
+  F   0 0 1 0 1 0
 ```
 
-## Triển khai đồ thị trong TypeScript
+### **IV. CÀI ĐẶT ĐỒ THỊ (C#)**
 
-```typescript
-class Graph {
-  private vertices: number;
-  private adjacencyList: Map<number, number[]>;
+```csharp
+using System;
+using System.Collections.Generic;
 
-  constructor(vertices: number) {
-    this.vertices = vertices;
-    this.adjacencyList = new Map<number, number[]>();
-    for (let i = 0; i < vertices; i++) {
-      this.adjacencyList.set(i, []);
+public class Graph
+{
+    private int numVertices;
+    private Dictionary<int, List<int>> adjacencyList;
+
+    public Graph(int numVertices)
+    {
+        this.numVertices = numVertices;
+        adjacencyList = new Dictionary<int, List<int>>();
+        for (int i = 0; i < numVertices; i++)
+        {
+            adjacencyList[i] = new List<int>();
+        }
     }
-  }
 
-  // Thêm cạnh vào đồ thị
-  addEdge(u: number, v: number): void {
-    this.adjacencyList.get(u)?.push(v);
-  }
-
-  // In đồ thị
-  printGraph(): void {
-    for (let [vertex, adj] of this.adjacencyList) {
-      console.log(`${vertex} -> ${adj.join(', ')}`);
+    public void AddEdge(int u, int v)
+    {
+        adjacencyList[u].Add(v);
+       // adjacencyList[v].Add(u); // Cho đồ thị vô hướng, nếu cần
     }
-  }
+
+      public void PrintGraph()
+          {
+             foreach (var item in adjacencyList)
+             {
+                  Console.WriteLine(item.Key + " -> " + string.Join(", ", item.Value));
+             }
+        }
+
+    public static void Main(string[] args)
+    {
+        Graph graph = new Graph(6);
+        graph.AddEdge(0, 1);
+        graph.AddEdge(0, 2);
+        graph.AddEdge(1, 3);
+        graph.AddEdge(1, 4);
+        graph.AddEdge(2, 5);
+        graph.AddEdge(4, 5);
+
+        graph.PrintGraph();
+         // Output:
+         //0 -> 1, 2
+         //1 -> 3, 4
+         //2 -> 5
+         //3 ->
+         //4 -> 5
+         //5 ->
+    }
 }
-
-// Ví dụ sử dụng
-const graph = new Graph(6);
-graph.addEdge(0, 1);
-graph.addEdge(0, 2);
-graph.addEdge(1, 3);
-graph.addEdge(1, 4);
-graph.addEdge(2, 5);
-graph.addEdge(4, 5);
-
-graph.printGraph();
-// Output:
-// 0 -> 1, 2
-// 1 -> 3, 4
-// 2 -> 5
-// 3 ->
-// 4 -> 5
-// 5 ->
 ```
 
-## Các thuật toán liên quan đến đồ thị
+**Giải thích:**
 
-- **Duyệt đồ thị (Traversal):**
-    - **BFS (Breadth-First Search)**: Duyệt theo chiều rộng.
-    - **DFS (Depth-First Search)**: Duyệt theo chiều sâu.
-- **Tìm đường đi:**
-    - **Tìm đường đi ngắn nhất** (Dijkstra, Bellman-Ford).
-    - **Tìm đường đi Euler** và **đường đi Hamilton**.
-- **Tìm chu trình:**
-    - **Chu trình Euler**, **chu trình Hamilton**.
-- **Tìm cây khung:**
-    - **Thuật toán Kruskal**, **Prim**.
-- **Tô màu đồ thị:** Được ứng dụng để kiểm tra khả năng phân vùng của đồ thị (Welsh-Powell).
+-   **`Graph`:** Lớp biểu diễn đồ thị.
+    -   `numVertices`: Số lượng đỉnh.
+    -   `adjacencyList`: Dùng `Dictionary<int, List<int>>` để lưu danh sách kề.
+    -   `AddEdge(int u, int v)`: Thêm cạnh từ đỉnh `u` đến đỉnh `v`.
+    -   `PrintGraph()`: In ra đồ thị.
 
-## Ứng dụng của đồ thị
+### **V. CÁC THUẬT TOÁN TRÊN ĐỒ THỊ (NHỮNG THUẬT TOÁN HAY DÙNG)**
 
-- **Mạng xã hội:** Mô phỏng kết nối giữa các người dùng, tìm kiếm bạn bè, đề xuất nội dung.
-- **Dẫn đường:** Tìm đường đi ngắn nhất, tối ưu hóa tuyến đường.
-- **Mạng máy tính:** Phân bổ tài nguyên, kiểm soát lưu lượng.
-- **Khoa học máy tính:** Phân tích dữ liệu, xử lý ngôn ngữ tự nhiên.
+1.  **Duyệt đồ thị:**
+    -   **BFS (Breadth-First Search):** Duyệt theo chiều rộng.
+    -   **DFS (Depth-First Search):** Duyệt theo chiều sâu.
+2.  **Tìm đường đi:**
+    -   **Dijkstra, Bellman-Ford:** Tìm đường đi ngắn nhất.
+    -   **Euler, Hamilton:** Tìm đường đi qua tất cả cạnh/đỉnh.
+3.  **Tìm chu trình:**
+    -   **Chu trình Euler, Hamilton**.
+4.  **Tìm cây khung:**
+    -   **Kruskal, Prim:** Tìm cây khung nhỏ nhất.
+5.  **Tô màu đồ thị:** Tìm cách tô màu các đỉnh sao cho các đỉnh kề nhau không cùng màu.
 
-## Kết luận
+### **VI. ỨNG DỤNG CỦA ĐỒ THỊ (ĐƯỢC DÙNG Ở ĐÂU?)**
 
-Đồ thị là một cấu trúc dữ liệu mạnh mẽ và linh hoạt, được sử dụng trong nhiều lĩnh vực của khoa học máy tính. Việc hiểu
-rõ các khái niệm và cách triển khai đồ thị sẽ giúp bạn giải quyết hiệu quả các bài toán liên quan đến mối quan hệ giữa
-các đối tượng.
+-   **Mạng xã hội:** Biểu diễn mối quan hệ giữa người dùng.
+-   **Dẫn đường:** Tìm đường đi ngắn nhất (Google Maps).
+-   **Mạng máy tính:** Phân bổ tài nguyên.
+-   **Khoa học máy tính:** Phân tích dữ liệu, xử lý ngôn ngữ tự nhiên,...
+
+### **VII. KẾT LUẬN (TỔNG KẾT)**
+
+Đồ thị là một cấu trúc dữ liệu rất mạnh và linh hoạt, giúp bạn biểu diễn các mối quan hệ phức tạp giữa các đối tượng. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về nó và có thể áp dụng vào nhiều bài toán thực tế. Chúc các bạn code thành công! 😎

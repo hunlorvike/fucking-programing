@@ -1,130 +1,132 @@
-# Cấu Trúc Dữ Liệu Cây (Tree) trong TypeScript
+## **🚀 "GIẢI MÃ" CẤU TRÚC DỮ LIỆU CÂY (TREE): "BẢN ĐỒ" PHÂN CẤP CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một cấu trúc dữ liệu rất quan trọng và "làm màu": Cây (Tree). Nghe có vẻ "lâm ly" nhưng thực ra rất gần gũi và dễ hiểu nếu chúng ta "mổ xẻ" nó ra. Cùng mình khám phá nhé!
 
-1. [Khái niệm cơ bản](#khái-niệm-cơ-bản)
-2. [Triển khai cây trong TypeScript](#triển-khai-cây-trong-typescript)
-3. [Duyệt cây (Tree Traversal)](#duyệt-cây-tree-traversal)
-4. [Ví dụ](#ví-dụ)
-5. [Các loại cây](#các-loại-cây)
-6. [Ứng dụng của cây](#ứng-dụng-của-cây)
-7. [Kết luận](#kết-luận)
+### **I. CÂY (TREE) LÀ GÌ?**
 
----
+-   **Cây (Tree):** Là cấu trúc dữ liệu phi tuyến tính, có dạng phân cấp (như kiểu cây phả hệ).
+-   **Nó hoạt động như thế nào?**
+    -   Giống như một cái cây: có gốc, có cành, có lá,...
+-   **Đặc điểm:**
+    -   **Nút (Node):** Mỗi phần tử trong cây.
+    -   **Nút gốc (Root):** Nút đầu tiên, không có nút cha.
+    -   **Nút con (Child):** Các nút được liên kết với nút cha.
+    -   **Nút cha (Parent):** Nút có liên kết đến nút con.
+    -   **Nút lá (Leaf):** Nút không có nút con.
+    -   **Độ cao (Height):** Số cạnh từ nút gốc đến nút lá xa nhất.
+    -   **Độ sâu (Depth):** Số cạnh từ nút gốc đến một nút bất kỳ.
 
-## Khái niệm cơ bản
+### **II. CÀI ĐẶT CÂY NHỊ PHÂN (C#)**
 
-- **Nút (Node):** Mỗi phần tử trong cây, chứa dữ liệu và các liên kết đến các nút con.
-- **Nút gốc (Root):** Nút đầu tiên và duy nhất không có nút cha.
-- **Nút con (Child):** Nút được nối với một nút cha.
-- **Nút cha (Parent):** Nút có liên kết đến một hoặc nhiều nút con.
-- **Nút lá (Leaf):** Nút không có nút con.
-- **Độ cao (Height):** Số cạnh từ nút gốc đến nút lá xa nhất.
-- **Độ sâu (Depth):** Số cạnh từ nút gốc đến một nút bất kỳ.
+```csharp
+using System;
 
-## Triển khai cây trong TypeScript
+public class Node
+{
+    public int Data { get; set; }
+    public Node Left { get; set; }
+    public Node Right { get; set; }
 
-Trong TypeScript, bạn có thể triển khai cây nhị phân đơn giản với một lớp `Node` đại diện cho các nút trong cây.
-
-```typescript
-class Node {
-  data: number;
-  left: Node | null;
-  right: Node | null;
-
-  constructor(data: number) {
-    this.data = data;
-    this.left = null;
-    this.right = null;
-  }
+    public Node(int data)
+    {
+        Data = data;
+        Left = null;
+        Right = null;
+    }
 }
 ```
 
-- **Node:** Là lớp đại diện cho một nút trong cây.
-- **data:** Dữ liệu được lưu trữ trong nút.
-- **left:** Liên kết đến nút con bên trái.
-- **right:** Liên kết đến nút con bên phải.
+**Giải thích:**
 
-## Duyệt cây (Tree Traversal)
+-   **`Node`:** Lớp biểu diễn một nút trong cây.
+    -   `Data`: Dữ liệu của nút.
+    -   `Left`: Con trỏ đến nút con bên trái.
+    -   `Right`: Con trỏ đến nút con bên phải.
 
-### 1. Duyệt theo thứ tự trước (Preorder)
+### **III. DUYỆT CÂY (ĐI THĂM TỪNG "NGÓC NGÁCH")**
 
-Duyệt nút gốc trước, sau đó duyệt con trái và cuối cùng duyệt con phải.
+1.  **Duyệt trước (Preorder):** Gốc -> Trái -> Phải.
 
-```typescript
-function preorder(node: Node | null): void {
-  if (node) {
-    console.log(node.data, ' ');
-    preorder(node.left);
-    preorder(node.right);
-  }
-}
+```csharp
+    public static void PreorderTraversal(Node node)
+        {
+            if (node != null)
+            {
+                Console.Write(node.Data + " ");
+                PreorderTraversal(node.Left);
+                PreorderTraversal(node.Right);
+            }
+        }
 ```
 
-### 2. Duyệt theo thứ tự giữa (Inorder)
+2.  **Duyệt giữa (Inorder):** Trái -> Gốc -> Phải.
 
-Duyệt con trái, sau đó duyệt nút gốc và cuối cùng duyệt con phải.
-
-```typescript
-function inorder(node: Node | null): void {
-  if (node) {
-    inorder(node.left);
-    console.log(node.data, ' ');
-    inorder(node.right);
-  }
-}
+```csharp
+        public static void InorderTraversal(Node node)
+        {
+            if (node != null)
+            {
+                InorderTraversal(node.Left);
+                Console.Write(node.Data + " ");
+                InorderTraversal(node.Right);
+            }
+        }
 ```
 
-### 3. Duyệt theo thứ tự sau (Postorder)
+3.  **Duyệt sau (Postorder):** Trái -> Phải -> Gốc.
 
-Duyệt con trái, sau đó duyệt con phải và cuối cùng duyệt nút gốc.
-
-```typescript
-function postorder(node: Node | null): void {
-  if (node) {
-    postorder(node.left);
-    postorder(node.right);
-    console.log(node.data, ' ');
-  }
-}
+```csharp
+        public static void PostorderTraversal(Node node)
+        {
+            if (node != null)
+            {
+               PostorderTraversal(node.Left);
+               PostorderTraversal(node.Right);
+               Console.Write(node.Data + " ");
+            }
+        }
 ```
 
-## Ví dụ
+### **IV. VÍ DỤ MINH HỌA (C#)**
 
-Tạo một cây nhị phân đơn giản và duyệt theo thứ tự trước:
+```csharp
+ public class Example
+    {
+       public static void Main(string[] args)
+          {
+            Node root = new Node(1);
+            root.Left = new Node(2);
+            root.Right = new Node(3);
+            root.Left.Left = new Node(4);
+            root.Left.Right = new Node(5);
 
-```typescript
-const root = new Node(1);
-root.left = new Node(2);
-root.right = new Node(3);
-root.left.left = new Node(4);
-root.left.right = new Node(5);
-
-// Duyệt cây theo thứ tự trước
-preorder(root); // Output: 1 2 4 5 3
+            Console.Write("Duyệt trước (Preorder): ");
+            PreorderTraversal(root);  // Output: Duyệt trước (Preorder): 1 2 4 5 3
+            Console.WriteLine();
+           Console.Write("Duyệt giữa (Inorder): ");
+             InorderTraversal(root); // Output: Duyệt giữa (Inorder): 4 2 5 1 3
+           Console.WriteLine();
+           Console.Write("Duyệt sau (Postorder): ");
+            PostorderTraversal(root); // Output: Duyệt sau (Postorder): 4 5 2 3 1
+            Console.WriteLine();
+          }
+     }
 ```
 
-## Các loại cây
+### **V. CÁC LOẠI CÂY PHỔ BIẾN (NHIỀU LOẠI "CÂY" KHÁC NHAU)**
 
-1. **Cây nhị phân (Binary Tree):** Mỗi nút có tối đa hai nút con.
-2. **Cây tìm kiếm nhị phân (Binary Search Tree):** Cây nhị phân thỏa mãn điều kiện:
-    - Giá trị của nút con trái nhỏ hơn giá trị của nút cha.
-    - Giá trị của nút con phải lớn hơn giá trị của nút cha.
-3. **Cây AVL:** Cây tìm kiếm nhị phân tự cân bằng, đảm bảo độ cao của hai nhánh con của mỗi nút chênh lệch tối đa là 1.
-4. **Cây Red-Black:** Cây tìm kiếm nhị phân tự cân bằng, sử dụng màu sắc (đỏ hoặc đen) để quản lý độ cao của các nút.
+1.  **Cây nhị phân (Binary Tree):** Mỗi nút có tối đa 2 nút con.
+2.  **Cây tìm kiếm nhị phân (Binary Search Tree):** Cây nhị phân mà nút con trái < nút cha < nút con phải.
+3.  **Cây AVL:** Cây tìm kiếm nhị phân tự cân bằng.
+4.  **Cây Red-Black:** Cây tìm kiếm nhị phân tự cân bằng, dùng màu (đỏ, đen).
 
-## Ứng dụng của cây
+### **VI. ỨNG DỤNG CỦA CÂY (ĐƯỢC DÙNG Ở ĐÂU?)**
 
-- **Lưu trữ dữ liệu:** Cây tìm kiếm nhị phân được sử dụng để lưu trữ dữ liệu hiệu quả, cho phép tìm kiếm, chèn, xóa
-  nhanh chóng.
-- **Tìm kiếm:** Cây tìm kiếm nhị phân, cây AVL, cây Red-Black được sử dụng trong các thuật toán tìm kiếm hiệu quả.
-- **Tổ chức dữ liệu:** Cây được sử dụng để tổ chức dữ liệu theo dạng phân cấp, ví dụ: hệ thống tệp, biểu diễn ngữ pháp.
-- **Thuật toán:** Cây được sử dụng trong các thuật toán như:
-    - Dijkstra, Bellman-Ford (tìm đường đi ngắn nhất).
-    - Kruskal, Prim (tìm cây khung).
+-   **Lưu trữ dữ liệu:** Cây tìm kiếm nhị phân (BST) dùng để lưu dữ liệu, cho phép tìm kiếm nhanh.
+-   **Tìm kiếm:** Cây BST, AVL, Red-Black dùng trong thuật toán tìm kiếm hiệu quả.
+-   **Tổ chức dữ liệu:** Phân cấp dữ liệu (hệ thống tệp, cấu trúc XML, ...).
+-   **Thuật toán:** Dùng trong nhiều thuật toán: Dijkstra, Bellman-Ford, Kruskal, Prim, ...
 
-## Kết luận
+### **VII. KẾT LUẬN (TỔNG KẾT)**
 
-Cây là một cấu trúc dữ liệu mạnh mẽ và linh hoạt, được sử dụng rộng rãi trong nhiều lĩnh vực của khoa học máy tính. Việc
-hiểu rõ các khái niệm và cách triển khai cây giúp bạn giải quyết hiệu quả các bài toán liên quan đến dữ liệu có cấu trúc
-phân cấp.
+Cây là một cấu trúc dữ liệu rất mạnh và linh hoạt, dùng để biểu diễn dữ liệu phân cấp một cách hiệu quả. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về nó. Chúc các bạn code thành công! 😎

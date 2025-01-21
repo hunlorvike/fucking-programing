@@ -1,116 +1,150 @@
-# Tập Hợp (Set)
+## **🚀 "GIẢI MÃ" TẬP HỢP (SET): CẤU TRÚC DỮ LIỆU "KHÔNG TRÙNG LẶP" CHO DÂN CODE 🚀**
 
-## Mục lục
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một cấu trúc dữ liệu rất thú vị: Tập hợp (Set). Nghe có vẻ "lạ" nhưng thực ra rất hữu ích khi bạn cần quản lý các phần tử không trùng lặp. Cùng mình "mổ xẻ" nó nhé!
 
-1. [Đặc điểm](#đặc-điểm)
-2. [Ưu điểm và nhược điểm](#ưu-điểm-và-nhược-điểm)
-3. [Ứng dụng](#ứng-dụng)
-4. [Ví dụ triển khai tập hợp trong TypeScript](#ví-dụ-triển-khai-tập-hợp-trong-typescript)
-5. [Bổ sung](#bổ-sung)
+### **I. TẬP HỢP (SET) LÀ GÌ?**
 
----
+-   **Tập hợp (Set):** Là cấu trúc dữ liệu phi tuyến tính, chứa các phần tử _không trùng lặp_ và không có thứ tự cố định.
+-   **Nó hoạt động như thế nào?**
+    -   Giống như một túi đựng đồ mà mỗi món đồ chỉ có một cái duy nhất.
+-   **Đặc điểm:**
+    -   **Phi tuyến tính:** Không có thứ tự cố định giữa các phần tử.
+    -   **Không trùng lặp:** Mỗi phần tử chỉ xuất hiện một lần.
+    -   **Thao tác tập hợp:** Hỗ trợ các phép hợp, giao, hiệu, ...
+    -   **Kiểm tra thuộc tính:** Kiểm tra xem một phần tử có trong tập hợp không.
 
-## Đặc điểm
+### **II. ƯU ĐIỂM CỦA TẬP HỢP (NHỮNG ĐIỂM "ĐÁNG YÊU")**
 
-- Là một cấu trúc dữ liệu phi tuyến tính, các phần tử không được sắp xếp theo một thứ tự cố định.
-- **Không cho phép phần tử trùng lặp** - mỗi phần tử chỉ xuất hiện một lần trong tập hợp.
-- Hỗ trợ nhiều thao tác tập hợp, ví dụ:
-    - **Hợp (Union):** Kết hợp các phần tử của hai tập hợp.
-    - **Giao (Intersection):** Tìm các phần tử chung của hai tập hợp.
-    - **Hiệu (Difference):** Tìm các phần tử chỉ có trong tập hợp đầu tiên mà không có trong tập hợp thứ hai.
-    - **Kiểm tra thuộc tính (Membership):** Kiểm tra xem một phần tử có tồn tại trong tập hợp hay không.
+-   **Thao tác tập hợp nhanh:** Hợp, giao, hiệu, kiểm tra thuộc tính thường nhanh (O(1)).
+-   **Loại bỏ trùng lặp:** Tự động loại bỏ các phần tử trùng lặp, đảm bảo tính duy nhất.
 
-## Ưu điểm và nhược điểm
+### **III. NHƯỢC ĐIỂM CỦA TẬP HỢP (NHỮNG ĐIỂM "KHÓ CHỊU")**
 
-- **Ưu điểm:**
+-   **Không có thứ tự:** Các phần tử không có thứ tự rõ ràng.
+-   **Khó duyệt:** Duyệt qua các phần tử có thể không hiệu quả nếu tập hợp lớn.
 
-    - **Thao tác tập hợp nhanh:** Các thao tác như hợp, giao, hiệu, kiểm tra thuộc tính thường có độ phức tạp \(O(1)\).
-    - **Loại bỏ trùng lặp:** Tập hợp tự động loại bỏ các phần tử trùng lặp, giúp đảm bảo tính duy nhất.
+### **IV. ỨNG DỤNG CỦA TẬP HỢP (ĐƯỢC DÙNG Ở ĐÂU?)**
 
-- **Nhược điểm:**
-    - **Không có thứ tự:** Các phần tử trong tập hợp không có thứ tự rõ ràng.
-    - **Khó duyệt:** Việc duyệt qua tất cả các phần tử có thể kém hiệu quả nếu tập hợp lớn.
+-   **Lý thuyết tập hợp:** Tìm giao, hợp, hiệu của các tập hợp số, chữ, ...
+-   **Loại bỏ trùng lặp:** Loại bỏ các phần tử trùng lặp trong danh sách, email,...
+-   **Kiểm tra thuộc tính:** Kiểm tra xem một phần tử có trong tập hợp không (từ điển, dữ liệu người dùng).
 
-## Ứng dụng
+### **V. VÍ DỤ MINH HỌA (C#)**
 
-- **Lý thuyết tập hợp:** Tìm giao, hiệu của hai tập hợp các số, từ.
-- **Loại bỏ trùng lặp:** Dùng để loại bỏ phần tử trùng lặp, ví dụ như danh sách từ, email.
-- **Kiểm tra thuộc tính:** Xác minh sự tồn tại của một phần tử trong tập hợp, như kiểm tra từ điển, dữ liệu người dùng.
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-## Ví dụ triển khai tập hợp trong TypeScript
+public class SetExample
+{
+   public class SetCollection<T>
+        {
+            private HashSet<T> items;
 
-```typescript
-class SetCollection<T> {
-  private items: Set<T>;
+            public SetCollection(IEnumerable<T> initialItems = null)
+            {
+                items = initialItems == null ? new HashSet<T>() : new HashSet<T>(initialItems);
+            }
 
-  constructor(initialItems?: T[]) {
-    this.items = new Set(initialItems);
-  }
+            // Thêm một phần tử vào tập hợp
+            public void Add(T element)
+            {
+                items.Add(element);
+            }
 
-  // Thêm một phần tử vào tập hợp
-  add(element: T): void {
-    this.items.add(element);
-  }
+            // Kiểm tra thuộc tính
+            public bool Has(T element)
+            {
+                return items.Contains(element);
+            }
 
-  // Kiểm tra thuộc tính
-  has(element: T): boolean {
-    return this.items.has(element);
-  }
+            // Hợp của hai tập hợp
+            public SetCollection<T> Union(SetCollection<T> otherSet)
+            {
+                SetCollection<T> unionSet = new SetCollection<T>();
+                foreach (var item in items)
+                {
+                    unionSet.Add(item);
+                }
+                foreach (var item in otherSet.items)
+                {
+                  unionSet.Add(item);
+                 }
+                return unionSet;
+            }
 
-  // Hợp của hai tập hợp
-  union(otherSet: SetCollection<T>): SetCollection<T> {
-    const unionSet = new SetCollection<T>();
-    this.items.forEach(item => unionSet.add(item));
-    otherSet.items.forEach(item => unionSet.add(item));
-    return unionSet;
-  }
+             // Giao của hai tập hợp
+            public SetCollection<T> Intersection(SetCollection<T> otherSet)
+            {
+                SetCollection<T> intersectionSet = new SetCollection<T>();
+                foreach (var item in items)
+                {
+                    if (otherSet.Has(item))
+                    {
+                         intersectionSet.Add(item);
+                    }
+                }
+                 return intersectionSet;
+            }
 
-  // Giao của hai tập hợp
-  intersection(otherSet: SetCollection<T>): SetCollection<T> {
-    const intersectionSet = new SetCollection<T>();
-    this.items.forEach(item => {
-      if (otherSet.has(item)) {
-        intersectionSet.add(item);
-      }
-    });
-    return intersectionSet;
-  }
+           // Hiệu của hai tập hợp
+              public SetCollection<T> Difference(SetCollection<T> otherSet)
+            {
+                SetCollection<T> differenceSet = new SetCollection<T>();
+                   foreach (var item in items)
+                {
+                    if (!otherSet.Has(item))
+                    {
+                         differenceSet.Add(item);
+                    }
+                }
+                return differenceSet;
+            }
+             // Hiển thị tập hợp
+            public void Display()
+            {
+                Console.WriteLine(string.Join(", ", items));
+            }
+        }
+    public static void Main(string[] args)
+    {
+        SetCollection<int> setA = new SetCollection<int>(new int[] { 1, 2, 3, 4, 5 });
+        SetCollection<int> setB = new SetCollection<int>(new int[] { 4, 5, 6, 7, 8 });
 
-  // Hiệu của hai tập hợp
-  difference(otherSet: SetCollection<T>): SetCollection<T> {
-    const differenceSet = new SetCollection<T>();
-    this.items.forEach(item => {
-      if (!otherSet.has(item)) {
-        differenceSet.add(item);
-      }
-    });
-    return differenceSet;
-  }
+        // Hợp của hai tập hợp
+        Console.Write("Hợp của hai tập hợp: ");
+        SetCollection<int> unionSet = setA.Union(setB);
+        unionSet.Display(); // Output: Hợp của hai tập hợp: 1, 2, 3, 4, 5, 6, 7, 8
 
-  // Hiển thị tập hợp
-  display(): void {
-    console.log(Array.from(this.items));
-  }
+        // Giao của hai tập hợp
+        Console.Write("Giao của hai tập hợp: ");
+        SetCollection<int> intersectionSet = setA.Intersection(setB);
+        intersectionSet.Display(); // Output: Giao của hai tập hợp: 4, 5
+
+        // Hiệu của hai tập hợp
+         Console.Write("Hiệu của hai tập hợp: ");
+        SetCollection<int> differenceSet = setA.Difference(setB);
+        differenceSet.Display(); // Output: Hiệu của hai tập hợp: 1, 2, 3
+    }
 }
-
-// Sử dụng ví dụ
-const setA = new SetCollection<number>([1, 2, 3, 4, 5]);
-const setB = new SetCollection<number>([4, 5, 6, 7, 8]);
-
-// Hợp của hai tập hợp
-const unionSet = setA.union(setB);
-unionSet.display(); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
-
-// Giao của hai tập hợp
-const intersectionSet = setA.intersection(setB);
-intersectionSet.display(); // Output: [4, 5]
-
-// Hiệu của hai tập hợp
-const differenceSet = setA.difference(setB);
-differenceSet.display(); // Output: [1, 2, 3]
 ```
 
-## Bổ sung
+**Giải thích:**
 
-Tập hợp là một cấu trúc dữ liệu rất hữu ích cho các thao tác liên quan đến lý thuyết tập hợp. Trong TypeScript, chúng ta
-có thể sử dụng lớp `Set` để triển khai các thao tác như `add`, `has`, `union`, `intersection`, và `difference`.
+-   **`SetCollection<T>`:** Lớp biểu diễn tập hợp, dùng `HashSet<T>` để lưu các phần tử.
+    -   **`Add(T element)`:** Thêm phần tử vào tập hợp.
+    -   **`Has(T element)`:** Kiểm tra xem có phần tử trong tập hợp không.
+    -   **`Union(SetCollection<T> otherSet)`:** Trả về hợp của 2 tập hợp.
+    -   **`Intersection(SetCollection<T> otherSet)`:** Trả về giao của 2 tập hợp.
+    -   **`Difference(SetCollection<T> otherSet)`:** Trả về hiệu của 2 tập hợp.
+    -   **`Display()`:** In tập hợp.
+
+### **VI. BỔ SUNG (MỘT SỐ ĐIỀU THÚ VỊ)**
+
+-   **`HashSet<T>`:** C# có sẵn class `HashSet<T>` để làm tập hợp, các bạn có thể dùng nó thay vì viết lại.
+-   **Thứ tự:** Các phần tử không có thứ tự cố định, nếu cần thứ tự thì hãy dùng các cấu trúc dữ liệu khác.
+
+### **VII. KẾT LUẬN (TỔNG KẾT)**
+
+Tập hợp là một cấu trúc dữ liệu rất hữu ích, giúp bạn quản lý các phần tử không trùng lặp một cách hiệu quả. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về nó và có thể dùng nó trong nhiều tình huống thực tế. Chúc các bạn code thành công! 😎
