@@ -1,43 +1,48 @@
 ## **🚀 "GIẢI MÃ" BẢNG BĂM (HASH TABLE): CẤU TRÚC DỮ LIỆU "TÌM NHANH" CHO DÂN CODE 🚀**
 
-Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một cấu trúc dữ liệu cực kỳ quan trọng và "bá đạo": Bảng băm (Hash Table). Đây là một "vũ khí" bí mật giúp bạn tìm kiếm và quản lý dữ liệu siêu nhanh. Cùng mình "mổ xẻ" nó nhé!
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "khám phá" một cấu trúc dữ liệu cực kỳ quan trọng và "bá đạo":
+Bảng băm (Hash Table). Đây là một "vũ khí" bí mật giúp bạn tìm kiếm và quản lý dữ liệu siêu nhanh. Cùng mình "mổ xẻ" nó
+nhé!
 
 ### **I. BẢNG BĂM (HASH TABLE) LÀ GÌ?**
 
--   **Bảng băm (Hash Table):** Là cấu trúc dữ liệu dùng "hàm băm" để ánh xạ dữ liệu sang các vị trí trong bộ nhớ, giúp tìm kiếm nhanh.
--   **Nó hoạt động như thế nào?**
-    -   Giống như khi bạn tìm sách trong thư viện: bạn dùng "mã số" của sách để biết nó ở kệ nào, chứ không cần tìm từng cuốn một.
--   **Đặc điểm:**
-    -   **Hàm băm:** Ánh xạ "khóa" (key) thành "vị trí" (hash value).
-    -   **Khóa - giá trị:** Lưu dữ liệu dưới dạng cặp "khóa - giá trị" (key-value).
-    -   **Truy cập nhanh:** Thường mất O(1) để tìm kiếm, thêm, xóa (nhưng có thể chậm trong trường hợp xấu).
+- **Bảng băm (Hash Table):** Là cấu trúc dữ liệu dùng "hàm băm" để ánh xạ dữ liệu sang các vị trí trong bộ nhớ, giúp tìm
+  kiếm nhanh.
+- **Nó hoạt động như thế nào?**
+    - Giống như khi bạn tìm sách trong thư viện: bạn dùng "mã số" của sách để biết nó ở kệ nào, chứ không cần tìm từng
+      cuốn một.
+- **Đặc điểm:**
+    - **Hàm băm:** Ánh xạ "khóa" (key) thành "vị trí" (hash value).
+    - **Khóa - giá trị:** Lưu dữ liệu dưới dạng cặp "khóa - giá trị" (key-value).
+    - **Truy cập nhanh:** Thường mất O(1) để tìm kiếm, thêm, xóa (nhưng có thể chậm trong trường hợp xấu).
 
 ### **II. CÁCH HOẠT ĐỘNG (TỪNG BƯỚC CHI TIẾT)**
 
-1.  **Hàm băm:**
-    -   Nhận "khóa" (key) đầu vào.
-    -   Trả về một số nguyên (hash value), đó là vị trí trong bảng.
-2.  **Lưu trữ:**
-    -   Dùng hash value làm vị trí lưu trữ dữ liệu.
-    -   Nếu có 2 khóa cùng hash value (xung đột), dùng các cách giải quyết (liên kết hoặc địa chỉ mở).
-3.  **Tìm kiếm:**
-    -   Dùng hash function để tính hash value từ "khóa" cần tìm.
-    -   Truy cập trực tiếp vào vị trí đó để lấy dữ liệu.
+1. **Hàm băm:**
+    - Nhận "khóa" (key) đầu vào.
+    - Trả về một số nguyên (hash value), đó là vị trí trong bảng.
+2. **Lưu trữ:**
+    - Dùng hash value làm vị trí lưu trữ dữ liệu.
+    - Nếu có 2 khóa cùng hash value (xung đột), dùng các cách giải quyết (liên kết hoặc địa chỉ mở).
+3. **Tìm kiếm:**
+    - Dùng hash function để tính hash value từ "khóa" cần tìm.
+    - Truy cập trực tiếp vào vị trí đó để lấy dữ liệu.
 
 ### **III. GIẢI QUYẾT XUNG ĐỘT (KHI CÓ NHIỀU "SÁCH" Ở CÙNG "KỆ")**
 
-1.  **Chaining (Liên kết):** Mỗi vị trí trong bảng là 1 danh sách liên kết, các phần tử trùng hash value sẽ cùng nằm trong danh sách này.
-2.  **Open Addressing (Địa chỉ mở):** Nếu vị trí đã đầy, sẽ tìm vị trí trống tiếp theo theo một quy luật nhất định.
+1. **Chaining (Liên kết):** Mỗi vị trí trong bảng là 1 danh sách liên kết, các phần tử trùng hash value sẽ cùng nằm
+   trong danh sách này.
+2. **Open Addressing (Địa chỉ mở):** Nếu vị trí đã đầy, sẽ tìm vị trí trống tiếp theo theo một quy luật nhất định.
 
 ### **IV. ƯU ĐIỂM CỦA BẢNG BĂM (NHỮNG ĐIỂM "ĐÁNG YÊU")**
 
--   **Truy cập nhanh:** Tìm kiếm, thêm, xóa thường nhanh (O(1)).
--   **Truy cập ngẫu nhiên:** Phù hợp khi cần truy cập dữ liệu bằng khóa.
+- **Truy cập nhanh:** Tìm kiếm, thêm, xóa thường nhanh (O(1)).
+- **Truy cập ngẫu nhiên:** Phù hợp khi cần truy cập dữ liệu bằng khóa.
 
 ### **V. NHƯỢC ĐIỂM CỦA BẢNG BĂM (NHỮNG ĐIỂM "KHÓ CHỊU")**
 
--   **Xung đột:** Có thể làm chậm nếu có quá nhiều xung đột.
--   **Không duyệt tuần tự:** Không có thứ tự cho các phần tử, không duyệt được theo thứ tự.
+- **Xung đột:** Có thể làm chậm nếu có quá nhiều xung đột.
+- **Không duyệt tuần tự:** Không có thứ tự cho các phần tử, không duyệt được theo thứ tự.
 
 ### **VI. VÍ DỤ MINH HỌA - LƯU THÔNG TIN NGƯỜI DÙNG (C#)**
 
@@ -143,19 +148,20 @@ public class HashTableExample
 
 **Giải thích:**
 
--   **`HashTable<K, V>`:** Class dùng generic để có thể chứa nhiều kiểu dữ liệu.
--   **`table`:** Mảng chứa các danh sách liên kết (dùng List để làm danh sách liên kết)
--   **`Hash(K key)`:** Hàm băm để tính index từ key
--   **`Put(K key, V value)`:** Thêm cặp key-value vào bảng băm
--   **`Get(K key)`:** Tìm và trả về value dựa vào key.
--   **`Delete(K key)`:** Xóa key-value dựa vào key.
+- **`HashTable<K, V>`:** Class dùng generic để có thể chứa nhiều kiểu dữ liệu.
+- **`table`:** Mảng chứa các danh sách liên kết (dùng List để làm danh sách liên kết)
+- **`Hash(K key)`:** Hàm băm để tính index từ key
+- **`Put(K key, V value)`:** Thêm cặp key-value vào bảng băm
+- **`Get(K key)`:** Tìm và trả về value dựa vào key.
+- **`Delete(K key)`:** Xóa key-value dựa vào key.
 
 ### **VII. ỨNG DỤNG CỦA BẢNG BĂM (ĐƯỢC DÙNG Ở ĐÂU?)**
 
--   **Tìm kiếm nhanh:** Tìm kiếm các phần tử nhanh chóng (từ điển, cơ sở dữ liệu).
--   **Bảng tra cứu:** Dùng để tra cứu dữ liệu dựa trên khóa.
--   **Bộ nhớ cache:** Quản lý các dữ liệu thường dùng để truy cập nhanh.
+- **Tìm kiếm nhanh:** Tìm kiếm các phần tử nhanh chóng (từ điển, cơ sở dữ liệu).
+- **Bảng tra cứu:** Dùng để tra cứu dữ liệu dựa trên khóa.
+- **Bộ nhớ cache:** Quản lý các dữ liệu thường dùng để truy cập nhanh.
 
 ### **VIII. KẾT LUẬN (TỔNG KẾT)**
 
-Bảng băm là một cấu trúc dữ liệu cực kỳ quan trọng, giúp bạn tìm kiếm, thêm, xóa dữ liệu một cách nhanh chóng. Hy vọng qua bài viết này, các bạn đã hiểu rõ hơn về nó và có thể sử dụng nó một cách hiệu quả. Chúc các bạn code thành công! 😎
+Bảng băm là một cấu trúc dữ liệu cực kỳ quan trọng, giúp bạn tìm kiếm, thêm, xóa dữ liệu một cách nhanh chóng. Hy vọng
+qua bài viết này, các bạn đã hiểu rõ hơn về nó và có thể sử dụng nó một cách hiệu quả. Chúc các bạn code thành công! 😎

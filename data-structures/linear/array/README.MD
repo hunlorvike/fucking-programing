@@ -1,34 +1,36 @@
 ## **🚀 "GIẢI MÃ" MẢNG (ARRAY): CẤU TRÚC DỮ LIỆU CƠ BẢN CHO DÂN CODE 🚀**
 
-Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "mổ xẻ" một cấu trúc dữ liệu cực kỳ cơ bản và quan trọng: Mảng (Array). Đây là một trong những "viên gạch" đầu tiên khi bạn học lập trình. Cùng mình khám phá nhé!
+Yo các bạn sinh viên IT! Hôm nay chúng ta sẽ cùng nhau "mổ xẻ" một cấu trúc dữ liệu cực kỳ cơ bản và quan trọng: Mảng (
+Array). Đây là một trong những "viên gạch" đầu tiên khi bạn học lập trình. Cùng mình khám phá nhé!
 
 ### **I. MẢNG (ARRAY) LÀ GÌ?**
 
--   **Mảng (Array):** Là một dãy các phần tử có cùng kiểu dữ liệu, được lưu trữ liên tiếp trong bộ nhớ.
--   **Nó hoạt động như thế nào?**
-    -   Giống như một dãy số nhà trên một con đường: các nhà đều có số thứ tự (index) và nằm cạnh nhau.
--   **Đặc điểm:**
-    -   **Tuyến tính:** Các phần tử được sắp xếp theo một thứ tự nhất định.
-    -   **Cùng kiểu dữ liệu:** Tất cả phần tử phải cùng kiểu (ví dụ: toàn số nguyên hoặc toàn chữ).
-    -   **Liên tiếp:** Các phần tử được lưu trữ liên tiếp nhau trong bộ nhớ.
-    -   **Index:** Truy cập phần tử bằng index (số thứ tự), bắt đầu từ 0.
-    -   **Kích thước cố định:** Kích thước thường không thay đổi sau khi khai báo (nhưng có một số ngôn ngữ dùng mảng động).
+- **Mảng (Array):** Là một dãy các phần tử có cùng kiểu dữ liệu, được lưu trữ liên tiếp trong bộ nhớ.
+- **Nó hoạt động như thế nào?**
+    - Giống như một dãy số nhà trên một con đường: các nhà đều có số thứ tự (index) và nằm cạnh nhau.
+- **Đặc điểm:**
+    - **Tuyến tính:** Các phần tử được sắp xếp theo một thứ tự nhất định.
+    - **Cùng kiểu dữ liệu:** Tất cả phần tử phải cùng kiểu (ví dụ: toàn số nguyên hoặc toàn chữ).
+    - **Liên tiếp:** Các phần tử được lưu trữ liên tiếp nhau trong bộ nhớ.
+    - **Index:** Truy cập phần tử bằng index (số thứ tự), bắt đầu từ 0.
+    - **Kích thước cố định:** Kích thước thường không thay đổi sau khi khai báo (nhưng có một số ngôn ngữ dùng mảng
+      động).
 
 ### **II. ƯU ĐIỂM CỦA MẢNG (NHỮNG ĐIỂM "ĐÁNG YÊU")**
 
--   **Truy cập nhanh:** Truy cập phần tử bằng index cực nhanh (độ phức tạp O(1)).
--   **Đơn giản:** Dễ hiểu, dễ dùng.
+- **Truy cập nhanh:** Truy cập phần tử bằng index cực nhanh (độ phức tạp O(1)).
+- **Đơn giản:** Dễ hiểu, dễ dùng.
 
 ### **III. NHƯỢC ĐIỂM CỦA MẢNG (NHỮNG ĐIỂM "KHÓ CHỊU")**
 
--   **Kích thước cố định:** Khó thay đổi kích thước sau khi khai báo.
--   **Chèn/xóa chậm:** Chèn hoặc xóa ở giữa mảng thì cần di chuyển nhiều phần tử (độ phức tạp O(n)).
+- **Kích thước cố định:** Khó thay đổi kích thước sau khi khai báo.
+- **Chèn/xóa chậm:** Chèn hoặc xóa ở giữa mảng thì cần di chuyển nhiều phần tử (độ phức tạp O(n)).
 
 ### **IV. ỨNG DỤNG CỦA MẢNG (ĐƯỢC DÙNG Ở ĐÂU?)**
 
--   **Lưu dữ liệu:** Lưu danh sách, bảng điểm, danh sách sản phẩm, ...
--   **Nền tảng:** Dùng để xây các cấu trúc khác (stack, queue, hash table, ...).
--   **Thuật toán:** Dùng trong nhiều thuật toán (sắp xếp, tìm kiếm).
+- **Lưu dữ liệu:** Lưu danh sách, bảng điểm, danh sách sản phẩm, ...
+- **Nền tảng:** Dùng để xây các cấu trúc khác (stack, queue, hash table, ...).
+- **Thuật toán:** Dùng trong nhiều thuật toán (sắp xếp, tìm kiếm).
 
 ### **V. VÍ DỤ MINH HỌA (C#)**
 
@@ -61,9 +63,9 @@ public class ArrayExample
 
 ### **VI. MỘT SỐ ĐIỀU BỔ SUNG (ĐỂ HIỂU RÕ HƠN)**
 
-1.  **Mảng đa chiều:**
-    -   Mảng 2 chiều (ma trận), 3 chiều,... dùng để biểu diễn dữ liệu phức tạp hơn.
-    -   **Ví dụ (mảng 2 chiều):**
+1. **Mảng đa chiều:**
+    - Mảng 2 chiều (ma trận), 3 chiều,... dùng để biểu diễn dữ liệu phức tạp hơn.
+    - **Ví dụ (mảng 2 chiều):**
 
 ```csharp
   using System;
@@ -82,9 +84,9 @@ public class ArrayExample
     }
 ```
 
-2.  **Mảng động:**
-    -   Một số ngôn ngữ (như C#, Java, Python) có "mảng động" (dynamic array) - có thể thay đổi kích thước tự động.
-    -   **Ví dụ (C# dùng List):**
+2. **Mảng động:**
+    - Một số ngôn ngữ (như C#, Java, Python) có "mảng động" (dynamic array) - có thể thay đổi kích thước tự động.
+    - **Ví dụ (C# dùng List):**
 
 ```csharp
   using System;
@@ -107,4 +109,5 @@ public class ArrayExample
 
 ### **VII. KẾT LUẬN (TỔNG KẾT)**
 
-Mảng là cấu trúc dữ liệu cơ bản, dễ hiểu và rất quan trọng trong lập trình. Nắm vững kiến thức về mảng sẽ giúp bạn xây dựng nền tảng vững chắc để học các cấu trúc dữ liệu khác. Chúc các bạn code thành công! 😎
+Mảng là cấu trúc dữ liệu cơ bản, dễ hiểu và rất quan trọng trong lập trình. Nắm vững kiến thức về mảng sẽ giúp bạn xây
+dựng nền tảng vững chắc để học các cấu trúc dữ liệu khác. Chúc các bạn code thành công! 😎

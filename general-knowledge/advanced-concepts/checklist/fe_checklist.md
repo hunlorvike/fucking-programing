@@ -1,125 +1,150 @@
-# **Danh Sách Kiểm Tra Code Front-End (Next.js)**
+## **🚀 DANH SÁCH KIỂM TRA CODE FRONT-END NEXT.JS: "CHECKLIST" ĐỈNH CAO CHO DÂN CODE 🚀**
 
-## **Nó là gì? Tại sao quan trọng?**
+Yo các bạn sinh viên IT! Hôm nay mình sẽ chia sẻ một "checklist" cực kỳ quan trọng cho dân code frontend Next.js: **Danh
+sách kiểm tra code (Code Checklist)**. Đây là một công cụ giúp bạn kiểm tra lại code của mình, đảm bảo chất lượng, bảo
+mật, hiệu suất và dễ bảo trì cho ứng dụng Next.js của bạn. Cùng mình khám phá nhé!
 
-**Danh sách kiểm tra Code Front-End cho Next.js** là một công cụ để đảm bảo chất lượng code trong quá trình phát triển.
-Với đặc thù của Next.js, danh sách này sẽ giúp các nhà phát triển chú ý đến các khía cạnh quan trọng, như server-side
-rendering (SSR), static site generation (SSG), bảo mật và tối ưu hiệu suất, để đảm bảo sản phẩm chất lượng cao.
+### **I. TẠI SAO CẦN CHECKLIST? (VÌ "CẨN TẮC VÔ ƯU")**
 
----
+- **Checklist:** Là danh sách các việc cần làm để kiểm tra code trước khi chạy thật.
+- **Quan trọng vì:**
+    - **Chất lượng:** Đảm bảo code chạy đúng, không có lỗi.
+    - **Bảo mật:** Ngăn chặn hacker tấn công.
+    - **Hiệu suất:** Giúp ứng dụng chạy nhanh, mượt mà.
+    - **Dễ bảo trì:** Code dễ đọc, dễ sửa chữa sau này.
 
-## **Next.js**
+### **II. CHECKLIST CHI TIẾT CHO FRONT-END NEXT.JS**
 
-### **Bảo mật**
+#### **1. BẢO MẬT (SECURITY) - "KHÓA CỬA" CẨN THẬN**
 
-- [ ] **XSS**: Bạn đã sử dụng các công cụ như `sanitize-html` hoặc các API built-in để lọc dữ liệu đầu vào/hiển thị
-  chưa?
-- [ ] **API Routes**: Tất cả các route API trong thư mục `pages/api` có xác thực và phân quyền phù hợp chưa?
-- [ ] **HTTP Headers**: Bạn đã cấu hình các HTTP header quan trọng (e.g., CSP, X-Content-Type-Options, X-Frame-Options)
-  trong tệp `next.config.js` hoặc middleware chưa?
-- [ ] **CSRF**: Các form hoặc endpoint nhạy cảm đã được bảo vệ chống **CSRF (Cross-Site Request Forgery)** chưa?
-- [ ] **Environment Variables**: Biến môi trường (e.g., API_KEY) có được quản lý qua `.env` và không bị lộ trên
-  client-side không?
-- [ ] **JWT và Auth**: Nếu sử dụng JWT, bạn có thiết lập thời gian hết hạn và lưu trữ token một cách an toàn không? (
-  e.g., `HttpOnly` cookie)
-- [ ] **Path Traversal**: Bạn đã kiểm tra các route động trong Next.js để tránh lỗ hổng truy cập file ngoài ý muốn chưa?
-- [ ] **Error Handling**: Bạn đã triển khai xử lý lỗi toàn cục bằng cách sử dụng `getServerSideProps`, `getStaticProps`
-  hoặc các custom error page (e.g., `pages/404.js`, `pages/_error.js`) chưa?
-- [ ] **Redirects**: Các logic chuyển hướng trong `next.config.js` có kiểm tra nguồn gốc của yêu cầu để ngăn **open
-  redirects** không?
+-   [ ] **XSS (Cross-Site Scripting):**
+    - Dùng `sanitize-html` hoặc các API để lọc dữ liệu đầu vào/hiển thị (như bài trước về bảo mật cơ sở dữ liệu).
+    - **Kiểm tra:** Có chặn XSS không?
+-   [ ] **API Routes:**
+    - Xác thực và phân quyền cho các API trong `pages/api` (như bài trước về API).
+    - **Kiểm tra:** Chỉ có người dùng được phép mới gọi API được không?
+-   [ ] **HTTP Headers:**
+    - Cấu hình các header (CSP, X-Content-Type-Options, X-Frame-Options) trong `next.config.js` hoặc middleware (như đã
+      nói ở bài về bảo mật web).
+    - **Kiểm tra:** Có thiết lập bảo mật header không?
+-   [ ] **CSRF (Cross-Site Request Forgery):**
+    - Bảo vệ form bằng CSRF token.
+    - **Kiểm tra:** Có dùng CSRF token không?
+-   [ ] **Environment Variables:**
+    - Quản lý biến môi trường (`.env`) và không để lộ trên client (như đã nói ở bài về bảo mật cơ sở dữ liệu).
+    - **Kiểm tra:** Biến môi trường có lộ trên client không?
+-   [ ] **JWT (JSON Web Token) và Auth:**
+    - Có thời gian hết hạn (expire), dùng `HttpOnly` cookie (bài về authentication).
+    - **Kiểm tra:** JWT có an toàn không?
+-   [ ] **Path Traversal:**
+    - Kiểm tra các route động để tránh truy cập file ngoài ý muốn.
+    - **Kiểm tra:** Có ai truy cập file ngoài ý muốn không?
+-   [ ] **Error Handling:**
+    - Xử lý lỗi bằng `getServerSideProps`, `getStaticProps`, hoặc `pages/_error.js`.
+    - **Kiểm tra:** Có trang lỗi 404, 500 không?
+-   [ ] **Redirects:**
+    - Kiểm tra nguồn gốc của yêu cầu trong `next.config.js` để tránh **open redirects**.
+    - **Kiểm tra:** Redirect có an toàn không?
 
----
+#### **2. HIỆU SUẤT (PERFORMANCE) - "CHẠY NHANH NHƯ CHỚP"**
 
-### **Hiệu suất**
+-   [ ] **SSR/SSG/ISR/CSR:**
+    - Cân nhắc chọn SSR, SSG, ISR, CSR để tối ưu cho từng trang (như đã nói ở bài về server-side rendering).
+    - **Kiểm tra:** Có dùng đúng kỹ thuật cho từng trang không?
+-   [ ] **Image Optimization:**
+    - Dùng `<Image>` của Next.js để tối ưu hình ảnh.
+    - **Kiểm tra:** Ảnh có được tối ưu không?
+-   [ ] **Code Splitting:**
+    - Dùng dynamic imports (`next/dynamic`) để lazy-load các module không cần thiết.
+    - **Kiểm tra:** Module nào không dùng thì có lazy-load không?
+-   [ ] **Caching:**
+    - Dùng `Cache-Control` header trong SSR hoặc API routes (như bài về API).
+    - **Kiểm tra:** Có cache dữ liệu không?
+-   [ ] **Font Loading:**
+    - Dùng tính năng tối ưu font của Next.js (Google Fonts Optimization).
+    - **Kiểm tra:** Font có tối ưu không?
+-   [ ] **Middleware/Edge Functions:**
+    - Middleware có xử lý nhẹ, tránh làm chậm response.
+    - **Kiểm tra:** Middleware có chạy nhanh không?
+-   [ ] **Pre-fetching:**
+    - Dùng `prefetch` để tải trước dữ liệu (mặc định trong Next.js).
+    - **Kiểm tra:** Liên kết có prefetch không?
+-   [ ] **Gzip/Brotli Compression:**
+    - Có nén response (server-side hoặc CDN).
+    - **Kiểm tra:** Có nén dữ liệu không?
+-   [ ] **Tối ưu JS/CSS:**
+    - Dùng `webpack-bundle-analyzer` để giảm kích thước bundle.
+    - **Kiểm tra:** Bundle JS/CSS có quá lớn không?
 
-- [ ] **SSR và SSG**: Bạn đã cân nhắc chọn giữa SSR, SSG, ISR (Incremental Static Regeneration), và CSR (Client-Side
-  Rendering) cho từng trang để tối ưu hiệu suất chưa?
-- [ ] **Image Optimization**: Bạn đã sử dụng `<Image>` của Next.js để tối ưu hóa hình ảnh chưa?
-- [ ] **Code Splitting**: Tất cả các module không cần thiết có được lazy-loaded bằng dynamic imports (`next/dynamic`)
-  không?
-- [ ] **Caching**: Bạn đã sử dụng header `Cache-Control` trong SSR hoặc các API routes để tối ưu hóa caching chưa?
-- [ ] **Font Loading**: Fonts có được tải thông qua công cụ built-in của Next.js (e.g., Google Fonts Optimization)
-  không?
-- [ ] **Middleware và Edge Functions**: Middleware có xử lý logic nhẹ và nhanh để tránh làm chậm phản hồi không?
-- [ ] **Pre-fetching**: Các liên kết có sử dụng thuộc tính `prefetch` (mặc định trong Next.js) để tải trước dữ liệu
-  không?
-- [ ] **Gzip/Brotli Compression**: Bạn đã kích hoạt nén trên server-side hoặc CDN chưa?
-- [ ] **Tối ưu JS/CSS**: Bạn có giảm kích thước bundle thông qua các công cụ như `webpack-bundle-analyzer` chưa?
+#### **3. CHẤT LƯỢNG MÃ NGUỒN (CODE "GỌN GÀNG" VÀ DỄ HIỂU)**
 
----
+-   [ ] **Cấu trúc thư mục:**
+    - Code được tổ chức rõ ràng: `pages`, `components`, `lib`, `styles`.
+-   [ ] **Reusable Components:**
+    - Các component React được viết tái sử dụng (DRY principle).
+-   [ ] **Code Cleanliness:**
+    - Loại bỏ `console.log`, code không dùng, code tạm.
+-   [ ] **State Management:**
+    - Dùng đúng công cụ quản lý state: React Context, Redux, Zustand, ...
+-   [ ] **Error Boundaries:**
+    - Các component được bọc trong Error Boundaries để xử lý lỗi runtime.
+-   [ ] **ESLint/Prettier:**
+    - Dùng ESLint, Prettier để code sạch, đồng nhất.
+-   [ ] **TypeScript:**
+    - Dùng TypeScript, type đầy đủ cho props.
+-   [ ] **API Integration:**
+    - Các request API được tổ chức trong `lib/api` hoặc tương tự.
+-   [ ] **SEO:**
+    - Dùng `<Head>` để thêm metadata (title, description, canonical URL).
 
-## **Chất lượng mã nguồn**
+#### **4. TÀI LIỆU (DOCUMENTATION) - "HƯỚNG DẪN" ĐẦY ĐỦ**
 
-- [ ] **Cấu trúc thư mục**: Mã nguồn có được tổ chức theo chuẩn Next.js (e.g., `pages`, `components`, `lib`, `styles`)
-  không?
-- [ ] **Reusable Components**: Các thành phần React có được viết tái sử dụng và không lặp lại logic không?
-- [ ] **Code Cleanliness**: Bạn đã loại bỏ tất cả các `console.log`, đoạn code không sử dụng, hoặc tạm thời chưa?
-- [ ] **State Management**: Bạn có sử dụng đúng công cụ quản lý state (e.g., React Context API, Redux, Zustand) cho các
-  yêu cầu cụ thể chưa?
-- [ ] **Error Boundaries**: Các thành phần React có được bọc trong Error Boundaries để xử lý lỗi runtime không?
-- [ ] **ESLint/Prettier**: Bạn đã thiết lập và chạy các công cụ này để đảm bảo code sạch và đồng nhất chưa?
-- [ ] **TypeScript**: Nếu sử dụng TypeScript, bạn đã định nghĩa đầy đủ kiểu dữ liệu và kiểm tra type cho tất cả props
-  không?
-- [ ] **API Integration**: Bạn có tổ chức tất cả các yêu cầu API trong một thư mục `lib/api` hoặc tương tự không?
-- [ ] **SEO**: Các trang có sử dụng `<Head>` để thêm metadata như tiêu đề, mô tả và canonical URL không?
+-   [ ] **README:** Mô tả cách cài đặt, chạy, cấu hình dự án.
+-   [ ] **API Documentation:** Các API route được tài liệu hóa (Postman, Swagger, ...).
+-   [ ] **Chú thích:** Code phức tạp có comment đầy đủ.
+-   [ ] **Hướng dẫn:** Hướng dẫn cách cài đặt, kết nối database, ...
+-   [ ] **Lỗi và giới hạn:** Tài liệu liệt kê các lỗi, giới hạn của ứng dụng.
+-   [ ] **Dependencies:** Liệt kê các package trong `README`.
 
----
+#### **5. KIỂM THỬ (TESTING) - "THỬ NGHIỆM" CẨN THẬN**
 
-## **Tài liệu**
+1. **Kiểm thử chức năng (Functional Test):**
+    - **Rendering:** Các trang render đúng nội dung.
+    - **Routing:** Các route động hoạt động đúng.
+    - **API:** Các API routes phản hồi đúng, xử lý lỗi.
+    - **Responsive:** UI hiển thị đúng trên nhiều màn hình.
+    - **Testing Frameworks:** Dùng Jest, Cypress, Playwright để viết test.
+    - **Code Coverage:** Độ bao phủ code đạt mức mong muốn (≥80%).
+2. **Kiểm thử hiệu suất (Performance Test):**
+    - Dùng **Lighthouse** để đo hiệu suất (>=90).
+    - Stress test để kiểm tra khi tải lớn.
+    - Test các tình huống không có dữ liệu, lỗi server.
+3. **Kiểm thử khả năng tiếp cận (Accessibility Test):**
+    - Dùng **ARIA roles** cho các thành phần tương tác.
+    - Kiểm tra khả năng điều hướng bằng bàn phím.
+    - Kiểm tra bằng trình đọc màn hình.
 
-- [ ] **README**: Tệp README có mô tả chi tiết về cách cài đặt, chạy, và cấu hình dự án không?
-- [ ] **API Documentation**: Các API routes trong `pages/api` đã được tài liệu hóa (e.g., Postman, Swagger) chưa?
-- [ ] **Logic Custom**: Bạn có thêm bình luận hoặc mô tả chi tiết ở các đoạn code phức tạp không?
-- [ ] **Các Edge Case**: Bạn đã ghi chú rõ ràng những tình huống biên hoặc lỗi tiềm ẩn trong code không?
+#### **6. QUẢN LÝ TÀI NGUYÊN (KHÔNG LÃNG PHÍ)**
 
----
+1. **Tài nguyên:**
+    - Dùng `next/dynamic` để lazy-load các component.
+    - Đặt các file tĩnh ở `public`.
+    - Tối ưu kích thước hình ảnh.
+2. **Bộ nhớ & Cache:**
+    - Sử dụng `localStorage`, `sessionStorage` an toàn.
+    - Kiểm tra thời gian tái tạo nếu dùng ISR.
+    - Dùng CDN để giảm tải cho server.
 
-## **Kiểm thử**
+#### **7. ĐÓNG GÓP (LÀM VIỆC "NHÓM" THẬT TỐT)**
 
-### **Kiểm thử chức năng**
+- **Branching:** Có quy tắc quản lý branch (`main`, `dev`, feature branches).
+- **Code Review:** Pull request được code review trước khi merge.
+- **SOLID:** Tuân thủ nguyên tắc SOLID khi viết component.
+- **Contributing:** Có hướng dẫn đóng góp rõ ràng.
+- **Test before merge:** Yêu cầu các bài kiểm thử phải pass trước khi merge.
 
-- [ ] **Rendering**: Tất cả các trang có hiển thị đúng nội dung khi chạy SSR, SSG và CSR không?
-- [ ] **Routing**: Các route động (e.g., `/posts/[id]`) có hoạt động chính xác với các tình huống biên không?
-- [ ] **API**: Tất cả các API routes (`pages/api`) có phản hồi đúng trạng thái và xử lý lỗi không?
-- [ ] **Responsive Design**: Các thành phần UI có hiển thị đúng trên các kích thước màn hình khác nhau không?
-- [ ] **Testing Frameworks**: Bạn đã viết bài kiểm thử với Jest, Cypress hoặc Playwright chưa?
+### **IX. KẾT LUẬN (TỔNG KẾT)**
 
-### **Kiểm thử hiệu suất**
-
-- [ ] **Lighthouse**: Điểm hiệu suất của ứng dụng có đạt trên 90 trong Google Lighthouse không?
-- [ ] **Stress Testing**: Hệ thống có hoạt động ổn định khi tải cao (e.g., nhiều yêu cầu API) không?
-- [ ] **Edge Case Testing**: Bạn đã kiểm tra hành vi của hệ thống khi không có dữ liệu hoặc xảy ra lỗi server chưa?
-
-### **Kiểm thử khả năng tiếp cận**
-
-- [ ] **ARIA Roles**: Các thành phần tương tác có sử dụng đúng thuộc tính ARIA không?
-- [ ] **Bàn phím**: Trang có thể điều hướng bằng bàn phím không?
-- [ ] **Trình đọc màn hình**: Các trang có hiển thị đúng thông tin khi được truy cập bởi trình đọc màn hình không?
-
----
-
-## **Quản lý tài nguyên**
-
-### **Tài nguyên**
-
-- [ ] **Dynamic Imports**: Bạn đã sử dụng `next/dynamic` để tải các thành phần lớn chỉ khi cần không?
-- [ ] **Static Files**: Tất cả các tệp tĩnh có được đặt trong thư mục `public` và truy cập qua đường dẫn hợp lệ không?
-- [ ] **Image Sizes**: Hình ảnh được tối ưu và có các kích thước phù hợp với từng thiết bị không?
-
-### **Bộ nhớ và Cache**
-
-- [ ] **Bộ nhớ Trình duyệt**: Bạn có sử dụng `localStorage` hoặc `sessionStorage` một cách an toàn và hiệu quả không?
-- [ ] **Incremental Cache**: Nếu sử dụng ISR, bạn đã kiểm tra thời gian tái tạo để đảm bảo hiệu suất không?
-- [ ] **CDN**: Bạn đã sử dụng CDN để giảm tải trực tiếp từ server không?
-
----
-
-## **Đóng góp**
-
-- [ ] **Branching**: Dự án có quy tắc quản lý branch rõ ràng (e.g., `main`, `dev`, feature branches) không?
-- [ ] **Code Review**: Mọi pull request có được xem xét kỹ lưỡng trước khi merge không?
-- [ ] **SOLID Principles**: Bạn có tuân thủ nguyên tắc **SOLID** khi thiết kế các component hoặc module không?
-- [ ] **Contributing Guide**: Dự án có tài liệu hướng dẫn đóng góp rõ ràng không?
-
-Danh sách kiểm tra này sẽ giúp bạn phát triển và duy trì ứng dụng Next.js với chất lượng cao, tối ưu hiệu suất, bảo mật
-tốt và dễ dàng mở rộng!
+Checklist này sẽ giúp các bạn kiểm tra code Next.js của mình một cách kỹ lưỡng, đảm bảo chất lượng, bảo mật, hiệu suất
+và dễ bảo trì. Hy vọng nó sẽ là một "người bạn đồng hành" hữu ích cho các bạn trên con đường chinh phục thế giới
+front-end! Chúc các bạn code thành công! 😎
