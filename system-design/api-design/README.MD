@@ -70,7 +70,7 @@ API RESTful là kiểu API "hot" nhất hiện nay. Nó tuân theo các quy tắ
 1. **Method HTTP (Động từ của API):**
 
    | Method    | Chức năng                               | Ví dụ               |
-                    |-----------|-----------------------------------------|---------------------|
+                       |-----------|-----------------------------------------|---------------------|
    | `GET`     | Lấy thông tin                           | `GET /users`        |
    | `POST`    | Tạo mới                                | `POST /users`       |
    | `PUT`     | Cập nhật toàn bộ                        | `PUT /users/123`    |
