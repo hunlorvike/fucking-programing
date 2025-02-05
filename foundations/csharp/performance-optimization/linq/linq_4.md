@@ -1,68 +1,87 @@
 ## **Chương 4: LINQ to XML - "Bắt Tay" Với Dữ Liệu XML - Đơn Giản Hóa Việc Xử Lý XML**
 
-Chào mừng bạn đến với **Chương 4: LINQ to XML**! Trong chương này, chúng ta sẽ "mở cánh cửa" vào thế giới XML và học cách dùng LINQ để "thuần hóa" dữ liệu XML, biến việc xử lý XML từ "khó nhằn" thành "dễ thở" hơn bao giờ hết.
+Chào mừng bạn đến với **Chương 4: LINQ to XML**! Trong chương này, chúng ta sẽ "mở cánh cửa" vào thế giới XML và học
+cách dùng LINQ để "thuần hóa" dữ liệu XML, biến việc xử lý XML từ "khó nhằn" thành "dễ thở" hơn bao giờ hết.
 
 **Phần 4: LINQ to XML - "Bắt Tay" Với Dữ Liệu XML**
 
 **4.1. Giới thiệu LINQ to XML: XDocument, XElement, XAttribute, XNode - "Mảnh Ghép" XML Trong LINQ**
 
-LINQ to XML là một phần "đặc biệt" của LINQ, được "thiết kế riêng" để "làm việc" với dữ liệu XML. Nó mang đến một "cách tiếp cận" trực quan, "mạnh mẽ", và "ăn ý" với C# hơn so với các phương pháp XML DOM "cổ điển".
+LINQ to XML là một phần "đặc biệt" của LINQ, được "thiết kế riêng" để "làm việc" với dữ liệu XML. Nó mang đến một "cách
+tiếp cận" trực quan, "mạnh mẽ", và "ăn ý" với C# hơn so với các phương pháp XML DOM "cổ điển".
 
 **Các "mảnh ghép" chính trong LINQ to XML (tưởng tượng như các "viên gạch" xây dựng XML):**
 
--   **`XDocument`:** "Viên gạch" đại diện cho **"toàn bộ tài liệu XML"**. Nó giống như **"gốc cây"** của XML, chứa đựng mọi thứ bên trong, bao gồm cả một "phần tử gốc" (`XElement`) duy nhất, các "khai báo" XML (ví dụ: phiên bản XML), và các "ghi chú" (comment) ở "gốc" tài liệu. Bạn thường "bắt đầu" với `XDocument` khi muốn "làm việc" với một file XML hoặc chuỗi XML hoàn chỉnh.
+- **`XDocument`:** "Viên gạch" đại diện cho **"toàn bộ tài liệu XML"**. Nó giống như **"gốc cây"** của XML, chứa đựng
+  mọi thứ bên trong, bao gồm cả một "phần tử gốc" (`XElement`) duy nhất, các "khai báo" XML (ví dụ: phiên bản XML), và
+  các "ghi chú" (comment) ở "gốc" tài liệu. Bạn thường "bắt đầu" với `XDocument` khi muốn "làm việc" với một file XML
+  hoặc chuỗi XML hoàn chỉnh.
 
--   **`XElement`:** "Viên gạch" đại diện cho một **"phần tử XML"** (ví dụ: `<SanPham>`, `<Ten>`, `<Gia>`). Nó có thể chứa các "thuộc tính" (`XAttribute`), các "phần tử con" (`XElement` con), và "nội dung chữ" (text content - ví dụ: "Laptop", "1500"). `XElement` là "viên gạch" cơ bản nhất để "xây dựng" cây XML.
+- **`XElement`:** "Viên gạch" đại diện cho một **"phần tử XML"** (ví dụ: `<SanPham>`, `<Ten>`, `<Gia>`). Nó có thể chứa
+  các "thuộc tính" (`XAttribute`), các "phần tử con" (`XElement` con), và "nội dung chữ" (text content - ví dụ: "
+  Laptop", "1500"). `XElement` là "viên gạch" cơ bản nhất để "xây dựng" cây XML.
 
--   **`XAttribute`:** "Viên gạch" đại diện cho một **"thuộc tính XML"** của một "phần tử" (`XElement`). Thuộc tính luôn "đi kèm" với một "phần tử" và có một "tên" và một "giá trị" (ví dụ: `MaSP="SP001"` trong `<SanPham MaSP="SP001">`).
+- **`XAttribute`:** "Viên gạch" đại diện cho một **"thuộc tính XML"** của một "phần tử" (`XElement`). Thuộc tính luôn "
+  đi kèm" với một "phần tử" và có một "tên" và một "giá trị" (ví dụ: `MaSP="SP001"` trong `<SanPham MaSP="SP001">`).
 
--   **`XNode`:** "Viên gạch" "tổ tông" - là "lớp cha" chung của tất cả các "viên gạch" XML khác. `XElement`, `XDocument`, `XComment` (ghi chú XML), `XText` (văn bản XML), `XProcessingInstruction`, `XDeclaration`, `XDocumentType` đều là "con cháu" của `XNode`. Khi "vọc" LINQ to XML, bạn sẽ chủ yếu "đụng" đến `XElement` và `XAttribute`.
+- **`XNode`:** "Viên gạch" "tổ tông" - là "lớp cha" chung của tất cả các "viên gạch" XML khác. `XElement`, `XDocument`,
+  `XComment` (ghi chú XML), `XText` (văn bản XML), `XProcessingInstruction`, `XDeclaration`, `XDocumentType` đều là "con
+  cháu" của `XNode`. Khi "vọc" LINQ to XML, bạn sẽ chủ yếu "đụng" đến `XElement` và `XAttribute`.
 
 **"Điểm sáng" của LINQ to XML so với XML DOM "ngày xưa":**
 
--   **"API thân thiện" và "dễ dùng":** LINQ to XML có "bộ điều khiển" (API) rõ ràng, "hướng đối tượng", và "dễ làm quen" hơn so với DOM.
--   **"Kết hợp sức mạnh" LINQ:** "Tận dụng" "chiêu thức" LINQ (Query Syntax và Method Syntax) để "truy vấn" XML một cách "mạnh mẽ" và "linh hoạt".
--   **"Nhanh nhẹn" hơn:** LINQ to XML thường "chạy nhanh" hơn và "tiết kiệm bộ nhớ" hơn DOM trong nhiều trường hợp, đặc biệt khi "xử lý" các file XML "to bự".
--   **"Dễ dàng" tạo và "biến đổi" XML:** Việc "xây dựng" và "chỉnh sửa" XML bằng LINQ to XML rất "trực quan" và "thuận tay", dùng cú pháp C# mà bạn đã "thuần thục".
--   **"Chạy tốt" trên mọi nền tảng .NET:** LINQ to XML là "người nhà" của .NET, "chiến đấu" tốt trên cả .NET Framework và .NET Core (và .NET 5+ trở lên).
+- **"API thân thiện" và "dễ dùng":** LINQ to XML có "bộ điều khiển" (API) rõ ràng, "hướng đối tượng", và "dễ làm quen"
+  hơn so với DOM.
+- **"Kết hợp sức mạnh" LINQ:** "Tận dụng" "chiêu thức" LINQ (Query Syntax và Method Syntax) để "truy vấn" XML một cách "
+  mạnh mẽ" và "linh hoạt".
+- **"Nhanh nhẹn" hơn:** LINQ to XML thường "chạy nhanh" hơn và "tiết kiệm bộ nhớ" hơn DOM trong nhiều trường hợp, đặc
+  biệt khi "xử lý" các file XML "to bự".
+- **"Dễ dàng" tạo và "biến đổi" XML:** Việc "xây dựng" và "chỉnh sửa" XML bằng LINQ to XML rất "trực quan" và "thuận
+  tay", dùng cú pháp C# mà bạn đã "thuần thục".
+- **"Chạy tốt" trên mọi nền tảng .NET:** LINQ to XML là "người nhà" của .NET, "chiến đấu" tốt trên cả .NET Framework và
+  .NET Core (và .NET 5+ trở lên).
 
 **4.2. Truy vấn, tạo, sửa đổi và xóa dữ liệu XML bằng LINQ - "Làm Chủ" XML Với LINQ**
 
 **4.2.1. Đọc XML (Loading and Parsing XML) - "Mở Cửa" File XML**
 
--   **"Mở" file XML:** Dùng "chiêu" tĩnh `XDocument.Load(filePath)` để "đọc" nội dung XML từ một file và "biến" nó thành một đối tượng `XDocument` trong "bộ nhớ".
+- **"Mở" file XML:** Dùng "chiêu" tĩnh `XDocument.Load(filePath)` để "đọc" nội dung XML từ một file và "biến" nó thành
+  một đối tượng `XDocument` trong "bộ nhớ".
 
-    ```csharp
-    // Giả sử có file "du_lieu.xml" chứa XML
-    XDocument xmlDoc = XDocument.Load("du_lieu.xml"); // "Mở" file XML
+  ```csharp
+  // Giả sử có file "du_lieu.xml" chứa XML
+  XDocument xmlDoc = XDocument.Load("du_lieu.xml"); // "Mở" file XML
 
-    Console.WriteLine(xmlDoc.Declaration); // In ra "khai báo" XML (nếu có, ví dụ: <?xml version="1.0" ... ?>)
-    Console.WriteLine(xmlDoc.Root.Name);   // In ra "tên" của "phần tử gốc" (ví dụ: "CuaHang")
-    ```
+  Console.WriteLine(xmlDoc.Declaration); // In ra "khai báo" XML (nếu có, ví dụ: <?xml version="1.0" ... ?>)
+  Console.WriteLine(xmlDoc.Root.Name);   // In ra "tên" của "phần tử gốc" (ví dụ: "CuaHang")
+  ```
 
--   **"Phân tích" chuỗi XML:** Dùng "chiêu" tĩnh `XDocument.Parse(xmlString)` để "biến" một chuỗi XML thành một đối tượng `XDocument`.
+- **"Phân tích" chuỗi XML:** Dùng "chiêu" tĩnh `XDocument.Parse(xmlString)` để "biến" một chuỗi XML thành một đối tượng
+  `XDocument`.
 
-    ```csharp
-    string xmlChuoi = @"<SanPham>
-                            <Ten>Laptop</Ten>
-                            <Gia>1500</Gia>
-                         </SanPham>"; // Chuỗi XML
+  ```csharp
+  string xmlChuoi = @"<SanPham>
+                          <Ten>Laptop</Ten>
+                          <Gia>1500</Gia>
+                       </SanPham>"; // Chuỗi XML
 
-    XDocument xmlDocFromString = XDocument.Parse(xmlChuoi); // "Phân tích" chuỗi XML
+  XDocument xmlDocFromString = XDocument.Parse(xmlChuoi); // "Phân tích" chuỗi XML
 
-    Console.WriteLine(xmlDocFromString.Root.Element("Ten").Value); // In ra "nội dung" của "phần tử" <Ten> (kết quả: "Laptop")
-    ```
+  Console.WriteLine(xmlDocFromString.Root.Element("Ten").Value); // In ra "nội dung" của "phần tử" <Ten> (kết quả: "Laptop")
+  ```
 
 **4.2.2. Truy vấn XML (Querying XML) - "Hỏi Han" Dữ Liệu XML**
 
-LINQ to XML "cho phép" bạn dùng các "chiêu" LINQ quen thuộc để "truy vấn" dữ liệu XML. Các "chiêu" quan trọng khi "hỏi han" XML bao gồm:
+LINQ to XML "cho phép" bạn dùng các "chiêu" LINQ quen thuộc để "truy vấn" dữ liệu XML. Các "chiêu" quan trọng khi "hỏi
+han" XML bao gồm:
 
--   **`Descendants(elementName)`:** "Lấy" **tất cả** các "phần tử con cháu" (ở bất kỳ "tầng lớp" nào) có "tên" là `elementName`.
--   **`Elements(elementName)`:** "Lấy" các "phần tử con trực tiếp" (chỉ "tầng lớp" con ruột) có "tên" là `elementName`.
--   **`Element(elementName)`:** "Lấy" "phần tử con trực tiếp" **đầu tiên** có "tên" là `elementName`.
--   **`Attributes(attributeName)`:** "Lấy" **tất cả** các "thuộc tính" có "tên" là `attributeName` của một "phần tử".
-    -   **`Attribute(attributeName)`:** "Lấy" "thuộc tính" **đầu tiên** có "tên" là `attributeName` của một "phần tử".
-    -   **`Value`:** "Lấy" "giá trị văn bản" bên trong một "phần tử" hoặc "thuộc tính".
+- **`Descendants(elementName)`:** "Lấy" **tất cả** các "phần tử con cháu" (ở bất kỳ "tầng lớp" nào) có "tên" là
+  `elementName`.
+- **`Elements(elementName)`:** "Lấy" các "phần tử con trực tiếp" (chỉ "tầng lớp" con ruột) có "tên" là `elementName`.
+- **`Element(elementName)`:** "Lấy" "phần tử con trực tiếp" **đầu tiên** có "tên" là `elementName`.
+- **`Attributes(attributeName)`:** "Lấy" **tất cả** các "thuộc tính" có "tên" là `attributeName` của một "phần tử".
+    - **`Attribute(attributeName)`:** "Lấy" "thuộc tính" **đầu tiên** có "tên" là `attributeName` của một "phần tử".
+    - **`Value`:** "Lấy" "giá trị văn bản" bên trong một "phần tử" hoặc "thuộc tính".
 
 **Ví dụ "truy vấn" (giả sử `xmlDoc` đã được "mở" từ file hoặc "phân tích" từ chuỗi):**
 
@@ -124,7 +143,8 @@ Console.WriteLine($"\nSố lượng sản phẩm giá > 500: {soLuongSP_GiaHon50
 
 **4.2.3. Tạo XML (Creating XML) - "Xây Dựng" XML Từ Đầu**
 
-Bạn có thể "tự tay" "xây dựng" một "tài liệu XML" mới một cách "dễ dàng" bằng cách dùng các "công cụ xây dựng" (constructor) của `XDocument`, `XElement`, và `XAttribute`.
+Bạn có thể "tự tay" "xây dựng" một "tài liệu XML" mới một cách "dễ dàng" bằng cách dùng các "công cụ xây dựng" (
+constructor) của `XDocument`, `XElement`, và `XAttribute`.
 
 ```csharp
 // "Xây" XML document mới "từ đầu"
@@ -153,12 +173,13 @@ Console.WriteLine(newXmlDoc.ToString()); // "Biến" XML document thành chuỗi
 
 LINQ to XML cung cấp các "chiêu" để "chỉnh sửa" "kiến trúc" và "nội dung" của XML:
 
--   **`Element(elementName).SetValue(newValue)`:** "Thay đổi" "nội dung văn bản" của một "phần tử".
--   **`Attribute(attributeName).SetValue(newValue)`:** "Thay đổi" "giá trị" của một "thuộc tính".
--   **`Add(newContent)`:** "Thêm" "nội dung mới" (phần tử, thuộc tính, ghi chú, v.v.) vào một "phần tử".
--   **`Remove()`:** "Xóa" một "phần tử" hoặc "thuộc tính".
-    -   **`ReplaceNodes(newContent)`:** "Thay thế" **toàn bộ** các "phần tử con" của một "phần tử" bằng "nội dung mới".
-    -   **`ReplaceAttributes(newAttributes)`:** "Thay thế" **toàn bộ** các "thuộc tính" của một "phần tử" bằng các "thuộc tính mới".
+- **`Element(elementName).SetValue(newValue)`:** "Thay đổi" "nội dung văn bản" của một "phần tử".
+- **`Attribute(attributeName).SetValue(newValue)`:** "Thay đổi" "giá trị" của một "thuộc tính".
+- **`Add(newContent)`:** "Thêm" "nội dung mới" (phần tử, thuộc tính, ghi chú, v.v.) vào một "phần tử".
+- **`Remove()`:** "Xóa" một "phần tử" hoặc "thuộc tính".
+    - **`ReplaceNodes(newContent)`:** "Thay thế" **toàn bộ** các "phần tử con" của một "phần tử" bằng "nội dung mới".
+    - **`ReplaceAttributes(newAttributes)`:** "Thay thế" **toàn bộ** các "thuộc tính" của một "phần tử" bằng các "thuộc
+      tính mới".
 
 **Ví dụ "chỉnh sửa" XML (tiếp tục với `xmlDoc` đã "mở"):**
 
@@ -190,11 +211,13 @@ Console.WriteLine(xmlDoc.ToString()); // In ra XML đã "tân trang"
 
 **4.2.5. Xóa XML (Deleting XML) - "Dọn Dẹp" XML**
 
-Như bạn thấy trong ví dụ "chỉnh sửa", bạn có thể dùng `Remove()` để "xóa sổ" các "phần tử" hoặc "thuộc tính" XML không mong muốn.
+Như bạn thấy trong ví dụ "chỉnh sửa", bạn có thể dùng `Remove()` để "xóa sổ" các "phần tử" hoặc "thuộc tính" XML không
+mong muốn.
 
 **4.3. Đọc và ghi dữ liệu XML từ/đến file - "Lưu Giữ" Và "Mở Lại" XML**
 
-Chúng ta đã biết cách "mở" file XML bằng `XDocument.Load(filePath)`. Để **"ghi" XML trở lại file**, bạn dùng "chiêu" `XDocument.Save(filePath)`.
+Chúng ta đã biết cách "mở" file XML bằng `XDocument.Load(filePath)`. Để **"ghi" XML trở lại file**, bạn dùng "chiêu"
+`XDocument.Save(filePath)`.
 
 ```csharp
 // "Lưu" XML document đã "tân trang" vào file "du_lieu_da_sua.xml"
@@ -203,34 +226,37 @@ xmlDoc.Save("du_lieu_da_sua.xml"); // "Lưu" XML vào file
 Console.WriteLine("\nĐã lưu XML đã sửa đổi vào file 'du_lieu_da_sua.xml'");
 ```
 
-**Ngoài ra, bạn có thể "biến" `XDocument` thành chuỗi XML bằng "chiêu" `XDocument.ToString()` (như đã dùng trong các ví dụ trên).**
+**Ngoài ra, bạn có thể "biến" `XDocument` thành chuỗi XML bằng "chiêu" `XDocument.ToString()` (như đã dùng trong các ví
+dụ trên).**
 
 **Tổng Kết Chương 4:**
 
--   Bạn đã "làm quen" với LINQ to XML và các "viên gạch" cơ bản: `XDocument`, `XElement`, `XAttribute`, `XNode`.
--   Học cách "mở" XML từ file và chuỗi.
-    -   "Nắm vững" cách "truy vấn" XML bằng các "chiêu" LINQ (Query Syntax và Method Syntax).
-    -   Biết cách "xây" XML document mới "từ tay".
-    -   Học cách "chỉnh sửa" và "dọn dẹp" dữ liệu XML.
-    -   Biết cách "lưu" XML document trở lại file.
+- Bạn đã "làm quen" với LINQ to XML và các "viên gạch" cơ bản: `XDocument`, `XElement`, `XAttribute`, `XNode`.
+- Học cách "mở" XML từ file và chuỗi.
+    - "Nắm vững" cách "truy vấn" XML bằng các "chiêu" LINQ (Query Syntax và Method Syntax).
+    - Biết cách "xây" XML document mới "từ tay".
+    - Học cách "chỉnh sửa" và "dọn dẹp" dữ liệu XML.
+    - Biết cách "lưu" XML document trở lại file.
 
-LINQ to XML là một "công cụ" rất "lợi hại" để "làm chủ" XML trong .NET. Nó giúp bạn "thao tác" với XML một cách "trực quan", "hiệu quả", và "tận dụng" được "sức mạnh" của LINQ.
+LINQ to XML là một "công cụ" rất "lợi hại" để "làm chủ" XML trong .NET. Nó giúp bạn "thao tác" với XML một cách "trực
+quan", "hiệu quả", và "tận dụng" được "sức mạnh" của LINQ.
 
 **Bài Tập "Thực Hành XML":**
 
-1.  Tạo một file XML chứa thông tin về sách (tên sách, tác giả, giá, nhà xuất bản).
-2.  "Mở" file XML này bằng LINQ to XML.
-3.  Sử dụng "chiêu" LINQ để:
-    -   "Lấy" danh sách "tên sách" của tất cả sách có "giá" "cao hơn" một giá trị nào đó do bạn chọn.
-    -   "Lấy" danh sách "tên sách" và "nhà xuất bản" của tất cả sách được "xuất bản" bởi một "nhà xuất bản" cụ thể.
-    -   "Tính tổng" "giá trị" của tất cả các sách.
-4.  "Thêm" một cuốn sách mới vào XML document.
-5.  "Chỉnh sửa" "giá" của một cuốn sách cụ thể trong XML document.
-6.  "Xóa" một cuốn sách khỏi XML document.
-7.  "Lưu" XML document đã "tân trang" trở lại file.
+1. Tạo một file XML chứa thông tin về sách (tên sách, tác giả, giá, nhà xuất bản).
+2. "Mở" file XML này bằng LINQ to XML.
+3. Sử dụng "chiêu" LINQ để:
+    - "Lấy" danh sách "tên sách" của tất cả sách có "giá" "cao hơn" một giá trị nào đó do bạn chọn.
+    - "Lấy" danh sách "tên sách" và "nhà xuất bản" của tất cả sách được "xuất bản" bởi một "nhà xuất bản" cụ thể.
+    - "Tính tổng" "giá trị" của tất cả các sách.
+4. "Thêm" một cuốn sách mới vào XML document.
+5. "Chỉnh sửa" "giá" của một cuốn sách cụ thể trong XML document.
+6. "Xóa" một cuốn sách khỏi XML document.
+7. "Lưu" XML document đã "tân trang" trở lại file.
 
 **Bước Tiếp Theo:**
 
-Chúng ta sẽ "tiến thẳng" đến **Chương 5: LINQ to SQL/Entities (LINQ to Database) - "Bắt Nhịp" Với Cơ Sở Dữ Liệu**. Chúng ta sẽ "khám phá" cách sử dụng LINQ để "truy vấn" và "thao tác" với dữ liệu trong cơ sở dữ liệu quan hệ.
+Chúng ta sẽ "tiến thẳng" đến **Chương 5: LINQ to SQL/Entities (LINQ to Database) - "Bắt Nhịp" Với Cơ Sở Dữ Liệu**. Chúng
+ta sẽ "khám phá" cách sử dụng LINQ để "truy vấn" và "thao tác" với dữ liệu trong cơ sở dữ liệu quan hệ.
 
 Bạn có câu hỏi nào về LINQ to XML này không? Hãy cứ "hỏi han" nhé!

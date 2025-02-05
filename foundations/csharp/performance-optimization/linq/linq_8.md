@@ -1,6 +1,9 @@
 ## **Chương 8: LINQ Trong Thực Tế - Ứng Dụng Vào Đời Sống - "LINQ Đi Muôn Nơi"**
 
-Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế của LINQ**! Trong chương "cuối cùng" này, chúng ta sẽ cùng nhau "dạo quanh" một vài ví dụ "thực tế" để "thấy tận mắt" LINQ "tung hoành" trong các dự án phần mềm "muôn màu muôn vẻ". Chúng ta sẽ "tham quan" các ví dụ "ứng dụng" LINQ to Objects, LINQ to XML, và LINQ to Entities, "minh họa" cách LINQ "giúp sức" "giải quyết" các "bài toán" lập trình "hàng ngày" một cách "gọn gàng" và "thông minh".
+Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế của LINQ**! Trong chương "cuối cùng" này, chúng ta sẽ cùng nhau "dạo
+quanh" một vài ví dụ "thực tế" để "thấy tận mắt" LINQ "tung hoành" trong các dự án phần mềm "muôn màu muôn vẻ". Chúng ta
+sẽ "tham quan" các ví dụ "ứng dụng" LINQ to Objects, LINQ to XML, và LINQ to Entities, "minh họa" cách LINQ "giúp sức" "
+giải quyết" các "bài toán" lập trình "hàng ngày" một cách "gọn gàng" và "thông minh".
 
 **Phần 8: Ứng Dụng Thực Tế của LINQ - "LINQ Đi Muôn Nơi"**
 
@@ -8,14 +11,15 @@ Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế của LIN
 
 **Ví dụ: Ứng dụng "quản lý danh sách công việc" (To-Do List) "tí hon" trên console**
 
-Chúng ta sẽ "xây" một ứng dụng console "đơn giản" giúp người dùng "quản lý" "danh sách" "việc cần làm" của mình. Ứng dụng sẽ có các "chức năng":
+Chúng ta sẽ "xây" một ứng dụng console "đơn giản" giúp người dùng "quản lý" "danh sách" "việc cần làm" của mình. Ứng
+dụng sẽ có các "chức năng":
 
--   "Thêm" "việc" mới.
--   "Xem" "danh sách" "tất cả" các "việc".
--   "Xem" "danh sách" các "việc" "chưa xong".
--   "Đánh dấu" "việc" là "xong".
--   "Xóa" "việc".
--   "Tìm kiếm" "việc" theo "tên".
+- "Thêm" "việc" mới.
+- "Xem" "danh sách" "tất cả" các "việc".
+- "Xem" "danh sách" các "việc" "chưa xong".
+- "Đánh dấu" "việc" là "xong".
+- "Xóa" "việc".
+- "Tìm kiếm" "việc" theo "tên".
 
 Chúng ta sẽ "dùng" `List<TodoItem>` để "giữ" "danh sách" "việc" trong "bộ nhớ" ("chơi" LINQ to Objects).
 
@@ -178,12 +182,15 @@ public class TodoApp // Class "chính" của ứng dụng To-Do List
 
 **Trong ví dụ này, chúng ta đã "dùng" LINQ to Objects để:**
 
--   **`_todoList.Where(todo => !todo.IsCompleted)`:** "Lọc" "rổ" "việc cần làm" để "lấy" các "việc" "chưa xong".
-    -   **`!_todoList.Any()`:** "Kiểm tra" xem "rổ" "việc cần làm" có "rỗng" không.
-    -   **`_todoList.FirstOrDefault(t => t.Id == id)`:** "Tìm" "việc" "đầu tiên" có "mã số" "trùng khớp" (hoặc "không có gì" nếu "không tìm thấy").
-    -   **`_todoList.Where(todo => todo.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase))`:** "Tìm kiếm" "việc" theo "tên", "không quan tâm" chữ hoa chữ thường.
+- **`_todoList.Where(todo => !todo.IsCompleted)`:** "Lọc" "rổ" "việc cần làm" để "lấy" các "việc" "chưa xong".
+    - **`!_todoList.Any()`:** "Kiểm tra" xem "rổ" "việc cần làm" có "rỗng" không.
+    - **`_todoList.FirstOrDefault(t => t.Id == id)`:** "Tìm" "việc" "đầu tiên" có "mã số" "trùng khớp" (hoặc "không có
+      gì" nếu "không tìm thấy").
+    - **`_todoList.Where(todo => todo.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase))`:** "Tìm kiếm" "việc"
+      theo "tên", "không quan tâm" chữ hoa chữ thường.
 
-Ví dụ này "minh họa" cách LINQ to Objects giúp "thao tác" và "hỏi han" dữ liệu trong "bộ nhớ" một cách "gọn gàng" và "dễ hiểu", làm cho code ứng dụng trở nên "đơn giản" và "dễ bảo trì" hơn.
+Ví dụ này "minh họa" cách LINQ to Objects giúp "thao tác" và "hỏi han" dữ liệu trong "bộ nhớ" một cách "gọn gàng" và "dễ
+hiểu", làm cho code ứng dụng trở nên "đơn giản" và "dễ bảo trì" hơn.
 
 **8.2. Ví dụ ứng dụng LINQ to XML để xử lý cấu hình hoặc dữ liệu XML - "Làm Việc" Với XML "Nhẹ Nhàng"**
 
@@ -242,18 +249,24 @@ public class AppConfigReader // Class "đọc" "cài đặt" ứng dụng
 
 Trong ví dụ này, LINQ to XML "giúp sức" chúng ta:
 
--   **`XDocument.Load(configFilePath)`:** "Mở" file XML "cấu hình".
-    -   **`configDoc.Root.Element("applicationName").Value`:** "Tiếp cận" các "phần tử" XML bằng "tên" và "lấy" "giá trị" của chúng.
+- **`XDocument.Load(configFilePath)`:** "Mở" file XML "cấu hình".
+    - **`configDoc.Root.Element("applicationName").Value`:** "Tiếp cận" các "phần tử" XML bằng "tên" và "lấy" "giá trị"
+      của chúng.
 
-LINQ to XML "trao tay" bạn một "cách" "trực quan" và "dễ dàng" để "thao tác" với dữ liệu "cấu hình" XML hoặc bất kỳ dữ liệu XML nào khác trong ứng dụng của bạn.
+LINQ to XML "trao tay" bạn một "cách" "trực quan" và "dễ dàng" để "thao tác" với dữ liệu "cấu hình" XML hoặc bất kỳ dữ
+liệu XML nào khác trong ứng dụng của bạn.
 
-**8.3. Ví dụ ứng dụng LINQ to Entities trong ứng dụng web hoặc desktop với cơ sở dữ liệu - "Web và Desktop 'Bắt Tay' Database Với LINQ"**
+**8.3. Ví dụ ứng dụng LINQ to Entities trong ứng dụng web hoặc desktop với cơ sở dữ liệu - "Web và Desktop 'Bắt Tay'
+Database Với LINQ"**
 
 **Ví dụ: Ứng dụng web ASP.NET Core "trình diễn" danh sách sản phẩm từ database**
 
-Trong một ứng dụng web ASP.NET Core, chúng ta thường "nhờ cậy" Entity Framework Core để "giao tiếp" với cơ sở dữ liệu. LINQ to Entities là "trợ thủ đắc lực" để "hỏi han" dữ liệu trong EF Core.
+Trong một ứng dụng web ASP.NET Core, chúng ta thường "nhờ cậy" Entity Framework Core để "giao tiếp" với cơ sở dữ liệu.
+LINQ to Entities là "trợ thủ đắc lực" để "hỏi han" dữ liệu trong EF Core.
 
-Giả sử chúng ta có một ứng dụng web ASP.NET Core MVC với một `DbContext` (`CuaHangDbContext`) và các entities (`SanPham`) như đã "dựng" ở Chương 5. Chúng ta có thể "xây" một controller và action để "trình bày" "danh sách" sản phẩm trên "mặt tiền" trang web:
+Giả sử chúng ta có một ứng dụng web ASP.NET Core MVC với một `DbContext` (`CuaHangDbContext`) và các entities (
+`SanPham`) như đã "dựng" ở Chương 5. Chúng ta có thể "xây" một controller và action để "trình bày" "danh sách" sản phẩm
+trên "mặt tiền" trang web:
 
 ```csharp
 using Microsoft.AspNetCore.Mvc; // Để "dựng" Controller
@@ -286,15 +299,17 @@ public class SanPhamController : Controller // Class Controller "quản lý" s�
 
 **Trong controller action `Index()`:**
 
--   **`_dbContext.SanPhams.OrderBy(sp => sp.TenSanPham).ToListAsync()`:** "Dùng" LINQ to Entities để:
+- **`_dbContext.SanPhams.OrderBy(sp => sp.TenSanPham).ToListAsync()`:** "Dùng" LINQ to Entities để:
 
-    -   "Tiếp cận" `DbSet<SanPham>` (`_dbContext.SanPhams`).
-    -   "Sắp xếp" "danh sách" sản phẩm theo "tên" (`OrderBy`).
-    -   "Ép" truy vấn "ra quân" và "trao tay" `List<SanPham>` bằng `ToListAsync()` ("chạy" truy vấn "bất đồng bộ").
+    - "Tiếp cận" `DbSet<SanPham>` (`_dbContext.SanPhams`).
+    - "Sắp xếp" "danh sách" sản phẩm theo "tên" (`OrderBy`).
+    - "Ép" truy vấn "ra quân" và "trao tay" `List<SanPham>` bằng `ToListAsync()` ("chạy" truy vấn "bất đồng bộ").
 
--   **`return View(danhSachSanPham)`:** "Gửi" "danh sách" sản phẩm "lấy" từ database cho "mặt tiền" (View) để "trình diễn" trên trang web.
+- **`return View(danhSachSanPham)`:** "Gửi" "danh sách" sản phẩm "lấy" từ database cho "mặt tiền" (View) để "trình diễn"
+  trên trang web.
 
-Trong "mặt tiền" (View - ví dụ: `Index.cshtml`), bạn có thể "dạo" qua `Model` ("danh sách" sản phẩm) và "trình bày" "thông tin" sản phẩm:
+Trong "mặt tiền" (View - ví dụ: `Index.cshtml`), bạn có thể "dạo" qua `Model` ("danh sách" sản phẩm) và "trình bày" "
+thông tin" sản phẩm:
 
 ```cshtml
 @model List<SanPham> // "Khai báo" View này sẽ "nhận" dữ liệu kiểu List<SanPham>
@@ -326,16 +341,21 @@ Trong "mặt tiền" (View - ví dụ: `Index.cshtml`), bạn có thể "dạo" 
 </table>
 ```
 
-Ví dụ này "cho thấy" cách LINQ to Entities "kết hợp" "ăn ý" với EF Core và ASP.NET Core để "xây dựng" các ứng dụng web "tương tác" với database một cách "mượt mà". LINQ giúp "hỏi han" dữ liệu từ database "dễ dàng" và "an toàn" về kiểu dữ liệu, làm cho code backend trở nên "gọn" và "dễ bảo trì". Tương tự, LINQ to Entities cũng được "trọng dụng" trong các ứng dụng desktop (WPF, WinForms) để "tiếp cận" và "thao tác" dữ liệu database.
+Ví dụ này "cho thấy" cách LINQ to Entities "kết hợp" "ăn ý" với EF Core và ASP.NET Core để "xây dựng" các ứng dụng web "
+tương tác" với database một cách "mượt mà". LINQ giúp "hỏi han" dữ liệu từ database "dễ dàng" và "an toàn" về kiểu dữ
+liệu, làm cho code backend trở nên "gọn" và "dễ bảo trì". Tương tự, LINQ to Entities cũng được "trọng dụng" trong các
+ứng dụng desktop (WPF, WinForms) để "tiếp cận" và "thao tác" dữ liệu database.
 
 **Tổng Kết Chương 8:**
 
--   Chúng ta đã "chiêm ngưỡng" các ví dụ "ứng dụng" "thực tế" của LINQ trong:
-    -   Ứng dụng console "nhỏ xinh" (To-Do List) dùng LINQ to Objects.
-    -   "Xử lý" file "cấu hình" XML dùng LINQ to XML.
-    -   Ứng dụng web ASP.NET Core với database dùng LINQ to Entities.
+- Chúng ta đã "chiêm ngưỡng" các ví dụ "ứng dụng" "thực tế" của LINQ trong:
+    - Ứng dụng console "nhỏ xinh" (To-Do List) dùng LINQ to Objects.
+    - "Xử lý" file "cấu hình" XML dùng LINQ to XML.
+    - Ứng dụng web ASP.NET Core với database dùng LINQ to Entities.
 
-Các ví dụ này chỉ là "phần nổi của tảng băng chìm" trong "vũ trụ" ứng dụng của LINQ. LINQ là một "công cụ" "đa năng" có thể "góp mặt" trong hầu hết mọi "loại hình" ứng dụng .NET, giúp bạn "làm chủ" dữ liệu một cách "hiệu quả", "dễ dàng", và viết code C# "thanh lịch" hơn.
+Các ví dụ này chỉ là "phần nổi của tảng băng chìm" trong "vũ trụ" ứng dụng của LINQ. LINQ là một "công cụ" "đa năng" có
+thể "góp mặt" trong hầu hết mọi "loại hình" ứng dụng .NET, giúp bạn "làm chủ" dữ liệu một cách "hiệu quả", "dễ dàng", và
+viết code C# "thanh lịch" hơn.
 
 **"Lời Chúc" "Kết Hành Trình":**
 
