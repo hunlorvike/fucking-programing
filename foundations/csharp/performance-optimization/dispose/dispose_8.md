@@ -1,20 +1,29 @@
-# Chương 8: Ứng Dụng Thực Tế Của `Dispose` - "Dispose Đi Muôn Nơi" - "Ứng Dụng Vào Đời Sống" - "Dispose Trong 'Mọi Ngóc Ngách' Ứng Dụng"
+# Chương 8: Ứng Dụng Thực Tế Của
 
-Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế Của `Dispose` - "Dispose Đi Muôn Nơi"**! Trong chương "cuối cùng" này, chúng ta sẽ "dạo một vòng" thế giới ứng dụng thực tế để "thấy" `Dispose` "hiện diện" ở khắp mọi "ngóc ngách", và "giúp ích" cho các ứng dụng phần mềm "như thế nào". Từ ứng dụng console "nhỏ xinh" đến ứng dụng web và desktop "hoành tráng", bạn sẽ "nhận ra" rằng `Dispose` không chỉ là một "khái niệm" "lý thuyết", mà là một "công cụ" **"thiết yếu"** để xây dựng các ứng dụng .NET "ổn định", "hiệu năng cao", và "không 'rò rỉ' tài nguyên".
+`Dispose` - "Dispose Đi Muôn Nơi" - "Ứng Dụng Vào Đời Sống" - "Dispose Trong 'Mọi Ngóc Ngách' Ứng Dụng"
+
+Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế Của `Dispose` - "Dispose Đi Muôn Nơi"**! Trong chương "cuối cùng"
+này, chúng ta sẽ "dạo một vòng" thế giới ứng dụng thực tế để "thấy" `Dispose` "hiện diện" ở khắp mọi "ngóc ngách", và "
+giúp ích" cho các ứng dụng phần mềm "như thế nào". Từ ứng dụng console "nhỏ xinh" đến ứng dụng web và desktop "hoành
+tráng", bạn sẽ "nhận ra" rằng `Dispose` không chỉ là một "khái niệm" "lý thuyết", mà là một "công cụ" **"thiết yếu"** để
+xây dựng các ứng dụng .NET "ổn định", "hiệu năng cao", và "không 'rò rỉ' tài nguyên".
 
 **Phần 8: Ứng Dụng Thực Tế Của `Dispose` - "Dispose Đi Muôn Nơi"**
 
-**8.1. Ví dụ ứng dụng console đơn giản sử dụng `Dispose` - Ứng Dụng Console "Gọn Gàng" ", "Không 'Rò Rỉ' Tài Nguyên" - "Console Cũng Cần 'Dọn Dẹp' "**
+**8.1. Ví dụ ứng dụng console đơn giản sử dụng `Dispose` - Ứng Dụng Console "Gọn Gàng" ", "Không 'Rò Rỉ' Tài Nguyên" - "
+Console Cũng Cần 'Dọn Dẹp' "**
 
 **Ví dụ: Ứng dụng console "đọc" và "ghi" file "văn bản"**
 
-Chúng ta sẽ "xây dựng" một ứng dụng console "đơn giản" để "đọc" nội dung từ một file "văn bản" và "ghi" nội dung đó vào một file "văn bản" khác. Ứng dụng sẽ:
+Chúng ta sẽ "xây dựng" một ứng dụng console "đơn giản" để "đọc" nội dung từ một file "văn bản" và "ghi" nội dung đó vào
+một file "văn bản" khác. Ứng dụng sẽ:
 
-1.  "Mở" file "đọc" (input file) bằng `StreamReader`.
-2.  "Đọc" nội dung từ file "đọc" "từng dòng" một.
-3.  "Mở" file "ghi" (output file) bằng `StreamWriter`.
-4.  "Ghi" từng dòng "đọc" được vào file "ghi".
-5.  "Đảm bảo" "dọn dẹp" (Dispose) các đối tượng `StreamReader` và `StreamWriter` sau khi "dùng xong" để "tránh" "rò rỉ" "tay cầm file".
+1. "Mở" file "đọc" (input file) bằng `StreamReader`.
+2. "Đọc" nội dung từ file "đọc" "từng dòng" một.
+3. "Mở" file "ghi" (output file) bằng `StreamWriter`.
+4. "Ghi" từng dòng "đọc" được vào file "ghi".
+5. "Đảm bảo" "dọn dẹp" (Dispose) các đối tượng `StreamReader` và `StreamWriter` sau khi "dùng xong" để "tránh" "rò rỉ" "
+   tay cầm file".
 
 ```csharp
 using System;
@@ -74,24 +83,31 @@ public class DisposeConsoleAppExample
 }
 ```
 
--   **"Giải mã" code "ứng dụng" `Dispose` trong console:**
+- **"Giải mã" code "ứng dụng" `Dispose` trong console:**
 
-    -   Ví dụ này minh họa cách "gọi" `Dispose()` **"rõ ràng" "bằng tay"** trong khối `try-finally` block để "quản lý" "vòng đời" của `StreamReader` và `StreamWriter` (các đối tượng `IDisposable` "quản lý" "tay cầm file" "unmanaged").
-    -   Khối `finally` **"đảm bảo"** rằng `reader.Dispose()` và `writer.Dispose()` sẽ được **"gọi" "chắc chắn"** "trong mọi tình huống", kể cả khi có exceptions "xảy ra" trong khối `try`. "Không lo" "rò rỉ" "tay cầm file" "unmanaged".
-    -   Tuy code "gọi" `Dispose()` "bằng tay" trong `try-finally` block hơi "rườm rà", nhưng nó vẫn là một cách "hiệu quả" để "quản lý" tài nguyên "unmanaged" trong các ứng dụng console "đơn giản" (hoặc trong các "tình huống" mà `using` statement "không 'che' " hết được).
+    - Ví dụ này minh họa cách "gọi" `Dispose()` **"rõ ràng" "bằng tay"** trong khối `try-finally` block để "quản lý" "
+      vòng đời" của `StreamReader` và `StreamWriter` (các đối tượng `IDisposable` "quản lý" "tay cầm file" "unmanaged").
+    - Khối `finally` **"đảm bảo"** rằng `reader.Dispose()` và `writer.Dispose()` sẽ được **"gọi" "chắc chắn"** "trong
+      mọi tình huống", kể cả khi có exceptions "xảy ra" trong khối `try`. "Không lo" "rò rỉ" "tay cầm file" "unmanaged".
+    - Tuy code "gọi" `Dispose()` "bằng tay" trong `try-finally` block hơi "rườm rà", nhưng nó vẫn là một cách "hiệu quả"
+      để "quản lý" tài nguyên "unmanaged" trong các ứng dụng console "đơn giản" (hoặc trong các "tình huống" mà `using`
+      statement "không 'che' " hết được).
 
-**8.2. Ví dụ ứng dụng desktop (WPF/WinForms) sử dụng `Dispose` - Ứng Dụng Desktop "Ổn Định", "Mượt Mà" - "Desktop Cũng 'Khát' 'Dọn Dẹp' "**
+**8.2. Ví dụ ứng dụng desktop (WPF/WinForms) sử dụng `Dispose` - Ứng Dụng Desktop "Ổn Định", "Mượt Mà" - "Desktop Cũng '
+Khát' 'Dọn Dẹp' "**
 
 **Ví dụ: Ứng dụng WPF "hiển thị ảnh" (mở file ảnh và hiển thị lên Image control)**
 
-Chúng ta sẽ "xây dựng" một ứng dụng WPF "đơn giản" để "hiển thị" một file ảnh được "chọn" bởi người dùng lên Image control. Ứng dụng sẽ:
+Chúng ta sẽ "xây dựng" một ứng dụng WPF "đơn giản" để "hiển thị" một file ảnh được "chọn" bởi người dùng lên Image
+control. Ứng dụng sẽ:
 
-1.  Cho phép người dùng "chọn" file ảnh bằng OpenFileDialog.
-2.  "Mở" file ảnh bằng `FileStream` (tài nguyên "unmanaged").
-3.  "Tạo" `BitmapImage` từ `FileStream` để "hiển thị" ảnh lên Image control.
-4.  "Đảm bảo" "dọn dẹp" (Dispose) `FileStream` sau khi "hiển thị" ảnh xong để "tránh" "rò rỉ" "tay cầm file".
+1. Cho phép người dùng "chọn" file ảnh bằng OpenFileDialog.
+2. "Mở" file ảnh bằng `FileStream` (tài nguyên "unmanaged").
+3. "Tạo" `BitmapImage` từ `FileStream` để "hiển thị" ảnh lên Image control.
+4. "Đảm bảo" "dọn dẹp" (Dispose) `FileStream` sau khi "hiển thị" ảnh xong để "tránh" "rò rỉ" "tay cầm file".
 
-(Để chạy ví dụ này, bạn cần tạo một dự án WPF App (.NET Framework hoặc .NET Core) và thêm code vào file MainWindow.xaml.cs)
+(Để chạy ví dụ này, bạn cần tạo một dự án WPF App (.NET Framework hoặc .NET Core) và thêm code vào file
+MainWindow.xaml.cs)
 
 ```csharp
 // MainWindow.xaml.cs (code-behind file của MainWindow.xaml trong dự án WPF)
@@ -176,24 +192,32 @@ namespace WpfDisposeExample
 
 **"Chạy" ứng dụng WPF và "thử nghiệm":**
 
--   Khi bạn "bấm" button "Chọn File Ảnh", ứng dụng sẽ "hiển thị" hộp thoại để bạn "chọn" file ảnh.
-    -   Sau khi bạn "chọn" file ảnh và bấm "Open", ứng dụng sẽ "mở" file ảnh, "tải" "thumbnail", và "hiển thị" ảnh lên Image control trên giao diện WPF.
-    -   **"Quan trọng":** Dù có "thành công" hay "lỗi" khi "mở" hoặc "hiển thị" file ảnh, `finally` block vẫn "đảm bảo" `fileStream.Dispose()` được "gọi" để "giải phóng" "tay cầm file" "unmanaged", giúp ứng dụng "không 'rò rỉ' tài nguyên" và "hoạt động" "ổn định" và "mượt mà".
+- Khi bạn "bấm" button "Chọn File Ảnh", ứng dụng sẽ "hiển thị" hộp thoại để bạn "chọn" file ảnh.
+    - Sau khi bạn "chọn" file ảnh và bấm "Open", ứng dụng sẽ "mở" file ảnh, "tải" "thumbnail", và "hiển thị" ảnh lên
+      Image control trên giao diện WPF.
+    - **"Quan trọng":** Dù có "thành công" hay "lỗi" khi "mở" hoặc "hiển thị" file ảnh, `finally` block vẫn "đảm bảo"
+      `fileStream.Dispose()` được "gọi" để "giải phóng" "tay cầm file" "unmanaged", giúp ứng dụng "không 'rò rỉ' tài
+      nguyên" và "hoạt động" "ổn định" và "mượt mà".
 
-**8.3. Ví dụ ứng dụng web ASP.NET Core sử dụng `Dispose` - Ứng Dụng Web "Hiệu Năng Cao", "Không 'Ngốn' Tài Nguyên Server" - "Web Server Cũng 'Khát' 'Dọn Dẹp' "**
+**8.3. Ví dụ ứng dụng web ASP.NET Core sử dụng `Dispose` - Ứng Dụng Web "Hiệu Năng Cao", "Không 'Ngốn' Tài Nguyên
+Server" - "Web Server Cũng 'Khát' 'Dọn Dẹp' "**
 
 **Ví dụ: Ứng dụng ASP.NET Core MVC "tải" và "hiển thị" ảnh từ URL "bất đồng bộ"**
 
-Trong ứng dụng web ASP.NET Core MVC, việc "quản lý" tài nguyên "hiệu quả" bằng `Dispose` càng trở nên **"quan trọng"** hơn, vì ứng dụng web phải "xử lý" **"hàng trăm", "hàng ngàn", hoặc "hàng triệu" "yêu cầu"** đồng thời từ người dùng, và "rò rỉ tài nguyên" có thể "nhanh chóng" làm **"quá tải"** server và **"gây sập"** ứng dụng web.
+Trong ứng dụng web ASP.NET Core MVC, việc "quản lý" tài nguyên "hiệu quả" bằng `Dispose` càng trở nên **"quan trọng"**
+hơn, vì ứng dụng web phải "xử lý" **"hàng trăm", "hàng ngàn", hoặc "hàng triệu" "yêu cầu"** đồng thời từ người dùng,
+và "rò rỉ tài nguyên" có thể "nhanh chóng" làm **"quá tải"** server và **"gây sập"** ứng dụng web.
 
-Chúng ta sẽ "xây dựng" một ứng dụng ASP.NET Core MVC "đơn giản" để "tải" ảnh từ URL "bất đồng bộ" và "hiển thị" lên trang web. Ứng dụng web sẽ:
+Chúng ta sẽ "xây dựng" một ứng dụng ASP.NET Core MVC "đơn giản" để "tải" ảnh từ URL "bất đồng bộ" và "hiển thị" lên
+trang web. Ứng dụng web sẽ:
 
-1.  Có một action để "hiển thị" form "nhập URL ảnh".
-2.  Khi người dùng "nhập" URL và "submit" form, action sẽ:
-    -   "Tải" ảnh từ URL "bất đồng bộ" bằng `HttpClient` (tài nguyên "unmanaged").
-    -   "Chuyển đổi" ảnh sang dạng base64 string để "nhúng" vào HTML.
-    -   "Trả về" View "hiển thị" ảnh và base64 string.
-    -   **"Đảm bảo" "dọn dẹp" (Dispose) `HttpClient` và `HttpResponseMessage` sau khi "tải" ảnh xong để "tránh" "rò rỉ" "kết nối mạng"**.
+1. Có một action để "hiển thị" form "nhập URL ảnh".
+2. Khi người dùng "nhập" URL và "submit" form, action sẽ:
+    - "Tải" ảnh từ URL "bất đồng bộ" bằng `HttpClient` (tài nguyên "unmanaged").
+    - "Chuyển đổi" ảnh sang dạng base64 string để "nhúng" vào HTML.
+    - "Trả về" View "hiển thị" ảnh và base64 string.
+    - **"Đảm bảo" "dọn dẹp" (Dispose) `HttpClient` và `HttpResponseMessage` sau khi "tải" ảnh xong để "tránh" "rò rỉ" "
+      kết nối mạng"**.
 
 (Để chạy ví dụ này, bạn cần tạo một dự án ASP.NET Core MVC và thêm code vào Controller và View tương ứng)
 
@@ -302,29 +326,44 @@ namespace WebDisposeExample.Controllers
 
 **"Chạy" ứng dụng web ASP.NET Core MVC và "thử nghiệm":**
 
--   Bạn có thể "nhập" URL ảnh vào form trên trang web và "bấm" button "Hiển Thị Ảnh".
-    -   Ứng dụng web sẽ "tải" ảnh từ URL và "hiển thị" ảnh lên trang web một cách **"bất đồng bộ"**.
-    -   **"Quan trọng":** Khối `finally` trong Controller action "đảm bảo" `client.Dispose()` và `response?.Dispose()` được "gọi" để "giải phóng" "kết nối mạng" "unmanaged", giúp ứng dụng web "không 'ngốn' " tài nguyên server và "xử lý" "hiệu quả" "hàng ngàn" "yêu cầu" đồng thời từ người dùng.
+- Bạn có thể "nhập" URL ảnh vào form trên trang web và "bấm" button "Hiển Thị Ảnh".
+    - Ứng dụng web sẽ "tải" ảnh từ URL và "hiển thị" ảnh lên trang web một cách **"bất đồng bộ"**.
+    - **"Quan trọng":** Khối `finally` trong Controller action "đảm bảo" `client.Dispose()` và `response?.Dispose()`
+      được "gọi" để "giải phóng" "kết nối mạng" "unmanaged", giúp ứng dụng web "không 'ngốn' " tài nguyên server và "xử
+      lý" "hiệu quả" "hàng ngàn" "yêu cầu" đồng thời từ người dùng.
 
 **Tổng Kết Chương 8:**
 
--   Bạn đã "thấy" `Dispose` "tung hoành" trong các "ứng dụng thực tế" "đa dạng":
-    -   Ứng dụng console "đọc" và "ghi" file "văn bản" - "console cũng cần 'dọn dẹp' ".
-    -   Ứng dụng desktop WPF "hiển thị ảnh" - ứng dụng desktop "ổn định" và "mượt mà".
-    -   Ứng dụng web ASP.NET Core MVC "tải" và "hiển thị" ảnh từ URL - ứng dụng web "hiệu năng cao" và "không 'ngốn' tài nguyên server".
+- Bạn đã "thấy" `Dispose` "tung hoành" trong các "ứng dụng thực tế" "đa dạng":
+    - Ứng dụng console "đọc" và "ghi" file "văn bản" - "console cũng cần 'dọn dẹp' ".
+    - Ứng dụng desktop WPF "hiển thị ảnh" - ứng dụng desktop "ổn định" và "mượt mà".
+    - Ứng dụng web ASP.NET Core MVC "tải" và "hiển thị" ảnh từ URL - ứng dụng web "hiệu năng cao" và "không 'ngốn' tài
+      nguyên server".
 
-Các ví dụ này "minh chứng" rằng `Dispose` không chỉ là một "khái niệm" "lý thuyết", mà là một "kỹ năng" **"thiết yếu"** và **"vô cùng quan trọng"** để xây dựng các ứng dụng .NET "chất lượng cao", "ổn định", "hiệu năng cao", và "không 'rò rỉ' tài nguyên".
+Các ví dụ này "minh chứng" rằng `Dispose` không chỉ là một "khái niệm" "lý thuyết", mà là một "kỹ năng" **"thiết yếu"**
+và **"vô cùng quan trọng"** để xây dựng các ứng dụng .NET "chất lượng cao", "ổn định", "hiệu năng cao", và "không 'rò
+rỉ' tài nguyên".
 
 **"Lời Chúc" "Kết Thúc Hành Trình":**
 
 Chúc mừng bạn đã "về đích" "thành công" trong "hành trình" "khám phá" `Dispose` trong C# .NET!
 
-Bạn đã "đi qua" một "chặng đường" "dài hơi", từ những "khái niệm" "vỡ lòng" về `Dispose`, interface `IDisposable`, `using` statement, Finalizers, `Dispose Pattern`, đến các "ví dụ" "ứng dụng" "thực tế". Hy vọng rằng loạt tài liệu này đã "trang bị" cho bạn "đầy đủ" "kiến thức" và "kỹ năng" để "làm chủ" `Dispose` và "quản lý" tài nguyên "unmanaged" một cách "chuyên nghiệp" trong các ứng dụng .NET của mình.
+Bạn đã "đi qua" một "chặng đường" "dài hơi", từ những "khái niệm" "vỡ lòng" về `Dispose`, interface `IDisposable`,
+`using` statement, Finalizers, `Dispose Pattern`, đến các "ví dụ" "ứng dụng" "thực tế". Hy vọng rằng loạt tài liệu này
+đã "trang bị" cho bạn "đầy đủ" "kiến thức" và "kỹ năng" để "làm chủ" `Dispose` và "quản lý" tài nguyên "unmanaged" một
+cách "chuyên nghiệp" trong các ứng dụng .NET của mình.
 
 **"Lời khuyên" "chân thành" "khép lại":**
 
--   **"Thực hành" "không ngừng nghỉ":** "Cách tốt nhất" để "nắm vững" `Dispose` là "thực hành" viết code `Dispose` thật nhiều. "Thử nghiệm" với các ví dụ khác nhau, "vọc" `using` statement và Finalizers, và "xây dựng" các ứng dụng nhỏ sử dụng `Dispose` để "luyện tay".
--   **"Luôn 'nhớ' " "dọn dẹp" tài nguyên 'unmanaged' ":** Hãy "ghi nhớ" "trách nhiệm" "quản lý" và "giải phóng" "tài nguyên 'unmanaged' " trong "mọi" ứng dụng .NET của bạn. "Dùng" `IDisposable` interface và `using` statement như những "người bạn đồng hành" "đáng tin cậy" để "tránh" "rò rỉ tài nguyên" và "đảm bảo" ứng dụng "chạy" "ổn định" và "mượt mà".
--   **"Chia sẻ" "kiến thức" và "kinh nghiệm" với cộng đồng:** "Tham gia" các diễn đàn, nhóm cộng đồng .NET để "trao đổi", "hỏi đáp", và "học hỏi" kinh nghiệm từ những người khác về `Dispose` và "quản lý" tài nguyên trong .NET.
+- **"Thực hành" "không ngừng nghỉ":** "Cách tốt nhất" để "nắm vững" `Dispose` là "thực hành" viết code `Dispose` thật
+  nhiều. "Thử nghiệm" với các ví dụ khác nhau, "vọc" `using` statement và Finalizers, và "xây dựng" các ứng dụng nhỏ sử
+  dụng `Dispose` để "luyện tay".
+- **"Luôn 'nhớ' " "dọn dẹp" tài nguyên 'unmanaged' ":** Hãy "ghi nhớ" "trách nhiệm" "quản lý" và "giải phóng" "tài
+  nguyên 'unmanaged' " trong "mọi" ứng dụng .NET của bạn. "Dùng" `IDisposable` interface và `using` statement như
+  những "người bạn đồng hành" "đáng tin cậy" để "tránh" "rò rỉ tài nguyên" và "đảm bảo" ứng dụng "chạy" "ổn định" và "
+  mượt mà".
+- **"Chia sẻ" "kiến thức" và "kinh nghiệm" với cộng đồng:** "Tham gia" các diễn đàn, nhóm cộng đồng .NET để "trao
+  đổi", "hỏi đáp", và "học hỏi" kinh nghiệm từ những người khác về `Dispose` và "quản lý" tài nguyên trong .NET.
 
-Nếu bạn có bất kỳ câu hỏi nào khác về `Dispose`, hoặc muốn "chia sẻ" "thành quả" "chinh phục" `Dispose` của mình, đừng "ngần ngại" "lên tiếng" nhé! Chúc bạn "thành công" và "gặp nhiều may mắn" trên con đường "làm chủ" `Dispose` và .NET!
+Nếu bạn có bất kỳ câu hỏi nào khác về `Dispose`, hoặc muốn "chia sẻ" "thành quả" "chinh phục" `Dispose` của mình, đừng "
+ngần ngại" "lên tiếng" nhé! Chúc bạn "thành công" và "gặp nhiều may mắn" trên con đường "làm chủ" `Dispose` và .NET!

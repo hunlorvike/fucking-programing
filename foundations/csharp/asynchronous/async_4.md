@@ -1,4 +1,5 @@
 # Chương 4: `async void` vs `async Task`/
+
 `async Task<T>` - "Chọn Mặt Gửi Vàng" Kiểu Trả Về - "Quyết Định" Đúng Đắn Cho Phương Thức Bất Đồng Bộ
 
 Chào mừng bạn trở lại với **Chương 4: `async void` vs `async Task`/`async Task<T>`**! Trong chương này, chúng ta sẽ "soi

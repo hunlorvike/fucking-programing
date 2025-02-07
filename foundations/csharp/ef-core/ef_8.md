@@ -1,19 +1,24 @@
 # Chương 8: Ứng Dụng Thực Tế Của Entity Framework Core - "EF Core Đi Muôn Nơi" - "Ứng Dụng EF Core Vào Đời Sống"
 
-Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế Của Entity Framework Core - "EF Core Đi Muôn Nơi"**! Trong chương "kết màn" này, chúng ta sẽ "thấy" EF Core "hiện diện" trong các "ứng dụng" "thực tế", từ ứng dụng console "nhỏ bé" đến ứng dụng web và desktop "hoành tráng", "chứng minh" rằng EF Core là một "công cụ" "đa năng" và "thiết yếu" cho lập trình .NET hiện đại.
+Chào mừng bạn đến với **Chương 8: Ứng Dụng Thực Tế Của Entity Framework Core - "EF Core Đi Muôn Nơi"**! Trong chương "
+kết màn" này, chúng ta sẽ "thấy" EF Core "hiện diện" trong các "ứng dụng" "thực tế", từ ứng dụng console "nhỏ bé" đến
+ứng dụng web và desktop "hoành tráng", "chứng minh" rằng EF Core là một "công cụ" "đa năng" và "thiết yếu" cho lập trình
+.NET hiện đại.
 
 **Phần 8: Ứng Dụng Thực Tế Của Entity Framework Core - "EF Core Đi Muôn Nơi"**
 
-**8.1. Ví dụ ứng dụng console đơn giản sử dụng EF Core - Ứng Dụng Console "Kết Nối" Database - "Console Cũng Cần Database"**
+**8.1. Ví dụ ứng dụng console đơn giản sử dụng EF Core - Ứng Dụng Console "Kết Nối" Database - "Console Cũng Cần
+Database"**
 
 **Ví dụ: Ứng dụng console "quản lý danh mục sản phẩm"**
 
-Chúng ta sẽ "xây dựng" một ứng dụng console "đơn giản" để "quản lý" "danh mục sản phẩm" trong cơ sở dữ liệu bằng EF Core. Ứng dụng sẽ có các "chức năng":
+Chúng ta sẽ "xây dựng" một ứng dụng console "đơn giản" để "quản lý" "danh mục sản phẩm" trong cơ sở dữ liệu bằng EF
+Core. Ứng dụng sẽ có các "chức năng":
 
-1.  "Hiển thị" "danh sách" tất cả "danh mục".
-2.  "Thêm" một "danh mục" mới.
-3.  "Sửa" "tên" một "danh mục" (theo ID).
-4.  "Xóa" một "danh mục" (theo ID).
+1. "Hiển thị" "danh sách" tất cả "danh mục".
+2. "Thêm" một "danh mục" mới.
+3. "Sửa" "tên" một "danh mục" (theo ID).
+4. "Xóa" một "danh mục" (theo ID).
 
 ```csharp
 using System;
@@ -149,22 +154,26 @@ public class EFConsoleAppExample
 
 **"Chạy" ứng dụng console và "thử nghiệm" các chức năng:**
 
--   Bạn có thể "xem" danh sách danh mục, "thêm" danh mục mới, "sửa" tên danh mục, và "xóa" danh mục thông qua "menu" console.
-    -   Dữ liệu danh mục sẽ được "lưu trữ" và "quản lý" trong cơ sở dữ liệu SQL Server LocalDB (hoặc database bạn đã cấu hình trong `MyDbContext`).
-    -   Ứng dụng console "đơn giản" nhưng đã có khả năng "tương tác" với database một cách "chuyên nghiệp" nhờ EF Core.
+- Bạn có thể "xem" danh sách danh mục, "thêm" danh mục mới, "sửa" tên danh mục, và "xóa" danh mục thông qua "menu"
+  console.
+    - Dữ liệu danh mục sẽ được "lưu trữ" và "quản lý" trong cơ sở dữ liệu SQL Server LocalDB (hoặc database bạn đã cấu
+      hình trong `MyDbContext`).
+    - Ứng dụng console "đơn giản" nhưng đã có khả năng "tương tác" với database một cách "chuyên nghiệp" nhờ EF Core.
 
 **8.2. Ví dụ ứng dụng web ASP.NET Core MVC sử dụng EF Core - Ứng Dụng Web "Dữ Liệu Động" - "Web Cũng Cần Database"**
 
 **Ví dụ: Ứng dụng ASP.NET Core MVC "quản lý sản phẩm"**
 
-Chúng ta sẽ "mở rộng" ví dụ ứng dụng web ASP.NET Core MVC ở Chương 5 bằng cách "thêm" các chức năng **CRUD Operations** (Create, Read, Update, Delete) cho "quản lý sản phẩm". Ứng dụng web sẽ cho phép người dùng:
+Chúng ta sẽ "mở rộng" ví dụ ứng dụng web ASP.NET Core MVC ở Chương 5 bằng cách "thêm" các chức năng **CRUD Operations
+** (Create, Read, Update, Delete) cho "quản lý sản phẩm". Ứng dụng web sẽ cho phép người dùng:
 
-1.  "Xem" "danh sách" sản phẩm (đã có ở Chương 5).
-2.  "Thêm" sản phẩm mới.
-3.  "Sửa" thông tin sản phẩm.
-4.  "Xóa" sản phẩm.
+1. "Xem" "danh sách" sản phẩm (đã có ở Chương 5).
+2. "Thêm" sản phẩm mới.
+3. "Sửa" thông tin sản phẩm.
+4. "Xóa" sản phẩm.
 
-(Để chạy ví dụ này, bạn cần mở lại dự án ASP.NET Core MVC đã tạo ở Chương 5 hoặc tạo một dự án mới và "thêm" code vào các file Controller và View tương ứng)
+(Để chạy ví dụ này, bạn cần mở lại dự án ASP.NET Core MVC đã tạo ở Chương 5 hoặc tạo một dự án mới và "thêm" code vào
+các file Controller và View tương ứng)
 
 **SanPhamController.cs (Controller "quản lý" sản phẩm - "mở rộng" thêm các actions CRUD):**
 
@@ -287,36 +296,53 @@ public class SanPhamController : Controller
 
 **Các Views (Create.cshtml, Edit.cshtml, Delete.cshtml) - "Mặt Tiền" Cho Các Chức Năng CRUD:**
 
-Bạn cần "tạo" thêm các Views **Create.cshtml**, **Edit.cshtml**, và **Delete.cshtml** trong thư mục `Views/SanPham/` để "hiển thị" các form "thêm", "sửa", "xóa" sản phẩm. Code View cho các chức năng CRUD này khá "tiêu chuẩn" trong ASP.NET Core MVC, bạn có thể tham khảo các tutorial hoặc ví dụ mẫu trên mạng để "xây dựng" chúng.
+Bạn cần "tạo" thêm các Views **Create.cshtml**, **Edit.cshtml**, và **Delete.cshtml** trong thư mục `Views/SanPham/`
+để "hiển thị" các form "thêm", "sửa", "xóa" sản phẩm. Code View cho các chức năng CRUD này khá "tiêu chuẩn" trong
+ASP.NET Core MVC, bạn có thể tham khảo các tutorial hoặc ví dụ mẫu trên mạng để "xây dựng" chúng.
 
 **"Chạy" ứng dụng web ASP.NET Core MVC và "trải nghiệm" các chức năng CRUD:**
 
--   Bạn có thể "thêm", "xem", "sửa", "xóa" sản phẩm thông qua giao diện web.
-    -   Dữ liệu sản phẩm sẽ được "lưu trữ" và "quản lý" trong cơ sở dữ liệu SQL Server LocalDB (hoặc database bạn đã cấu hình).
-    -   Ứng dụng web "hoạt động" "nhanh nhẹn" và "mượt mà" nhờ sử dụng EF Core và lập trình bất đồng bộ.
+- Bạn có thể "thêm", "xem", "sửa", "xóa" sản phẩm thông qua giao diện web.
+    - Dữ liệu sản phẩm sẽ được "lưu trữ" và "quản lý" trong cơ sở dữ liệu SQL Server LocalDB (hoặc database bạn đã cấu
+      hình).
+    - Ứng dụng web "hoạt động" "nhanh nhẹn" và "mượt mà" nhờ sử dụng EF Core và lập trình bất đồng bộ.
 
 **Tổng Kết Chương 8:**
 
--   Bạn đã "thấy" EF Core "tung hoành" trong các "ứng dụng thực tế" "đa dạng":
-    -   Ứng dụng console "quản lý danh mục sản phẩm" - "console cũng cần database".
-    -   Ứng dụng web ASP.NET Core MVC "quản lý sản phẩm" - ứng dụng web "dữ liệu động".
+- Bạn đã "thấy" EF Core "tung hoành" trong các "ứng dụng thực tế" "đa dạng":
+    - Ứng dụng console "quản lý danh mục sản phẩm" - "console cũng cần database".
+    - Ứng dụng web ASP.NET Core MVC "quản lý sản phẩm" - ứng dụng web "dữ liệu động".
 
-Hy vọng rằng loạt tài liệu "khám phá" Entity Framework này đã "trang bị" cho bạn "đầy đủ" "kiến thức" và "kỹ năng" để "bắt đầu" "xây dựng" các ứng dụng .NET "mạnh mẽ", "hiệu quả", và "tương tác" với cơ sở dữ liệu một cách "chuyên nghiệp".
+Hy vọng rằng loạt tài liệu "khám phá" Entity Framework này đã "trang bị" cho bạn "đầy đủ" "kiến thức" và "kỹ năng" để "
+bắt đầu" "xây dựng" các ứng dụng .NET "mạnh mẽ", "hiệu quả", và "tương tác" với cơ sở dữ liệu một cách "chuyên nghiệp".
 
 **"Lời Chúc" "Kết Thúc Hành Trình":**
 
 Chúc mừng bạn đã "hoàn thành" "hành trình" "khám phá" Entity Framework Core từ "A đến Z" (cơ bản đến nâng cao)!
 
-Bạn đã "bước qua" một "chặng đường" "dài hơi", từ những "khái niệm" "vỡ lòng" về EF Core, "thiết lập" môi trường, "thao tác" dữ liệu "cơ bản" (CRUD), "quản lý" "quan hệ" giữa các bảng, "nâng cấp" database bằng Migrations, "truy vấn" dữ liệu "nâng cao" với LINQ, "tối ưu hóa" "hiệu năng", đến các "ví dụ" "ứng dụng" "thực tế". Hy vọng rằng bạn đã có được một "hành trang" "vững chắc" để "chinh phục" thế giới Entity Framework và "xây dựng" các ứng dụng .NET "tuyệt vời"!
+Bạn đã "bước qua" một "chặng đường" "dài hơi", từ những "khái niệm" "vỡ lòng" về EF Core, "thiết lập" môi trường, "thao
+tác" dữ liệu "cơ bản" (CRUD), "quản lý" "quan hệ" giữa các bảng, "nâng cấp" database bằng Migrations, "truy vấn" dữ
+liệu "nâng cao" với LINQ, "tối ưu hóa" "hiệu năng", đến các "ví dụ" "ứng dụng" "thực tế". Hy vọng rằng bạn đã có được
+một "hành trang" "vững chắc" để "chinh phục" thế giới Entity Framework và "xây dựng" các ứng dụng .NET "tuyệt vời"!
 
 **"Lời khuyên" "chân thành" "khép lại":**
 
--   **"Thực hành" "không ngừng nghỉ":** "Chìa khóa" để "làm chủ" EF Core, cũng như mọi kỹ năng lập trình khác, vẫn là **"thực hành"**. Hãy "viết code" EF Core thật nhiều, "thử sức" với các bài toán khác nhau, và "xây dựng" các dự án "thực tế" để "rèn luyện" "tay nghề".
--   **"Khám phá" "vô vàn" "tính năng" "nâng cao" của EF Core:** Entity Framework Core là một framework "rộng lớn" với rất nhiều "tính năng" "hay ho" và "mạnh mẽ" khác (ví dụ: Change Tracking "nâng cao", Compiled Queries, Raw SQL Queries "pro", Interceptors, Value Converters, v.v.). Hãy "tiếp tục" "tìm hiểu" và "khám phá" để "nâng cao" "trình độ" EF Core của bạn lên "đỉnh cao".
--   **"Tham gia" "cộng đồng" EF Core "nhiệt huyết":** "Giao lưu", "học hỏi", và "chia sẻ" kinh nghiệm với những người "đồng môn" trong cộng đồng .NET/EF Core. Đây là "nguồn" "kiến thức" và "động lực" vô giá để bạn "tiến bộ" "không ngừng".
+- **"Thực hành" "không ngừng nghỉ":** "Chìa khóa" để "làm chủ" EF Core, cũng như mọi kỹ năng lập trình khác, vẫn là **"
+  thực hành"**. Hãy "viết code" EF Core thật nhiều, "thử sức" với các bài toán khác nhau, và "xây dựng" các dự án "thực
+  tế" để "rèn luyện" "tay nghề".
+- **"Khám phá" "vô vàn" "tính năng" "nâng cao" của EF Core:** Entity Framework Core là một framework "rộng lớn" với rất
+  nhiều "tính năng" "hay ho" và "mạnh mẽ" khác (ví dụ: Change Tracking "nâng cao", Compiled Queries, Raw SQL Queries "
+  pro", Interceptors, Value Converters, v.v.). Hãy "tiếp tục" "tìm hiểu" và "khám phá" để "nâng cao" "trình độ" EF Core
+  của bạn lên "đỉnh cao".
+- **"Tham gia" "cộng đồng" EF Core "nhiệt huyết":** "Giao lưu", "học hỏi", và "chia sẻ" kinh nghiệm với những người "
+  đồng môn" trong cộng đồng .NET/EF Core. Đây là "nguồn" "kiến thức" và "động lực" vô giá để bạn "tiến bộ" "không
+  ngừng".
 
-Nếu bạn có bất kỳ câu hỏi nào khác về Entity Framework Core, hoặc muốn "chia sẻ" "thành quả" "chinh phục" EF Core của mình, đừng "ngần ngại" "lên tiếng" nhé! Chúc bạn "thành công" và "gặp nhiều may mắn" trên con đường "làm chủ" Entity Framework và .NET! 
+Nếu bạn có bất kỳ câu hỏi nào khác về Entity Framework Core, hoặc muốn "chia sẻ" "thành quả" "chinh phục" EF Core của
+mình, đừng "ngần ngại" "lên tiếng" nhé! Chúc bạn "thành công" và "gặp nhiều may mắn" trên con đường "làm chủ" Entity
+Framework và .NET!
 
 ---
 
-Hy vọng rằng phiên bản tài liệu này đã được "Việt hóa" và "dễ nuốt" hơn cho người mới bắt đầu! Let me know nếu bạn có bất kỳ phản hồi hoặc yêu cầu chỉnh sửa nào khác nhé!
+Hy vọng rằng phiên bản tài liệu này đã được "Việt hóa" và "dễ nuốt" hơn cho người mới bắt đầu! Let me know nếu bạn có
+bất kỳ phản hồi hoặc yêu cầu chỉnh sửa nào khác nhé!
